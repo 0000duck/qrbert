@@ -81,7 +81,7 @@ Title="MainWindow" Height="350" Width="525">-->
                     </TextBox.Resources></TextBox>
                     
             </StackPanel>
-            <StackPanel Height = "20" Width="150" Margin = "570, , -300, 0" >
+            <StackPanel Height = "20" Width="150" Margin = "570, 15, -300, 0" >
                     <Button Background="Orange" 
                            Foreground="White" 
                            FontWeight="Bold"
