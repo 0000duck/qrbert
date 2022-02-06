@@ -43,7 +43,7 @@ Title="MainWindow" Height="350" Width="525">-->
     
     <StackPanel Orientation = "Vertical" Height = "450" Width = "500" Margin = "-400, 0, 0, 0" Background="White">
             
-            <StackPanel Height = "40" Width="250" Margin = "560, 10 -300, 0" Background="Transparent" >
+            <StackPanel Height = "40" Width="250" Margin = "560, 100 -300, 0" Background="Transparent" >
                     <Label Background="Transparent" 
                            Foreground="White" 
                            FontWeight="Bold"
@@ -59,6 +59,8 @@ Title="MainWindow" Height="350" Width="525">-->
                             BorderBrush="Orange"
                             BorderThickness="2"
                             Text="Email"
+                            Height="25"
+                            
                             
                     ><TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
@@ -81,12 +83,18 @@ Title="MainWindow" Height="350" Width="525">-->
                     </TextBox.Resources></TextBox>
                     
             </StackPanel>
-            <StackPanel Height = "20" Width="150" Margin = "570, 15, -300, 0" >
+            <StackPanel Height = "20" Width="150" Margin = "540, 20, -300, 0" >
                     <Button Background="Orange" 
                            Foreground="White" 
                            FontWeight="Bold"
                            FontSize="10"
-                    >Forgot your password?</Button>
+                           BorderThickness="0"
+                           
+                    >Forgot your password?<Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                    </Button.Resources></Button>
                     
             </StackPanel>
             <StackPanel Height = "20" Width="50" Margin = "-215, 10, -200, 0" >
@@ -117,26 +125,28 @@ Title="MainWindow" Height="350" Width="525">-->
                     >To keep connected with us please</Label>
                     
             </StackPanel>-->
-            <StackPanel Height = "20" Width="200" Margin = "610, -30, -300, 0" Background="Transparent">
+            <!--<StackPanel Height = "20" Width="200" Margin = "610, -30, -300, 0" Background="Transparent">
                     <Label Background="Orange" 
                            Foreground="White" 
                            FontWeight="Bold"
                            FontSize="10"
                     >Log in with credentials</Label>
                     
-            </StackPanel>
-            <StackPanel Height = "20" Width="47" Margin = "530, 0, -300, 0" >
-                    <TextBox Background="Orange" 
+            </StackPanel>-->
+            <StackPanel Height = "30" Width="120" Margin = "530, -20, -300, 0" >
+                    <Button Background="Orange" 
                              Foreground="White" 
                              FontWeight="Bold" 
                              BorderBrush="White"
                              BorderThickness="2"
-                             Text="Sign in"
-                    ><TextBox.Resources>
+                             Width="70"
+                             Height="25"
+                             HorizontalAlignment="Center"
+                    ><Button.Resources>
                             <Style TargetType="{x:Type Border}">
                                     <Setter Property="CornerRadius" Value="10"/>
                             </Style>
-                    </TextBox.Resources></TextBox>
+                    </Button.Resources>Sign in</Button>
             </StackPanel>
             <Image Width="200" Height="150" Source="Qbert_logo.png" Margin = "-550, -500, -200, 0" />
     </StackPanel>
