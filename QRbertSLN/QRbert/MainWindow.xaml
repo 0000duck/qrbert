@@ -1,48 +1,18 @@
-﻿﻿<Window x:Class="qrbertApp.MainWindow"
+﻿<!-- Entire window with QRbert orange background-->
+
+<Window x:Class="qrbertApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:qrbertApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="Orange">
-    <!--This is a comment-->
-    <!--I removed a <Grid> and </Grid> code from this line-->
-    <!--I put in the one below-->
-    <!--I realized that I had to remove the line below-->
-    <!--<Grid.Background>Black</Grid.Background>-->
-    <!--Created a StackPanel, which essentially makes a centered panel with objects of your choosing
-        in this case 3 buttons with specific formatting -->
-    <!--This creates a new button with a Click subscription-->
-    <!--All these have their respective click functions in the cs file-->
-    <!--<StackPanel HorizontalAlignment="Center">
-        <Button 
-                Style="{StaticResource RoundedButtonTemplate}"
-                Width="130"
-                Height="30"
-                 
-                >Create Table in DB</Button>
-        <Button Style="{StaticResource RoundedButtonTemplate}"
-                Width="130"
-                Height="30" 
-        >Name</Button>
-        <Button Style="{StaticResource RoundedButtonTemplate}"
-                Width="130"
-                Height="30" 
-        >Email</Button>
-        <Button Style="{StaticResource RoundedButtonTemplate}"
-                Width="130"
-                Height="30" 
-        >Password</Button>
-            <Button Style="{StaticResource RoundedButtonTemplate}"
-                    Width="130"
-                    Height="30" 
-            >Sign Up</Button>   
-    </StackPanel>
-Title="MainWindow" Height="350" Width="525">-->
+        Title="MainWindow" Height="450" Width="800" Background="#FF9100">
     
+        
+         <!-- StackPanel on top of window to split up colors. Background is white-->
     <StackPanel Orientation = "Vertical" Height = "450" Width = "500" Margin = "-400, 0, 0, 0" Background="White">
-            
+            <!-- Label in StackPanel on the right side-->
             <StackPanel Height = "40" Width="250" Margin = "560, 100 -300, 0" Background="Transparent" >
                     <Label Background="Transparent" 
                            Foreground="White" 
@@ -50,91 +20,79 @@ Title="MainWindow" Height="350" Width="525">-->
                            FontSize="25"
                     >Sign in to QRbert</Label>
             </StackPanel>
+            
+            <!-- Textbox in StackPanel for email-->
             <StackPanel Height = "25" Width="200" Margin = "540, 50, -300, 0" >
                     
                     <TextBox 
                             Background="White" 
-                            Foreground="Orange" 
+                            Foreground="#FF9100" 
                             FontWeight="Bold" 
-                            BorderBrush="Orange"
+                            BorderBrush="#FF9100"
                             BorderThickness="2"
                             Text="Email"
                             Height="25"
                             
                             
-                    ><TextBox.Resources>
+                    >
+                            <!--How to get rounded corners-->
+                            <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                     <Setter Property="CornerRadius" Value="10"/>
                             </Style>
-                    </TextBox.Resources></TextBox>
+                    </TextBox.Resources>
+                    </TextBox>
             </StackPanel>
+            
+            <!-- Textbox on StackPanel for Password-->
             <StackPanel Height = "20" Width="200" Margin = "540, 7, -300, 0" >
                     <TextBox Background="White" 
-                             Foreground="Orange" 
+                             Foreground="#FF9100" 
                              FontWeight="Bold" 
-                             BorderBrush="Orange"
+                             BorderBrush="#FF9100"
                              BorderThickness="2"
                              Text="Password"
             
-                    ><TextBox.Resources>
+                    >
+                            <!--Rounded Corners-->
+                            <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                     <Setter Property="CornerRadius" Value="10"/>
                             </Style>
-                    </TextBox.Resources></TextBox>
+                    </TextBox.Resources>
+                    </TextBox>
                     
             </StackPanel>
+            
+            <!-- Button on StackPanel. Used for going to forgot password page-->
             <StackPanel Height = "20" Width="150" Margin = "540, 20, -300, 0" >
-                    <Button Background="Orange" 
+                    <Button Background="#FF9100" 
                            Foreground="White" 
                            FontWeight="Bold"
                            FontSize="10"
                            BorderThickness="0"
                            
-                    >Forgot your password?<Button.Resources>
+                    >Forgot your password?
+                            <!-- How to make curved buttons-->
+                            <Button.Resources>
                             <Style TargetType="{x:Type Border}">
                                     <Setter Property="CornerRadius" Value="10"/>
                             </Style>
                     </Button.Resources></Button>
                     
             </StackPanel>
-            <StackPanel Height = "20" Width="50" Margin = "-215, 10, -200, 0" >
-                    <TextBox Background="White" 
-                             Foreground="Orange" 
-                             FontWeight="Bold" 
-                             BorderBrush="Orange"
-                             BorderThickness="2"
-                             Text="Sign in"
-                    ><TextBox.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                    <Setter Property="CornerRadius" Value="10"/>
-                            </Style>
-                    </TextBox.Resources></TextBox>
-            </StackPanel>
+            
+            
             <StackPanel Height = "40" Width="300" Margin = "-70, -300 -200, 0" Background="White" >
                     <Label Background="White" 
-                           Foreground="Orange" 
+                           Foreground="#FF9100" 
                            FontWeight="Bold"
                            FontSize="25"
                     >Welcome Back!</Label>
             </StackPanel>
-            <!--<StackPanel Height = "20" Width="200" Margin = "525, -300, -200, 0" Background="Transparent">
-                    <Label Background="Orange" 
-                           Foreground="White" 
-                           FontWeight="Bold"
-                           FontSize="10"
-                    >To keep connected with us please</Label>
-                    
-            </StackPanel>-->
-            <!--<StackPanel Height = "20" Width="200" Margin = "610, -30, -300, 0" Background="Transparent">
-                    <Label Background="Orange" 
-                           Foreground="White" 
-                           FontWeight="Bold"
-                           FontSize="10"
-                    >Log in with credentials</Label>
-                    
-            </StackPanel>-->
-            <StackPanel Height = "30" Width="120" Margin = "530, -20, -300, 0" >
-                    <Button Background="Orange" 
+            <!-- Sign in button on right side-->
+            <StackPanel Height = "30" Width="120" Margin = "530, 20, -300, 0" >
+                    <Button Background="#FF9100" 
                              Foreground="White" 
                              FontWeight="Bold" 
                              BorderBrush="White"
@@ -150,15 +108,5 @@ Title="MainWindow" Height="350" Width="525">-->
             </StackPanel>
             <Image Width="200" Height="150" Source="Qbert_logo.png" Margin = "-550, -500, -200, 0" />
     </StackPanel>
-    
-    <!--<StackPanel>
-            <StackPanel Height = "40" Width="250" Margin = "535, -375 -300, 0" Background="Orange" >
-                    <Label Background="Orange" 
-                           Foreground="White" 
-                           FontWeight="Bold"
-                           FontSize="25"
-                    >Sign in to QR bert</Label>
-            </StackPanel>
-    </StackPanel>-->
     
 </Window>
