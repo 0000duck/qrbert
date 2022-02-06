@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
+using QRbert;
 
 namespace qrbertApp
 {
@@ -20,9 +22,31 @@ namespace qrbertApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Window WelcomeScreen = new WelcomeScreen();
+        
         public MainWindow()
         {
-            InitializeComponent();
+            this.Hide();
+            WelcomeScreen.Show();
+            StartCloseTimer();
+            this.Activate();
+            // InitializeComponent();
+        }
+
+        private void StartCloseTimer()
+        {
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(5d);
+            timer.Tick += TimerTick;
+            timer.Start();
+        }
+
+        private void TimerTick(object sender, EventArgs e)
+        {
+            DispatcherTimer timer = (DispatcherTimer) sender;
+            timer.Stop();
+            timer.Tick -= TimerTick;
+            WelcomeScreen.Close();
         }
     }
 }
