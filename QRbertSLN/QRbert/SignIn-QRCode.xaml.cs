@@ -31,7 +31,7 @@ public partial class SignIn_QRCode : Window
         }
     }
 
-    private void StopCaptureButton_Click(object sender, RoutedEventArgs e)
+    private void StopPreviewButton_Click(object sender, RoutedEventArgs e)
     {
         // Stop the display of webcam video.
         WebcamViewer.StopPreview();

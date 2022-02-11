@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:qrbertApp"
+        xmlns:local="clr-namespace:QRbert"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Background="#FF9100">
     <!--This is the main stack panel where all the controls live. Notice that the main form is of the QRbert color
@@ -82,7 +82,8 @@
             radius.-->
         <StackPanel Height="40" Width="150" Margin="0,20,-25,0" Background="Transparent">
             <Button Foreground="#FF9100" Background="Transparent" FontWeight="Bold" FontSize="18"
-                    BorderThickness="2" BorderBrush="#FF9100" Padding="1">
+                    BorderThickness="2" BorderBrush="#FF9100" Padding="1"
+                    Click="ActivateCameraButton_Click">
                 Activate Camera
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">

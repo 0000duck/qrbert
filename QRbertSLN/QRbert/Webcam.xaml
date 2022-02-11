@@ -8,8 +8,10 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
+        <!--
         <webCamControl:Webcam x:Name="WinFormsHost" Margin="0" Background="{x:Null}">
             <Panel x:Name="WebcamPanel"/>
         </webCamControl:Webcam>
+        -->
     </Grid>
 </UserControl>
