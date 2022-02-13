@@ -1,113 +1,111 @@
-﻿<!-- Entire window with QRbert orange background-->
-
 <Window x:Class="qrbertApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:qrbertApp"
+        xmlns:local="clr-namespace:QRbert"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Background="#FF9100">
-    
-        
-         <!-- StackPanel on top of window to split up colors. Background is white-->
-    <StackPanel Orientation = "Vertical" Height = "450" Width = "500" Margin = "-400, 0, 0, 0" Background="White">
-            <!-- Label in StackPanel on the right side-->
-            <StackPanel Height = "40" Width="250" Margin = "560, 100 -300, 0" Background="Transparent" >
-                    <Label Background="Transparent" 
-                           Foreground="White" 
-                           FontWeight="Bold"
-                           FontSize="25"
-                    >Sign in to QRbert</Label>
-            </StackPanel>
-            
-            <!-- Textbox in StackPanel for email-->
-            <StackPanel Height = "25" Width="200" Margin = "540, 50, -300, 0" >
-                    
-                    <TextBox 
-                            Background="White" 
-                            Foreground="#FF9100" 
-                            FontWeight="Bold" 
-                            BorderBrush="#FF9100"
-                            BorderThickness="2"
-                            Text="Email"
-                            Height="25"
-                            
-                            
-                    >
-                            <!--How to get rounded corners-->
-                            <TextBox.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                    <Setter Property="CornerRadius" Value="10"/>
-                            </Style>
-                    </TextBox.Resources>
-                    </TextBox>
-            </StackPanel>
-            
-            <!-- Textbox on StackPanel for Password-->
-            <StackPanel Height = "20" Width="200" Margin = "540, 7, -300, 0" >
-                    <TextBox Background="White" 
-                             Foreground="#FF9100" 
-                             FontWeight="Bold" 
-                             BorderBrush="#FF9100"
-                             BorderThickness="2"
-                             Text="Password"
-            
-                    >
-                            <!--Rounded Corners-->
-                            <TextBox.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                    <Setter Property="CornerRadius" Value="10"/>
-                            </Style>
-                    </TextBox.Resources>
-                    </TextBox>
-                    
-            </StackPanel>
-            
-            <!-- Button on StackPanel. Used for going to forgot password page-->
-            <StackPanel Height = "20" Width="150" Margin = "540, 20, -300, 0" >
-                    <Button Background="#FF9100" 
-                           Foreground="White" 
-                           FontWeight="Bold"
-                           FontSize="10"
-                           BorderThickness="0"
-                           
-                    >Forgot your password?
-                            <!-- How to make curved buttons-->
-                            <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                    <Setter Property="CornerRadius" Value="10"/>
-                            </Style>
-                    </Button.Resources></Button>
-                    
-            </StackPanel>
-            
-            
-            <StackPanel Height = "40" Width="300" Margin = "-70, -300 -200, 0" Background="White" >
-                    <Label Background="White" 
-                           Foreground="#FF9100" 
-                           FontWeight="Bold"
-                           FontSize="25"
-                    >Welcome Back!</Label>
-            </StackPanel>
-            <!-- Sign in button on right side-->
-            <StackPanel Height = "30" Width="120" Margin = "530, 20, -300, 0" >
-                    <Button Background="#FF9100" 
-                             Foreground="White" 
-                             FontWeight="Bold" 
-                             BorderBrush="White"
-                             BorderThickness="2"
-                             Width="70"
-                             Height="25"
-                             HorizontalAlignment="Center"
-                             Click="StartCamera"
-                    ><Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                    <Setter Property="CornerRadius" Value="10"/>
-                            </Style>
-                    </Button.Resources>Sign in</Button>
-            </StackPanel>
-            <Image Width="200" Height="150" Source="Qbert_logo.png" Margin = "-550, -500, -200, 0" />
+    <!--This is the main stack panel where all the controls live. Notice that the main form is of the QRbert color
+        while, the stack panel is white. The stack panel refers to the controls on the left side of the screen. -->
+    <StackPanel Orientation="Vertical" Height="450" Width="500" Margin="-400,0,0,0" Background="White">
+        <!--This stack panel houses the label Sign in to QRbert, with standard colors, a transparent background
+            and bold, large, white letters.-->
+        <StackPanel Height="40" Width="250" Margin="560,100,-300,0" Background="Transparent">
+            <Label Background="Transparent" Foreground="White" FontWeight="Bold" FontSize="25">
+                Sign in to QRbert
+            </Label>
+        </StackPanel>
+        <!--This stack panel contains the text box Email, which was designed in a way to disappear once the user
+            starts to type inside it. It has a corner radius and value, with its target being the text boxes' 
+            border.-->
+        <StackPanel Height="25" Width="200" Margin="540,50,-300,0">
+            <TextBox Background="White" Foreground="#FF9100" FontWeight="Bold" BorderBrush="#FF9100" 
+                     BorderThickness="2" Text="Email" Height="25">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+        </StackPanel>
+        <!--This stack panel contains the text box password, which was designed in a way to disappear once the user
+            starts to type inside it. It has a corner radius and value, with its target being the text boxes'
+            border.-->
+        <StackPanel Height="20" Width="200" Margin="540,7,-300,0">
+            <TextBox Background="White" Foreground="#FF9100" FontWeight="Bold" BorderBrush="#FF9100"
+                     BorderThickness="2" Text="Password">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+        </StackPanel>
+        <!--This stack panel contains the button Forgot your password?, which was designed in a translucent pattern
+            with no border. However, if the user clicks anywhere within the stack panel's border, it will activate
+            the button and take them to another page.-->
+        <StackPanel Height="20" Width="150" Margin="540,20,-300,0">
+            <Button Background="#FF9100" Foreground="White" FontWeight="Bold" 
+                    FontSize="10" BorderThickness="0">
+                Forgot your password?
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+        <!--Log In Label for user centered in the middle of the white stack panel
+        Same QRbert hex color as well as offsetting top margin a bit from the 
+        Sign In label because the bottom label is too close to the bottom of 
+        the form. -->
+        <StackPanel Height="40" Width="100" Margin = "30, -400, 0, 0" Background="Transparent">
+            <Label Background="White" Foreground="#FF9100" FontWeight="Bold" FontSize="25">
+                Log In
+            </Label>
+        </StackPanel>
+        <!--With Your QR Code label for user centered in the middle of the white
+            stack panel. Same QRbert hex color. Allowed a gap between this label 
+            and the QR code so that it doesn't look too clumped together. -->
+        <StackPanel Height="40" Width="240" Margin="25,-325,-25,0" Background="Transparent">
+            <Label Foreground="#FF9100" FontWeight="Bold" FontSize="25">
+                With Your QR Code
+            </Label>
+        </StackPanel>
+        <!--QR code image from the Github repository. Not meant to be scanned. Just
+            represents how QRbert logos look like for all users, staff and
+            volunteers. -->
+        <Image Width="200" Height="150" Source="Images/QRbertQRCode-White.png" Margin="25,-125,0,0"/>
+        <!--Activate Camera button so that user clicks on it to activate the camera 
+            on the next page. Using the resource property, we managed to make a corner 
+            radius.-->
+        <StackPanel Height="40" Width="150" Margin="0,20,-25,0" Background="Transparent">
+            <Button Foreground="#FF9100" Background="Transparent" FontWeight="Bold" FontSize="18"
+                    BorderThickness="2" BorderBrush="#FF9100" Padding="1"
+                    Click="ActivateCameraButton_Click">
+                Activate Camera
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+        <!--The last stack panel is the Sign In button on the right hand side, which was made out of order. 
+            This allows the user to sign in using their credentials. It has a corner radius and value, with 
+            its target being the button's border. Also, when activated, it will redirect the user to a 
+            different page.-->
+        <StackPanel Height="30" Width="120" Margin="530,-100,-300,0">
+                <Button Background="#FF9100" Foreground="White" FontWeight="Bold" BorderBrush="White"
+                         BorderThickness="2" Width="70" Height="25" HorizontalAlignment="Center">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                    Sign in
+                </Button>
+        </StackPanel>
     </StackPanel>
-    
 </Window>
