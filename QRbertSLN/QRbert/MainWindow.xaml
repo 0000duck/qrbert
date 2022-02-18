@@ -82,8 +82,7 @@
             radius.-->
         <StackPanel Height="40" Width="150" Margin="0,20,-25,0" Background="Transparent">
             <Button Foreground="#FF9100" Background="Transparent" FontWeight="Bold" FontSize="18"
-                    BorderThickness="2" BorderBrush="#FF9100" Padding="1"
-                    Click="ActivateCameraButton_Click">
+                    BorderThickness="2" BorderBrush="#FF9100" Padding="1">
                 Activate Camera
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
