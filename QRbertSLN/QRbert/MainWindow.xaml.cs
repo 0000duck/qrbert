@@ -9,24 +9,10 @@ namespace QRbert
     /// </summary>
     public partial class MainWindow : Window
     {
-        // private Window WelcomeScreen = new WelcomeScreen();
-        // private Window SignIn_QRCode = new SignIn_QRCode();
-        private Window CaptureTheWebcam1 = new CaptureTheWebcam();
         public MainWindow()
         {
-            CaptureTheWebcam1.Show();
-            this.Hide();
-            // WelcomeScreen.Show();
-            // SignIn_QRCode.Show();
-            StartCloseTimer();
-            this.Activate();
-            // InitializeComponent();
+            InitializeComponent();
         }
-
-        private void ActivateCameraButton_Click(object sender, EventArgs e)
-        {
-            CaptureTheWebcam1.Show();
-        } 
         private void StartCloseTimer()
         {
             DispatcherTimer timer = new DispatcherTimer();
