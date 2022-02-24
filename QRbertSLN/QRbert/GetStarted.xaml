@@ -7,8 +7,8 @@
       mc:Ignorable="d"
       Title="Homepage" Height="700" Width="800">
         <StackPanel Orientation = "Horizontal" Height = "900" Width = "800" Background="Transparent" >
-                <Image Width="800" Height="450" Source="Pets2.png" Margin = "0, -800, -200, -200" />
-                <Image Width="800" Height="450" Source="Pets2.png" Margin = "-600, -100, -200, -200" />
+                <Image Width="800" Height="450" Source="Images/petsBackground.png" Margin = "0, -800, -200, -200" />
+                <Image Width="800" Height="450" Source="Images/petsBackground.png" Margin = "-600, -100, -200, -200" />
                 <StackPanel Background="Orange" Width="800" Height="1000" Opacity="0.7" Margin = "-600, -500, 0, 0"/>
                 <StackPanel>
                         <Label
