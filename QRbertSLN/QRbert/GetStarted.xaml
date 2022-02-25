@@ -5,70 +5,187 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:QRbert"
       mc:Ignorable="d"
-      Title="Homepage" Height="700" Width="800">
-    <StackPanel Orientation = "Horizontal" Height = "900" Width = "800" Background="Transparent" >
-        <Image Width="800" Height="450" Source="Pets2.png" 
-               Margin = "0, -800, -200, -200" />
-        <Image Width="800" Height="450" Source="Pets2.png" 
-               Margin = "-600, -100, -200, -200" />
-        <StackPanel Background="Orange" Width="800" Height="1000" Opacity="0.7" 
-                    Margin = "-600, -500, 0, 0"/>
+      Title="Homepage" 
+      Height="700" 
+      Width="800"
+      >
+    <StackPanel 
+        Orientation = "Horizontal" 
+        Height = "900" 
+        Width = "800" 
+        Background="Transparent" 
+        >
+        <Image 
+            Width="800" 
+            Height="450" 
+            Source="Pets2.png" 
+            Margin = "0, -800, -200, -200" 
+        />
+        <Image 
+            Width="800" 
+            Height="450" 
+            Source="Pets2.png" 
+            Margin = "-600, -100, -200, -200" 
+        />
+        <StackPanel 
+            Background="Orange" 
+            Width="800" 
+            Height="1000" 
+            Opacity="0.7" 
+            Margin = "-600, -500, 0, 0"
+        />
         <StackPanel>
-            <Label Width = "500" FontWeight="Bold" Content="Welcome to QRbert!" Foreground="White" FontSize="40"
-                   Margin="-650,200,0,0"/>
+            <Label 
+                Width = "500" 
+                FontWeight="Bold" 
+                Content="Welcome to QRbert!" 
+                Foreground="White" 
+                FontSize="40"
+                Margin="-650,200,0,0"
+            />
         </StackPanel>
         <StackPanel>
-            <Label Width = "700" FontWeight="Bold" Foreground="White" FontSize="30" 
-                   Content="Making volunteering that much easier." 
-                   Margin="-650,250,0,0"/>
+            <Label 
+                Width = "700" 
+                FontWeight="Bold" 
+                Foreground="White" 
+                FontSize="30" 
+                Content="Making volunteering that much easier." 
+                Margin="-650,250,0,0"
+            />
         </StackPanel>
-        <StackPanel Height = "45" Width="90" Margin = "-350, -800, -115, 0">
-            <Button Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" 
-                    BorderThickness="2" Height="35" Width="90" FontSize="16" ClickMode="Press">
+        <StackPanel 
+            Height = "45" 
+            Width="90" 
+            Margin = "-350, -800, -115, 0"
+            >
+            <Button 
+                Background="White" 
+                Foreground="Orange" 
+                FontWeight="Bold" 
+                BorderBrush="Orange" 
+                BorderThickness="2" 
+                Height="35" 
+                Width="90" 
+                FontSize="16" 
+                ClickMode="Press">
                 <Button.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="15"/>
+                    <Style 
+                        TargetType="{x:Type Border}"
+                        >
+                        <Setter 
+                            Property="CornerRadius" 
+                            Value="15"
+                        />
                     </Style>
                 </Button.Resources>
                 Sign in
             </Button>
         </StackPanel>
-        <StackPanel Height = "45" Width="120" Margin = "-1000, -200, -115, 0">
-            <Button Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" 
-                    BorderThickness="2" Height="35" Width="120" FontSize="16" ClickMode="Press">
+        <StackPanel 
+            Height = "45" 
+            Width="120" 
+            Margin = "-1000, -200, -115, 0"
+            >
+            <Button 
+                Background="White" 
+                Foreground="Orange" 
+                FontWeight="Bold" 
+                BorderBrush="Orange" 
+                BorderThickness="2" 
+                Height="35" 
+                Width="120" 
+                FontSize="16" 
+                ClickMode="Press"
+                >
                 <Button.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="15"/>
+                    <Style 
+                        TargetType="{x:Type Border}"
+                        >
+                        <Setter 
+                            Property="CornerRadius" 
+                            Value="15"/>
                     </Style>
                 </Button.Resources>
                 Get Started>
             </Button>
         </StackPanel>
-        <StackPanel Height="50" Width = "200" Background="Transparent" Margin="-1300,450,0,0">
-            <Button Content="Terms and Privacy Notice" Background="Transparent" Foreground="White" FontSize="16" 
-                    BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press">
+        <StackPanel 
+            Height="50" 
+            Width = "200" 
+            Background="Transparent" 
+            Margin="-1300,450,0,0"
+            >
+            <Button 
+                Content="Terms and Privacy Notice" 
+                Background="Transparent" 
+                Foreground="White" 
+                FontSize="16" 
+                BorderBrush="Transparent" 
+                FontWeight="Normal" 
+                ClickMode="Press"
+                >
             </Button>
         </StackPanel>
-        <StackPanel Height="50" Width = "50" Background="Transparent" Margin="-950,450,0,0">
-            <Button Content="Help" Background="Transparent" Foreground="White" BorderBrush="Transparent"
-                    FontSize="16" FontWeight="Normal">
+        <StackPanel 
+            Height="50" 
+            Width = "50" 
+            Background="Transparent" 
+            Margin="-950,450,0,0"
+            >
+            <Button 
+                Content="Help" 
+                Background="Transparent" 
+                Foreground="White" 
+                BorderBrush="Transparent"
+                FontSize="16" 
+                FontWeight="Normal"
+                >
             </Button>
         </StackPanel>
-        <StackPanel Height="50" Width = "50" Background="Transparent" Margin="-700,450,0,0">
-            <Button Content="FAQs" Background="Transparent" Foreground="White" BorderBrush="Transparent"
-                    FontSize="16" FontWeight="Normal">
+        <StackPanel 
+            Height="50" 
+            Width = "50" 
+            Background="Transparent" 
+            Margin="-700,450,0,0"
+            >
+            <Button 
+                Content="FAQs" 
+                Background="Transparent" 
+                Foreground="White" 
+                BorderBrush="Transparent"
+                FontSize="16" 
+                FontWeight="Normal"
+                >
             </Button>
         </StackPanel>
-        <StackPanel Height="50" Width = "150" Background="Transparent" Margin="-400,450,0,0">
-            <Button Content="©2022 QRbert Inc." Background="Transparent" Foreground="White" BorderBrush="Transparent"
-                    FontSize="16" FontWeight="Normal">
+        <StackPanel 
+            Height="50" 
+            Width = "150" 
+            Background="Transparent" 
+            Margin="-400,450,0,0"
+            >
+            <Button 
+                Content="©2022 QRbert Inc." 
+                Background="Transparent" 
+                Foreground="White" 
+                BorderBrush="Transparent"
+                FontSize="16" 
+                FontWeight="Normal"
+                >
             </Button>
         </StackPanel>
-        <Image Width="300" Height="250" 
-               Source= "Images/Qbert_logo_white .png" 
-               Margin = "-1050, -550, -200, 0" />
-        <Image Width="200" Height="150" 
-               Source= "Images/Qbert_logo_white .png" 
-               Margin = "-1050, 350, -200, 0" />
+        <Image 
+            Width="300" 
+            Height="250" 
+            Source= "Images/Qbert_logo_white .png" 
+            Margin = "-1050, -550, -200, 0" 
+        />
+        <Image 
+            Width="200" 
+            Height="150" 
+            Source= "Images/Qbert_logo_white .png" 
+            Margin = "-1050, 350, -200, 0" 
+        />
         </StackPanel>
 </Page>
