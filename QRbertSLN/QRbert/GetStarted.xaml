@@ -9,31 +9,35 @@
       Height="700" 
       Width="800"
       >
+    <!--This is the main stack panel where all the controls live.-->
     <StackPanel 
         Orientation = "Horizontal" 
         Height = "900" 
         Width = "800" 
         Background="Transparent" 
         >
+        <!-- Two images are displayed in the background. Their files are located in the Images folder. -->
         <Image 
             Width="800" 
             Height="450" 
-            Source="Pets2.png" 
+            Source="Images/pets2.png" 
             Margin = "0, -800, -200, -200" 
         />
         <Image 
             Width="800" 
             Height="450" 
-            Source="Pets2.png" 
+            Source="Images/pets2.png" 
             Margin = "-600, -100, -200, -200" 
         />
+        <!-- This StackPanel gives the tinted orange for the background. -->
         <StackPanel 
-            Background="Orange" 
+            Background="#FF9100" 
             Width="800" 
             Height="1000" 
             Opacity="0.7" 
             Margin = "-600, -500, 0, 0"
         />
+        <!-- This StackPanel holds the label Welcome to QRbert which has large, bold letters in white. --> 
         <StackPanel>
             <Label 
                 Width = "500" 
@@ -44,6 +48,9 @@
                 Margin="-650,200,0,0"
             />
         </StackPanel>
+        
+        <!-- This StackPanel holds the label Making volunteering that much easier which is printed in
+             large, bold, white letters. -->
         <StackPanel>
             <Label 
                 Width = "700" 
@@ -54,6 +61,10 @@
                 Margin="-650,250,0,0"
             />
         </StackPanel>
+        
+        <!-- This StackPanel holds the button Sign in that has a cornered radius found in Button.Resources.
+             It has a white background with bold orange text with some border thickness. As of now, the button
+             does not take you anywhere. -->
         <StackPanel 
             Height = "45" 
             Width="90" 
@@ -82,6 +93,10 @@
                 Sign in
             </Button>
         </StackPanel>
+        
+        <!-- This StackPanel holds the button Get Started> that has a cornered radius found in Button.Resources.
+             It has a white background with bold orange text with some border thickness. As of now, the button
+             does not take you anywhere.-->
         <StackPanel 
             Height = "45" 
             Width="120" 
@@ -110,6 +125,10 @@
                 Get Started>
             </Button>
         </StackPanel>
+        
+        <!-- This StackPanel has a transparent background that holds the button Terms and and Privacy Notice. 
+             It has a transparent background with white text with no border. As of now, clicking the button does
+             not do anything. -->
         <StackPanel 
             Height="50" 
             Width = "200" 
@@ -127,6 +146,10 @@
                 >
             </Button>
         </StackPanel>
+        
+        <!-- This StackPanel has a transparent background that holds the button Help. 
+             It has a transparent background with white text with no border. As of now, clicking the button does
+             not do anything. -->
         <StackPanel 
             Height="50" 
             Width = "50" 
@@ -143,6 +166,10 @@
                 >
             </Button>
         </StackPanel>
+        
+        <!-- This StackPanel has a transparent background that holds the button FAQs. 
+             It has a transparent background with white text with no border. As of now, clicking the button does
+             not do anything. -->
         <StackPanel 
             Height="50" 
             Width = "50" 
@@ -159,6 +186,10 @@
                 >
             </Button>
         </StackPanel>
+        
+        <!-- This StackPanel has a transparent background that holds the button ©2022 QRbert Inc.. 
+             It has a transparent background with white text with no border. As of now, clicking the button does
+             not do anything. -->
         <StackPanel 
             Height="50" 
             Width = "150" 
@@ -175,6 +206,8 @@
                 >
             </Button>
         </StackPanel>
+        
+        <!-- This images are used to display the QRbert logo. These images can be found in the Images folder.-->
         <Image 
             Width="300" 
             Height="250" 
@@ -187,5 +220,5 @@
             Source= "Images/Qbert_logo_white .png" 
             Margin = "-1050, 350, -200, 0" 
         />
-        </StackPanel>
+    </StackPanel>
 </Page>
