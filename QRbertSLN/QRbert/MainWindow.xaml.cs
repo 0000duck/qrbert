@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using QRbert;
 
-namespace qrbertApp
+namespace QRbert
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
