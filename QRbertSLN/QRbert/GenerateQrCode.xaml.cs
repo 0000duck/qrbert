@@ -16,19 +16,27 @@ public partial class GenerateQrCode : Page
 
     private void Generate_QR_Click(object sender, EventArgs e)
     {
+        var salt = "";
+        byte[] bytes = new byte[128 / 8];
+        using (var keyGenerator = RandomNumberGenerator.Create()) {
+            keyGenerator.GetBytes(bytes);
+            salt = BitConverter.ToString(bytes).Replace("-", "").ToLower();
+        }
+
+        String userInfo = NameInput.Text + DoBInput.Text + salt;
+
+        using(var sha256 = SHA256.Create()) {
+            var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(userInfo));
+            var hash = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+            Console.WriteLine(hash);
+        }
+
         QRCodeGenerator gen = new QRCodeGenerator();
-        Random rand = new Random();
-        /*
-         * Currently using user's full name, date of birth, and random integer as encoded data
-         * Use of random integer reduces chance of collision, reduces chance of someone guessing the encoded data,
-         * and allows for a user to easily reset their QR code with a new one.
-         */
-        String userInfo = NameInput.Text + DoBInput.Text + rand.Next(0, 10000);
         QRCodeData data = gen.CreateQrCode(userInfo, QRCodeGenerator.ECCLevel.Q);
         XamlQRCode qrCode = new XamlQRCode(data);
         DrawingImage qrCodeImage = qrCode.GetGraphic(20);
         QRcodeViewer.Source = qrCodeImage;
         QRcodeViewer.Visibility = Visibility.Visible;
     }
-    
+
 }
