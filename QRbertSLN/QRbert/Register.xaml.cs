@@ -12,21 +12,22 @@ public partial class Register : Page
     string connectionString = @"Data Source = qrbert-rds1; Initial Catolog = QRbertDB; User ID = rds1_admin;
                                     Password = rds1_admin";
 
-    //SqlConnection cnn;
+   // SqlConnection cnn = new SqlConnection (@"Data Source = qrbert-rds1; Initial Catolog = QRbertDB; User ID = rds1_admin;Password = rds1_admin");
+
     public Register()
     {
         InitializeComponent();
     }
     
     // Link the "sign Up" button to DB to save user registration info
-    private void RegUser_Button(Object sender, EventArgs e)
+    private void RegUser_Button(object sender, EventArgs e)
     {
-       /* if (txtUserName.Text == "" || txtPassword.Text == "")
+       if (txtEmail.Text == "" || txtPassword.Text == "")
             MessageBox.Show("Please fill out all mandatory fields");
         else if (txtPassword.Text != txtConfirmPassword.Text)
             MessageBox.Show("Passwords Do Not Match");
         else
-        {*/
+        {
 
 
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
@@ -42,7 +43,7 @@ public partial class Register : Page
                 MessageBox.Show("Sign Up Complete ");
                 Clear();
             }
-        //}
+        }
     }
 
     void Clear()

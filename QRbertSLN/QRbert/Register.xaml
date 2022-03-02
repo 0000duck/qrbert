@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       mc:Ignorable="d"
       Title="Register" Height="1500" Width="800" >
+
     <StackPanel Height="1400" Width="800" Background="Transparent" >
         <Image Width="150" Height="150" Source= "Images/Qbert_logo_orange.png" Margin = "-600, -75, 0, -100" />
         <Label Content="Let's Get Started!"
@@ -33,7 +34,7 @@
                 </ToggleButton>
             </StackPanel>
             <DockPanel LastChildFill="False">
-                <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
+                <TextBox Name = "txtFirstName" Width = "250" Height="20" Background="Transparent" Foreground="White" 
                                  FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                                  Margin="-600,-2150,-1400,0" FontSize="14">
                     First Name
@@ -42,7 +43,7 @@
                            Margin="0,-2115,0,0"/>
             </DockPanel>
             <DockPanel LastChildFill="False">
-                <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
+                <TextBox Name = "txtLastName" Width = "250" Height="20" Background="Transparent" Foreground="White" 
                          FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                          Margin="275,-2000,-500,0" FontSize="14">
                     Last Name
@@ -51,7 +52,7 @@
                            Margin="-25,-1965,0,0"/>
             </DockPanel>
             <DockPanel LastChildFill="False">
-                <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
+                <TextBox Name = "txtEmail" Width = "250" Height="20" Background="Transparent" Foreground="White" 
                          FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                          Margin="275,-1850,-500,0" FontSize="14">
                     Email
@@ -105,7 +106,7 @@
                            Margin="-25,-1065,0,0"/>
             </DockPanel>
             <DockPanel LastChildFill="False">
-                <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
+                <TextBox Name = "txtPassword" Width = "250" Height="20" Background="Transparent" Foreground="White" 
                          FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                          Margin="275,-950,-500,0" FontSize="14">
                     Password
@@ -114,7 +115,7 @@
                            Margin="-25,-915,0,0"/>
             </DockPanel>
             <DockPanel LastChildFill="False">
-                <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
+                <TextBox Name = "txtConfirmPassword" Width = "250" Height="20" Background="Transparent" Foreground="White" 
                          FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                          Margin="275,-800,-500,0" FontSize="14">
                     Confirm Password
