@@ -22,13 +22,13 @@
         <StackPanel Background="#FF9100" Width="400" Height="1000" Opacity="0.85" Margin = "0, -1400, 0, 0"/>
         <StackPanel>
             <StackPanel Height = "45" Width="90" Margin = "-100, -2300, -0, 0">
-                <ToggleButton Background="Transparent" Foreground="White" FontWeight="Bold" BorderBrush="White"
+                <ToggleButton Name = "Volunteer" Background="Transparent" Foreground="White" FontWeight="Bold" BorderBrush="White"
                               BorderThickness="2" Height="35" Width="90" FontSize="16" ClickMode="Hover">
                     Volunteer
                 </ToggleButton>
             </StackPanel>
             <StackPanel Height = "45" Width="90" Margin = "-35, -2300, -115, 0">
-                <ToggleButton Background="Transparent" Foreground="White" FontWeight="Bold" BorderBrush="White" 
+                <ToggleButton Name = "Staff" Background="Transparent" Foreground="White" FontWeight="Bold" BorderBrush="White" 
                               BorderThickness="2" Height="35" Width="90" FontSize="16" ClickMode="Hover">
                     Staff
                 </ToggleButton>
