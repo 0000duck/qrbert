@@ -1,14 +1,12 @@
 using System;
 using System.Data;
 using System.Windows.Controls;
-using System.Data.SqlClient;
-using System.Data.Sql;
-using System.Data.OleDb;
 using System.Windows;
+using System.Data.SqlClient;
 
 namespace QRbert;
 
-public partial class Register<SqlConnection> : Page
+public partial class Register : Page
 {
     // connects DB to Register Page
     string connectionString = @"Data Source = qrbert-rds1; Initial Catolog = QRbertDB; User ID = rds1_admin;
@@ -21,14 +19,14 @@ public partial class Register<SqlConnection> : Page
     }
     
     // Link the "sign Up" button to DB to save user registration info
-    private void button_Click(Object sender, EventArgs e)
+    private void RegUser_Button(Object sender, EventArgs e)
     {
-        if (txtUserName.Text == "" || txtPassword.Text == "")
+       /* if (txtUserName.Text == "" || txtPassword.Text == "")
             MessageBox.Show("Please fill out all mandatory fields");
         else if (txtPassword.Text != txtConfirmPassword.Text)
             MessageBox.Show("Passwords Do Not Match");
         else
-        {
+        {*/
 
 
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
@@ -44,13 +42,16 @@ public partial class Register<SqlConnection> : Page
                 MessageBox.Show("Sign Up Complete ");
                 Clear();
             }
-        }
+        //}
     }
 
     void Clear()
     {
         txtFirstName.Text = txtLastName.Text = txtEmail.Text = txtPassword.Text = txtConfirmPassword.Text = "";
     }
+    
 }
+
+
 
 

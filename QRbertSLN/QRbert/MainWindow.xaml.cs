@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Threading;
 
 namespace QRbert
@@ -21,6 +22,11 @@ namespace QRbert
             timer.Start();
         }
 
+        private void ActivateCam_Button (object sender, RoutedEventArgs e)
+        {
+            Page Register = new Register();
+            this.Content = Register;
+        }
         private void TimerTick(object sender, EventArgs e)
         {
             DispatcherTimer timer = (DispatcherTimer) sender;
