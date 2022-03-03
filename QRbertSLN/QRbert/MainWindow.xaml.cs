@@ -14,7 +14,8 @@ namespace QRbert
     {
         public MainWindow()
         {
-            InitializeComponent();
+            //InitializeComponent();
+
         }
         
 
