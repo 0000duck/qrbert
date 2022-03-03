@@ -6,150 +6,158 @@
       xmlns:local="clr-namespace:QRbert"
       mc:Ignorable="d"
       Title="Register" Height="1500" Width="800" >
-    <StackPanel Height="1400" Width="800" Background="Transparent" >
-        <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
-               Margin="-600,-75,0,-100"/>
-        <Label Content="Let's Get Started!" Margin="0,-300,0,-400"
-               Foreground = "#FF9100" FontSize="45" FontWeight="Bold" Height= "75" Width="400"/>
-        <Image Width="800" Height="450" Source="Images/petsBackground.png" Margin="0,0,0,0"/>
-        <Image Width="800" Height="450" Source="Images/petsBackground.png" Margin="0,-150,0,0"/>
-        <Image Width="800" Height="450" Source="Images/petsBackground.png" Margin="0,-150,0,0"/>
-        <Image Width="800" Height="450" Source="Images/petsBackground.png" Margin="0,-150,0,0"/>
-        <StackPanel Background="#FF9100" Width="400" Height="1000" Opacity="0.85" 
-                    Margin = "0, -1400, 0, 0"/>
-        <StackPanel>
-            <StackPanel Height = "45" Width="90" Margin = "-100, -2300, -0, 0">
-                <ToggleButton Background="Transparent" Foreground="White" FontWeight="Bold" 
-                    BorderBrush="White" BorderThickness="2" Height="35" Width="90" 
-                    FontSize="16" ClickMode="Hover">
-                    Volunteer
-                </ToggleButton>
+    
+    <ScrollViewer 
+        HorizontalScrollBarVisibility = "Auto"
+        VerticalScrollBarVisibility="Auto">
+        <StackPanel Height="1400" Width="800" Background="Transparent" >
+            <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
+                   Margin="-600,-75,0,-100"/>
+            <Label Content="Let's Get Started!" Margin="0,-300,0,-400"
+                   Foreground = "#FF9100" FontSize="45" FontWeight="Bold" Height= "75" Width="400"/>
+            <Image Width="800" Height="450" Source="Images/petsBackground.png" Margin="0,0,0,0"/>
+            <Image Width="800" Height="450" Source="Images/petsBackground.png" Margin="0,-150,0,0"/>
+            <Image Width="800" Height="450" Source="Images/petsBackground.png" Margin="0,-150,0,0"/>
+            <Image Width="800" Height="450" Source="Images/petsBackground.png" Margin="0,-150,0,0"/>
+            <StackPanel Background="#FF9100" Width="400" Height="1000" Opacity="0.85" 
+                        Margin = "0, -1400, 0, 0"/>
+            <StackPanel>
+                <StackPanel Height = "45" Width="90" Margin = "-100, -2300, -0, 0">
+                    <ToggleButton Background="Transparent" Foreground="White" FontWeight="Bold" 
+                        BorderBrush="White" BorderThickness="2" Height="35" Width="90" 
+                        FontSize="16" ClickMode="Hover">
+                        Volunteer
+                    </ToggleButton>
+                </StackPanel>
+                <StackPanel Height = "45" Width="90" Margin = "-35, -2300, -115, 0">
+                    <ToggleButton Background="Transparent" Foreground="White" FontWeight="Bold" BorderBrush="White" 
+                        BorderThickness="2" Height="35" Width="90" FontSize="16" ClickMode="Hover">
+                        Staff
+                    </ToggleButton>
+                </StackPanel>
+                <DockPanel LastChildFill="False">
+                    <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
+                        FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                        Margin="-600,-2150,-1400,0" FontSize="14"
+                        Name = "RegFirst"
+                        
+                        MouseDoubleClick="clearFirstName">
+                        First Name
+                    </TextBox>
+                    <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
+                        Margin="0,-2115,0,0"/>
+                </DockPanel>
+                <DockPanel LastChildFill="False">
+                    <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
+                        FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                        Margin="275,-2000,-500,0" FontSize="14">
+                        Last Name
+                    </TextBox>
+                    <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
+                        Margin="-25,-1965,0,0"/>
+                </DockPanel>
+                <DockPanel LastChildFill="False">
+                    <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
+                        FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                        Margin="275,-1850,-500,0" FontSize="14">
+                        Email
+                    </TextBox>
+                    <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
+                        Margin="-25,-1815,0,0"/>
+                </DockPanel>
+                <DockPanel LastChildFill="False">
+                    <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
+                        FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                        Margin="275,-1700,-500,0" FontSize="14">
+                        Driver's License #
+                    </TextBox>
+                    <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
+                        Margin="-25,-1665,0,0"/>
+                </DockPanel>
+                <DockPanel LastChildFill="False">
+                    <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
+                        FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                        Margin="275,-1550,-500,0" FontSize="14">
+                        Address
+                    </TextBox>
+                    <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
+                        Margin="-25,-1515,0,0"/>
+                </DockPanel>
+                <DockPanel LastChildFill="False">
+                    <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
+                        FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                        Margin="275,-1400,-500,0" FontSize="14">
+                        City
+                    </TextBox>
+                    <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
+                        Margin="-25,-1365,0,0"/>
+                </DockPanel>
+                <DockPanel LastChildFill="False">
+                    <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
+                        FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                        Margin="275,-1250,-500,0" FontSize="14">
+                        State
+                    </TextBox>
+                    <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
+                        Margin="-25,-1215,0,0"/>
+                </DockPanel>
+                <DockPanel LastChildFill="False">
+                    <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
+                        FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                        Margin="275,-1100,-500,0" FontSize="14">
+                        Zipcode
+                    </TextBox>
+                    <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
+                        Margin="-25,-1065,0,0"/>
+                </DockPanel>
+                <DockPanel LastChildFill="False">
+                    <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
+                        FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                        Margin="275,-950,-500,0" FontSize="14">
+                        Password
+                    </TextBox>
+                    <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
+                        Margin="-25,-915,0,0"/>
+                </DockPanel>
+                <DockPanel LastChildFill="False">
+                    <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
+                        FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                        Margin="275,-800,-500,0" FontSize="14">
+                        Confirm Password
+                    </TextBox>
+                    <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
+                        Margin="-25,-765,0,0"/>
+                </DockPanel>
+                <Button Background="White" Foreground="#FF9100" FontWeight="Bold" BorderBrush="#FF9100" 
+                        BorderThickness="2" Height="45" Width="140" FontSize="20" ClickMode="Press"
+                        Margin="-500,-650,-500,0">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="20"/>
+                        </Style>
+                    </Button.Resources>
+                    Sign up
+                </Button>
             </StackPanel>
-            <StackPanel Height = "45" Width="90" Margin = "-35, -2300, -115, 0">
-                <ToggleButton Background="Transparent" Foreground="White" FontWeight="Bold" BorderBrush="White" 
-                    BorderThickness="2" Height="35" Width="90" FontSize="16" ClickMode="Hover">
-                    Staff
-                </ToggleButton>
-            </StackPanel>
-            <DockPanel LastChildFill="False">
-                <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
-                    FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                    Margin="-600,-2150,-1400,0" FontSize="14">
-                    First Name
-                </TextBox>
-                <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
-                    Margin="0,-2115,0,0"/>
-            </DockPanel>
-            <DockPanel LastChildFill="False">
-                <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
-                    FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                    Margin="275,-2000,-500,0" FontSize="14">
-                    Last Name
-                </TextBox>
-                <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
-                    Margin="-25,-1965,0,0"/>
-            </DockPanel>
-            <DockPanel LastChildFill="False">
-                <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
-                    FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                    Margin="275,-1850,-500,0" FontSize="14">
-                    Email
-                </TextBox>
-                <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
-                    Margin="-25,-1815,0,0"/>
-            </DockPanel>
-            <DockPanel LastChildFill="False">
-                <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
-                    FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                    Margin="275,-1700,-500,0" FontSize="14">
-                    Driver's License #
-                </TextBox>
-                <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
-                    Margin="-25,-1665,0,0"/>
-            </DockPanel>
-            <DockPanel LastChildFill="False">
-                <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
-                    FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                    Margin="275,-1550,-500,0" FontSize="14">
-                    Address
-                </TextBox>
-                <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
-                    Margin="-25,-1515,0,0"/>
-            </DockPanel>
-            <DockPanel LastChildFill="False">
-                <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
-                    FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                    Margin="275,-1400,-500,0" FontSize="14">
-                    City
-                </TextBox>
-                <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
-                    Margin="-25,-1365,0,0"/>
-            </DockPanel>
-            <DockPanel LastChildFill="False">
-                <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
-                    FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                    Margin="275,-1250,-500,0" FontSize="14">
-                    State
-                </TextBox>
-                <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
-                    Margin="-25,-1215,0,0"/>
-            </DockPanel>
-            <DockPanel LastChildFill="False">
-                <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
-                    FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                    Margin="275,-1100,-500,0" FontSize="14">
-                    Zipcode
-                </TextBox>
-                <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
-                    Margin="-25,-1065,0,0"/>
-            </DockPanel>
-            <DockPanel LastChildFill="False">
-                <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
-                    FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                    Margin="275,-950,-500,0" FontSize="14">
-                    Password
-                </TextBox>
-                <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
-                    Margin="-25,-915,0,0"/>
-            </DockPanel>
-            <DockPanel LastChildFill="False">
-                <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
-                    FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                    Margin="275,-800,-500,0" FontSize="14">
-                    Confirm Password
-                </TextBox>
-                <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
-                    Margin="-25,-765,0,0"/>
-            </DockPanel>
-            <Button Background="White" Foreground="#FF9100" FontWeight="Bold" BorderBrush="#FF9100" 
-                    BorderThickness="2" Height="45" Width="140" FontSize="20" ClickMode="Press"
-                    Margin="-500,-650,-500,0">
-                <Button.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="20"/>
-                    </Style>
-                </Button.Resources>
-                Sign up
+            <Image Width="200" Height="150" 
+                   Source= "Images/Qbert_logo_orange.png" 
+                   Margin = "0, -100, 0, 0" />
+            <Button Height="40" Width = "200" Content="Terms and Privacy Notice" Background="Transparent"
+                Foreground="#FF9100" BorderBrush="Transparent" FontSize="16" FontWeight="Normal" ClickMode="Press"
+                Margin="-400,-50,0,0">
+            </Button>
+            <Button Height="40" Width = "75" Content="Help" Background="Transparent" Foreground="#FF9100"
+                BorderBrush="Transparent" FontSize="16" FontWeight="Normal" ClickMode="Press"
+                Margin="-50,-50,0,0">
+            </Button>
+            <Button Height="40" Width = "50" Content="FAQs" Background="Transparent" Foreground="#FF9100" 
+                BorderBrush="Transparent" FontSize="16" FontWeight="Normal" ClickMode="Press"
+                Margin="150,-50,0,0">
+            </Button>
+            <Button Height="40" Width = "200" Content="©2022 QRbert Inc." Background="Transparent" Foreground="#FF9100"
+                BorderBrush="Transparent" FontSize="16" FontWeight="Normal" ClickMode="Press"
+                Margin="450,-50,0,0">
             </Button>
         </StackPanel>
-        <Image Width="200" Height="150" 
-               Source= "Images/Qbert_logo_orange.png" 
-               Margin = "0, -100, 0, 0" />
-        <Button Height="40" Width = "200" Content="Terms and Privacy Notice" Background="Transparent"
-            Foreground="#FF9100" BorderBrush="Transparent" FontSize="16" FontWeight="Normal" ClickMode="Press"
-            Margin="-400,-50,0,0">
-        </Button>
-        <Button Height="40" Width = "75" Content="Help" Background="Transparent" Foreground="#FF9100"
-            BorderBrush="Transparent" FontSize="16" FontWeight="Normal" ClickMode="Press"
-            Margin="-50,-50,0,0">
-        </Button>
-        <Button Height="40" Width = "50" Content="FAQs" Background="Transparent" Foreground="#FF9100" 
-            BorderBrush="Transparent" FontSize="16" FontWeight="Normal" ClickMode="Press"
-            Margin="150,-50,0,0">
-        </Button>
-        <Button Height="40" Width = "200" Content="©2022 QRbert Inc." Background="Transparent" Foreground="#FF9100"
-            BorderBrush="Transparent" FontSize="16" FontWeight="Normal" ClickMode="Press"
-            Margin="450,-50,0,0">
-        </Button>
-    </StackPanel>
+    </ScrollViewer>
 </Page>
