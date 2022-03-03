@@ -6,7 +6,6 @@
       xmlns:local="clr-namespace:QRbert"
       mc:Ignorable="d"
       Title="Register" Height="1500" Width="800" >
-    
     <ScrollViewer 
         HorizontalScrollBarVisibility = "Auto"
         VerticalScrollBarVisibility="Auto">
