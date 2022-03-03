@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -14,26 +15,17 @@ namespace QRbert
         {
             InitializeComponent();
         }
-        private void StartCloseTimer()
-        {
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(5d);
-            timer.Tick += TimerTick;
-            timer.Start();
-        }
-
-        private void ActivateCam_Button (object sender, RoutedEventArgs e)
-        {
-            Page Register = new Register();
-            this.Content = Register;
-        }
-        private void TimerTick(object sender, EventArgs e)
-        {
-            DispatcherTimer timer = (DispatcherTimer) sender;
-            timer.Stop();
-            timer.Tick -= TimerTick;
-            // WelcomeScreen.Close();
-        }
         
+
+        private void StartCamera(object sender, RoutedEventArgs e)
+        {
+            /*Process process = new Process();
+            process.StartInfo.FileName = "";
+            process.Start();*/
+            // Page generateQRCodePage = new GenerateQrCode();
+            // this.Content = generateQRCodePage;
+            Page registerPage = new Register();
+            this.Content = registerPage;
+        }
     }
 }
