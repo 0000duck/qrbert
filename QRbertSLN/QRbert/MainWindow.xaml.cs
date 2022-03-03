@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -26,6 +27,19 @@ namespace QRbert
             // this.Content = generateQRCodePage;
             Page registerPage = new Register();
             this.Content = registerPage;
+        }
+        private void StartCamera(object sender, RoutedEventArgs e)
+        {
+            //Process process = new Process();
+            //String pathfile = Path.GetFullPath("zbarcam");
+            //Console.WriteLine(pathfile);
+            //process.StartInfo.FileName = pathfile;
+            //process.Start();
+            
+            
+            //System.Diagnostics.Process.Start("zbarcam.exe");
+            //Page generateQRCodePage = new GenerateQrCode();
+            //this.Content = generateQRCodePage;
         }
     }
 }
