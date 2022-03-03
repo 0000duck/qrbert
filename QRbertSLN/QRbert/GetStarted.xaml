@@ -1,4 +1,4 @@
-<Page x:Class="QRbert.GetStarted"
+<Window x:Class="QRbert.GetStarted"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -9,216 +9,225 @@
       Height="700" 
       Width="800"
       >
-    <!--This is the main stack panel where all the controls live.-->
-    <StackPanel 
-        Orientation = "Horizontal" 
-        Height = "900" 
-        Width = "800" 
-        Background="Transparent" 
-        >
-        <!-- Two images are displayed in the background. Their files are located in the Images folder. -->
-        <Image 
-            Width="800" 
-            Height="450" 
-            Source="Images/pets2.png" 
-            Margin = "0, -800, -200, -200" 
-        />
-        <Image 
-            Width="800" 
-            Height="450" 
-            Source="Images/pets2.png" 
-            Margin = "-600, -100, -200, -200" 
-        />
-        <!-- This StackPanel gives the tinted orange for the background. -->
+    <!--Added ScrollViewer control so we can scroll within the page
+        It encapsulates all the other below controls
+        It also includes visibility for horizontal and vertical scroll bars-->
+    <ScrollViewer 
+        HorizontalScrollBarVisibility="Auto"
+        VerticalScrollBarVisibility="Auto">
+        <!--This is the main stack panel where all the controls live.-->
         <StackPanel 
-            Background="#FF9100" 
-            Width="800" 
-            Height="1000" 
-            Opacity="0.7" 
-            Margin = "-600, -500, 0, 0"
-        />
-        <!-- This StackPanel holds the label Welcome to QRbert which has large, bold letters in white. --> 
-        <StackPanel>
-            <Label 
-                Width = "500" 
-                FontWeight="Bold" 
-                Content="Welcome to QRbert!" 
-                Foreground="White" 
-                FontSize="40"
-                Margin="-650,200,0,0"
+            Orientation = "Horizontal"
+            Height = "700" 
+            Width = "800" 
+            Background="Transparent"
+            Margin="0, 0, 0, 0">
+            <!-- Two images are displayed in the background. Their files are located in the Images folder. -->
+            <Image 
+              Width="800" 
+              Height="450" 
+              Source="Images/pets2.png" 
+              Margin = "0, -600, -200, -200" 
             />
-        </StackPanel>
-        
-        <!-- This StackPanel holds the label Making volunteering that much easier which is printed in
-             large, bold, white letters. -->
-        <StackPanel>
-            <Label 
-                Width = "700" 
-                FontWeight="Bold" 
-                Foreground="White" 
-                FontSize="30" 
-                Content="Making volunteering that much easier." 
-                Margin="-650,250,0,0"
+            <Image 
+              Width="800" 
+              Height="450" 
+              Source="Images/pets2.png" 
+              Margin = "-600, 0, -200, -200" 
             />
-        </StackPanel>
-        
-        <!-- This StackPanel holds the button Sign in that has a cornered radius found in Button.Resources.
-             It has a white background with bold orange text with some border thickness. As of now, the button
-             does not take you anywhere. -->
-        <StackPanel 
-            Height = "45" 
-            Width="90" 
-            Margin = "-350, -800, -115, 0"
-            >
-            <Button 
-                Background="White" 
-                Foreground="Orange" 
-                FontWeight="Bold" 
-                BorderBrush="Orange" 
-                BorderThickness="2" 
-                Height="35" 
-                Width="90" 
-                FontSize="16" 
-                ClickMode="Press">
-                <Button.Resources>
-                    <Style 
-                        TargetType="{x:Type Border}"
-                        >
-                        <Setter 
-                            Property="CornerRadius" 
-                            Value="15"
-                        />
-                    </Style>
-                </Button.Resources>
-                Sign in
-            </Button>
-        </StackPanel>
-        
-        <!-- This StackPanel holds the button Get Started> that has a cornered radius found in Button.Resources.
-             It has a white background with bold orange text with some border thickness. As of now, the button
-             does not take you anywhere.-->
-        <StackPanel 
-            Height = "45" 
-            Width="120" 
-            Margin = "-1000, -200, -115, 0"
-            >
-            <Button 
-                Background="White" 
-                Foreground="Orange" 
-                FontWeight="Bold" 
-                BorderBrush="Orange" 
-                BorderThickness="2" 
-                Height="35" 
-                Width="120" 
-                FontSize="16" 
-                ClickMode="Press"
-                >
-                <Button.Resources>
-                    <Style 
-                        TargetType="{x:Type Border}"
-                        >
-                        <Setter 
-                            Property="CornerRadius" 
-                            Value="15"/>
-                    </Style>
-                </Button.Resources>
-                Get Started>
-            </Button>
-        </StackPanel>
-        
-        <!-- This StackPanel has a transparent background that holds the button Terms and and Privacy Notice. 
-             It has a transparent background with white text with no border. As of now, clicking the button does
-             not do anything. -->
-        <StackPanel 
-            Height="50" 
-            Width = "200" 
-            Background="Transparent" 
-            Margin="-1300,450,0,0"
-            >
-            <Button 
-                Content="Terms and Privacy Notice" 
-                Background="Transparent" 
-                Foreground="White" 
-                FontSize="16" 
-                BorderBrush="Transparent" 
-                FontWeight="Normal" 
-                ClickMode="Press"
-                >
-            </Button>
-        </StackPanel>
-        
-        <!-- This StackPanel has a transparent background that holds the button Help. 
-             It has a transparent background with white text with no border. As of now, clicking the button does
-             not do anything. -->
-        <StackPanel 
-            Height="50" 
-            Width = "50" 
-            Background="Transparent" 
-            Margin="-950,450,0,0"
-            >
-            <Button 
-                Content="Help" 
-                Background="Transparent" 
-                Foreground="White" 
-                BorderBrush="Transparent"
-                FontSize="16" 
-                FontWeight="Normal"
-                >
-            </Button>
-        </StackPanel>
-        
-        <!-- This StackPanel has a transparent background that holds the button FAQs. 
-             It has a transparent background with white text with no border. As of now, clicking the button does
-             not do anything. -->
-        <StackPanel 
-            Height="50" 
-            Width = "50" 
-            Background="Transparent" 
-            Margin="-700,450,0,0"
-            >
-            <Button 
-                Content="FAQs" 
-                Background="Transparent" 
-                Foreground="White" 
-                BorderBrush="Transparent"
-                FontSize="16" 
-                FontWeight="Normal"
-                >
-            </Button>
-        </StackPanel>
-        
-        <!-- This StackPanel has a transparent background that holds the button ©2022 QRbert Inc.. 
-             It has a transparent background with white text with no border. As of now, clicking the button does
-             not do anything. -->
-        <StackPanel 
-            Height="50" 
-            Width = "150" 
-            Background="Transparent" 
-            Margin="-400,450,0,0"
-            >
-            <Button 
-                Content="©2022 QRbert Inc." 
-                Background="Transparent" 
-                Foreground="White" 
-                BorderBrush="Transparent"
-                FontSize="16" 
-                FontWeight="Normal"
-                >
-            </Button>
-        </StackPanel>
-        
-        <!-- This images are used to display the QRbert logo. These images can be found in the Images folder.-->
-        <Image 
-            Width="300" 
-            Height="250" 
-            Source= "Images/Qbert_logo_white .png" 
-            Margin = "-1050, -550, -200, 0" 
-        />
-        <Image 
-            Width="200" 
-            Height="150" 
-            Source= "Images/Qbert_logo_white .png" 
-            Margin = "-1050, 350, -200, 0" 
-        />
-    </StackPanel>
-</Page>
+            <!-- This StackPanel gives the tinted orange for the background. -->
+            <StackPanel 
+              Background="#FF9100" 
+              Width="800" 
+              Height="700" 
+              Opacity="0.7" 
+              Margin = "-600, -0, 0, 0"
+            />
+            <!-- This StackPanel holds the label Welcome to QRbert which has large, bold letters in white. --> 
+            <StackPanel>
+              <Label 
+                  Width = "500" 
+                  FontWeight="Bold" 
+                  Content="Welcome to QRbert!" 
+                  Foreground="White" 
+                  FontSize="40"
+                  Margin="-650,150,0,0"
+              />
+            </StackPanel>
+
+            <!-- This StackPanel holds the label Making volunteering that much easier which is printed in
+               large, bold, white letters. -->
+            <StackPanel>
+              <Label 
+                  Width = "700" 
+                  FontWeight="Bold" 
+                  Foreground="White" 
+                  FontSize="30" 
+                  Content="Making volunteering that much easier." 
+                  Margin="-650,250,0,0"
+              />
+            </StackPanel>
+
+            <!-- This StackPanel holds the button Sign in that has a cornered radius found in Button.Resources.
+               It has a white background with bold orange text with some border thickness. As of now, the button
+               does not take you anywhere. -->
+            <StackPanel 
+              Height = "45" 
+              Width="90" 
+              Margin = "-350, -500, -75, 0"
+              >
+              <Button 
+                  Background="White" 
+                  Foreground="Orange" 
+                  FontWeight="Bold" 
+                  BorderBrush="Orange" 
+                  BorderThickness="2" 
+                  Height="35" 
+                  Width="90" 
+                  FontSize="16" 
+                  ClickMode="Press">
+                  <Button.Resources>
+                      <Style 
+                          TargetType="{x:Type Border}"
+                          >
+                          <Setter 
+                              Property="CornerRadius" 
+                              Value="15"
+                          />
+                      </Style>
+                  </Button.Resources>
+                  Sign in
+              </Button>
+            </StackPanel>
+
+            <!-- This StackPanel holds the button Get Started> that has a cornered radius found in Button.Resources.
+               It has a white background with bold orange text with some border thickness. As of now, the button
+               does not take you anywhere.-->
+            <StackPanel 
+              Height = "45" 
+              Width="120" 
+              Margin = "-1000, 100, -115, 0"
+              >
+              <Button 
+                  Background="White" 
+                  Foreground="Orange" 
+                  FontWeight="Bold" 
+                  BorderBrush="Orange" 
+                  BorderThickness="2" 
+                  Height="35" 
+                  Width="120" 
+                  FontSize="16" 
+                  ClickMode="Press"
+                  Click="GetStartedBtn_Click"
+                  >
+                  <Button.Resources>
+                      <Style 
+                          TargetType="{x:Type Border}"
+                          >
+                          <Setter 
+                              Property="CornerRadius" 
+                              Value="15"/>
+                      </Style>
+                  </Button.Resources>
+                  Get Started>
+              </Button>
+            </StackPanel>
+
+            <!-- This StackPanel has a transparent background that holds the button Terms and and Privacy Notice. 
+               It has a transparent background with white text with no border. As of now, clicking the button does
+               not do anything. -->
+            <StackPanel 
+              Height="50" 
+              Width = "200" 
+              Background="Transparent" 
+              Margin="-1300,650,0,0"
+              >
+              <Button 
+                  Content="Terms and Privacy Notice" 
+                  Background="Transparent" 
+                  Foreground="White" 
+                  FontSize="16" 
+                  BorderBrush="Transparent" 
+                  FontWeight="Normal" 
+                  ClickMode="Press"
+                  >
+              </Button>
+            </StackPanel>
+
+            <!-- This StackPanel has a transparent background that holds the button Help. 
+               It has a transparent background with white text with no border. As of now, clicking the button does
+               not do anything. -->
+            <StackPanel 
+              Height="50" 
+              Width = "50" 
+              Background="Transparent" 
+              Margin="-950,650,0,0"
+              >
+              <Button 
+                  Content="Help" 
+                  Background="Transparent" 
+                  Foreground="White" 
+                  BorderBrush="Transparent"
+                  FontSize="16" 
+                  FontWeight="Normal"
+                  >
+              </Button>
+            </StackPanel>
+
+            <!-- This StackPanel has a transparent background that holds the button FAQs. 
+               It has a transparent background with white text with no border. As of now, clicking the button does
+               not do anything. -->
+            <StackPanel 
+              Height="50" 
+              Width = "50" 
+              Background="Transparent" 
+              Margin="-700,650,0,0"
+              >
+              <Button 
+                  Content="FAQs" 
+                  Background="Transparent" 
+                  Foreground="White" 
+                  BorderBrush="Transparent"
+                  FontSize="16" 
+                  FontWeight="Normal"
+                  >
+              </Button>
+            </StackPanel>
+
+            <!-- This StackPanel has a transparent background that holds the button ©2022 QRbert Inc.. 
+               It has a transparent background with white text with no border. As of now, clicking the button does
+               not do anything. -->
+            <StackPanel 
+              Height="50" 
+              Width = "150" 
+              Background="Transparent" 
+              Margin="-400,650,0,0"
+              >
+              <Button 
+                  Content="©2022 QRbert Inc." 
+                  Background="Transparent" 
+                  Foreground="White" 
+                  BorderBrush="Transparent"
+                  FontSize="16" 
+                  FontWeight="Normal"
+                  >
+              </Button>
+            </StackPanel>
+
+            <!-- This images are used to display the QRbert logo. These images can be found in the Images folder.-->
+            <Image 
+              Width="300" 
+              Height="250" 
+              Source= "Images/Qbert_logo_white .png" 
+              Margin = "-1050, -500, -200, 0" 
+            />
+            <Image 
+              Width="200" 
+              Height="150" 
+              Source= "Images/Qbert_logo_white .png" 
+              Margin = "-1050, 500, -200, 0" 
+            />
+      </StackPanel>
+    </ScrollViewer>
+    
+</Window>
