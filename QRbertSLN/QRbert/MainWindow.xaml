@@ -1,4 +1,4 @@
-﻿<Window x:Class="qrbertApp.MainWindow"
+﻿<Window x:Class="QRbert.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:QRbert"
         mc:Ignorable="d"
         Title="MainWindow" 
-        Height="450" 
-        Width="800" 
+        Height="450"
+        Width="800"
         Background="#FF9100"
         >
     <!--This is the main stack panel where all the controls live. Notice that the main form is of the QRbert color
