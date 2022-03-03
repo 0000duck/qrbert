@@ -13,10 +13,34 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="Images\Qbert_logo_orange.png" />
-      <Resource Include="Images\Qbert_logo_orange.png" />
+      <None Remove="Images\pets2.png" />
+      <Content Include="Images\pets2.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
       <None Remove="Images\petsBackground.png" />
-      <Resource Include="Images\petsBackground.png" />
+      <Content Include="Images\petsBackground.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Images\Qbert_logo.png" />
+      <Content Include="Images\Qbert_logo.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Images\Qbert_logo_orange.png" />
+      <Content Include="Images\Qbert_logo_orange.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Images\Qbert_logo_white .png" />
+      <Content Include="Images\Qbert_logo_white .png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Images\QRbertQRCode-Black.png" />
+      <Content Include="Images\QRbertQRCode-Black.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Images\QRbertQRCode-White.png" />
+      <Content Include="Images\QRbertQRCode-White.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>

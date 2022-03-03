@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:QRbert"
         mc:Ignorable="d"
         Title="Welcome to QRbert - WelcomeScreen!" Height="400" Width="400" Background="WhiteSmoke">
     <Grid>
@@ -12,9 +11,6 @@
                 Welcome to
             </Label>
         </StackPanel>
-        <!-- Might not need this button
-        <Button Click="WelcomeScreenButton_Click"></Button>
-        -->
         <Image Width="350" Height="350" Source="Images/Qbert_logo_orange.png" RenderTransformOrigin="0.5, 0.5">
             <Image.RenderTransform>
                 <RotateTransform x:Name="noFreeze" />
