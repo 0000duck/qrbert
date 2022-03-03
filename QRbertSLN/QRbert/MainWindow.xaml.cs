@@ -11,8 +11,9 @@ namespace QRbert
     {
         public MainWindow()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
+
         private void StartCloseTimer()
         {
             DispatcherTimer timer = new DispatcherTimer();

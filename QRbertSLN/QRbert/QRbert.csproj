@@ -12,4 +12,11 @@
       <PackageReference Include="QRCoder.Xaml" Version="1.4.3" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Images\Qbert_logo_orange.png" />
+      <Resource Include="Images\Qbert_logo_orange.png" />
+      <None Remove="Images\petsBackground.png" />
+      <Resource Include="Images\petsBackground.png" />
+    </ItemGroup>
+
 </Project>
