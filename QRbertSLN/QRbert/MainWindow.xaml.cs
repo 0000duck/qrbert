@@ -12,6 +12,7 @@ namespace QRbert
         public MainWindow()
         {
             //InitializeComponent();
+
         }
 
         private void StartCloseTimer()

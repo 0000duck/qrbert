@@ -10,7 +10,7 @@
         <LinearGradientBrush x:Key="DarkBrush" StartPoint="0.5,0" EndPoint="0.5,1">
             <GradientBrush.GradientStops>
                 <GradientStopCollection>
-                    <GradientStop Color="Black" Offset="0.01"/>
+                    <GradientStop Color="White" Offset="0.01"/>
                     <GradientStop Color="White" Offset="0.05"/>
                     <GradientStop Color="White" Offset="1.0"/>
                 </GradientStopCollection>
@@ -94,6 +94,11 @@
                     <Setter Property="BorderBrush" Value="White"></Setter>
                     <Setter Property="BorderThickness" Value="1"></Setter>
                 </Trigger>
+                <Trigger Property="IsMouseOver" Value="True" >
+                    <Setter Property="IsOpen" TargetName="PART_Popup" Value="True"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="Foreground" Value="#FF9100"/>
+                </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
     </Page.Resources>
@@ -114,7 +119,7 @@
             </Border>
         </StackPanel>
         <Menu Width="100" Height="22" Margin="300, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem Foreground = "Black" Header="Timesheet" Name="mm" Template="{DynamicResource MenuItemControlTemplate1}">
+            <MenuItem Header="Timesheet" Name="mm" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem Header="Lock Timesheets"/>
                 <MenuItem Header="Rounding Rule"/>
                 <MenuItem Header="Exit"/>
