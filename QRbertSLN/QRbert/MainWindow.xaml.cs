@@ -28,7 +28,7 @@ namespace QRbert
             Page registerPage = new Register();
             this.Content = registerPage;
         }
-        private void StartCamera(object sender, RoutedEventArgs e)
+        /*private void StartCamera(object sender, RoutedEventArgs e)
         {
             //Process process = new Process();
             //String pathfile = Path.GetFullPath("zbarcam");
@@ -40,6 +40,6 @@ namespace QRbert
             //System.Diagnostics.Process.Start("zbarcam.exe");
             //Page generateQRCodePage = new GenerateQrCode();
             //this.Content = generateQRCodePage;
-        }
+        }*/
     }
 }

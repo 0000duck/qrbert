@@ -9,7 +9,7 @@
     <ScrollViewer 
         HorizontalScrollBarVisibility = "Auto"
         VerticalScrollBarVisibility="Auto">
-        <StackPanel Height="1400" Width="800" Background="Transparent" >
+        <StackPanel Height="2105" Width="800" Background="Transparent" >
             <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
                    Margin="-600,-75,0,-100"/>
             <Label Content="Let's Get Started!" Margin="0,-300,0,-400"
@@ -33,6 +33,7 @@
                         BorderThickness="2" Height="35" Width="90" FontSize="16" ClickMode="Hover">
                         Staff
                     </ToggleButton>
+                    
                 </StackPanel>
                 <DockPanel LastChildFill="False">
                     <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
@@ -40,7 +41,7 @@
                         Margin="-600,-2150,-1400,0" FontSize="14"
                         Name = "RegFirst"
                         
-                        MouseDoubleClick="clearFirstName">
+                        >
                         First Name
                     </TextBox>
                     <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
@@ -109,26 +110,55 @@
                     <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                         Margin="-25,-1065,0,0"/>
                 </DockPanel>
+                <!-- In this DockPanel, this is where PasswordBox takes care of the newly created
+                     password by the user-->
+                
                 <DockPanel LastChildFill="False">
-                    <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
+                    <PasswordBox 
+                        MaxLength="8" 
+                        PasswordChar="*" 
+                        Width = "250" 
+                        Height="20" 
+                        Background="Transparent" 
+                        Foreground="White" 
+                        FontWeight="Bold" 
+                        BorderBrush="Transparent" 
+                        BorderThickness="2"
+                        Margin="275,-950,-500,0" 
+                        FontSize="14"
+                        Name="Password"
+                        >
+                         
+                    </PasswordBox>
+                    <!--<TextBox 
+                        
+                        Width = "250" Height="20" Background="Transparent" Foreground="White" 
                         FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                        Margin="275,-950,-500,0" FontSize="14">
+                        Margin="275,-950,-500,0" FontSize="14"
+                        >
                         Password
                     </TextBox>
+                    -->
                     <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                         Margin="-25,-915,0,0"/>
                 </DockPanel>
                 <DockPanel LastChildFill="False">
-                    <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
+                    <!--<TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
                         FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                         Margin="275,-800,-500,0" FontSize="14">
                         Confirm Password
-                    </TextBox>
+                    </TextBox> -->
+                    <PasswordBox MaxLength="8" PasswordChar="*" Width = "250" Height="20" Background="Transparent" Foreground="White" 
+                                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                                 Margin="275,-800,-500,0" FontSize="14">
+                         
+                    </PasswordBox>
                     <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                         Margin="-25,-765,0,0"/>
                 </DockPanel>
                 <Button Background="White" Foreground="#FF9100" FontWeight="Bold" BorderBrush="#FF9100" 
-                        BorderThickness="2" Height="45" Width="140" FontSize="20" ClickMode="Press"
+                        BorderThickness="2" Height="45" Width="140" FontSize="20" 
+                        Click="runSignUp"
                         Margin="-500,-650,-500,0">
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">

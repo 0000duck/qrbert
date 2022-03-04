@@ -10,6 +10,80 @@ public partial class Register : Page
     {
         InitializeComponent();
     }
+
+
+    private void runSignUp(object sender, RoutedEventArgs e)
+    {
+        
+        //Console.WriteLine("Here");
+        bool firstNameCheck = isFirstNameValid(RegFirst.Text);
+        if (firstNameCheck)
+        {
+            //accept the sign up form
+            MessageBox.Show("Good to submit");
+        }
+        else
+        {
+            //reload page and show what needs to be changed
+            MessageBox.Show("Not good to submit");
+        }
+    }
+    
+    public static bool isFirstNameValid(string text)
+    {
+        return checkString(text);
+
+    }
+
+    public static bool isLastNameValid(string text)
+    {
+        return checkString(text);
+    }
+
+    public static bool isEmailValid(string text)
+    {
+        return IsValidEmail(text);
+    }
+
+    public static bool isLicenseValid(string text)
+    {
+        return checkString(text);
+    }
+
+    public static bool isAddressValid(string text)
+    {
+        return checkString(text);
+    }
+
+    public static bool isCityValid(string text)
+    {
+        return checkString(text);
+    }
+    public static bool isStateValid(string text)
+    {
+        return checkString(text);
+    }
+
+    public static bool isZipCodeValid(string text)
+    {
+        return checkString(text);
+        //possibly add a range check for zipcode
+    }
+
+    public static bool checkString(string words)
+    {
+        if (words == null || words == "")
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+        
+    }
+    
+    
     
     public static bool isPresent(string textBox, string textBoxName)
     {
@@ -73,7 +147,7 @@ public partial class Register : Page
         if (textBox.IndexOf("@") == -1 ||
             textBox.IndexOf(".") == -1)
         {
-            MessageBox.Show(textBox + " must be a valid email address.");
+            //MessageBox.Show(textBox + " must be a valid email address.");
             //textBox.Focus();
             return false;
         }
