@@ -34,7 +34,7 @@ public partial class Register : Page
     {
         
         //Console.WriteLine("Here");
-        bool firstNameCheck = isFirstNameValid(RegFirst.Text);
+        /*bool firstNameCheck = isFirstNameValid(RegFirst.Text);
         if (firstNameCheck)
         {
             //accept the sign up form
@@ -44,7 +44,8 @@ public partial class Register : Page
         {
             //reload page and show what needs to be changed
             MessageBox.Show("Not good to submit");
-        }
+        }*/
+        MessageBox.Show(Password.Password);
     }
     
     public static bool isFirstNameValid(string text)
@@ -100,40 +101,6 @@ public partial class Register : Page
         }
         
     }
-    
-    
-    
-    // Link the "sign Up" button to DB to save user registration info
-    private void RegUser_Button(object sender, EventArgs e)
-    {
-        // make sure mandatory fields are typed in
-        if (txtEmail.Text == "" || txtPassword.Text == "")
-            MessageBox.Show("Please fill out all mandatory fields");
-        else if (txtPassword.Text != txtConfirmPassword.Text)
-            MessageBox.Show("Passwords Do Not Match");
-        else
-        {
-            using SqlConnection sqlCon = new SqlConnection(connectionString);
-            sqlCon.Open();
-            SqlCommand sqlCmd = new SqlCommand("RegUser", sqlCon);
-
-            sqlCmd.CommandType = CommandType.StoredProcedure;
-            sqlCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-            sqlCmd.Parameters.AddWithValue("@Password", txtPassword.Text);
-            sqlCmd.Parameters.AddWithValue("@Faculty_Role", txtFacultyRole.Text);
-            sqlCmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
-            sqlCmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
-
-            sqlCmd.ExecuteNonQuery();
-            MessageBox.Show("Sign Up Complete ");
-        }
-    }
-}
-
-
-
-
-=======
     public static bool isPresent(string textBox, string textBoxName)
     {
         if (textBox == null || textBox == "")
@@ -191,6 +158,7 @@ public partial class Register : Page
         return true;
     }
 
+    //checks to see if it has the right symbols in the textbox
     public static bool IsValidEmail(string textBox)
     {
         if (textBox.IndexOf("@") == -1 ||
@@ -226,4 +194,38 @@ public partial class Register : Page
     }
 
 
+
+
+    
+    
+    
+    // Link the "sign Up" button to DB to save user registration info
+    private void RegUser_Button(object sender, EventArgs e)
+    {
+        // make sure mandatory fields are typed in
+        //Made minor adjustment to the if statement (isValidEmail)
+        if (!IsValidEmail(txtEmail.Text) || Password.Password == "")
+            MessageBox.Show("Please fill out all mandatory fields");
+        else if (Password.Password != ConfirmPassword.Password)
+            MessageBox.Show("Passwords Do Not Match");
+        else
+        {
+            using SqlConnection sqlCon = new SqlConnection(connectionString);
+            sqlCon.Open();
+            SqlCommand sqlCmd = new SqlCommand("RegUser", sqlCon);
+
+            sqlCmd.CommandType = CommandType.StoredProcedure;
+            sqlCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+            sqlCmd.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
+            sqlCmd.Parameters.AddWithValue("@Faculty_Role", txtFacultyRole.Text);
+            sqlCmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
+            sqlCmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
+
+            sqlCmd.ExecuteNonQuery();
+            MessageBox.Show("Sign Up Complete ");
+        }
+    }
+    
 }
+
+    
