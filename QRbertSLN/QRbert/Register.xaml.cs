@@ -181,16 +181,16 @@ public partial class Register : Page
     }
     public void RemoveText(object sender, EventArgs e)
     {
-        if (RegFirst.Text == "Enter text here...") 
+        if (txtFirstName.Text == "Enter text here...") 
         {
-            RegFirst.Text = "";
+            txtFirstName.Text = "";
         }
     }
 
     public void AddText(object sender, EventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(RegFirst.Text))
-            RegFirst.Text = "Enter text here...";
+        if (string.IsNullOrWhiteSpace(txtFirstName.Text))
+            txtFirstName.Text = "Enter text here...";
     }
 
 
