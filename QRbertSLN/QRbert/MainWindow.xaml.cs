@@ -21,13 +21,13 @@ namespace QRbert
 
         private void StartCamera(object sender, RoutedEventArgs e)
         {
-            /*Process process = new Process();
-            process.StartInfo.FileName = "";
-            process.Start();*/
+            Process process = new Process();
+            process.StartInfo.FileName = "zbarcam.exe";
+            process.Start();
             // Page generateQRCodePage = new GenerateQrCode();
             // this.Content = generateQRCodePage;
-            Page registerPage = new Register();
-            this.Content = registerPage;
+            //Page registerPage = new Register();
+            //this.Content = registerPage;
         }
         /*private void StartCamera(object sender, RoutedEventArgs e)
         {
