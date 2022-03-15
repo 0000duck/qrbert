@@ -237,10 +237,25 @@ public partial class Register : Page
             Password.Background.Opacity = 0;
     }
     */
+    private void FacultyRole_OnPasswordChanged(object sender, RoutedEventArgs e)
+    {
+        txtFacultyRoleBlock.Visibility = Visibility.Visible;
+        if (txtFacultyRole.Text.Length > 0)
+        {
+            txtFacultyRoleBlock.Visibility = Visibility.Hidden;
+        }
+    }
+    private void txtFirstNameBlock_OnPasswordChanged(object sender, RoutedEventArgs e)
+    {
+        txtFirstNameBlock.Visibility = Visibility.Visible;
+        if (txtFirstName.Text.Length > 0)
+        {
+            txtFirstNameBlock.Visibility = Visibility.Hidden;
+        }
+    }
     private void Password_OnPasswordChanged(object sender, RoutedEventArgs e)
     {
-        //issue is that Watermark still appears when PasswordBox is clicked
-        //need to make it so that when click, the text disappears
+        
         txtHintPassword.Visibility = Visibility.Visible;
         if (Password.Password.Length > 0)
         {

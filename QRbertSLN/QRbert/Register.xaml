@@ -192,7 +192,7 @@
                     Height="20"
                     Width="250"
                     Name="txtFacultyRoleBlock"
-                    Margin="277,-1155,-500,0"
+                    Margin="289,-2295,-500,0"
                 >
                 
                 </TextBlock>
@@ -205,7 +205,8 @@
                     FontWeight="Bold" 
                     BorderBrush="Transparent" 
                     BorderThickness="2"
-                    Margin="-605,-2300,-1400,0" 
+                    TextChanged="FacultyRole_OnPasswordChanged"
+                    Margin="-660,-2295,-1400,0" 
                     FontSize="14"
                 >
                     
@@ -215,12 +216,24 @@
                     Fill="White" 
                     Height="2" 
                     Width="250" 
-                    Margin="10,-2260,10,1"
+                    Margin="-11,-2260,10,1"
                 />
             </DockPanel>
             <DockPanel 
                 LastChildFill="False"
             >
+                <TextBlock
+                    Text="First Name"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    Height="20"
+                    Width="250"
+                    Name="txtFirstNameBlock"
+                    Margin="289,-2145,-500,0"
+                >
+                
+                </TextBlock>
                 <TextBox 
                     Name = "txtFirstName" 
                     Width = "250" 
@@ -230,10 +243,11 @@
                     FontWeight="Bold" 
                     BorderBrush="Transparent" 
                     BorderThickness="2"
-                    Margin="-600,-2150,-1400,0" 
+                    TextChanged="txtFirstNameBlock_OnPasswordChanged"
+                    Margin="-660,-2150,-1400,0" 
                     FontSize="14"
                 >
-                    First Name
+                    
                 </TextBox>
                 <Rectangle 
                     DockPanel.Dock="Top" 
