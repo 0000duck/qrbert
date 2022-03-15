@@ -261,6 +261,18 @@
             <DockPanel 
                 LastChildFill="False"
             >
+                <TextBlock
+                    Text="Last Name"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    Height="20"
+                    Width="250"
+                    Name="txtLastNameBlock"
+                    Margin="289,-2000,-500,0"
+                >
+                
+                </TextBlock>
                 <TextBox 
                     Name = "txtLastName" 
                     Width = "250" 
@@ -270,10 +282,11 @@
                     FontWeight="Bold" 
                     BorderBrush="Transparent" 
                     BorderThickness="2"
-                    Margin="275,-2000,-500,0" 
+                    TextChanged = "TxtLastName_OnTextChanged"
+                    Margin="245,-2000,-500,0" 
                     FontSize="14"
                 >
-                    Last Name
+                    
                 </TextBox>
                 
                 <Rectangle 
@@ -287,6 +300,18 @@
             <DockPanel 
                 LastChildFill="False"
             >
+                <TextBlock
+                    Text="Email"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    Height="20"
+                    Width="250"
+                    Name="txtEmailBlock"
+                    Margin="289,-1845,-500,0"
+                >
+                
+                </TextBlock>
                 <TextBox 
                     Name = "txtEmail" 
                     Width = "250" 
@@ -296,10 +321,11 @@
                     FontWeight="Bold" 
                     BorderBrush="Transparent" 
                     BorderThickness="2"
-                    Margin="275,-1850,-500,0" 
+                    TextChanged="TxtEmail_OnTextChanged"
+                    Margin="250,-1850,-500,0" 
                     FontSize="14"
                     >
-                    Email
+                    
                 </TextBox>
                 <Rectangle 
                     DockPanel.Dock="Top" 
@@ -312,7 +338,20 @@
             <DockPanel 
                 LastChildFill="False"
             >
+                <TextBlock
+                    Text="Driver's License #"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    Height="20"
+                    Width="250"
+                    Name="txtDriverBlock"
+                    Margin="289,-1700,-500,0"
+                >
+                
+                </TextBlock>
                 <TextBox 
+                    Name = "txtDriver"
                     Width = "250" 
                     Height="20" 
                     Background="Transparent" 
@@ -320,10 +359,11 @@
                     FontWeight="Bold" 
                     BorderBrush="Transparent" 
                     BorderThickness="2"
-                    Margin="275,-1700,-500,0" 
+                    TextChanged="TxtDriver_OnTextChanged"
+                    Margin="245,-1700,-500,0" 
                     FontSize="14"
                     >
-                    Driver's License #
+                    
                 </TextBox>
                 <Rectangle 
                     DockPanel.Dock="Top" 
@@ -336,7 +376,20 @@
             <DockPanel 
                 LastChildFill="False"
             >
+                <TextBlock
+                    Text="Address"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    Height="20"
+                    Width="250"
+                    Name="txtAddressBlock"
+                    Margin="289,-1550,-500,0"
+                >
+                
+                </TextBlock>
                 <TextBox 
+                    Name = "txtAddress"
                     Width = "250" 
                     Height="20" 
                     Background="Transparent" 
@@ -344,10 +397,11 @@
                     FontWeight="Bold" 
                     BorderBrush="Transparent" 
                     BorderThickness="2"
-                    Margin="275,-1550,-500,0" 
+                    TextChanged="TxtAddress_OnTextChanged"
+                    Margin="245,-1550,-500,0" 
                     FontSize="14"
                     >
-                    Address
+                    
                 </TextBox>
                 <Rectangle 
                     DockPanel.Dock="Top" 
@@ -360,7 +414,20 @@
             <DockPanel 
                 LastChildFill="False"
             >
+                <TextBlock
+                    Text="City"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    Height="20"
+                    Width="250"
+                    Name="txtCityBlock"
+                    Margin="289,-1400,-500,0"
+                >
+                
+                </TextBlock>
                 <TextBox 
+                    Name = "City"
                     Width = "250" 
                     Height="20" 
                     Background="Transparent" 
@@ -368,10 +435,11 @@
                     FontWeight="Bold" 
                     BorderBrush="Transparent" 
                     BorderThickness="2"
-                    Margin="275,-1400,-500,0" 
+                    TextChanged="City_OnTextChanged"
+                    Margin="245,-1400,-500,0" 
                     FontSize="14"
                     >
-                    City
+                    
                 </TextBox>
                 <Rectangle 
                     DockPanel.Dock="Top" 
@@ -384,7 +452,20 @@
             <DockPanel 
                 LastChildFill="False"
             >
+                <TextBlock
+                    Text="State"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    Height="20"
+                    Width="250"
+                    Name="txtStateBlock"
+                    Margin="289,-1250,-500,0"
+                >
+                
+                </TextBlock>
                 <TextBox 
+                    Name = "State"
                     Width = "250" 
                     Height="20" 
                     Background="Transparent" 
@@ -392,10 +473,11 @@
                     FontWeight="Bold" 
                     BorderBrush="Transparent" 
                     BorderThickness="2"
-                    Margin="275,-1250,-500,0" 
+                    TextChanged="State_OnTextChanged"
+                    Margin="245,-1250,-500,0" 
                     FontSize="14"
                 >
-                    State
+                    
                 </TextBox>
                 
                 <Rectangle 
@@ -409,7 +491,20 @@
             <DockPanel 
                 LastChildFill="False"
             >
-                <TextBox 
+                <TextBlock
+                    Text="Zipcode"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    Height="20"
+                    Width="250"
+                    Name="txtZipcodeBlock"
+                    Margin="289,-1100,-500,0"
+                >
+                
+                </TextBlock>
+                <TextBox
+                    Name = "txtZipcode"
                     Width = "250" 
                     Height="20" 
                     Background="Transparent" 
@@ -417,9 +512,10 @@
                     FontWeight="Bold" 
                     BorderBrush="Transparent" 
                     BorderThickness="2"
-                    Margin="275,-1100,-500,0" FontSize="14"
+                    TextChanged="TxtZipcode_OnTextChanged"
+                    Margin="245,-1100,-500,0" FontSize="14"
                 >
-                    Zipcode
+                    
                 </TextBox>
                 <Rectangle 
                     DockPanel.Dock="Top" 
