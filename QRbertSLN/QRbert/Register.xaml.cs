@@ -276,6 +276,70 @@ public partial class Register : Page
             txtHintConfirmPassword.Visibility = Visibility.Hidden;
         }
     }
+
+    private void TxtLastName_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtLastNameBlock.Visibility = Visibility.Visible;
+        if (txtLastName.Text.Length > 0)
+        {
+            txtLastNameBlock.Visibility = Visibility.Hidden;
+        }
+        
+    }
+
+    private void TxtEmail_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtEmailBlock.Visibility = Visibility.Visible;
+        if (txtEmail.Text.Length > 0)
+        {
+            txtEmailBlock.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void TxtDriver_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtDriverBlock.Visibility = Visibility.Visible;
+        if (txtDriver.Text.Length > 0)
+        {
+            txtDriverBlock.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void TxtAddress_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtAddressBlock.Visibility = Visibility.Visible;
+        if (txtAddress.Text.Length > 0)
+        {
+            txtAddressBlock.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void City_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtCityBlock.Visibility = Visibility.Visible;
+        if (City.Text.Length > 0)
+        {
+            txtCityBlock.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void State_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtStateBlock.Visibility = Visibility.Visible;
+        if (State.Text.Length > 0)
+        {
+            txtStateBlock.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void TxtZipcode_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtZipcodeBlock.Visibility = Visibility.Visible;
+        if (txtZipcode.Text.Length > 0)
+        {
+            txtZipcodeBlock.Visibility = Visibility.Hidden;
+        }
+    }
 }
 /*public class PasswordBoxMonitor : DependencyObject {
     public static bool GetIsMonitoring(DependencyObject obj) {
