@@ -559,7 +559,7 @@
                 FontSize="20"
                 ClickMode="Press"
                 Margin="-500,-650,-500,0"
-                Click="runSignUp"
+                Click="RegUser_Button"
             >
                     
                 <Button.Resources>

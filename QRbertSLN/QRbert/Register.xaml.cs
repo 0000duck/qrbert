@@ -32,6 +32,12 @@ public partial class Register : Page
         InitializeComponent();
     }
 
+    public void makeStateList()
+    {
+        string[] stateAbbr = new string[50];
+        
+    }
+
 
     private void runSignUp(object sender, RoutedEventArgs e)
     {
@@ -145,18 +151,37 @@ public partial class Register : Page
         }
     }
 
-    public static bool IsWithinRange(string textBox, decimal min, decimal max)
+    public static bool IsWithinRange(string textBox)
     {
         //decimal number = Convert.ToDecimal(textBox.Text);
+        int min = 10000;
+        int max = 99999;
 
-        int number = textBox.Length;
+        int length = textBox.Length;
+        int number = 0;
+        char[] charArray = new char[length];
+        charArray = textBox.ToCharArray();
+        if(IsInt32(textBox))
+            number = Convert.ToInt32(textBox);
+        else
+        {
+            //MessageBox.Show("Enter an actual number");
+            return false;
+        }
+        
+        
+
+        
 
         if (number < min || number > max)
         {
-            MessageBox.Show(textBox + " must be between " + min
-                            + " and " + max + ".");
+            MessageBox.Show(textBox + " must be between " + min+ " and " + max + ".");
             //textBox.Focus();
             return false;
+        }
+        else
+        {
+            MessageBox.Show(number.ToString());
         }
         return true;
     }
@@ -207,7 +232,12 @@ public partial class Register : Page
     {
         // make sure mandatory fields are typed in
         //Made minor adjustment to the if statement (isValidEmail)
-        if (!IsValidEmail(txtEmail.Text) || Password.Password == "")
+        if (!IsWithinRange(txtZipcode.Text))
+        {
+            //Console.WriteLine("It's no good");
+            MessageBox.Show("It's no good");
+        }
+        else if (!IsValidEmail(txtEmail.Text) || Password.Password == "")
             MessageBox.Show("Please fill out all mandatory fields");
         else if (Password.Password != ConfirmPassword.Password)
             MessageBox.Show("Passwords Do Not Match");
