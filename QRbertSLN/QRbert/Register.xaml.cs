@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows;
 using System.Data.SqlClient;
+using System.Windows.Navigation;
 //using System.Windows.Interactivity
 using Microsoft.Xaml.Behaviors;
 
@@ -208,7 +209,10 @@ public partial class Register : Page
         // make sure mandatory fields are typed in
         //Made minor adjustment to the if statement (isValidEmail)
         if (!IsValidEmail(txtEmail.Text) || Password.Password == "")
+        {
             MessageBox.Show("Please fill out all mandatory fields");
+            this.Content = MainWindow.GetWindow(null);
+        }
         else if (Password.Password != ConfirmPassword.Password)
             MessageBox.Show("Passwords Do Not Match");
         else
@@ -226,7 +230,10 @@ public partial class Register : Page
 
             sqlCmd.ExecuteNonQuery();
             MessageBox.Show("Sign Up Complete ");
+            
         }
+
+        
     }
 
     /*private void Password_OnPasswordChanged(object sender, RoutedEventArgs e)

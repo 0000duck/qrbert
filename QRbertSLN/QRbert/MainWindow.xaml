@@ -126,7 +126,7 @@
         the form. -->
         <StackPanel 
             Height="40" 
-            Width="100" 
+            Width="110" 
             Margin="30, -400, 0, 0" 
             Background="Transparent"
             >
@@ -136,7 +136,7 @@
                 FontWeight="Bold" 
                 FontSize="25"
                 >
-                Log In
+                Register
             </Label>
         </StackPanel>
         <!--With Your QR Code label for user centered in the middle of the white
@@ -144,7 +144,7 @@
             and the QR code so that it doesn't look too clumped together. -->
         <StackPanel 
             Height="40" 
-            Width="240" 
+            Width="130" 
             Margin="25,-325,-25,0" 
             Background="Transparent"
             >
@@ -153,7 +153,7 @@
                 FontWeight="Bold" 
                 FontSize="25"
                 >
-                With Your QR Code
+                New User
             </Label>
         </StackPanel>
         <!--QR code image from the Github repository. Not meant to be scanned. Just
@@ -182,9 +182,9 @@
                 BorderThickness="2" 
                 BorderBrush="#FF9100" 
                 Padding="1"
-                Click="StartCamera"
+                Click="RegisterNewUserBtn_Click"
                 >
-                Activate Camera
+                Register
                 <Button.Resources>
                     <Style 
                         TargetType="{x:Type Border}"
