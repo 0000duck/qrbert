@@ -149,6 +149,7 @@ public partial class Register : Page
         //possibly add a range check for zipcode
     }
 
+
     public static bool checkString(string words)
     {
         if (words == null || words == "")
@@ -161,6 +162,7 @@ public partial class Register : Page
         }
         
     }
+
     public static bool isPresent(string textBox, string textBoxName)
     {
         if (textBox == null || textBox == "")
@@ -286,9 +288,6 @@ public partial class Register : Page
             return isGood;
         }
 
-
-    public void AddText(object sender, EventArgs e)
-    {
         if (string.IsNullOrWhiteSpace(txtFirstName.Text))
             txtFirstName.Text = "Enter text here...";
 
@@ -515,5 +514,6 @@ public partial class Register : Page
             MessageBox.Show("You need to write at least 8 characters");
         }
     }*/
+    
 }
     
