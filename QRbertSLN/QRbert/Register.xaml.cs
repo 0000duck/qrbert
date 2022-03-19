@@ -286,9 +286,6 @@ public partial class Register : Page
             return isGood;
         }
 
-
-    public void AddText(object sender, EventArgs e)
-    {
         if (string.IsNullOrWhiteSpace(txtFirstName.Text))
             txtFirstName.Text = "Enter text here...";
 
@@ -515,5 +512,6 @@ public partial class Register : Page
             MessageBox.Show("You need to write at least 8 characters");
         }
     }*/
+    
 }
     
