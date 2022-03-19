@@ -149,6 +149,7 @@ public partial class Register : Page
         //possibly add a range check for zipcode
     }
 
+
     public static bool checkString(string words)
     {
         if (words == null || words == "")
@@ -161,6 +162,7 @@ public partial class Register : Page
         }
         
     }
+
     public static bool isPresent(string textBox, string textBoxName)
     {
         if (textBox == null || textBox == "")
