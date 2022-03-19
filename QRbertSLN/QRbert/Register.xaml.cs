@@ -2,7 +2,6 @@ using System;
 using System.Data;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 //using System.Windows.Interactivity
@@ -287,6 +286,12 @@ public partial class Register : Page
             return isGood;
         }
 
+
+    public void AddText(object sender, EventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(txtFirstName.Text))
+            txtFirstName.Text = "Enter text here...";
+
         if (lastName.Text == "")
         {
             return isGood;
@@ -354,8 +359,9 @@ public partial class Register : Page
         {
             using SqlConnection sqlCon = new SqlConnection(connectionString);
             sqlCon.Open();
+            
+            // User Input stored in Registration table 
             SqlCommand sqlCmd = new SqlCommand("RegUser", sqlCon);
-
             sqlCmd.CommandType = CommandType.StoredProcedure;
             sqlCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
             sqlCmd.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
@@ -363,7 +369,21 @@ public partial class Register : Page
             sqlCmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
             sqlCmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
 
-            sqlCmd.ExecuteNonQuery();
+            SqlCommand contact = new SqlCommand("Contact", sqlCon);
+            contact.CommandType = CommandType.StoredProcedure;
+            contact.Parameters.AddWithValue("@Email", txtEmail.Text);
+            contact.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
+            contact.Parameters.AddWithValue("@Faculty_Role", txtFacultyRole.Text);
+            contact.Parameters.AddWithValue("@Street", txtAddress.Text);
+            contact.Parameters.AddWithValue("@City", City.Text);
+            contact.Parameters.AddWithValue("@State", State.Text);
+            contact.Parameters.AddWithValue("@ZipCode", txtZipcode.Text);
+            contact.Parameters.AddWithValue("@PhoneNum", txtPhone.Text);
+            contact.Parameters.AddWithValue("@DL_ID", txtDriver.Text);
+            
+            sqlCmd.ExecuteNonQuery(); 
+            contact.ExecuteNonQuery();
+
             MessageBox.Show("Sign Up Complete ");
         }
     }
@@ -470,10 +490,18 @@ public partial class Register : Page
             txtStateBlock.Visibility = Visibility.Hidden;
         }
     }
+    private void TxtPhone_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtPhoneBlock.Visibility = Visibility.Visible;
+        if (txtPhone.Text.Length > 0)
+        {
+            txtPhoneBlock.Visibility = Visibility.Hidden;
+        }
+    }
 
     private void TxtZipcode_OnTextChanged(object sender, TextChangedEventArgs e)
     {
-        txtZipcodeBlock.Visibility = Visibility.Visible;
+        txtZipcode.Visibility = Visibility.Visible;
         if (txtZipcode.Text.Length > 0)
         {
             txtZipcodeBlock.Visibility = Visibility.Hidden;
