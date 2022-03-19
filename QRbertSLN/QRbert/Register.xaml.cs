@@ -500,7 +500,7 @@ public partial class Register : Page
 
     private void TxtZipcode_OnTextChanged(object sender, TextChangedEventArgs e)
     {
-        txtZipcode.Visibility = Visibility.Visible;
+        txtZipcodeBlock.Visibility = Visibility.Visible;
         if (txtZipcode.Text.Length > 0)
         {
             txtZipcodeBlock.Visibility = Visibility.Hidden;
