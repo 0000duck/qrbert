@@ -95,7 +95,7 @@
                     Height="20"
                     Width="210"
                     Name="txtHintPassword"
-                    Margin="275,-950,-500,0"
+                    Margin="275,-850,-500,0"
                 >
                     
                 </TextBlock>
@@ -110,7 +110,7 @@
                     FontWeight="Bold" 
                     BorderBrush="Transparent" 
                     BorderThickness="2"
-                    Margin="275,-950,-500,0" 
+                    Margin="275,-850,-500,0" 
                     FontSize="14"
                     Name="Password"
                 >
@@ -132,7 +132,7 @@
                     Fill="White" 
                     Height="2" 
                     Width="250" 
-                    Margin="-25,-915,0,0"
+                    Margin="-25,-805,0,0"
                 />
             </DockPanel>
             <DockPanel LastChildFill="False">
@@ -147,7 +147,7 @@
                     FontWeight="Bold"
                     FontSize="14"
                     Name="txtHintConfirmPassword"
-                    Margin="277,-410,-500,0"
+                    Margin="277,-380,-500,0"
                 >
                 
                 </TextBlock>
@@ -163,7 +163,7 @@
                     FontWeight="Bold" 
                     BorderBrush="Transparent" 
                     BorderThickness="2"
-                    Margin="275,-800,-500,0" 
+                    Margin="275,-750,-500,0" 
                     FontSize="14"
                     Name="ConfirmPassword"
                 >
@@ -174,7 +174,7 @@
                         Fill="White" 
                         Height="2" 
                         Width="250" 
-                        Margin="-25,-765,0,0"
+                        Margin="-25,-705,0,0"
                     />
                     
             </DockPanel>
@@ -492,6 +492,44 @@
                 LastChildFill="False"
             >
                 <TextBlock
+                    Text="Phone Number"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    Height="20"
+                    Width="250"
+                    Name="txtPhoneBlock"
+                    Margin="280,-980,-500,0"
+                >
+                
+                </TextBlock>
+                <TextBox
+                    Name = "txtPhone"
+                    Width = "250" 
+                    Height="20" 
+                    Background="Transparent" 
+                    Foreground="White"  
+                    FontWeight="Bold" 
+                    BorderBrush="Transparent" 
+                    BorderThickness="2"
+                    TextChanged="TxtPhone_OnTextChanged"
+                    Margin="245,-980,-500,0" FontSize="14"
+                >
+                    
+                </TextBox>
+                <Rectangle 
+                    DockPanel.Dock="Top" 
+                    Fill="White" 
+                    Height="2" 
+                    Width="250" 
+                    Margin="-25,-950,0,0"
+                />
+            </DockPanel>
+            
+            <DockPanel 
+                LastChildFill="False"
+            >
+                <TextBlock
                     Text="Zipcode"
                     Foreground="White"
                     FontWeight="Bold"
@@ -524,7 +562,7 @@
                     Width="250" 
                     Margin="-25,-1065,0,0"
                 />
-            </DockPanel>
+            </DockPanel> 
             <!-- removed DockPanel so PasswordBox could be used
             Still need a way to show that it is a password location
             Maybe a label?
@@ -558,8 +596,8 @@
                 Width="140"
                 FontSize="20"
                 ClickMode="Press"
-                Margin="-500,-650,-500,0"
-                Click="runSignUp"
+                Margin="-500,-480,-500,0"
+                Click="RegUser_Button"
             >
                     
                 <Button.Resources>
