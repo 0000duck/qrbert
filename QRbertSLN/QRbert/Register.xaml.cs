@@ -33,6 +33,7 @@ public partial class Register : Page
         
     }
 
+    //Creates a list of states using their abbreviations
     public static string[] makeStateList()
     {
         string[] stateAbbr = new string[50];
@@ -90,11 +91,12 @@ public partial class Register : Page
     }
 
 
-    private void runSignUp(object sender, RoutedEventArgs e)
+    
+    /*private void runSignUp(object sender, RoutedEventArgs e)
     {
         
         //Console.WriteLine("Here");
-        /*bool firstNameCheck = isFirstNameValid(RegFirst.Text);
+        bool firstNameCheck = isFirstNameValid(RegFirst.Text);
         if (firstNameCheck)
         {
             //accept the sign up form
@@ -104,9 +106,11 @@ public partial class Register : Page
         {
             //reload page and show what needs to be changed
             MessageBox.Show("Not good to submit");
-        }*/
+        }
         MessageBox.Show(Password.Password);
-    }
+    }*/
+    
+
     
     public static bool isFirstNameValid(string text)
     {
@@ -198,12 +202,13 @@ public partial class Register : Page
         }
         else
         {
-            MessageBox.Show(textBox + " must be an integer.");
+            MessageBox.Show("This should be an integer.");
             //textBox.Focus();
             return false;
         }
     }
 
+    //Used for Zipcodes. Fits into the given range to check validation
     public static bool IsWithinRange(string textBox)
     {
         //decimal number = Convert.ToDecimal(textBox.Text);
@@ -224,13 +229,9 @@ public partial class Register : Page
             return false;
         }
         
-        
-
-        
-
         if (number < min || number > max)
         {
-            MessageBox.Show(textBox + " must be between " + min+ " and " + max + ".");
+            MessageBox.Show("Zipcode must be between " + min+ " and " + max + ".");
             //textBox.Focus();
             return false;
         }
@@ -241,7 +242,7 @@ public partial class Register : Page
         return true;
     }
 
-    //checks to see if it has the right symbols in the textbox
+    //checks to see if it has the characters in the email textbox
     public static bool IsValidEmail(string textBox)
     {
         string strRegex = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
@@ -256,16 +257,16 @@ public partial class Register : Page
             
         else
         {
-            MessageBox.Show("Not a valid email");
+            //MessageBox.Show("Not a valid email");
             return false;
         }
             
         
     }
-
+    //Checks to make sure that a valid state abbrevation
     public static bool isValidState(TextBox state)
     {
-        if (state.Text.Length > 2)
+        if (state.Text.Length != 2)
         {
             MessageBox.Show("Needs to be 2 letters only. (ex. CA for California)");
             return false;
@@ -275,14 +276,17 @@ public partial class Register : Page
         {
             if (states[i] == state.Text)
             {
+                //MessageBox.Show("Wee is good");
                 return true;
             }
         }
 
+        //MessageBox.Show("What's good bro?!");
         return false;
 
     }
-
+    
+    //Checks for a valid driver's license
     public static bool isValidDriver(string driver)
     {
         //string firstLetter = driver.Substring(0);
@@ -296,11 +300,32 @@ public partial class Register : Page
 
         if (re.IsMatch(driver)&&driver.Length<9)
         {
-            MessageBox.Show("Solid bro");
+            //MessageBox.Show("Solid bro");
             return true;
         }
 
-        MessageBox.Show("No good bro");
+        //MessageBox.Show("No good bro");
+        return false;
+    }
+
+    //Checks for a valid phone number
+    public static bool isValidPhone(TextBox number)
+    {
+        if (!IsInt32(number.Text))
+        {
+            MessageBox.Show("Can't have any characters. Only numbers");
+            return false;
+        }
+        //this looks for a pattern that has 10 numbers to make up a phone number
+        string regexPhone = @"[0-9]{10}";
+        Regex re = new Regex(number.Text);
+        if(re.IsMatch(regexPhone)&&number.Text.Length < 11)
+        {
+            //MessageBox.Show("Very based");
+            return true;
+        }
+
+        //MessageBox.Show("Not based");
         return false;
     }
     
@@ -309,8 +334,9 @@ public partial class Register : Page
     
 
     //First name, last name, email, Driver's license, address, city, state, zipcode, password, and confirmpassword
+    //Used to authenticate everything on the Register.xaml
     public bool Authenticate(TextBox firstName, TextBox lastName, TextBox email, TextBox driver, TextBox address,
-        TextBox city, TextBox state, TextBox zipcode, PasswordBox password, PasswordBox confirmPassword)
+        TextBox city, TextBox state, TextBox zipcode, TextBox phoneNumber, PasswordBox password, PasswordBox confirmPassword)
     {
         bool isGood = false;
         if (firstName.Text == "")
@@ -328,7 +354,7 @@ public partial class Register : Page
             return isGood;
         }
 
-        if (isValidDriver(driver.Text))
+        if (!isValidDriver(driver.Text))
         {
             return isGood;
         }
@@ -343,12 +369,17 @@ public partial class Register : Page
             return isGood;
         }
 
-        if (state.Text == null || state.Text == "")
+        if (!isValidState(state) || state.Text == "")
         {
             return isGood;
         }
 
         if (!IsWithinRange(zipcode.Text) || zipcode.Text == "")
+        {
+            return isGood;
+        }
+
+        if (!isValidPhone(phoneNumber)|| phoneNumber.Text == "")
         {
             return isGood;
         }
@@ -375,7 +406,7 @@ public partial class Register : Page
     {
         // make sure mandatory fields are typed in
         //Made minor adjustment to the if statement (isValidEmail)
-        if (!Authenticate(txtFirstName,txtLastName,txtEmail,txtDriver,txtAddress,txtCity,txtState,txtZipcode,Password,ConfirmPassword))
+        if (!Authenticate(txtFirstName,txtLastName,txtEmail,txtDriver,txtAddress,txtCity,txtState,txtZipcode,txtPhone,Password,ConfirmPassword))
         {
             
             MessageBox.Show("Please fill out all mandatory fields on the page.");
@@ -422,6 +453,8 @@ public partial class Register : Page
             Password.Background.Opacity = 0;
     }
     */
+    
+    //Function that creates a watermark-like text for Faculty
     private void FacultyRole_OnPasswordChanged(object sender, RoutedEventArgs e)
     {
         txtFacultyRoleBlock.Visibility = Visibility.Visible;
@@ -430,6 +463,8 @@ public partial class Register : Page
             txtFacultyRoleBlock.Visibility = Visibility.Hidden;
         }
     }
+    
+    //Function that creates a watermark-like text for First Name
     private void txtFirstNameBlock_OnPasswordChanged(object sender, RoutedEventArgs e)
     {
         txtFirstNameBlock.Visibility = Visibility.Visible;
@@ -438,6 +473,8 @@ public partial class Register : Page
             txtFirstNameBlock.Visibility = Visibility.Hidden;
         }
     }
+    
+    //Function that creates a watermark-like text for Password
     private void Password_OnPasswordChanged(object sender, RoutedEventArgs e)
     {
         
@@ -447,12 +484,15 @@ public partial class Register : Page
             txtHintPassword.Visibility = Visibility.Hidden;
         }
     }
+    
+    //Function that I have no idea what it does but it is still here
     void PrintText(object sender, SelectionChangedEventArgs args)
     {
         ListBoxItem lbi = ((sender as ListBox).SelectedItem as ListBoxItem);
         MessageBox.Show("You selected " + lbi.Content.ToString() + ".");
     }
 
+    //Function that creates a watermark-like text for Confirm Password
     private void ConfirmPassword_OnPasswordChanged(object sender, RoutedEventArgs e)
     {
         txtHintConfirmPassword.Visibility = Visibility.Visible;
@@ -462,6 +502,7 @@ public partial class Register : Page
         }
     }
 
+    //Function that creates a watermark-like text for Last Name
     private void TxtLastName_OnTextChanged(object sender, TextChangedEventArgs e)
     {
         txtLastNameBlock.Visibility = Visibility.Visible;
@@ -472,6 +513,7 @@ public partial class Register : Page
         
     }
 
+    //Function that creates a watermark-like text for Email
     private void TxtEmail_OnTextChanged(object sender, TextChangedEventArgs e)
     {
         txtEmailBlock.Visibility = Visibility.Visible;
@@ -481,6 +523,7 @@ public partial class Register : Page
         }
     }
 
+    //Function that creates a watermark-like text for Driver's License
     private void TxtDriver_OnTextChanged(object sender, TextChangedEventArgs e)
     {
         txtDriverBlock.Visibility = Visibility.Visible;
@@ -490,6 +533,7 @@ public partial class Register : Page
         }
     }
 
+    //Function that creates a watermark-like text for Address
     private void TxtAddress_OnTextChanged(object sender, TextChangedEventArgs e)
     {
         txtAddressBlock.Visibility = Visibility.Visible;
@@ -499,6 +543,7 @@ public partial class Register : Page
         }
     }
 
+    //Function that creates a watermark-like text for City
     private void TxtCity_OnTextChanged(object sender, TextChangedEventArgs e)
     {
         txtCityBlock.Visibility = Visibility.Visible;
@@ -508,6 +553,7 @@ public partial class Register : Page
         }
     }
 
+    //Function that creates a watermark-like text for State
     private void TxtState_OnTextChanged(object sender, TextChangedEventArgs e)
     {
         txtStateBlock.Visibility = Visibility.Visible;
@@ -516,6 +562,8 @@ public partial class Register : Page
             txtStateBlock.Visibility = Visibility.Hidden;
         }
     }
+    
+    //Function that creates a watermark-like text for Phone Number
     private void TxtPhone_OnTextChanged(object sender, TextChangedEventArgs e)
     {
         txtPhoneBlock.Visibility = Visibility.Visible;
@@ -525,6 +573,7 @@ public partial class Register : Page
         }
     }
 
+    //Function that creates a watermark-like text for Zipcode
     private void TxtZipcode_OnTextChanged(object sender, TextChangedEventArgs e)
     {
         txtZipcodeBlock.Visibility = Visibility.Visible;
