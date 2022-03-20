@@ -245,12 +245,21 @@ public partial class Register : Page
     public static bool IsValidEmail(string textBox)
     {
         string strRegex = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
-        Regex re = new Regex(strRegex, RegexOptions.IgnoreCase);
-         
+        string strRegex2 = @"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}";
+        Regex re = new Regex(strRegex2, RegexOptions.IgnoreCase);
+
         if (re.IsMatch(textBox))
+        {
+            //MessageBox.Show("A valid email");
             return true;
+        }
+            
         else
+        {
+            MessageBox.Show("Not a valid email");
             return false;
+        }
+            
         
     }
 
@@ -273,6 +282,12 @@ public partial class Register : Page
         return false;
 
     }
+
+    public static bool isValidDriver(TextBox driver)
+    {
+        string regexDriver = @"[A-Z]{1}+[0-9]{7}";
+        
+    }
     
     
 
@@ -287,9 +302,6 @@ public partial class Register : Page
         {
             return isGood;
         }
-
-        if (string.IsNullOrWhiteSpace(txtFirstName.Text))
-            txtFirstName.Text = "Enter text here...";
 
         if (lastName.Text == "")
         {
@@ -348,7 +360,7 @@ public partial class Register : Page
     {
         // make sure mandatory fields are typed in
         //Made minor adjustment to the if statement (isValidEmail)
-        if (!Authenticate(txtFirstName,txtLastName,txtEmail,txtDriver,txtAddress,City,State,txtZipcode,Password,ConfirmPassword))
+        if (!Authenticate(txtFirstName,txtLastName,txtEmail,txtDriver,txtAddress,txtCity,txtState,txtZipcode,Password,ConfirmPassword))
         {
             
             MessageBox.Show("Please fill out all mandatory fields on the page.");
@@ -374,8 +386,8 @@ public partial class Register : Page
             contact.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
             contact.Parameters.AddWithValue("@Faculty_Role", txtFacultyRole.Text);
             contact.Parameters.AddWithValue("@Street", txtAddress.Text);
-            contact.Parameters.AddWithValue("@City", City.Text);
-            contact.Parameters.AddWithValue("@State", State.Text);
+            contact.Parameters.AddWithValue("@City", txtCity.Text);
+            contact.Parameters.AddWithValue("@State", txtState.Text);
             contact.Parameters.AddWithValue("@ZipCode", txtZipcode.Text);
             contact.Parameters.AddWithValue("@PhoneNum", txtPhone.Text);
             contact.Parameters.AddWithValue("@DL_ID", txtDriver.Text);
@@ -472,19 +484,19 @@ public partial class Register : Page
         }
     }
 
-    private void City_OnTextChanged(object sender, TextChangedEventArgs e)
+    private void TxtCity_OnTextChanged(object sender, TextChangedEventArgs e)
     {
         txtCityBlock.Visibility = Visibility.Visible;
-        if (City.Text.Length > 0)
+        if (txtCity.Text.Length > 0)
         {
             txtCityBlock.Visibility = Visibility.Hidden;
         }
     }
 
-    private void State_OnTextChanged(object sender, TextChangedEventArgs e)
+    private void TxtState_OnTextChanged(object sender, TextChangedEventArgs e)
     {
         txtStateBlock.Visibility = Visibility.Visible;
-        if (State.Text.Length > 0)
+        if (txtState.Text.Length > 0)
         {
             txtStateBlock.Visibility = Visibility.Hidden;
         }
