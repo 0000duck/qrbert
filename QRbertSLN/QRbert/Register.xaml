@@ -429,7 +429,7 @@
                 
                 </TextBlock>
                 <TextBox 
-                    Name = "City"
+                    Name = "txtCity"
                     Width = "250" 
                     Height="20" 
                     Background="Transparent" 
@@ -437,7 +437,7 @@
                     FontWeight="Bold" 
                     BorderBrush="Transparent" 
                     BorderThickness="2"
-                    TextChanged="City_OnTextChanged"
+                    TextChanged="TxtCity_OnTextChanged"
                     Margin="245,-1400,-500,0" 
                     FontSize="14"
                     >
@@ -467,7 +467,7 @@
                 
                 </TextBlock>
                 <TextBox 
-                    Name = "State"
+                    Name = "txtState"
                     Width = "250" 
                     Height="20" 
                     Background="Transparent" 
@@ -475,7 +475,7 @@
                     FontWeight="Bold" 
                     BorderBrush="Transparent" 
                     BorderThickness="2"
-                    TextChanged="State_OnTextChanged"
+                    TextChanged="TxtState_OnTextChanged"
                     Margin="245,-1250,-500,0" 
                     FontSize="14"
                 >
