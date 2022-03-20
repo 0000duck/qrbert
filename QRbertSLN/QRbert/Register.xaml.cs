@@ -283,10 +283,25 @@ public partial class Register : Page
 
     }
 
-    public static bool isValidDriver(TextBox driver)
+    public static bool isValidDriver(string driver)
     {
-        string regexDriver = @"[A-Z]{1}+[0-9]{7}";
-        
+        //string firstLetter = driver.Substring(0);
+
+        //int compare = string.Compare(firstLetter, "A");
+        //string comparedNumber = compare.ToString();
+        //MessageBox.Show(comparedNumber);
+        //if(firstLetter < "A" || firstLetter > "Z")
+        string regexDriver = @"[A-Z]{1}[0-9]{7}";
+        Regex re = new Regex(regexDriver, RegexOptions.IgnoreCase);
+
+        if (re.IsMatch(driver)&&driver.Length<9)
+        {
+            MessageBox.Show("Solid bro");
+            return true;
+        }
+
+        MessageBox.Show("No good bro");
+        return false;
     }
     
     
@@ -313,11 +328,11 @@ public partial class Register : Page
             return isGood;
         }
 
-        if (driver.Text == null || driver.Text == "")
+        if (isValidDriver(driver.Text))
         {
             return isGood;
         }
-
+        
         if (address.Text == null || address.Text == "")
         {
             return isGood;
