@@ -15,7 +15,7 @@ using Microsoft.Xaml.Behaviors;
 
 namespace QRbert;
 
-public partial class Register : Page
+public partial class Register : Window
 {
     /*
      * connects DB to Register Page
@@ -208,11 +208,8 @@ public partial class Register : Page
     {
         // make sure mandatory fields are typed in
         //Made minor adjustment to the if statement (isValidEmail)
-        if (!IsValidEmail(txtEmail.Text) || Password.Password == "")
-        {
+        if (!IsValidEmail(txtEmail.Text) || Password.Password == "") 
             MessageBox.Show("Please fill out all mandatory fields");
-            this.Content = MainWindow.GetWindow(null);
-        }
         else if (Password.Password != ConfirmPassword.Password)
             MessageBox.Show("Passwords Do Not Match");
         else
@@ -229,8 +226,13 @@ public partial class Register : Page
             sqlCmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
 
             sqlCmd.ExecuteNonQuery();
-            MessageBox.Show("Sign Up Complete ");
+            MessageBox.Show("Sign up successful. Please log in.");
             
+            // After a successful registration, user is redirected to 
+            // the Log In window to login with their new credentials
+            Window redirectNewUser = new LogIn_Register();      // Creates the new window
+            redirectNewUser.Show();     // Opens the new window
+            this.Close();       // Closes the current window
         }
 
         
