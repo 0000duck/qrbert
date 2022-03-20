@@ -14,8 +14,8 @@ public partial class GetStarted : Window
 
     private void GetStartedBtn_Click(object sender, RoutedEventArgs e)
     {
-        Window LogInWindow = new MainWindow();
-        this.Close();
+        Window LogInWindow = new LogIn_Register();
         LogInWindow.Show();
+        this.Close();
     }
 }
