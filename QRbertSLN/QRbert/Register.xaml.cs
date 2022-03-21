@@ -3,6 +3,7 @@ using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 using System.Data.SqlClient;
+using System.Windows.Navigation;
 using System.Text.RegularExpressions;
 //using System.Windows.Interactivity
 using Microsoft.Xaml.Behaviors;
@@ -14,7 +15,7 @@ using Microsoft.Xaml.Behaviors;
 
 namespace QRbert;
 
-public partial class Register : Page
+public partial class Register : Window
 {
     /*
      * connects DB to Register Page
@@ -406,12 +407,20 @@ public partial class Register : Page
     {
         // make sure mandatory fields are typed in
         //Made minor adjustment to the if statement (isValidEmail)
+
         if (!Authenticate(txtFirstName,txtLastName,txtEmail,txtDriver,txtAddress,txtCity,txtState,txtZipcode,txtPhone,Password,ConfirmPassword))
         {
             
             MessageBox.Show("Please fill out all mandatory fields on the page.");
         }
         
+
+        if (!IsValidEmail(txtEmail.Text) || Password.Password == "") 
+            MessageBox.Show("Please fill out all mandatory fields");
+        else if (Password.Password != ConfirmPassword.Password)
+            MessageBox.Show("Passwords Do Not Match");
+
+
         else
         {
             using SqlConnection sqlCon = new SqlConnection(connectionString);
@@ -425,7 +434,7 @@ public partial class Register : Page
             sqlCmd.Parameters.AddWithValue("@Faculty_Role", facultyRole);
             sqlCmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
             sqlCmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
-
+            
             SqlCommand contact = new SqlCommand("Contact", sqlCon);
             contact.CommandType = CommandType.StoredProcedure;
             contact.Parameters.AddWithValue("@Email", txtEmail.Text);
@@ -437,12 +446,19 @@ public partial class Register : Page
             contact.Parameters.AddWithValue("@ZipCode", txtZipcode.Text);
             contact.Parameters.AddWithValue("@PhoneNum", txtPhone.Text);
             contact.Parameters.AddWithValue("@DL_ID", txtDriver.Text);
-            
-            sqlCmd.ExecuteNonQuery(); 
-            contact.ExecuteNonQuery();
 
-            MessageBox.Show("Sign Up Complete ");
+            sqlCmd.ExecuteNonQuery();
+            contact.ExecuteNonQuery();
+            MessageBox.Show("Sign up successful. Please log in.");
+            
+            // After a successful registration, user is redirected to 
+            // the Log In window to login with their new credentials
+            Window redirectNewUser = new LogIn_Register();      // Creates the new window
+            redirectNewUser.Show();     // Opens the new window
+            this.Close();       // Closes the current window
         }
+
+        
     }
 
     /*private void Password_OnPasswordChanged(object sender, RoutedEventArgs e)
