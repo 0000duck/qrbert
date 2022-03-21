@@ -14,6 +14,7 @@
         HorizontalScrollBarVisibility = "Auto"
         VerticalScrollBarVisibility="Auto"
         >
+        
         <StackPanel 
             Height="2105" 
             Width="800" 
@@ -58,6 +59,7 @@
                 Source="Images/petsBackground.png" 
                 Margin="0,-150,0,0"
             />
+            
             <StackPanel 
                 Background="#FF9100" 
                 Width="400" 
@@ -65,6 +67,31 @@
                 Opacity="0.85" 
                 Margin = "0, -1400, 0, 0"
             />
+            <StackPanel>      
+                <RadioButton 
+                    Height = "20" 
+                    Width = "50" 
+                    Name="rb1" 
+                    Background="Transparent" 
+                    Foreground = "White" 
+                    Margin="-155,-2285,0,0" 
+                    Checked="FacultyChoice"
+                    >
+                    Staff
+                </RadioButton>
+                <RadioButton 
+                    Height = "20" 
+                    Width = "100" 
+                    Name="rb2" 
+                    Background="Transparent" 
+                    Foreground = "White" 
+                    Margin="80,-2285,0,0" 
+                    Checked="FacultyChoice"
+                    >
+                    Volunteer
+                </RadioButton>
+                
+            </StackPanel>
             <!--
             <StackPanel Height = "45" Width="90" Margin = "-100, -2300, -0, 0">
                     <ToggleButton Background="Transparent" Foreground="White" FontWeight="Bold" 
@@ -194,11 +221,11 @@
                     Height="20"
                     Width="250"
                     Name="txtFacultyRoleBlock"
-                    Margin="289,-2295,-500,0"
+                    Margin="289,-2345,-500,0"
                 >
                 
                 </TextBlock>
-                <TextBox 
+                <!--<TextBox 
                     Name = "txtFacultyRole" 
                     Width = "250" 
                     Height="25" 
@@ -212,7 +239,7 @@
                     FontSize="14"
                 >
                     
-                </TextBox>
+                </TextBox>-->
                 <Rectangle 
                     DockPanel.Dock="Top" 
                     Fill="White" 
