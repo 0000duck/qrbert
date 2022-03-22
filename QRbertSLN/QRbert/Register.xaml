@@ -151,11 +151,9 @@
                 >
                 
                 </TextBlock>
-                    <!-- LostFocus="ConfirmPassword_OnLostFocus"
-                    This is for leaving the textbox -->
                 <PasswordBox 
                     
-                    
+                    MaxLength="8" 
                     PasswordChar="*" 
                     Width = "250" 
                     Height="20" 
@@ -567,8 +565,27 @@
             </DockPanel> 
             <!-- removed DockPanel so PasswordBox could be used
             Still need a way to show that it is a password location
-            Maybe a label?-->
+            Maybe a label?
             
+            <DockPanel LastChildFill="False">
+                <TextBox Name = "txtPassword" Width = "250" Height="20" Background="Transparent" Foreground="White" 
+                         FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                         Margin="275,-950,-500,0" FontSize="14">
+                    Password
+                </TextBox>
+                <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
+                           Margin="-25,-915,0,0"/>
+            </DockPanel>-->
+            <!-- Same as the above DockPanel
+            <DockPanel LastChildFill="False">
+                <TextBox Name = "txtConfirmPassword" Width = "250" Height="20" Background="Transparent" Foreground="White" 
+                         FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                         Margin="275,-800,-500,0" FontSize="14">
+                    Confirm Password
+                </TextBox>
+                <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
+                           Margin="-25,-765,0,0"/>
+            </DockPanel>-->
             <Button 
                 Background="White" 
                 Foreground="#FF9100" 

@@ -3,7 +3,6 @@ using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 using System.Data.SqlClient;
-using System.Text.RegularExpressions;
 //using System.Windows.Interactivity
 using Microsoft.Xaml.Behaviors;
 
@@ -30,63 +29,6 @@ public partial class Register : Page
     public Register()
     {
         InitializeComponent();
-        
-    }
-
-    public static string[] makeStateList()
-    {
-        string[] stateAbbr = new string[50];
-        stateAbbr[0] = "AL"; //Alabama
-        stateAbbr[1] = "AK"; //Alaska
-        stateAbbr[2] = "AZ"; //Arizona
-        stateAbbr[3] = "AR"; //Arkansas
-        stateAbbr[4] = "CA"; //California
-        stateAbbr[5] = "CO"; //Colorado
-        stateAbbr[6] = "CT"; //Connecticut
-        stateAbbr[7] = "DE"; //Delaware
-        stateAbbr[8] = "FL"; //Florida
-        stateAbbr[9] = "GA"; //Georgia
-        stateAbbr[10] = "HI"; //Hawaii
-        stateAbbr[11] = "ID"; //Idaho
-        stateAbbr[12] = "IL"; //Illinois
-        stateAbbr[13] = "IN"; //Indiana
-        stateAbbr[14] = "IA"; //Iowa
-        stateAbbr[15] = "KS"; //Kansas
-        stateAbbr[16] = "KY"; //Kentucky
-        stateAbbr[17] = "LA"; //Louisiana
-        stateAbbr[18] = "ME"; //Maine
-        stateAbbr[19] = "MD"; //Maryland
-        stateAbbr[20] = "MA"; //Massachusetts
-        stateAbbr[21] = "MI"; //Michigan
-        stateAbbr[22] = "MN"; //Minnesota
-        stateAbbr[23] = "MS"; //Mississippi
-        stateAbbr[24] = "MO"; //Missouri
-        stateAbbr[25] = "MT"; //Montana
-        stateAbbr[26] = "NE"; //Nebraska
-        stateAbbr[27] = "NV"; //Nevada
-        stateAbbr[28] = "NH"; //New Hampshire
-        stateAbbr[29] = "NJ"; //New Jersey
-        stateAbbr[30] = "NM"; //New Mexico
-        stateAbbr[31] = "NY"; //New York
-        stateAbbr[32] = "NC"; //North Carolina
-        stateAbbr[33] = "ND"; //North Dakota
-        stateAbbr[34] = "OH"; //Ohio
-        stateAbbr[35] = "OK"; //Oklahoma
-        stateAbbr[36] = "OR"; //Oregon
-        stateAbbr[37] = "PA"; //Pennsylvania
-        stateAbbr[38] = "RI"; //Rhode Island
-        stateAbbr[39] = "SC"; //South Carolina
-        stateAbbr[40] = "SD"; //South Dakota
-        stateAbbr[41] = "TN"; //Tennessee
-        stateAbbr[42] = "TX"; //Texas
-        stateAbbr[43] = "UT"; //Utah
-        stateAbbr[44] = "VT"; //Vermont
-        stateAbbr[45] = "VA"; //Virginia
-        stateAbbr[46] = "WA"; //Washington
-        stateAbbr[47] = "WV"; //West Virginia
-        stateAbbr[48] = "WI"; //Wisconsin
-        stateAbbr[49] = "WY"; //Wyoming
-        return stateAbbr;
     }
 
 
@@ -202,39 +144,18 @@ public partial class Register : Page
         }
     }
 
-    public static bool IsWithinRange(string textBox)
+    public static bool IsWithinRange(string textBox, decimal min, decimal max)
     {
         //decimal number = Convert.ToDecimal(textBox.Text);
-        //This is incorrect but it's just a school project so it's alright
-        //Zipcodes can be 4 digits in older states like Massachusetts
-        int min = 10000;
-        int max = 99999;
 
-        int length = textBox.Length;
-        int number = 0;
-        char[] charArray = new char[length];
-        charArray = textBox.ToCharArray();
-        if(IsInt32(textBox))
-            number = Convert.ToInt32(textBox);
-        else
-        {
-            //MessageBox.Show("Enter an actual number");
-            return false;
-        }
-        
-        
-
-        
+        int number = textBox.Length;
 
         if (number < min || number > max)
         {
-            MessageBox.Show(textBox + " must be between " + min+ " and " + max + ".");
+            MessageBox.Show(textBox + " must be between " + min
+                            + " and " + max + ".");
             //textBox.Focus();
             return false;
-        }
-        else
-        {
-            MessageBox.Show(number.ToString());
         }
         return true;
     }
@@ -242,119 +163,47 @@ public partial class Register : Page
     //checks to see if it has the right symbols in the textbox
     public static bool IsValidEmail(string textBox)
     {
-        string strRegex = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
-        Regex re = new Regex(strRegex, RegexOptions.IgnoreCase);
-         
-        if (re.IsMatch(textBox))
-            return true;
-        else
+        if (textBox.IndexOf("@") == -1 ||
+            textBox.IndexOf(".") == -1)
+        {
+            //MessageBox.Show(textBox + " must be a valid email address.");
+            //textBox.Focus();
             return false;
+        }
+        else
+        {
+            return true;
+        }
         
     }
 
-    public static bool isValidState(TextBox state)
+    private void clearFirstName(object sender, RoutedEventArgs e)
     {
-        if (state.Text.Length > 2)
-        {
-            MessageBox.Show("Needs to be 2 letters only. (ex. CA for California)");
-            return false;
-        }
-        string[] states = makeStateList();
-        for (int i = 0; i < 50; i++)
-        {
-            if (states[i] == state.Text)
-            {
-                return true;
-            }
-        }
-
-        return false;
-
+        
     }
-    
-    
-
-    
-
-    //First name, last name, email, Driver's license, address, city, state, zipcode, password, and confirmpassword
-    public bool Authenticate(TextBox firstName, TextBox lastName, TextBox email, TextBox driver, TextBox address,
-        TextBox city, TextBox state, TextBox zipcode, PasswordBox password, PasswordBox confirmPassword)
+    public void RemoveText(object sender, EventArgs e)
     {
-        bool isGood = false;
-        if (firstName.Text == "")
+        if (txtFirstName.Text == "Enter text here...") 
         {
-            return isGood;
+            txtFirstName.Text = "";
         }
-
+    }
 
     public void AddText(object sender, EventArgs e)
     {
         if (string.IsNullOrWhiteSpace(txtFirstName.Text))
             txtFirstName.Text = "Enter text here...";
-
-        if (lastName.Text == "")
-        {
-            return isGood;
-        }
-
-        if (!IsValidEmail(email.Text))
-        {
-            return isGood;
-        }
-
-        if (driver.Text == null || driver.Text == "")
-        {
-            return isGood;
-        }
-
-        if (address.Text == null || address.Text == "")
-        {
-            return isGood;
-        }
-
-        if (city.Text == null || address.Text == "")
-        {
-            return isGood;
-        }
-
-        if (state.Text == null || state.Text == "")
-        {
-            return isGood;
-        }
-
-        if (!IsWithinRange(zipcode.Text) || zipcode.Text == "")
-        {
-            return isGood;
-        }
-
-        if (password.Password.Length < 8 || password.Password == "")
-        {
-            return isGood;
-        }
-
-        if (confirmPassword.Password != password.Password || confirmPassword.Password == "")
-        {
-            return isGood;
-        }
-
-        isGood = true;
-        return isGood;
     }
-
-    
-    
     
     // Link the "sign Up" button to DB to save user registration info
     private void RegUser_Button(object sender, EventArgs e)
     {
         // make sure mandatory fields are typed in
         //Made minor adjustment to the if statement (isValidEmail)
-        if (!Authenticate(txtFirstName,txtLastName,txtEmail,txtDriver,txtAddress,City,State,txtZipcode,Password,ConfirmPassword))
-        {
-            
-            MessageBox.Show("Please fill out all mandatory fields on the page.");
-        }
-        
+        if (!IsValidEmail(txtEmail.Text) || Password.Password == "")
+            MessageBox.Show("Please fill out all mandatory fields");
+        else if (Password.Password != ConfirmPassword.Password)
+            MessageBox.Show("Passwords Do Not Match");
         else
         {
             using SqlConnection sqlCon = new SqlConnection(connectionString);
@@ -507,13 +356,53 @@ public partial class Register : Page
             txtZipcodeBlock.Visibility = Visibility.Hidden;
         }
     }
-
-    /*private void ConfirmPassword_OnLostFocus(object sender, RoutedEventArgs e)
-    {
-        if (ConfirmPassword.Password.Length < 8)
-        {
-            MessageBox.Show("You need to write at least 8 characters");
-        }
-    }*/
 }
+/*public class PasswordBoxMonitor : DependencyObject {
+    public static bool GetIsMonitoring(DependencyObject obj) {
+        return (bool)obj.GetValue(IsMonitoringProperty);
+    }
+
+    public static void SetIsMonitoring(DependencyObject obj, bool value) {
+        obj.SetValue(IsMonitoringProperty, value);
+    }
+
+    public static readonly DependencyProperty IsMonitoringProperty =
+        DependencyProperty.RegisterAttached("IsMonitoring", typeof(bool), typeof(PasswordBoxMonitor), new UIPropertyMetadata(false, OnIsMonitoringChanged));
+
+    public static int GetPasswordLength(DependencyObject obj) {
+        return (int)obj.GetValue(PasswordLengthProperty);
+    }
+
+    public static void SetPasswordLength(DependencyObject obj, int value) {
+        obj.SetValue(PasswordLengthProperty, value);
+    }
+
+    public static readonly DependencyProperty PasswordLengthProperty =
+        DependencyProperty.RegisterAttached("PasswordLength", typeof(int), typeof(PasswordBoxMonitor), new UIPropertyMetadata(0));
+
+    private static void OnIsMonitoringChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {
+        var pb = d as PasswordBox;
+        if (pb == null) {
+            return;
+        }
+        if ((bool) e.NewValue) {
+            pb.PasswordChanged += PasswordChanged;
+        } else {
+            pb.PasswordChanged -= PasswordChanged;
+        }
+    }
+
+    static void PasswordChanged(object sender, RoutedEventArgs e) {
+        var pb = sender as PasswordBox;
+        if (pb == null) {
+            return;
+        }
+        SetPasswordLength(pb, pb.Password.Length);
+    }
+}
+*/
+//public class PasswordBoxWatermarkBehavior : System.Windows.Interactivity.Behavior<PasswordBox>
+
+
+
     
