@@ -1,4 +1,4 @@
-<Page x:Class="QRbert.Register"
+<Window x:Class="QRbert.Register"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -427,7 +427,7 @@
                 
                 </TextBlock>
                 <TextBox 
-                    Name = "City"
+                    Name = "txtCity"
                     Width = "250" 
                     Height="20" 
                     Background="Transparent" 
@@ -435,7 +435,7 @@
                     FontWeight="Bold" 
                     BorderBrush="Transparent" 
                     BorderThickness="2"
-                    TextChanged="City_OnTextChanged"
+                    TextChanged="TxtCity_OnTextChanged"
                     Margin="245,-1400,-500,0" 
                     FontSize="14"
                     >
@@ -465,7 +465,7 @@
                 
                 </TextBlock>
                 <TextBox 
-                    Name = "State"
+                    Name = "txtState"
                     Width = "250" 
                     Height="20" 
                     Background="Transparent" 
@@ -473,7 +473,7 @@
                     FontWeight="Bold" 
                     BorderBrush="Transparent" 
                     BorderThickness="2"
-                    TextChanged="State_OnTextChanged"
+                    TextChanged="TxtState_OnTextChanged"
                     Margin="245,-1250,-500,0" 
                     FontSize="14"
                 >
@@ -596,7 +596,7 @@
                 Width="140"
                 FontSize="20"
                 ClickMode="Press"
-                Margin="-500,-480,-500,0"
+                Margin="-500,-650,-500,0"
                 Click="RegUser_Button"
             >
                     
@@ -674,4 +674,4 @@
             </Button>
         </StackPanel>
     </ScrollViewer>    
-</Page>
+</Window>
