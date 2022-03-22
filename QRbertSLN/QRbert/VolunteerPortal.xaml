@@ -6,8 +6,10 @@
       xmlns:local="clr-namespace:QRbert"
       mc:Ignorable="d"
       Title="VolunteerPortal" Height="450" Width="800">
+
     <!-- This the template for the Menus; It creates the menu with a white background and black bold letters;
     allows the user to hover over the menu and display the menus as well as change the letters to orange-->
+
     <Page.Resources>
         <LinearGradientBrush x:Key="DarkBrush" StartPoint="0.5,0" EndPoint="0.5,1">
             <GradientBrush.GradientStops>
@@ -95,6 +97,7 @@
                     <Setter Property="Header" Value="Test" />
                     <Setter Property="BorderBrush" Value="White"></Setter>
                     <Setter Property="BorderThickness" Value="1"></Setter>
+
                     <!-- This is the trigger that tells the program to display the menu when the mouse hovers over it
                         as well change the black letters to orange-->
                 </Trigger>
@@ -173,4 +176,44 @@
         </Button>
     </StackPanel>
     
+    <StackPanel Background="Transparent">
+        <StackPanel>
+            <Image Width="800" Height="450" Source="Images/petsBackground.png" 
+                   Margin="0,0,0,0"/>
+            <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
+                   Margin="-650,-900,0,-100"/>
+            <Border BorderBrush="#FF9100" Opacity = "0.85" CornerRadius="2,2,2,2" BorderThickness="2,2,2,2"
+                    Margin="-500,-400,0,0"
+                    Height="300"
+                    Width="200">
+                <StackPanel Background="#FF9100" Opacity="0.85">
+                    <!-- your elements here -->
+                </StackPanel>
+            </Border>
+        </StackPanel>
+        <Menu Width="100" Height="22" Margin="400, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
+            <MenuItem Header="Timesheet" Name="mm" Template="{DynamicResource MenuItemControlTemplate1}">
+                <MenuItem Header="View Timesheets"/>
+                <MenuItem Header="Exit"/>
+            </MenuItem>
+        </Menu>
+        <Menu Width="100" Height="22" Margin="500, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
+            <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
+                <MenuItem Header="Animal Activity"/>
+                <MenuItem Header="Select a Pet"/>
+                <MenuItem Header="Medical History"/>
+                <MenuItem Header="Breed Info"/>
+                <MenuItem Header="Pet Report"/>
+                <MenuItem Header="Foster Care"/>
+                <MenuItem Header="Exit"/>
+            </MenuItem>
+        </Menu>
+        <Menu Width="100" Height="22" Margin="600, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
+            <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
+                <MenuItem Header="Volunteer Account"/>
+                <MenuItem Header="Log out"/>
+                <MenuItem Header="Exit"/>
+            </MenuItem>
+        </Menu>
+    </StackPanel>
 </Page>
