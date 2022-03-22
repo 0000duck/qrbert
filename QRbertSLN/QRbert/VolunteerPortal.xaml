@@ -175,45 +175,4 @@
                 Margin="500,-50,0,0">
         </Button>
     </StackPanel>
-    
-    <StackPanel Background="Transparent">
-        <StackPanel>
-            <Image Width="800" Height="450" Source="Images/petsBackground.png" 
-                   Margin="0,0,0,0"/>
-            <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
-                   Margin="-650,-900,0,-100"/>
-            <Border BorderBrush="#FF9100" Opacity = "0.85" CornerRadius="2,2,2,2" BorderThickness="2,2,2,2"
-                    Margin="-500,-400,0,0"
-                    Height="300"
-                    Width="200">
-                <StackPanel Background="#FF9100" Opacity="0.85">
-                    <!-- your elements here -->
-                </StackPanel>
-            </Border>
-        </StackPanel>
-        <Menu Width="100" Height="22" Margin="400, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem Header="Timesheet" Name="mm" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="View Timesheets"/>
-                <MenuItem Header="Exit"/>
-            </MenuItem>
-        </Menu>
-        <Menu Width="100" Height="22" Margin="500, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Animal Activity"/>
-                <MenuItem Header="Select a Pet"/>
-                <MenuItem Header="Medical History"/>
-                <MenuItem Header="Breed Info"/>
-                <MenuItem Header="Pet Report"/>
-                <MenuItem Header="Foster Care"/>
-                <MenuItem Header="Exit"/>
-            </MenuItem>
-        </Menu>
-        <Menu Width="100" Height="22" Margin="600, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Volunteer Account"/>
-                <MenuItem Header="Log out"/>
-                <MenuItem Header="Exit"/>
-            </MenuItem>
-        </Menu>
-    </StackPanel>
 </Page>
