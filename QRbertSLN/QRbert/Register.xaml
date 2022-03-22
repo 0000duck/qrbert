@@ -92,26 +92,9 @@
                 </RadioButton>
                 
             </StackPanel>
-            <!--
-            <StackPanel Height = "45" Width="90" Margin = "-100, -2300, -0, 0">
-                    <ToggleButton Background="Transparent" Foreground="White" FontWeight="Bold" 
-                        BorderBrush="White" BorderThickness="2" Height="35" Width="90" 
-                        FontSize="16" ClickMode="Hover">
-                        Volunteer
-                    </ToggleButton>
-            </StackPanel>
-                <StackPanel Height = "45" Width="90" Margin = "-35, -2300, -115, 0">
-                    <ToggleButton Background="Transparent" Foreground="White" FontWeight="Bold" BorderBrush="White" 
-                        BorderThickness="2" Height="35" Width="90" FontSize="16" ClickMode="Hover">
-                        Staff
-                    </ToggleButton>
-                    
-                </StackPanel>
-            -->
             
-            
-                <!-- In this DockPanel, this is where PasswordBox takes care of the newly created
-                     password by the user-->
+            <!-- In this DockPanel, this is where PasswordBox takes care of the newly created
+                password by the user-->
                 
             <DockPanel LastChildFill="False">
                 <TextBlock
@@ -145,15 +128,7 @@
                     
                          
                 </PasswordBox>
-                    <!--<TextBox 
-                        
-                        Width = "250" Height="20" Background="Transparent" Foreground="White" 
-                        FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                        Margin="275,-950,-500,0" FontSize="14"
-                        >
-                        Password
-                    </TextBox>
-                    -->
+                    
                 <Rectangle 
                     DockPanel.Dock="Top" 
                     Fill="White" 
@@ -163,11 +138,7 @@
                 />
             </DockPanel>
             <DockPanel LastChildFill="False">
-                    <!--<TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
-                        FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                        Margin="275,-800,-500,0" FontSize="14">
-                        Confirm Password
-                    </TextBox> -->
+                    
                 <TextBlock
                     Text="Confirm Password"
                     Foreground="White"
@@ -592,9 +563,6 @@
                     Margin="-25,-1065,0,0"
                 />
             </DockPanel> 
-            <!-- removed DockPanel so PasswordBox could be used
-            Still need a way to show that it is a password location
-            Maybe a label?-->
             
             <Button 
                 Background="White" 
