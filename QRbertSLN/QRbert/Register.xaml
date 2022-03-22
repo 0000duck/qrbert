@@ -14,6 +14,7 @@
         HorizontalScrollBarVisibility = "Auto"
         VerticalScrollBarVisibility="Auto"
         >
+        
         <StackPanel 
             Height="2105" 
             Width="800" 
@@ -58,6 +59,7 @@
                 Source="Images/petsBackground.png" 
                 Margin="0,-150,0,0"
             />
+            
             <StackPanel 
                 Background="#FF9100" 
                 Width="400" 
@@ -65,26 +67,34 @@
                 Opacity="0.85" 
                 Margin = "0, -1400, 0, 0"
             />
-            <!--
-            <StackPanel Height = "45" Width="90" Margin = "-100, -2300, -0, 0">
-                    <ToggleButton Background="Transparent" Foreground="White" FontWeight="Bold" 
-                        BorderBrush="White" BorderThickness="2" Height="35" Width="90" 
-                        FontSize="16" ClickMode="Hover">
-                        Volunteer
-                    </ToggleButton>
+            <StackPanel>      
+                <RadioButton 
+                    Height = "20" 
+                    Width = "50" 
+                    Name="rb1" 
+                    Background="Transparent" 
+                    Foreground = "White" 
+                    Margin="-155,-2285,0,0" 
+                    Checked="FacultyChoice"
+                    >
+                    Staff
+                </RadioButton>
+                <RadioButton 
+                    Height = "20" 
+                    Width = "100" 
+                    Name="rb2" 
+                    Background="Transparent" 
+                    Foreground = "White" 
+                    Margin="80,-2285,0,0" 
+                    Checked="FacultyChoice"
+                    >
+                    Volunteer
+                </RadioButton>
+                
             </StackPanel>
-                <StackPanel Height = "45" Width="90" Margin = "-35, -2300, -115, 0">
-                    <ToggleButton Background="Transparent" Foreground="White" FontWeight="Bold" BorderBrush="White" 
-                        BorderThickness="2" Height="35" Width="90" FontSize="16" ClickMode="Hover">
-                        Staff
-                    </ToggleButton>
-                    
-                </StackPanel>
-            -->
             
-            
-                <!-- In this DockPanel, this is where PasswordBox takes care of the newly created
-                     password by the user-->
+            <!-- In this DockPanel, this is where PasswordBox takes care of the newly created
+                password by the user-->
                 
             <DockPanel LastChildFill="False">
                 <TextBlock
@@ -118,15 +128,7 @@
                     
                          
                 </PasswordBox>
-                    <!--<TextBox 
-                        
-                        Width = "250" Height="20" Background="Transparent" Foreground="White" 
-                        FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                        Margin="275,-950,-500,0" FontSize="14"
-                        >
-                        Password
-                    </TextBox>
-                    -->
+                    
                 <Rectangle 
                     DockPanel.Dock="Top" 
                     Fill="White" 
@@ -136,11 +138,7 @@
                 />
             </DockPanel>
             <DockPanel LastChildFill="False">
-                    <!--<TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
-                        FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                        Margin="275,-800,-500,0" FontSize="14">
-                        Confirm Password
-                    </TextBox> -->
+                    
                 <TextBlock
                     Text="Confirm Password"
                     Foreground="White"
@@ -194,11 +192,11 @@
                     Height="20"
                     Width="250"
                     Name="txtFacultyRoleBlock"
-                    Margin="289,-2295,-500,0"
+                    Margin="289,-2345,-500,0"
                 >
                 
                 </TextBlock>
-                <TextBox 
+                <!--<TextBox 
                     Name = "txtFacultyRole" 
                     Width = "250" 
                     Height="25" 
@@ -212,7 +210,7 @@
                     FontSize="14"
                 >
                     
-                </TextBox>
+                </TextBox>-->
                 <Rectangle 
                     DockPanel.Dock="Top" 
                     Fill="White" 
@@ -565,9 +563,6 @@
                     Margin="-25,-1065,0,0"
                 />
             </DockPanel> 
-            <!-- removed DockPanel so PasswordBox could be used
-            Still need a way to show that it is a password location
-            Maybe a label?-->
             
             <Button 
                 Background="White" 

@@ -27,7 +27,7 @@ public partial class Register : Window
   String connectionString = @"Data Source = qrbert-rds1.cfe8s1xr87h2.us-west-1.rds.amazonaws.com; 
                                 Initial Catalog = QRbertDB; User ID = rds1_admin; Password = rds1_admin;";
 
-
+  private string facultyRole;
     public Register()
     {
         InitializeComponent();
@@ -431,7 +431,7 @@ public partial class Register : Window
             sqlCmd.CommandType = CommandType.StoredProcedure;
             sqlCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
             sqlCmd.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
-            sqlCmd.Parameters.AddWithValue("@Faculty_Role", txtFacultyRole.Text);
+            sqlCmd.Parameters.AddWithValue("@Faculty_Role", facultyRole);
             sqlCmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
             sqlCmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
             
@@ -439,7 +439,7 @@ public partial class Register : Window
             contact.CommandType = CommandType.StoredProcedure;
             contact.Parameters.AddWithValue("@Email", txtEmail.Text);
             contact.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
-            contact.Parameters.AddWithValue("@Faculty_Role", txtFacultyRole.Text);
+            contact.Parameters.AddWithValue("@Faculty_Role", facultyRole);
             contact.Parameters.AddWithValue("@Street", txtAddress.Text);
             contact.Parameters.AddWithValue("@City", txtCity.Text);
             contact.Parameters.AddWithValue("@State", txtState.Text);
@@ -471,14 +471,14 @@ public partial class Register : Window
     */
     
     //Function that creates a watermark-like text for Faculty
-    private void FacultyRole_OnPasswordChanged(object sender, RoutedEventArgs e)
+    /*private void FacultyRole_OnPasswordChanged(object sender, RoutedEventArgs e)
     {
         txtFacultyRoleBlock.Visibility = Visibility.Visible;
         if (txtFacultyRole.Text.Length > 0)
         {
             txtFacultyRoleBlock.Visibility = Visibility.Hidden;
         }
-    }
+    }*/
     
     //Function that creates a watermark-like text for First Name
     private void txtFirstNameBlock_OnPasswordChanged(object sender, RoutedEventArgs e)
@@ -597,6 +597,12 @@ public partial class Register : Window
         {
             txtZipcodeBlock.Visibility = Visibility.Hidden;
         }
+    }
+    void FacultyChoice (object sender, RoutedEventArgs e)
+    {
+        RadioButton li = (sender as RadioButton);
+        //MessageBox.Show("You clicked " + li.Content.ToString() + ".");
+        facultyRole = li.Content.ToString();
     }
 
     /*private void ConfirmPassword_OnLostFocus(object sender, RoutedEventArgs e)
