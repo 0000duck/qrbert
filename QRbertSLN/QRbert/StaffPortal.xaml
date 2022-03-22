@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:QRbert"
       mc:Ignorable="d"
       Title="StaffPortal" Height="450" Width="800">
-      <Page.Resources>
+    <!-- This the template for the Menus; It creates the menu with a white background and black bold letters;
+        allows the user to hover over the menu and display the menus as well as change the letters to orange-->
+    <Page.Resources>
         <LinearGradientBrush x:Key="DarkBrush" StartPoint="0.5,0" EndPoint="0.5,1">
             <GradientBrush.GradientStops>
                 <GradientStopCollection>
@@ -94,6 +96,8 @@
                     <Setter Property="BorderBrush" Value="White"></Setter>
                     <Setter Property="BorderThickness" Value="1"></Setter>
                 </Trigger>
+                <!-- This is the trigger that tells the program to display the menu when the mouse hovers over it
+                        as well change the black letters to orange-->
                 <Trigger Property="IsMouseOver" Value="True" >
                     <Setter Property="IsOpen" TargetName="PART_Popup" Value="True"/>
                     <Setter Property="Cursor" Value="Hand"/>
@@ -102,7 +106,10 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
     </Page.Resources>
-    
+    <!-- This the end of the binding menu template -->
+    <!--  -->
+    <!-- This the main stackpanel containing all the controls on the entire page
+        (the 4 menus, the pets background, the logo, the links at the bottom and the orange semitransparent stackpanel-->
     <StackPanel Background="Transparent">
         <StackPanel>
             <Image Width="800" Height="450" Source="Images/petsBackground.png" 
@@ -118,13 +125,14 @@
                 </StackPanel>
             </Border>
         </StackPanel>
+        <!-- This is the Timesheet menu-->
         <Menu Width="100" Height="22" Margin="300, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Timesheet" Name="mm" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem Header="Lock Timesheets"/>
                 <MenuItem Header="Rounding Rule"/>
-                <MenuItem Header="Exit"/>
             </MenuItem>
         </Menu>
+        <!-- This is the Volunteer menu only available to staff users not volunteer users-->
         <Menu Width="100" Height="22" Margin="400, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Volunteer" Name="mm1" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem Header="Track Active"/>
@@ -132,6 +140,7 @@
                 <MenuItem Header="Select a Pet"/>
             </MenuItem>
         </Menu>
+        <!-- This is the Animal menu; staff users get "Remove Animal" and volunteers dont they get "Select Pet" instead-->
         <Menu Width="100" Height="22" Margin="500, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem Header="Animal Activity"/>
@@ -143,6 +152,7 @@
                 <MenuItem Header="Exit"/>
             </MenuItem>
         </Menu>
+        <!-- This is the My Account menu for a staff user-->
         <Menu Width="100" Height="22" Margin="600, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem Header="Staff Account"/>
@@ -150,5 +160,25 @@
                 <MenuItem Header="Exit"/>
             </MenuItem>
         </Menu>
+        <!-- This the "Terms and Privacy Notice" button control at the bottom of the page -->
+        <Button Height = "25" Width = "300" Content="Terms and Privacy Notice" Background="Transparent" Foreground="#FF9100" FontSize="16" 
+                BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
+                Margin="-500,-50,0,0">
+        </Button>
+        <!-- This the "Help" button control at the bottom of the page -->
+        <Button Height = "25" Width = "50" Content="Help" Background="Transparent" Foreground="#FF9100" FontSize="16" 
+                BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
+                Margin="-100,-50,0,0">
+        </Button>
+        <!-- This the "FAQs" button control at the bottom of the page -->
+        <Button Height = "25" Width = "150" Content="FAQs" Background="Transparent" Foreground="#FF9100" FontSize="16" 
+                BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
+                Margin="200,-50,0,0">
+        </Button>
+        <!-- This the "©2022 QRbert Inc." button control at the bottom of the page -->
+        <Button Height = "25" Width = "150" Content="©2022 QRbert Inc." Background="Transparent" Foreground="#FF9100" FontSize="16" 
+                BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
+                Margin="500,-50,0,0">
+        </Button>
     </StackPanel>
 </Page>
