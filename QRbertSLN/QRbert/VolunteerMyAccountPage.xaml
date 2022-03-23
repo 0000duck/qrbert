@@ -138,7 +138,7 @@
         <!-- This is the My Account menu-->
         <Menu Width="100" Height="22" Margin="600, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Volunteer Account"/>
+                <!--Removed MyAccount Menu Item since we already on the page-->
                 <MenuItem Header="Log out"/>
             </MenuItem>
         </Menu>
@@ -148,7 +148,8 @@
         <!-- This the "Change Email" button control -->
         <Button Background="White" Foreground="#FF9100" FontWeight="Bold" BorderBrush="#FF9100" 
                 BorderThickness="2" Height="35" Width="200" FontSize="16" ClickMode="Press"
-                Margin="0,-600,0,0">
+                Margin="0,-600,0,0"
+                Click="VolunteerChangeEmailBtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="15"/>
@@ -159,7 +160,8 @@
         <!-- This the "Change Password" button control -->
         <Button Background="White" Foreground="#FF9100" FontWeight="Bold" BorderBrush="#FF9100" 
                 BorderThickness="2" Height="35" Width="200" FontSize="16" ClickMode="Press"
-                Margin="0,-500,0,0">
+                Margin="0,-500,0,0"
+                Click="VolunteerChangePasswordBtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="15"/>
@@ -170,7 +172,8 @@
         <!-- This the "Forgot Password?" button control -->
         <Button Background="White" Foreground="#FF9100" FontWeight="Bold" BorderBrush="#FF9100" 
                 BorderThickness="2" Height="35" Width="200" FontSize="16" ClickMode="Press"
-                Margin="0,-400,0,0">
+                Margin="0,-400,0,0"
+                Click="VolunteerForgotPasswordBtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="15"/>
@@ -181,7 +184,8 @@
         <!-- This the "Change Personal Information" button control -->
         <Button Background="White" Foreground="#FF9100" FontWeight="Bold" BorderBrush="#FF9100" 
                 BorderThickness="2" Height="35" Width="300" FontSize="16" ClickMode="Press"
-                Margin="0,-300,0,0">
+                Margin="0,-300,0,0"
+                Click="VolunteerChangePersonalInfoBtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="15"/>

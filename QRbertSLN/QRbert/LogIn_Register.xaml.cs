@@ -61,15 +61,21 @@ namespace QRbert
                 // For now, true means staff, false means volunteer, but this must be changed according to the above
                 if (true)
                 {
-                    Page RedirectSignInStaffPortal = new StaffPortal();
-                    this.Content = RedirectSignInStaffPortal;
+                    Window RedirectSignInStaffPortal = new StaffPortal();
+                    RedirectSignInStaffPortal.Show();
+                    this.Close();
                 }
                 else
                 {
                     // This appears greyed out b/c true is always true, if condition must be changed
-                    Page RedirectSignInVolunteerPortal = new VolunteerPortal();
-                    this.Content = RedirectSignInVolunteerPortal;
+                    Window RedirectSignInVolunteerPortal = new VolunteerPortal();
+                    RedirectSignInVolunteerPortal.Show();
+                    this.Close();
                 }
+            }
+            else
+            {
+                MessageBox.Show("One of the inputted credentials is incorrect. Please try again.");
             }
         }
         
