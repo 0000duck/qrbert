@@ -435,6 +435,7 @@ public partial class Register : Window
             sqlCmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
             sqlCmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
             
+            // Contact Info stored in Contact_Info Table 
             SqlCommand contact = new SqlCommand("Contact", sqlCon);
             contact.CommandType = CommandType.StoredProcedure;
             contact.Parameters.AddWithValue("@Email", txtEmail.Text);
@@ -447,8 +448,23 @@ public partial class Register : Window
             contact.Parameters.AddWithValue("@PhoneNum", txtPhone.Text);
             contact.Parameters.AddWithValue("@DL_ID", txtDriver.Text);
 
+            // Staff credentials created and stored in Contact_Info Table 
+            SqlCommand staff = new SqlCommand("StaffInput", sqlCon);
+            staff.Parameters.AddWithValue("@Email", txtEmail.Text);
+            staff.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
+            staff.Parameters.AddWithValue("@Faculty_Role", facultyRole);
+            
+            // Volunteer credentials created and stored in Contact_Info Table 
+            SqlCommand vol = new SqlCommand("VolInput", sqlCon);
+            vol.Parameters.AddWithValue("@Email", txtEmail.Text);
+            vol.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
+            vol.Parameters.AddWithValue("@Faculty_Role", facultyRole);
+            
+            
             sqlCmd.ExecuteNonQuery();
             contact.ExecuteNonQuery();
+            staff.ExecuteNonQuery();
+            vol.ExecuteNonQuery();
             MessageBox.Show("Sign up successful. Please log in.");
             
             // After a successful registration, user is redirected to 
@@ -603,6 +619,15 @@ public partial class Register : Window
         RadioButton li = (sender as RadioButton);
         //MessageBox.Show("You clicked " + li.Content.ToString() + ".");
         facultyRole = li.Content.ToString();
+        
+    }
+
+    void FacultyChoiceVol(object sender, RoutedEventArgs e)
+    {
+        RadioButton li = (sender as RadioButton);
+        //MessageBox.Show("You clicked " + li.Content.ToString() + ".");
+         facultyRole = li.Content.ToString();
+
     }
 
     /*private void ConfirmPassword_OnLostFocus(object sender, RoutedEventArgs e)
