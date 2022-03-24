@@ -321,7 +321,7 @@ public partial class Register : Window
         //this looks for a pattern that has 10 numbers to make up a phone number
         string regexPhone = @"[0-9]{10}";
         Regex re = new Regex(number.Text);
-        if(re.IsMatch(regexPhone)&&number.Text.Length < 11)
+        if(re.IsMatch(number.Text)&&number.Text.Length < 11)
         {
             //MessageBox.Show("Very based");
             return true;
