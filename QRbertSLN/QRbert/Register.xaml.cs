@@ -423,10 +423,17 @@ public partial class Register : Window
 
         else
         {
+            /*
+             * creates and opens a connection to the Database. connectionString was declared in line #27
+             * which validates the DB credentials 
+             */  
             using SqlConnection sqlCon = new SqlConnection(connectionString);
             sqlCon.Open();
             
-            // User Input stored in Registration table 
+            /*
+             * User Input stored in Registration table
+             * RegUser is the stored procedure created in the DB that inserts data into each row of the Registration table
+             */ 
             SqlCommand sqlCmd = new SqlCommand("RegUser", sqlCon);
             sqlCmd.CommandType = CommandType.StoredProcedure;
             sqlCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
@@ -460,7 +467,7 @@ public partial class Register : Window
             vol.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
             vol.Parameters.AddWithValue("@Faculty_Role", facultyRole);
             
-            
+            // 
             sqlCmd.ExecuteNonQuery();
             contact.ExecuteNonQuery();
             staff.ExecuteNonQuery();
