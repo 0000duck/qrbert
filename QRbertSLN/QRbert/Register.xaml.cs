@@ -312,15 +312,16 @@ public partial class Register : Window
     //Checks for a valid phone number
     public static bool isValidPhone(TextBox number)
     {
-        if (!IsInt32(number.Text))
+        /*if (!IsInt32(number.Text))
         {
             MessageBox.Show("Can't have any characters. Only numbers");
             return false;
         }
+        */
         //this looks for a pattern that has 10 numbers to make up a phone number
         string regexPhone = @"[0-9]{10}";
         Regex re = new Regex(number.Text);
-        if(re.IsMatch(regexPhone)&&number.Text.Length < 11)
+        if(re.IsMatch(number.Text)&&number.Text.Length < 11)
         {
             //MessageBox.Show("Very based");
             return true;
@@ -415,11 +416,11 @@ public partial class Register : Window
         }
         
 
-        if (!IsValidEmail(txtEmail.Text) || Password.Password == "") 
+        /*if (!IsValidEmail(txtEmail.Text) || Password.Password == "") 
             MessageBox.Show("Please fill out all mandatory fields");
         else if (Password.Password != ConfirmPassword.Password)
             MessageBox.Show("Passwords Do Not Match");
-
+        */
 
         else
         {

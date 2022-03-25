@@ -110,7 +110,7 @@
                     
                 </TextBlock>
                 <PasswordBox 
-                    MaxLength="8" 
+                     
                     PasswordChar="*" 
                     PasswordChanged="Password_OnPasswordChanged"
                     Width = "250" 
