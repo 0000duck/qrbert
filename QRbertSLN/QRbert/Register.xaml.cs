@@ -427,10 +427,15 @@ public partial class Register : Window
 
         else
         {
+            /* creates and opens a connection to the Database. connectionString was declared in line #27
+              * which validates the DB credentials 
+              */
             using SqlConnection sqlCon = new SqlConnection(connectionString);
             sqlCon.Open();
             
-            // User Input stored in Registration table 
+            /* User Input stored in Registration table
+             * RegUser is the stored procedure created in the DB that inserts data into each row of the Registration table
+            */ 
             SqlCommand sqlCmd = new SqlCommand("RegUser", sqlCon);
             sqlCmd.CommandType = CommandType.StoredProcedure;
             sqlCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
@@ -439,7 +444,7 @@ public partial class Register : Window
             sqlCmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
             sqlCmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
             
-            // Contact Info stored in Contact_Info Table 
+            // Contact Info stored in Contact_Info Table using Contact stored procedure created in database
             SqlCommand contact = new SqlCommand("Contact", sqlCon);
             contact.CommandType = CommandType.StoredProcedure;
             contact.Parameters.AddWithValue("@Email", txtEmail.Text);
@@ -457,6 +462,11 @@ public partial class Register : Window
            // connection to Volunteer input stored procedure from Database
            SqlCommand volCon = new SqlCommand("VolInput", sqlCon);
            
+           /* verify what faculty role was created during Registration , if it is a Staff
+            * then store and create a New staff profile in the Staff table database
+            * if Volunteer, then skip the Staff stored procedure and use the Volunteer stored procedure instead
+            * to create a New and save Volunteer profile
+            */
             if (string.Equals(facultyRole, staff))
             {
                 // Staff credentials created and stored in Contact_Info Table 

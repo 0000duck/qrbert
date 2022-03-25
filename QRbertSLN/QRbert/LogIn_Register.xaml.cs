@@ -15,6 +15,12 @@ namespace QRbert
     /// </summary>
     public partial class LogIn_Register : Window
     {
+        // Denise will open the connection to the database
+        /*
+         * creates a DB connection which is saved as "connectionString"
+         */
+        String connectionString = @"Data Source = qrbert-rds1.cfe8s1xr87h2.us-west-1.rds.amazonaws.com; 
+                                Initial Catalog = QRbertDB; User ID = rds1_admin; Password = rds1_admin;";
         public LogIn_Register()
         {
             InitializeComponent();
@@ -51,15 +57,39 @@ namespace QRbert
         /// <param name="e"></param>
         private void SignInUserBtn_Click(object sender, RoutedEventArgs e)
         {
-            // Denise will open the connection to the database
+            string staff = "Staff";
+
+            string emailInput = txtEmail.Text;
+            string pwInput = txtPassword.Text;
+            string msg = verifyRole("SELECT count(*) From QRbertTables.Registration where email = '" + emailInput +
+                                    "' and password ='" + pwInput + "'");
+            if (msg.Equals("0"))
+            {
+                MessageBox.Show("Invalid Email or Password");
+            }
+            else
+            {
+                msg = verifyRole("Select [Faculty-Role] From QRbertTables.Registration Where email = '" + emailInput +
+                                 "' and password ='" + pwInput + "'");
+                if (string.Equals(msg, staff))
+                {
+                    Page RedirectSignInStaffPortal = new StaffPortal();
+                    this.Content = RedirectSignInStaffPortal;
+                }
+
+                else
+                {
+                    Page RedirectSignInVolunteerPortal = new VolunteerPortal();
+                    this.Content = RedirectSignInVolunteerPortal;
+                }
+            }
+           
+           
             
-            String connectionString = @"Data Source = qrbert-rds1.cfe8s1xr87h2.us-west-1.rds.amazonaws.com; 
-                                Initial Catalog = QRbertDB; User ID = rds1_admin; Password = rds1_admin;";
             
-            using SqlConnection sqlCon = new SqlConnection(connectionString);
-            SqlCommand command;
-            DataSet ds = new DataSet();
             
+
+          /*
             // David will get the password salt/hash thing to validate their credentials and make sure they match
             // If statement will control whether this is correct or not
             // Else will throw a message box displaying incorrect credentials
@@ -80,7 +110,7 @@ namespace QRbert
                     Page RedirectSignInVolunteerPortal = new VolunteerPortal();
                     this.Content = RedirectSignInVolunteerPortal;
                 }
-            }
+            }*/
         }
         
         /// <summary>
@@ -92,5 +122,14 @@ namespace QRbert
         {
             // Make a Window for this
         }
+
+        public string verifyRole(string s)
+        {
+            using SqlConnection sqlCon = new SqlConnection(connectionString);
+            sqlCon.Open();
+            SqlCommand command = new SqlCommand(s, sqlCon);
+            string query = command.ExecuteScalar().ToString();
+            return query;
+        } 
     }
 }
