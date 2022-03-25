@@ -16,7 +16,12 @@ namespace QRbert
         public LogIn_Register()
         {
             InitializeComponent();
+            Switcher.LogInRegisterSwitcher = this;
+        }
 
+        public void Navigate(Window nextWindow)
+        {
+            this.Content = nextWindow;
         }
 
 
