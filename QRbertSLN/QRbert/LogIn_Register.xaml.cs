@@ -59,18 +59,24 @@ namespace QRbert
         {
             string staff = "Staff";
 
+            // email and password input from the user
             string emailInput = txtEmail.Text;
             string pwInput = txtPassword.Text;
+            
+            // Given the username, Denise will query the database to retrieve the account type
             string msg = verifyRole("SELECT count(*) From QRbertTables.Registration where email = '" + emailInput +
                                     "' and password ='" + pwInput + "'");
+            
             if (msg.Equals("0"))
             {
                 MessageBox.Show("Invalid Email or Password");
             }
             else
             {
+                // finds a matching email and password and retrieves the faculty role to store in "msg" 
                 msg = verifyRole("Select [Faculty-Role] From QRbertTables.Registration Where email = '" + emailInput +
                                  "' and password ='" + pwInput + "'");
+                
                 if (string.Equals(msg, staff))
                 {
                     Page RedirectSignInStaffPortal = new StaffPortal();
@@ -85,11 +91,7 @@ namespace QRbert
             }
            
            
-            
-            
-            
 
-          /*
             // David will get the password salt/hash thing to validate their credentials and make sure they match
             // If statement will control whether this is correct or not
             // Else will throw a message box displaying incorrect credentials
@@ -110,7 +112,7 @@ namespace QRbert
                     Page RedirectSignInVolunteerPortal = new VolunteerPortal();
                     this.Content = RedirectSignInVolunteerPortal;
                 }
-            }*/
+            }
         }
         
         /// <summary>
