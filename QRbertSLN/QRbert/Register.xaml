@@ -71,7 +71,7 @@
                 <RadioButton 
                     Height = "20" 
                     Width = "50" 
-                    Name="rb1" 
+                    Name="txtStaff" 
                     Background="Transparent" 
                     Foreground = "White" 
                     Margin="-155,-2285,0,0" 
@@ -82,11 +82,12 @@
                 <RadioButton 
                     Height = "20" 
                     Width = "100" 
-                    Name="rb2" 
+                    Name="txtVol" 
                     Background="Transparent" 
                     Foreground = "White" 
                     Margin="80,-2285,0,0" 
                     Checked="FacultyChoice"
+                    
                     >
                     Volunteer
                 </RadioButton>

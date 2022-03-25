@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using System.Windows.Threading;
+using System.Data.SqlClient;
 
 namespace QRbert
 {
@@ -50,6 +52,14 @@ namespace QRbert
         private void SignInUserBtn_Click(object sender, RoutedEventArgs e)
         {
             // Denise will open the connection to the database
+            
+            String connectionString = @"Data Source = qrbert-rds1.cfe8s1xr87h2.us-west-1.rds.amazonaws.com; 
+                                Initial Catalog = QRbertDB; User ID = rds1_admin; Password = rds1_admin;";
+            
+            using SqlConnection sqlCon = new SqlConnection(connectionString);
+            SqlCommand command;
+            DataSet ds = new DataSet();
+            
             // David will get the password salt/hash thing to validate their credentials and make sure they match
             // If statement will control whether this is correct or not
             // Else will throw a message box displaying incorrect credentials

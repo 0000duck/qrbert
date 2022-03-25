@@ -28,6 +28,10 @@ public partial class Register : Window
                                 Initial Catalog = QRbertDB; User ID = rds1_admin; Password = rds1_admin;";
 
   private string facultyRole;
+  private string staff = "Staff";
+
+  
+  
     public Register()
     {
         InitializeComponent();
@@ -48,7 +52,7 @@ public partial class Register : Window
         stateAbbr[7] = "DE"; //Delaware
         stateAbbr[8] = "FL"; //Florida
         stateAbbr[9] = "GA"; //Georgia
-        stateAbbr[10] = "HI"; //Hawaii
+        stateAbbr[10] = "HI"; //Hawa
         stateAbbr[11] = "ID"; //Idaho
         stateAbbr[12] = "IL"; //Illinois
         stateAbbr[13] = "IN"; //Indiana
@@ -312,7 +316,7 @@ public partial class Register : Window
     //Checks for a valid phone number
     public static bool isValidPhone(TextBox number)
     {
-        if (!IsInt32(number.Text))
+        if (IsInt32(number.Text))
         {
             MessageBox.Show("Can't have any characters. Only numbers");
             return false;
@@ -320,7 +324,7 @@ public partial class Register : Window
         //this looks for a pattern that has 10 numbers to make up a phone number
         string regexPhone = @"[0-9]{10}";
         Regex re = new Regex(number.Text);
-        if(re.IsMatch(regexPhone)&&number.Text.Length < 11)
+        if(re.IsMatch(regexPhone) && number.Text.Length < 11)
         {
             //MessageBox.Show("Very based");
             return true;
@@ -413,27 +417,20 @@ public partial class Register : Window
             
             MessageBox.Show("Please fill out all mandatory fields on the page.");
         }
-        
+       
 
         if (!IsValidEmail(txtEmail.Text) || Password.Password == "") 
             MessageBox.Show("Please fill out all mandatory fields");
         else if (Password.Password != ConfirmPassword.Password)
             MessageBox.Show("Passwords Do Not Match");
-
+        
 
         else
         {
-            /*
-             * creates and opens a connection to the Database. connectionString was declared in line #27
-             * which validates the DB credentials 
-             */  
             using SqlConnection sqlCon = new SqlConnection(connectionString);
             sqlCon.Open();
             
-            /*
-             * User Input stored in Registration table
-             * RegUser is the stored procedure created in the DB that inserts data into each row of the Registration table
-             */ 
+            // User Input stored in Registration table 
             SqlCommand sqlCmd = new SqlCommand("RegUser", sqlCon);
             sqlCmd.CommandType = CommandType.StoredProcedure;
             sqlCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
@@ -455,23 +452,38 @@ public partial class Register : Window
             contact.Parameters.AddWithValue("@PhoneNum", txtPhone.Text);
             contact.Parameters.AddWithValue("@DL_ID", txtDriver.Text);
 
-            // Staff credentials created and stored in Contact_Info Table 
-            SqlCommand staff = new SqlCommand("StaffInput", sqlCon);
-            staff.Parameters.AddWithValue("@Email", txtEmail.Text);
-            staff.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
-            staff.Parameters.AddWithValue("@Faculty_Role", facultyRole);
+            // connection to Staff input stored procedure from Database
+           SqlCommand staffCon = new SqlCommand("StaffInput", sqlCon);
+           // connection to Volunteer input stored procedure from Database
+           SqlCommand volCon = new SqlCommand("VolInput", sqlCon);
+           
+            if (string.Equals(facultyRole, staff))
+            {
+                // Staff credentials created and stored in Contact_Info Table 
+
+                staffCon.CommandType = CommandType.StoredProcedure;
+                staffCon.Parameters.AddWithValue("@Email", txtEmail.Text);
+                staffCon.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
+                staffCon.Parameters.AddWithValue("@Faculty_Role", facultyRole);
+                sqlCmd.ExecuteNonQuery();
+                contact.ExecuteNonQuery();
+                staffCon.ExecuteNonQuery();
+            }
             
-            // Volunteer credentials created and stored in Contact_Info Table 
-            SqlCommand vol = new SqlCommand("VolInput", sqlCon);
-            vol.Parameters.AddWithValue("@Email", txtEmail.Text);
-            vol.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
-            vol.Parameters.AddWithValue("@Faculty_Role", facultyRole);
+            else
+            {
+                // Volunteer credentials created and stored in Contact_Info Table 
+                
+                volCon.CommandType = CommandType.StoredProcedure;
+                volCon.Parameters.AddWithValue("@Email", txtEmail.Text);
+                volCon.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
+                volCon.Parameters.AddWithValue("@Faculty_Role", facultyRole);
+                sqlCmd.ExecuteNonQuery();
+                contact.ExecuteNonQuery();
+                volCon.ExecuteNonQuery();
+                
+            }
             
-            // 
-            sqlCmd.ExecuteNonQuery();
-            contact.ExecuteNonQuery();
-            staff.ExecuteNonQuery();
-            vol.ExecuteNonQuery();
             MessageBox.Show("Sign up successful. Please log in.");
             
             // After a successful registration, user is redirected to 
@@ -626,16 +638,8 @@ public partial class Register : Window
         RadioButton li = (sender as RadioButton);
         //MessageBox.Show("You clicked " + li.Content.ToString() + ".");
         facultyRole = li.Content.ToString();
-        
     }
 
-    void FacultyChoiceVol(object sender, RoutedEventArgs e)
-    {
-        RadioButton li = (sender as RadioButton);
-        //MessageBox.Show("You clicked " + li.Content.ToString() + ".");
-         facultyRole = li.Content.ToString();
-
-    }
 
     /*private void ConfirmPassword_OnLostFocus(object sender, RoutedEventArgs e)
     {
