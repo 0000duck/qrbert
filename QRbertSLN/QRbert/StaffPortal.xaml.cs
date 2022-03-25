@@ -10,6 +10,17 @@ public partial class StaffPortal : Window
         InitializeComponent();
         Switcher.staffpageSwitcher = this;
     }
+    
+    /// <summary>
+    /// Public function that allows to navigate to the next desired page
+    /// </summary>
+    /// <param name="nextPage">
+    /// Type Page, represents the next page to redirect to
+    /// </param>
+    public void Navigate(Page nextPage)
+    {
+        this.Content = nextPage;
+    }
 
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
@@ -22,8 +33,4 @@ public partial class StaffPortal : Window
         Switcher.StaffPageSwitch(new StaffMyAccountPage());
     }
 
-    public void Navigate(Page nextPage)
-    {
-        this.Content = nextPage;
-    }
 }

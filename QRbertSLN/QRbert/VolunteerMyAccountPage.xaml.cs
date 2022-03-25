@@ -8,6 +8,18 @@ public partial class VolunteerMyAccountPage : Page
     public VolunteerMyAccountPage()
     {
         InitializeComponent();
+        Switcher.volunteerMyAccountPageSwitcher = this;
+    }
+    
+    /// <summary>
+    /// Public function that allows to navigate to the next desired page
+    /// </summary>
+    /// <param name="nextPage">
+    /// Type Page, represents the next page to redirect to
+    /// </param>
+    public void Navigate(Page nextPage)
+    {
+        this.Content = nextPage;
     }
     
     /// <summary>
@@ -18,8 +30,7 @@ public partial class VolunteerMyAccountPage : Page
     /// <param name="e"></param>
     private void VolunteerChangeEmailBtn_Click(object sender, RoutedEventArgs e)
     {
-        Page redirectVolunteerChangeEmail = new VolunteerChangeEmail();
-        this.Content = redirectVolunteerChangeEmail;
+        Switcher.VolunteerMyAccountPageSwitch(new VolunteerChangeEmail());
     }
 
     /// <summary>
@@ -51,7 +62,6 @@ public partial class VolunteerMyAccountPage : Page
     /// <param name="e"></param>
     private void VolunteerChangePersonalInfoBtn_Click(object sender, RoutedEventArgs e)
     {
-        Page redirectVolunteerChangePersonalInfo = new VolunteerChangePersonalInformation();
-        this.Content = redirectVolunteerChangePersonalInfo;
+        Switcher.VolunteerMyAccountPageSwitch(new VolunteerChangePersonalInformation());
     }
 }

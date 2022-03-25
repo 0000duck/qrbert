@@ -8,6 +8,18 @@ public partial class StaffMyAccountPage : Page
     public StaffMyAccountPage()
     {
         InitializeComponent();
+        Switcher.staffMyAccountPageSwitcher = this;
+    }
+    
+    /// <summary>
+    /// Public function that allows to navigate to the next desired page
+    /// </summary>
+    /// <param name="nextPage">
+    /// Type Page, represents the next page to redirect to
+    /// </param>
+    public void Navigate(Page nextPage)
+    {
+        this.Content = nextPage;
     }
 
     /// <summary>
@@ -18,8 +30,9 @@ public partial class StaffMyAccountPage : Page
     /// <param name="e"></param>
     private void StaffChangeEmailBtn_Click(object sender, RoutedEventArgs e)
     {
-        Page redirectStaffChangeEmail = new StaffChangeEmail();
-        this.Content = redirectStaffChangeEmail;
+        Page redirectStaffToChangeEmail = new StaffChangeEmail();
+        this.Content = redirectStaffToChangeEmail;
+        // Switcher.StaffMyAccountPageSwitch(new StaffChangeEmail());
     }
 
     /// <summary>
@@ -51,7 +64,8 @@ public partial class StaffMyAccountPage : Page
     /// <param name="e"></param>
     private void StaffChangePersonalInfoBtn_Click(object sender, RoutedEventArgs e)
     {
-        Page redirectStaffChangePersonalInfo = new StaffChangePersonalInfo();
-        this.Content = redirectStaffChangePersonalInfo;
+        Page redirectStaffToChangePersonalInfo = new StaffChangePersonalInfo();
+        this.Content = redirectStaffToChangePersonalInfo;
+        // Switcher.StaffMyAccountPageSwitch(new StaffChangePersonalInfo());
     }
 }

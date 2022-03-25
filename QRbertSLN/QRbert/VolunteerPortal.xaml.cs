@@ -14,6 +14,17 @@ public partial class VolunteerPortal : Window
     }
     
     /// <summary>
+    /// Function to navigate within the VolunteerPortal
+    /// </summary>
+    /// <param name="nextPage">
+    /// Type page, represents the next desired page to navigate to
+    /// </param>
+    public void Navigate(Page nextPage)
+    {
+        this.Content = nextPage;
+    }
+    
+    /// <summary>
     /// Redirects volunteer user to their MyAccountPage via a button click on the menu item
     /// Since the portal and the MyAccount page are both Pages, we should be able to save the previous pages visited
     /// and go back to them if needed
@@ -31,11 +42,6 @@ public partial class VolunteerPortal : Window
         Page redirectVolunteerMyAcctPage = new VolunteerMyAccountPage();
         this.Content = redirectVolunteerMyAcctPage;
         */
-    }
-
-    public void Navigate(Page nextPage)
-    {
-        this.Content = nextPage;
     }
     
     

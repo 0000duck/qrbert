@@ -13,6 +13,10 @@ public class Switcher
     // Static class variable staffpageSwitcher of type VolunteerPortal
     // Allows this class variable to only be used for the volunteer portal
     public static VolunteerPortal volunteerpageSwitcher;
+    // For Staff MyAccount page
+    public static StaffMyAccountPage staffMyAccountPageSwitcher;
+    // For Volunteer MyAccount page
+    public static VolunteerMyAccountPage volunteerMyAccountPageSwitcher;
 
     /// <summary>
     /// Static function that only works for the StaffPortal Window
@@ -34,5 +38,17 @@ public class Switcher
     public static void VolunteerPageSwitch(Page newPage)
     {
         volunteerpageSwitcher.Navigate(newPage);
+    }
+
+    public static void StaffMyAccountPageSwitch(Page newPage)
+    {
+        staffMyAccountPageSwitcher.Navigate(newPage);
+
+    }
+    
+    public static void VolunteerMyAccountPageSwitch(Page newPage) 
+    {
+        volunteerMyAccountPageSwitcher.Navigate(newPage);
+        
     }
 }
