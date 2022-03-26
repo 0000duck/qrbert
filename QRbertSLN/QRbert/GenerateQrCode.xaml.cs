@@ -1,4 +1,6 @@
 using System;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -28,7 +30,7 @@ public partial class GenerateQrCode : Page
         using(var sha256 = SHA256.Create()) {
             var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(userInfo));
             var hash = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
-            Console.WriteLine(hash);
+            MessageBox.Show(hash);
         }
 
         QRCodeGenerator gen = new QRCodeGenerator();
