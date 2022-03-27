@@ -1,5 +1,6 @@
 using System;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.SqlServer.Server;
@@ -50,8 +51,14 @@ public partial class StaffSearch : Page
         }
         else
         {
+            // Separate input into first and last names for searching
+            String[] nameList = SearchInput.Text.Split(' ');
+            String firstName = nameList[0];
+            String lastName = String.Join(' ', nameList.Skip(1));
+            
+            // Execute query in database and display results
             using SqlConnection sqlCon = new SqlConnection(connectionString);
-            string query = "SELECT * FROM Volunteer WHERE FirstName="+SearchInput.Text+";";
+            string query = "SELECT * FROM Registration WHERE FirstName LIKE "+firstName+" AND LastName LIKE "+lastName+";";
             SqlCommand command = new SqlCommand(query, sqlCon);
             sqlCon.Open();
             using (SqlDataReader reader = command.ExecuteReader())
