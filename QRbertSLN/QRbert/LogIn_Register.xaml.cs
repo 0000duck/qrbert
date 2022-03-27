@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -13,6 +16,9 @@ namespace QRbert
     /// </summary>
     public partial class LogIn_Register : Window
     {
+        
+        String connectionString = @"Data Source = qrbert-rds1.cfe8s1xr87h2.us-west-1.rds.amazonaws.com; 
+                                Initial Catalog = QRbertDB; User ID = rds1_admin; Password = rds1_admin;";
         public LogIn_Register()
         {
             InitializeComponent();
@@ -53,7 +59,7 @@ namespace QRbert
             // David will get the password salt/hash thing to validate their credentials and make sure they match
             // If statement will control whether this is correct or not
             // Else will throw a message box displaying incorrect credentials
-            if (true)
+            if (hashesMatch(EmailInput.Text, PasswordInput.Text))
             {
                 // Takes them to the correct portal depending on the type of user
                 // Given the username, Denise will query the database to retrieve the account type
@@ -81,6 +87,33 @@ namespace QRbert
         private void ForgotPasswordBtn_Click(object sender, RoutedEventArgs e)
         {
             // Make a Window for this
+        }
+
+        private Boolean hashesMatch(String emailInput, String passwordInput)
+        {
+            SqlConnection sqlCon = new SqlConnection(connectionString);
+            String query = "SELECT Salt, Password FROM Registration WHERE Email=" +emailInput+";";
+            SqlCommand command = new SqlCommand(query, sqlCon);
+            sqlCon.Open();
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    String salt = String.Format("{0}",reader[0]);
+                    String password = String.Format("{0}", reader[1]);
+                    
+                    String passwordInfo = passwordInput + salt;
+                    var pwSha256 = SHA256.Create();
+                    var pwHashedBytes = pwSha256.ComputeHash(Encoding.UTF8.GetBytes(passwordInfo));
+                    var passwordHash = BitConverter.ToString(pwHashedBytes).Replace("-", "").ToLower();
+
+                    if (passwordHash == password)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

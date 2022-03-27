@@ -44,7 +44,8 @@
             Width="200" 
             Margin="540,50,-300,0"
             >
-            <TextBox 
+            <TextBox
+                Name="EmailInput"
                 Background="White" 
                 Foreground="#FF9100" 
                 FontWeight="Bold" 
@@ -80,6 +81,7 @@
                 BorderBrush="#FF9100"
                 BorderThickness="2" 
                 Text="Password"
+                Name="PasswordInput"
                 >
                 <TextBox.Resources>
                     <Style 

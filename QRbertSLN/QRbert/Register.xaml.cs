@@ -3,11 +3,15 @@ using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Navigation;
 using System.Text.RegularExpressions;
+using System.Windows.Media;
 //using System.Windows.Interactivity
 using Microsoft.Xaml.Behaviors;
-
+using QRCoder;
+using QRCoder.Xaml;
 
 
 //using SqlCommand = Microsoft.Data.SqlClient.SqlCommand;
@@ -431,11 +435,38 @@ public partial class Register : Window
             SqlCommand sqlCmd = new SqlCommand("RegUser", sqlCon);
             sqlCmd.CommandType = CommandType.StoredProcedure;
             sqlCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-            sqlCmd.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
+            
+            // Generate a salted hash for the password
+            var salt = "";
+            byte[] bytes = new byte[128 / 8];
+            var keyGenerator = RandomNumberGenerator.Create();
+            keyGenerator.GetBytes(bytes);
+            salt = BitConverter.ToString(bytes).Replace("-", "").ToLower();
+            String passwordInfo = ConfirmPassword.Password + salt;
+            var pwSha256 = SHA256.Create();
+            var pwHashedBytes = pwSha256.ComputeHash(Encoding.UTF8.GetBytes(passwordInfo));
+            var passwordHash = BitConverter.ToString(pwHashedBytes).Replace("-", "").ToLower();
+
+            sqlCmd.Parameters.AddWithValue("@Salt", salt);
+            sqlCmd.Parameters.AddWithValue("@Password", passwordHash);
             sqlCmd.Parameters.AddWithValue("@Faculty_Role", facultyRole);
             sqlCmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
             sqlCmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
             
+            // Create a hash for the qr code data
+            String qrCodeInfo = txtFirstName.Text + txtLastName.Text + salt;
+            var qrSha256 = SHA256.Create();
+            var qrHashedBytes = qrSha256.ComputeHash(Encoding.UTF8.GetBytes(passwordInfo));
+            var qrHash = BitConverter.ToString(qrHashedBytes).Replace("-", "").ToLower();
+            
+            sqlCmd.Parameters.AddWithValue("@QRCode", qrHash);
+            
+            // Use the hashed QR code data to generate a QR code
+            QRCodeGenerator gen = new QRCodeGenerator();
+            QRCodeData data = gen.CreateQrCode(qrHash, QRCodeGenerator.ECCLevel.Q);
+            XamlQRCode qrCode = new XamlQRCode(data);
+            DrawingImage qrCodeImage = qrCode.GetGraphic(20);
+
             SqlCommand contact = new SqlCommand("Contact", sqlCon);
             contact.CommandType = CommandType.StoredProcedure;
             contact.Parameters.AddWithValue("@Email", txtEmail.Text);
