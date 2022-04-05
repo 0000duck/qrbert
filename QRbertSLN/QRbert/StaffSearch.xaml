@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:QRbert"
       mc:Ignorable="d"
-      Title="VolunteerChangeEmail" Height="450" Width="800">
+      Title="StaffSearch" Height="450" Width="800">
     <!-- This the template for the Menus; It creates the menu with a white background and black bold letters;
         allows the user to hover over the menu and display the menus as well as change the letters to orange-->
     <Page.Resources>
