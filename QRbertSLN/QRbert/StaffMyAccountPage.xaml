@@ -126,7 +126,7 @@
                 <MenuItem Header="Exit"/>
             </MenuItem>
         </Menu>
-        <!-- This is the Volunteer menu-->
+        <!-- This is the Volunteer menu available only to staff users -->
         <Menu Width="100" Height="22" Margin="400, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Volunteer" Name="mm1" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem Header="Track Active"/>
@@ -134,25 +134,19 @@
                 <MenuItem Header="Select a Pet"/>
             </MenuItem>
         </Menu>
-        <!-- This is the Volunteer menu-->
+        <!-- This is the Animal menu for staff users -->
         <Menu Width="100" Height="22" Margin="500, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Animal Activity"/>
+                <MenuItem Header="Animal Information"/>
                 <MenuItem Header="Remove Animal"/>
-                <MenuItem Header="Medical History"/>
-                <MenuItem Header="Breed Info"/>
                 <MenuItem Header="Pet Report"/>
-                <MenuItem Header="Foster Care"/>
-                <MenuItem ></MenuItem>
-                <MenuItem Header="Exit"/>
             </MenuItem>
         </Menu>
-        <!-- This is the My Account menu-->
+        <!-- This is the My Account menu for staff-->
         <Menu Width="100" Height="22" Margin="600, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Volunteer Account"/>
+                <MenuItem Header="Staff Account"/>
                 <MenuItem Header="Log out"/>
-                <MenuItem Header="Exit"/>
             </MenuItem>
         </Menu>
         <!-- This the orange semitransparent stack panel in the center with the button controls-->
@@ -161,8 +155,7 @@
         <!-- This the "Change Email" button control -->
         <Button Background="White" Foreground="#FF9100" FontWeight="Bold" BorderBrush="#FF9100" 
                 BorderThickness="2" Height="35" Width="200" FontSize="16" ClickMode="Press"
-                Margin="0,-600,0,0"
-                Click="StaffChangeEmailBtn_Click">
+                Margin="0,-600,0,0">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="15"/>
@@ -173,8 +166,7 @@
         <!-- This the "Change Password" button control -->
         <Button Background="White" Foreground="#FF9100" FontWeight="Bold" BorderBrush="#FF9100" 
                 BorderThickness="2" Height="35" Width="200" FontSize="16" ClickMode="Press"
-                Margin="0,-500,0,0"
-                Click="StaffChangePasswordBtn_Click">
+                Margin="0,-500,0,0">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="15"/>
@@ -185,8 +177,7 @@
         <!-- This the "Forgot Password?" button control -->
         <Button Background="White" Foreground="#FF9100" FontWeight="Bold" BorderBrush="#FF9100" 
                 BorderThickness="2" Height="35" Width="200" FontSize="16" ClickMode="Press"
-                Margin="0,-400,0,0"
-                Click="StaffForgotPasswordBtn_Click">
+                Margin="0,-400,0,0">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="15"/>
@@ -197,8 +188,7 @@
         <!-- This the "Change Personal Information" button control -->
         <Button Background="White" Foreground="#FF9100" FontWeight="Bold" BorderBrush="#FF9100" 
                 BorderThickness="2" Height="35" Width="300" FontSize="16" ClickMode="Press"
-                Margin="0,-300,0,0"
-                Click="StaffChangePersonalInfoBtn_Click">
+                Margin="0,-300,0,0">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="15"/>
