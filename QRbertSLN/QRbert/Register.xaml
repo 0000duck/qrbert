@@ -9,28 +9,23 @@
       Title="Register" 
       Height="1500" 
       Width="800" 
->
-    <!-- ScrollViewer is used here to make the window scrollable-->
+      >
     <ScrollViewer 
         HorizontalScrollBarVisibility = "Auto"
         VerticalScrollBarVisibility="Auto"
         >
-        <!-- This StackPanel holds the entire window-->
+        
         <StackPanel 
             Height="2105" 
             Width="800" 
             Background="Transparent" 
             >
-            <!-- This is the QRbert image in the top left corner. This image is located in the Images
-                 folder in the application-->
             <Image 
                 Width="150" 
                 Height="150" 
                 Source="Images/Qbert_logo_orange.png" 
                 Margin="-600,-75,0,-100"
             />
-            
-            <!-- This label displays the text Let's Get Started to make the user feel welcomed-->
             <Label 
                 Content="Let's Get Started!" 
                 Margin="0,-300,0,-400"
@@ -40,9 +35,6 @@
                 Height= "75" 
                 Width="400"
             />
-            
-            <!-- The following 4 images are used to make up the background of the scrollable window
-                 These images are found in the Images folder in the application--> 
             <Image 
                 Width="800" 
                 Height="450" 
@@ -68,8 +60,6 @@
                 Margin="0,-150,0,0"
             />
             
-            <!-- This StackPanel holds all the textboxes that will gather the new user's information
-                 and a button to finish off the registration-->
             <StackPanel 
                 Background="#FF9100" 
                 Width="400" 
@@ -77,14 +67,11 @@
                 Opacity="0.85" 
                 Margin = "0, -1400, 0, 0"
             />
-            
-            <!-- This StackPanel holds the two radio buttons that are used to determine the faculty role which
-                 gets stored to the database if all other fields are authenticated-->
             <StackPanel>      
                 <RadioButton 
                     Height = "20" 
                     Width = "50" 
-                    Name="radioButtonStaff" 
+                    Name="txtStaff" 
                     Background="Transparent" 
                     Foreground = "White" 
                     Margin="-155,-2285,0,0" 
@@ -95,431 +82,18 @@
                 <RadioButton 
                     Height = "20" 
                     Width = "100" 
-                    Name="radioButtonVolunteer" 
+                    Name="txtVol" 
                     Background="Transparent" 
                     Foreground = "White" 
                     Margin="80,-2285,0,0" 
                     Checked="FacultyChoice"
+                    
                     >
                     Volunteer
                 </RadioButton>
                 
             </StackPanel>
             
-            <!-- This DockPanel holds the textblock that displays Register as 'Staff' or 'Volunteer' ?
-                 The Rectangle is to separate the different information sections-->
-            <DockPanel 
-                LastChildFill="False"
-            >
-                <TextBlock
-                    Text="Register as 'Staff' or 'Volunteer' ?"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    FontSize="14"
-                    Height="20"
-                    Width="250"
-                    Name="txtFacultyRoleBlock"
-                    Margin="289,-2345,-500,0"
-                >
-                
-                </TextBlock>
-                
-                <Rectangle 
-                    DockPanel.Dock="Top" 
-                    Fill="White" 
-                    Height="2" 
-                    Width="250" 
-                    Margin="-11,-2260,10,1"
-                />
-            </DockPanel>
-            
-            
-            <!-- This DockPanel holds the section where first name is to inputted. There is a textblock to
-                 signify that this section is for the first name. The textblock acts as an improvised watermark text
-                 which disappears when any text is inputted to the textbox.
-                 The Rectangle is to separate the different information sections-->
-            <DockPanel 
-                LastChildFill="False"
-            >
-                <TextBlock
-                    Text="First Name"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    FontSize="14"
-                    Height="20"
-                    Width="250"
-                    Name="txtFirstNameBlock"
-                    Margin="289,-2145,-500,0"
-                >
-                
-                </TextBlock>
-                <TextBox 
-                    Name = "txtFirstName" 
-                    Width = "250" 
-                    Height="20" 
-                    Background="Transparent" 
-                    Foreground="White" 
-                    FontWeight="Bold" 
-                    BorderBrush="Transparent" 
-                    BorderThickness="2"
-                    TextChanged="txtFirstNameBlock_OnPasswordChanged"
-                    Margin="-660,-2150,-1400,0" 
-                    FontSize="14"
-                >
-                    
-                </TextBox>
-                <Rectangle 
-                    DockPanel.Dock="Top" 
-                    Fill="White" 
-                    Height="2" 
-                    Width="250" 
-                    Margin="0,-2115,0,0"
-                />
-            </DockPanel>
-            
-            <!-- This DockPanel holds the section where last name is to be inputted.There is a textblock to
-                 signify that this section is for the last name. The textblock acts as an improvised watermark text
-                 which disappears when any text is inputted to the textbox.
-                 The Rectangle is to separate the different information sections -->
-            <DockPanel 
-                LastChildFill="False"
-            >
-                <TextBlock
-                    Text="Last Name"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    FontSize="14"
-                    Height="20"
-                    Width="250"
-                    Name="txtLastNameBlock"
-                    Margin="289,-2000,-500,0"
-                >
-                
-                </TextBlock>
-                <TextBox 
-                    Name = "txtLastName" 
-                    Width = "250" 
-                    Height="20" 
-                    Background="Transparent" 
-                    Foreground="White" 
-                    FontWeight="Bold" 
-                    BorderBrush="Transparent" 
-                    BorderThickness="2"
-                    TextChanged = "TxtLastName_OnTextChanged"
-                    Margin="245,-2000,-500,0" 
-                    FontSize="14"
-                >
-                    
-                </TextBox>
-                
-                <Rectangle 
-                    DockPanel.Dock="Top" 
-                    Fill="White" 
-                    Height="2" 
-                    Width="250" 
-                    Margin="-25,-1965,0,0"
-                />
-            </DockPanel>
-            
-            <!-- This DockPanel holds the section where email is to be inputted.There is a textblock to
-                 signify that this section is for the email. The textblock acts as an improvised watermark text
-                 which disappears when any text is inputted to the textbox.
-                 The Rectangle is to separate the different information sections -->
-            <DockPanel 
-                LastChildFill="False"
-            >
-                <TextBlock
-                    Text="Email"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    FontSize="14"
-                    Height="20"
-                    Width="250"
-                    Name="txtEmailBlock"
-                    Margin="289,-1845,-500,0"
-                >
-                
-                </TextBlock>
-                <TextBox 
-                    Name = "txtEmail" 
-                    Width = "250" 
-                    Height="20" 
-                    Background="Transparent" 
-                    Foreground="White" 
-                    FontWeight="Bold" 
-                    BorderBrush="Transparent" 
-                    BorderThickness="2"
-                    TextChanged="TxtEmail_OnTextChanged"
-                    Margin="250,-1850,-500,0" 
-                    FontSize="14"
-                    >
-                    
-                </TextBox>
-                <Rectangle 
-                    DockPanel.Dock="Top" 
-                    Fill="White" 
-                    Height="2" 
-                    Width="250" 
-                    Margin="-25,-1815,0,0"
-                />
-            </DockPanel>
-            
-            <!-- This DockPanel holds the section where Driver's License is to be inputted.There is a textblock to
-                 signify that this section is for the Driver's License. The textblock acts as an improvised watermark 
-                 text which disappears when any text is inputted to the textbox.
-                 The Rectangle is to separate the different information sections -->
-            <DockPanel 
-                LastChildFill="False"
-            >
-                <TextBlock
-                    Text="Driver's License #"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    FontSize="14"
-                    Height="20"
-                    Width="250"
-                    Name="txtDriverBlock"
-                    Margin="289,-1700,-500,0"
-                >
-                
-                </TextBlock>
-                <TextBox 
-                    Name = "txtDriver"
-                    Width = "250" 
-                    Height="20" 
-                    Background="Transparent" 
-                    Foreground="White" 
-                    FontWeight="Bold" 
-                    BorderBrush="Transparent" 
-                    BorderThickness="2"
-                    TextChanged="TxtDriver_OnTextChanged"
-                    Margin="245,-1700,-500,0" 
-                    FontSize="14"
-                    >
-                    
-                </TextBox>
-                <Rectangle 
-                    DockPanel.Dock="Top" 
-                    Fill="White" 
-                    Height="2" 
-                    Width="250" 
-                    Margin="-25,-1665,0,0"
-                />
-            </DockPanel>
-            
-            <!-- This DockPanel holds the section where address is to be inputted.There is a textblock to
-                 signify that this section is for the address. The textblock acts as an improvised watermark text
-                 which disappears when any text is inputted to the textbox.
-                 The Rectangle is to separate the different information sections -->
-            <DockPanel 
-                LastChildFill="False"
-            >
-                <TextBlock
-                    Text="Address"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    FontSize="14"
-                    Height="20"
-                    Width="250"
-                    Name="txtAddressBlock"
-                    Margin="289,-1550,-500,0"
-                >
-                
-                </TextBlock>
-                <TextBox 
-                    Name = "txtAddress"
-                    Width = "250" 
-                    Height="20" 
-                    Background="Transparent" 
-                    Foreground="White" 
-                    FontWeight="Bold" 
-                    BorderBrush="Transparent" 
-                    BorderThickness="2"
-                    TextChanged="TxtAddress_OnTextChanged"
-                    Margin="245,-1550,-500,0" 
-                    FontSize="14"
-                    >
-                    
-                </TextBox>
-                <Rectangle 
-                    DockPanel.Dock="Top" 
-                    Fill="White" 
-                    Height="2" 
-                    Width="250" 
-                    Margin="-25,-1515,0,0"
-                />
-            </DockPanel>
-            
-            <!-- This DockPanel holds the section where city is to be inputted.There is a textblock to
-                 signify that this section is for the city. The textblock acts as an improvised watermark text
-                 which disappears when any text is inputted to the textbox.
-                 The Rectangle is to separate the different information sections -->
-            <DockPanel 
-                LastChildFill="False"
-            >
-                <TextBlock
-                    Text="City"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    FontSize="14"
-                    Height="20"
-                    Width="250"
-                    Name="txtCityBlock"
-                    Margin="289,-1400,-500,0"
-                >
-                
-                </TextBlock>
-                <TextBox 
-                    Name = "txtCity"
-                    Width = "250" 
-                    Height="20" 
-                    Background="Transparent" 
-                    Foreground="White" 
-                    FontWeight="Bold" 
-                    BorderBrush="Transparent" 
-                    BorderThickness="2"
-                    TextChanged="TxtCity_OnTextChanged"
-                    Margin="245,-1400,-500,0" 
-                    FontSize="14"
-                    >
-                    
-                </TextBox>
-                <Rectangle 
-                    DockPanel.Dock="Top" 
-                    Fill="White" 
-                    Height="2" 
-                    Width="250" 
-                    Margin="-25,-1365,0,0"
-                />
-            </DockPanel>
-            
-            <!-- This DockPanel holds the section where state is to be inputted.There is a textblock to
-                 signify that this section is for the state. The textblock acts as an improvised watermark text
-                 which disappears when any text is inputted to the textbox.
-                 The Rectangle is to separate the different information sections -->
-            <DockPanel 
-                LastChildFill="False"
-            >
-                <TextBlock
-                    Text="State"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    FontSize="14"
-                    Height="20"
-                    Width="250"
-                    Name="txtStateBlock"
-                    Margin="289,-1250,-500,0"
-                >
-                
-                </TextBlock>
-                <TextBox 
-                    Name = "txtState"
-                    Width = "250" 
-                    Height="20" 
-                    Background="Transparent" 
-                    Foreground="White" 
-                    FontWeight="Bold" 
-                    BorderBrush="Transparent" 
-                    BorderThickness="2"
-                    TextChanged="TxtState_OnTextChanged"
-                    Margin="245,-1250,-500,0" 
-                    FontSize="14"
-                >
-                    
-                </TextBox>
-                
-                <Rectangle 
-                    DockPanel.Dock="Top" 
-                    Fill="White" 
-                    Height="2" 
-                    Width="250" 
-                    Margin="-25,-1215,0,0"
-                />
-            </DockPanel>
-            
-            <!-- This DockPanel holds the section where zipcode is to be inputted.There is a textblock to
-                 signify that this section is for the zipcode. The textblock acts as an improvised watermark text
-                 which disappears when any text is inputted to the textbox.
-                 The Rectangle is to separate the different information sections -->
-            <DockPanel 
-                LastChildFill="False"
-            >
-                <TextBlock
-                    Text="Zipcode"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    FontSize="14"
-                    Height="20"
-                    Width="250"
-                    Name="txtZipcodeBlock"
-                    Margin="289,-1100,-500,0"
-                >
-                
-                </TextBlock>
-                <TextBox
-                    Name = "txtZipcode"
-                    Width = "250" 
-                    Height="20" 
-                    Background="Transparent" 
-                    Foreground="White" 
-                    FontWeight="Bold" 
-                    BorderBrush="Transparent" 
-                    BorderThickness="2"
-                    TextChanged="TxtZipcode_OnTextChanged"
-                    Margin="245,-1100,-500,0" FontSize="14"
-                >
-                    
-                </TextBox>
-                <Rectangle 
-                    DockPanel.Dock="Top" 
-                    Fill="White" 
-                    Height="2" 
-                    Width="250" 
-                    Margin="-25,-1065,0,0"
-                />
-            </DockPanel> 
-            
-            <!-- This DockPanel holds the section where phone number is to be inputted.There is a textblock to
-                 signify that this section is for the phone number. The textblock acts as an improvised watermark text
-                 which disappears when any text is inputted to the textbox.
-                 The Rectangle is to separate the different information sections -->
-            <DockPanel 
-                LastChildFill="False"
-            >
-                <TextBlock
-                    Text="Phone Number"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    FontSize="14"
-                    Height="20"
-                    Width="250"
-                    Name="txtPhoneBlock"
-                    Margin="280,-980,-500,0"
-                >
-                
-                </TextBlock>
-                <TextBox
-                    Name = "txtPhone"
-                    Width = "250" 
-                    Height="20" 
-                    Background="Transparent" 
-                    Foreground="White"  
-                    FontWeight="Bold" 
-                    BorderBrush="Transparent" 
-                    BorderThickness="2"
-                    TextChanged="TxtPhone_OnTextChanged"
-                    Margin="245,-980,-500,0" FontSize="14"
-                >
-                    
-                </TextBox>
-                <Rectangle 
-                    DockPanel.Dock="Top" 
-                    Fill="White" 
-                    Height="2" 
-                    Width="250" 
-                    Margin="-25,-950,0,0"
-                />
-            </DockPanel>
             <!-- In this DockPanel, this is where PasswordBox takes care of the newly created
                 password by the user-->
                 
@@ -537,7 +111,7 @@
                     
                 </TextBlock>
                 <PasswordBox 
-                     
+                    MaxLength="8" 
                     PasswordChar="*" 
                     PasswordChanged="Password_OnPasswordChanged"
                     Width = "250" 
@@ -564,9 +138,6 @@
                     Margin="-25,-805,0,0"
                 />
             </DockPanel>
-            
-            <!-- This is where another PasswordBox is used to compare the 2 strings to ensure that the
-                 the current password the user desires is inputted into the database. -->
             <DockPanel LastChildFill="False">
                     
                 <TextBlock
@@ -608,10 +179,392 @@
                     />
                     
             </DockPanel>
+                
             
-            <!-- Clicking this button goes through authentication to ensure the form is filled out
-                 correctly to have the necessary information stored into the database. This includes
-                 the styling of the button with rounded corners. -->
+            
+            <DockPanel 
+                LastChildFill="False"
+            >
+                <TextBlock
+                    Text="Register as 'Staff' or 'Volunteer' ?"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    Height="20"
+                    Width="250"
+                    Name="txtFacultyRoleBlock"
+                    Margin="289,-2345,-500,0"
+                >
+                
+                </TextBlock>
+                <!--<TextBox 
+                    Name = "txtFacultyRole" 
+                    Width = "250" 
+                    Height="25" 
+                    Background="Transparent" 
+                    Foreground="White" 
+                    FontWeight="Bold" 
+                    BorderBrush="Transparent" 
+                    BorderThickness="2"
+                    TextChanged="FacultyRole_OnPasswordChanged"
+                    Margin="-660,-2295,-1400,0" 
+                    FontSize="14"
+                >
+                    
+                </TextBox>-->
+                <Rectangle 
+                    DockPanel.Dock="Top" 
+                    Fill="White" 
+                    Height="2" 
+                    Width="250" 
+                    Margin="-11,-2260,10,1"
+                />
+            </DockPanel>
+            <DockPanel 
+                LastChildFill="False"
+            >
+                <TextBlock
+                    Text="First Name"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    Height="20"
+                    Width="250"
+                    Name="txtFirstNameBlock"
+                    Margin="289,-2145,-500,0"
+                >
+                
+                </TextBlock>
+                <TextBox 
+                    Name = "txtFirstName" 
+                    Width = "250" 
+                    Height="20" 
+                    Background="Transparent" 
+                    Foreground="White" 
+                    FontWeight="Bold" 
+                    BorderBrush="Transparent" 
+                    BorderThickness="2"
+                    TextChanged="txtFirstNameBlock_OnPasswordChanged"
+                    Margin="-660,-2150,-1400,0" 
+                    FontSize="14"
+                >
+                    
+                </TextBox>
+                <Rectangle 
+                    DockPanel.Dock="Top" 
+                    Fill="White" 
+                    Height="2" 
+                    Width="250" 
+                    Margin="0,-2115,0,0"
+                />
+            </DockPanel>
+            
+            <DockPanel 
+                LastChildFill="False"
+            >
+                <TextBlock
+                    Text="Last Name"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    Height="20"
+                    Width="250"
+                    Name="txtLastNameBlock"
+                    Margin="289,-2000,-500,0"
+                >
+                
+                </TextBlock>
+                <TextBox 
+                    Name = "txtLastName" 
+                    Width = "250" 
+                    Height="20" 
+                    Background="Transparent" 
+                    Foreground="White" 
+                    FontWeight="Bold" 
+                    BorderBrush="Transparent" 
+                    BorderThickness="2"
+                    TextChanged = "TxtLastName_OnTextChanged"
+                    Margin="245,-2000,-500,0" 
+                    FontSize="14"
+                >
+                    
+                </TextBox>
+                
+                <Rectangle 
+                    DockPanel.Dock="Top" 
+                    Fill="White" 
+                    Height="2" 
+                    Width="250" 
+                    Margin="-25,-1965,0,0"
+                />
+            </DockPanel>
+            <DockPanel 
+                LastChildFill="False"
+            >
+                <TextBlock
+                    Text="Email"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    Height="20"
+                    Width="250"
+                    Name="txtEmailBlock"
+                    Margin="289,-1845,-500,0"
+                >
+                
+                </TextBlock>
+                <TextBox 
+                    Name = "txtEmail" 
+                    Width = "250" 
+                    Height="20" 
+                    Background="Transparent" 
+                    Foreground="White" 
+                    FontWeight="Bold" 
+                    BorderBrush="Transparent" 
+                    BorderThickness="2"
+                    TextChanged="TxtEmail_OnTextChanged"
+                    Margin="250,-1850,-500,0" 
+                    FontSize="14"
+                    >
+                    
+                </TextBox>
+                <Rectangle 
+                    DockPanel.Dock="Top" 
+                    Fill="White" 
+                    Height="2" 
+                    Width="250" 
+                    Margin="-25,-1815,0,0"
+                />
+            </DockPanel>
+            <DockPanel 
+                LastChildFill="False"
+            >
+                <TextBlock
+                    Text="Driver's License #"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    Height="20"
+                    Width="250"
+                    Name="txtDriverBlock"
+                    Margin="289,-1700,-500,0"
+                >
+                
+                </TextBlock>
+                <TextBox 
+                    Name = "txtDriver"
+                    Width = "250" 
+                    Height="20" 
+                    Background="Transparent" 
+                    Foreground="White" 
+                    FontWeight="Bold" 
+                    BorderBrush="Transparent" 
+                    BorderThickness="2"
+                    TextChanged="TxtDriver_OnTextChanged"
+                    Margin="245,-1700,-500,0" 
+                    FontSize="14"
+                    >
+                    
+                </TextBox>
+                <Rectangle 
+                    DockPanel.Dock="Top" 
+                    Fill="White" 
+                    Height="2" 
+                    Width="250" 
+                    Margin="-25,-1665,0,0"
+                />
+            </DockPanel>
+            <DockPanel 
+                LastChildFill="False"
+            >
+                <TextBlock
+                    Text="Address"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    Height="20"
+                    Width="250"
+                    Name="txtAddressBlock"
+                    Margin="289,-1550,-500,0"
+                >
+                
+                </TextBlock>
+                <TextBox 
+                    Name = "txtAddress"
+                    Width = "250" 
+                    Height="20" 
+                    Background="Transparent" 
+                    Foreground="White" 
+                    FontWeight="Bold" 
+                    BorderBrush="Transparent" 
+                    BorderThickness="2"
+                    TextChanged="TxtAddress_OnTextChanged"
+                    Margin="245,-1550,-500,0" 
+                    FontSize="14"
+                    >
+                    
+                </TextBox>
+                <Rectangle 
+                    DockPanel.Dock="Top" 
+                    Fill="White" 
+                    Height="2" 
+                    Width="250" 
+                    Margin="-25,-1515,0,0"
+                />
+            </DockPanel>
+            <DockPanel 
+                LastChildFill="False"
+            >
+                <TextBlock
+                    Text="City"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    Height="20"
+                    Width="250"
+                    Name="txtCityBlock"
+                    Margin="289,-1400,-500,0"
+                >
+                
+                </TextBlock>
+                <TextBox 
+                    Name = "txtCity"
+                    Width = "250" 
+                    Height="20" 
+                    Background="Transparent" 
+                    Foreground="White" 
+                    FontWeight="Bold" 
+                    BorderBrush="Transparent" 
+                    BorderThickness="2"
+                    TextChanged="TxtCity_OnTextChanged"
+                    Margin="245,-1400,-500,0" 
+                    FontSize="14"
+                    >
+                    
+                </TextBox>
+                <Rectangle 
+                    DockPanel.Dock="Top" 
+                    Fill="White" 
+                    Height="2" 
+                    Width="250" 
+                    Margin="-25,-1365,0,0"
+                />
+            </DockPanel>
+            <DockPanel 
+                LastChildFill="False"
+            >
+                <TextBlock
+                    Text="State"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    Height="20"
+                    Width="250"
+                    Name="txtStateBlock"
+                    Margin="289,-1250,-500,0"
+                >
+                
+                </TextBlock>
+                <TextBox 
+                    Name = "txtState"
+                    Width = "250" 
+                    Height="20" 
+                    Background="Transparent" 
+                    Foreground="White" 
+                    FontWeight="Bold" 
+                    BorderBrush="Transparent" 
+                    BorderThickness="2"
+                    TextChanged="TxtState_OnTextChanged"
+                    Margin="245,-1250,-500,0" 
+                    FontSize="14"
+                >
+                    
+                </TextBox>
+                
+                <Rectangle 
+                    DockPanel.Dock="Top" 
+                    Fill="White" 
+                    Height="2" 
+                    Width="250" 
+                    Margin="-25,-1215,0,0"
+                />
+            </DockPanel>
+            <DockPanel 
+                LastChildFill="False"
+            >
+                <TextBlock
+                    Text="Phone Number"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    Height="20"
+                    Width="250"
+                    Name="txtPhoneBlock"
+                    Margin="280,-980,-500,0"
+                >
+                
+                </TextBlock>
+                <TextBox
+                    Name = "txtPhone"
+                    Width = "250" 
+                    Height="20" 
+                    Background="Transparent" 
+                    Foreground="White"  
+                    FontWeight="Bold" 
+                    BorderBrush="Transparent" 
+                    BorderThickness="2"
+                    TextChanged="TxtPhone_OnTextChanged"
+                    Margin="245,-980,-500,0" FontSize="14"
+                >
+                    
+                </TextBox>
+                <Rectangle 
+                    DockPanel.Dock="Top" 
+                    Fill="White" 
+                    Height="2" 
+                    Width="250" 
+                    Margin="-25,-950,0,0"
+                />
+            </DockPanel>
+            
+            <DockPanel 
+                LastChildFill="False"
+            >
+                <TextBlock
+                    Text="Zipcode"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    Height="20"
+                    Width="250"
+                    Name="txtZipcodeBlock"
+                    Margin="289,-1100,-500,0"
+                >
+                
+                </TextBlock>
+                <TextBox
+                    Name = "txtZipcode"
+                    Width = "250" 
+                    Height="20" 
+                    Background="Transparent" 
+                    Foreground="White" 
+                    FontWeight="Bold" 
+                    BorderBrush="Transparent" 
+                    BorderThickness="2"
+                    TextChanged="TxtZipcode_OnTextChanged"
+                    Margin="245,-1100,-500,0" FontSize="14"
+                >
+                    
+                </TextBox>
+                <Rectangle 
+                    DockPanel.Dock="Top" 
+                    Fill="White" 
+                    Height="2" 
+                    Width="250" 
+                    Margin="-25,-1065,0,0"
+                />
+            </DockPanel> 
+            
             <Button 
                 Background="White" 
                 Foreground="#FF9100" 
@@ -638,16 +591,14 @@
                 </Button.Resources>
                 Sign up
             </Button>
-            
-            <!-- This displays the QRbert logo to remind the user of how great the software is. -->
+        
+        
             <Image 
                 Width="200" 
                 Height="150" 
                 Source= "Images/Qbert_logo_orange.png" 
                 Margin = "0, -100, 0, 0" 
             />
-            
-            <!-- Clicking this button will lead to our terms and privacy notice page. -->
             <Button
                 Height="40"
                 Width = "200"
@@ -661,8 +612,6 @@
                 Margin="-400,-50,0,0"
             >
             </Button>
-            
-            <!-- Clicking this button takes the user to a page where they can be assisted. -->
             <Button
                 Height="40"
                 Width = "75"
@@ -676,9 +625,6 @@
                 Margin="-50,-50,0,0"
             >
             </Button>
-            
-            <!-- Clicking this button takes you to a page where a question you have might
-                 be answered. -->
             <Button
                 Height="40"
                 Width = "50"
@@ -692,8 +638,6 @@
                 Margin="150,-50,0,0"
             >
             </Button>
-            
-            <!-- Clicking this button takes you to the page where we get to promote ourselves. -->
             <Button
                 Height="40"
                 Width = "200"

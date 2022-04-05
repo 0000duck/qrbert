@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using System.Windows.Threading;
+using System.Data.SqlClient;
 
 namespace QRbert
 {
@@ -13,10 +15,21 @@ namespace QRbert
     /// </summary>
     public partial class LogIn_Register : Window
     {
+        // Denise will open the connection to the database
+        /*
+         * creates a DB connection which is saved as "connectionString"
+         */
+        String connectionString = @"Data Source = qrbert-rds1.cfe8s1xr87h2.us-west-1.rds.amazonaws.com; 
+                                Initial Catalog = QRbertDB; User ID = rds1_admin; Password = rds1_admin;";
         public LogIn_Register()
         {
             InitializeComponent();
+            Switcher.LogInRegisterSwitcher = this;
+        }
 
+        public void Navigate(Window nextWindow)
+        {
+            this.Content = nextWindow;
         }
 
 
@@ -49,7 +62,41 @@ namespace QRbert
         /// <param name="e"></param>
         private void SignInUserBtn_Click(object sender, RoutedEventArgs e)
         {
-            // Denise will open the connection to the database
+            string staff = "Staff";
+
+            // email and password input from the user
+            string emailInput = txtEmail.Text;
+            string pwInput = txtPassword.Text;
+            
+            // Given the username, Denise will query the database to retrieve the account type
+            string msg = verifyRole("SELECT count(*) From QRbertTables.Registration where email = '" + emailInput +
+                                    "' and password ='" + pwInput + "'");
+            
+            if (msg.Equals("0"))
+            {
+                MessageBox.Show("Invalid Email or Password");
+            }
+            else
+            {
+                // finds a matching email and password and retrieves the faculty role to store in "msg" 
+                msg = verifyRole("Select [Faculty-Role] From QRbertTables.Registration Where email = '" + emailInput +
+                                 "' and password ='" + pwInput + "'");
+                
+                if (string.Equals(msg, staff))
+                {
+                    Page RedirectSignInStaffPortal = new StaffPortal();
+                    this.Content = RedirectSignInStaffPortal;
+                }
+
+                else
+                {
+                    Page RedirectSignInVolunteerPortal = new VolunteerPortal();
+                    this.Content = RedirectSignInVolunteerPortal;
+                }
+            }
+           
+           
+
             // David will get the password salt/hash thing to validate their credentials and make sure they match
             // If statement will control whether this is correct or not
             // Else will throw a message box displaying incorrect credentials
@@ -88,5 +135,14 @@ namespace QRbert
         {
             // Make a Window for this
         }
+
+        public string verifyRole(string s)
+        {
+            using SqlConnection sqlCon = new SqlConnection(connectionString);
+            sqlCon.Open();
+            SqlCommand command = new SqlCommand(s, sqlCon);
+            string query = command.ExecuteScalar().ToString();
+            return query;
+        } 
     }
 }
