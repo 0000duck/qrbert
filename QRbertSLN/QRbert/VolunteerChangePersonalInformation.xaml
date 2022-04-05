@@ -124,15 +124,12 @@
                 <MenuItem Header="View Timesheet"/>
             </MenuItem>
         </Menu>
-        <!-- This is the Animal menu-->
+        <!-- This is the Animal menu for volunteers-->
         <Menu Width="100" Height="22" Margin="450, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Animal Activity"/>
+                <MenuItem Header="My Pets"/>
                 <MenuItem Header="Select a Pet"/>
-                <MenuItem Header="Medical History"/>
-                <MenuItem Header="Breed Info"/>
                 <MenuItem Header="Pet Report"/>
-                <MenuItem Header="Foster Care"/>
             </MenuItem>
         </Menu>
         <!-- This is the My Account menu-->

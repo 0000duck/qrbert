@@ -126,7 +126,7 @@
                 <MenuItem Header="Exit"/>
             </MenuItem>
         </Menu>
-        <!-- This is the Volunteer menu-->
+        <!-- This is the Volunteer menu available only to staff users -->
         <Menu Width="100" Height="22" Margin="400, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Volunteer" Name="mm1" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem Header="Track Active"/>
@@ -134,25 +134,22 @@
                 <MenuItem Header="Select a Pet"/>
             </MenuItem>
         </Menu>
-        <!-- This is the Volunteer menu-->
+        <!-- This is the Animal menu for staff users -->
         <Menu Width="100" Height="22" Margin="500, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Animal Activity"/>
+                <MenuItem Header="Animal Information"/>
                 <MenuItem Header="Remove Animal"/>
-                <MenuItem Header="Medical History"/>
-                <MenuItem Header="Breed Info"/>
                 <MenuItem Header="Pet Report"/>
                 <MenuItem Header="Foster Care"/>
                 <MenuItem ></MenuItem>
                 <MenuItem Header="Exit"/>
             </MenuItem>
         </Menu>
-        <!-- This is the My Account menu-->
+        <!-- This is the My Account menu for staff-->
         <Menu Width="100" Height="22" Margin="600, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Volunteer Account"/>
+                <MenuItem Header="Staff Account"/>
                 <MenuItem Header="Log out"/>
-                <MenuItem Header="Exit"/>
             </MenuItem>
         </Menu>
         <!-- This the orange semitransparent stack panel in the center with the button controls-->

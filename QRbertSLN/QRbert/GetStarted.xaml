@@ -15,6 +15,8 @@
     <ScrollViewer 
         HorizontalScrollBarVisibility="Auto"
         VerticalScrollBarVisibility="Auto">
+        
+        
         <!--This is the main stack panel where all the controls live.-->
         <StackPanel 
             Orientation = "Horizontal"
@@ -22,6 +24,8 @@
             Width = "800" 
             Background="Transparent"
             Margin="0, 0, 0, 0">
+            
+            
             <!-- Two images are displayed in the background. Their files are located in the Images folder. -->
             <Image 
               Width="800" 
@@ -35,6 +39,8 @@
               Source="Images/pets2.png" 
               Margin = "-600, 0, -200, -200" 
             />
+            
+            
             <!-- This StackPanel gives the tinted orange for the background. -->
             <StackPanel 
               Background="#FF9100" 
@@ -43,6 +49,8 @@
               Opacity="0.7" 
               Margin = "-600, -0, 0, 0"
             />
+            
+            
             <!-- This StackPanel holds the label Welcome to QRbert which has large, bold letters in white. --> 
             <StackPanel>
               <Label 
@@ -55,6 +63,7 @@
               />
             </StackPanel>
 
+            
             <!-- This StackPanel holds the label Making volunteering that much easier which is printed in
                large, bold, white letters. -->
             <StackPanel>
@@ -101,8 +110,7 @@
             </StackPanel>
 
             <!-- This StackPanel holds the button Get Started> that has a cornered radius found in Button.Resources.
-               It has a white background with bold orange text with some border thickness. As of now, the button
-               does not take you anywhere.-->
+               It has a white background with bold orange text with some border thickness. This takes you to the LogIn_Register Page-->
             <StackPanel 
               Height = "45" 
               Width="120" 

@@ -110,7 +110,7 @@
     <!--  -->
     <!-- This the main stackpanel containing all the controls on the entire page-->
     <StackPanel Background="Transparent" Height="450" Width="800">
-        <!-- This stackpanel contains the orange QRbert logo on the left corner as well as the perts background image-->
+        <!-- This stackpanel contains the orange QRbert logo on the left corner as well as the pets background image-->
         <StackPanel>
             <Image Width="800" Height="450" Source="Images/petsBackground.png" 
                    Margin="0,0,0,0"/>
@@ -127,12 +127,9 @@
         <!-- This is the Animal menu-->
         <Menu Width="100" Height="22" Margin="450, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Animal Activity"/>
+                <MenuItem Header="My Pets"/>
                 <MenuItem Header="Select a Pet"/>
-                <MenuItem Header="Medical History"/>
-                <MenuItem Header="Breed Info"/>
                 <MenuItem Header="Pet Report"/>
-                <MenuItem Header="Foster Care"/>
             </MenuItem>
         </Menu>
         <!-- This is the My Account menu-->
