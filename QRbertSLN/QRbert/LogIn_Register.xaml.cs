@@ -1,10 +1,5 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
-using System.Windows.Threading;
 
 namespace QRbert
 {
@@ -80,7 +75,9 @@ namespace QRbert
         /// <param name="e"></param>
         private void ForgotPasswordBtn_Click(object sender, RoutedEventArgs e)
         {
-            // Make a Window for this
+            QRCodeScanner scanQRCode = new QRCodeScanner();
+            string result = scanQRCode.DecodeQRCode();
+            MessageBox.Show(result);
         }
     }
 }
