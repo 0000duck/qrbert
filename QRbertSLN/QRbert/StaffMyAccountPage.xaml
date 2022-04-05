@@ -140,6 +140,9 @@
                 <MenuItem Header="Animal Information"/>
                 <MenuItem Header="Remove Animal"/>
                 <MenuItem Header="Pet Report"/>
+                <MenuItem Header="Foster Care"/>
+                <MenuItem ></MenuItem>
+                <MenuItem Header="Exit"/>
             </MenuItem>
         </Menu>
         <!-- This is the My Account menu for staff-->
@@ -155,7 +158,8 @@
         <!-- This the "Change Email" button control -->
         <Button Background="White" Foreground="#FF9100" FontWeight="Bold" BorderBrush="#FF9100" 
                 BorderThickness="2" Height="35" Width="200" FontSize="16" ClickMode="Press"
-                Margin="0,-600,0,0">
+                Margin="0,-600,0,0"
+                Click="StaffChangeEmailBtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="15"/>
@@ -166,7 +170,8 @@
         <!-- This the "Change Password" button control -->
         <Button Background="White" Foreground="#FF9100" FontWeight="Bold" BorderBrush="#FF9100" 
                 BorderThickness="2" Height="35" Width="200" FontSize="16" ClickMode="Press"
-                Margin="0,-500,0,0">
+                Margin="0,-500,0,0"
+                Click="StaffChangePasswordBtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="15"/>
@@ -177,7 +182,8 @@
         <!-- This the "Forgot Password?" button control -->
         <Button Background="White" Foreground="#FF9100" FontWeight="Bold" BorderBrush="#FF9100" 
                 BorderThickness="2" Height="35" Width="200" FontSize="16" ClickMode="Press"
-                Margin="0,-400,0,0">
+                Margin="0,-400,0,0"
+                Click="StaffForgotPasswordBtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="15"/>
@@ -188,7 +194,8 @@
         <!-- This the "Change Personal Information" button control -->
         <Button Background="White" Foreground="#FF9100" FontWeight="Bold" BorderBrush="#FF9100" 
                 BorderThickness="2" Height="35" Width="300" FontSize="16" ClickMode="Press"
-                Margin="0,-300,0,0">
+                Margin="0,-300,0,0"
+                Click="StaffChangePersonalInfoBtn_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="15"/>
