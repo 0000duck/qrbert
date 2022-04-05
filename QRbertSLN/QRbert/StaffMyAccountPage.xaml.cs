@@ -3,7 +3,7 @@ using System.Windows.Controls;
 
 namespace QRbert;
 
-public partial class StaffMyAccountPage : Page
+public partial class StaffMyAccountPage : Window
 {
     public StaffMyAccountPage()
     {
@@ -30,7 +30,7 @@ public partial class StaffMyAccountPage : Page
     /// <param name="e"></param>
     private void StaffChangeEmailBtn_Click(object sender, RoutedEventArgs e)
     {
-        Page redirectStaffToChangeEmail = new StaffChangeEmail();
+        Window redirectStaffToChangeEmail = new StaffChangeEmail();
         this.Content = redirectStaffToChangeEmail;
         // Switcher.StaffMyAccountPageSwitch(new StaffChangeEmail());
     }
@@ -64,7 +64,7 @@ public partial class StaffMyAccountPage : Page
     /// <param name="e"></param>
     private void StaffChangePersonalInfoBtn_Click(object sender, RoutedEventArgs e)
     {
-        Page redirectStaffToChangePersonalInfo = new StaffChangePersonalInfo();
+        Window redirectStaffToChangePersonalInfo = new StaffChangePersonalInfo();
         this.Content = redirectStaffToChangePersonalInfo;
         // Switcher.StaffMyAccountPageSwitch(new StaffChangePersonalInfo());
     }

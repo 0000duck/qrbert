@@ -3,7 +3,7 @@ using System.Windows.Controls;
 
 namespace QRbert;
 
-public partial class VolunteerMyAccountPage : Page
+public partial class VolunteerMyAccountPage : Window
 {
     public VolunteerMyAccountPage()
     {

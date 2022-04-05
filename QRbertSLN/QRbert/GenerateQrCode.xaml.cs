@@ -7,7 +7,7 @@ using QRCoder.Xaml;
 
 namespace QRbert;
 
-public partial class GenerateQrCode : Page
+public partial class GenerateQrCode : Window
 {
     public GenerateQrCode()
     {
