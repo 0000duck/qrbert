@@ -1,5 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using OpenCVDemo;
+using OpenCvSharp;
+using Window = System.Windows.Window;
+using static QRbert.QRCodeScanner;
 
 namespace QRbert
 {
@@ -14,24 +18,6 @@ namespace QRbert
 
         }
 
-
-        private void RegisterNewUserBtn_Click(object sender, RoutedEventArgs e)
-        {
-            /*
-            Process process = new Process();
-            process.StartInfo.FileName = "zbarcam.exe";
-            process.Start();
-            */
-            // Page generateQRCodePage = new GenerateQrCode();
-            // this.Content = generateQRCodePage;
-            // NavigationWindow redirectNewUser = new NavigationWindow();
-            // redirectNewUser.Source = new Uri("Register.xaml", UriKind.Relative);
-            Window RegisterNewUser = new Register();
-            RegisterNewUser.Show();
-            this.Close();
-            
-        }
-        
         /// <summary>
         /// Signs the user in given their account type and redirects them to the correct portal page
         /// Given the portals are pages, they will be able to navigate between the pages
@@ -67,7 +53,7 @@ namespace QRbert
                 }
             }
         }
-        
+
         /// <summary>
         /// Redirects user to the ForgotPassword Window where they will be able to reset their password
         /// </summary>
@@ -75,9 +61,25 @@ namespace QRbert
         /// <param name="e"></param>
         private void ForgotPasswordBtn_Click(object sender, RoutedEventArgs e)
         {
-            QRCodeScanner scanQRCode = new QRCodeScanner();
-            string result = scanQRCode.DecodeQRCode();
-            MessageBox.Show(result);
+            
+        }
+
+        /// <summary>
+        /// Takes user to a new window to scan their QR code via the device webcam
+        /// Calls DecodeQRCode function from ScanQRCode class and verifies via a query to the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SignInViaQRCodeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DecodeQRCode();
+            // MessageBox.Show(result);
+            // I commented out the above line as it is for testing, feel free to uncomment it
+            // I need Denise to add code here to verify a user log in
+            // For now, I will redirect them to the staff portal
+            StaffPortal redirectStaffPortal = new StaffPortal();
+            redirectStaffPortal.Show();
+            this.Close();
         }
     }
 }
