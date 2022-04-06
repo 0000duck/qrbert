@@ -1,8 +1,9 @@
+using System.Windows;
 using System.Windows.Controls;
 
 namespace QRbert;
 
-public partial class StaffChangeEmail : Page
+public partial class StaffChangeEmail : Window
 {
     public StaffChangeEmail()
     {
