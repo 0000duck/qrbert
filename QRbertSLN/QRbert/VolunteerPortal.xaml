@@ -132,14 +132,8 @@
                 <MenuItem Header="View Timesheet"/>
             </MenuItem>
         </Menu>
-        <Menu Width="100" Height="22" Margin="400, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem Header="Volunteer" Name="mm1" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Track Active"/>
-                <MenuItem Header="Staff Search"/>
-                <MenuItem Header="Select a Pet"/>-
-            </MenuItem>
-        </Menu>
-        <Menu Width="100" Height="22" Margin="500, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
+        <!-- This is the Animal menu for a volunteer-->
+        <Menu Width="100" Height="22" Margin="450, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem Header="My Pets"/>
                 <MenuItem Header="Select a Pet"/>
