@@ -130,15 +130,15 @@
             <MenuItem Header="Volunteer" Name="mm1" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem Header="Track Active"/>
                 <MenuItem Header="Staff Search"/>
-                <MenuItem Header="Select a Pet"/>
+                <MenuItem Header="Assign Pet"/>
             </MenuItem>
         </Menu>
         <!-- This is the Animal menu-->
         <Menu Width="100" Height="22" Margin="500, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Animal Information"/>
+                <MenuItem Header="Select a Pet"/>
                 <MenuItem Header="Remove Animal"/>
-                <MenuItem Header="Pet Report"/>
+                <MenuItem Header="Pet Reports"/>
             </MenuItem>
         </Menu>
         <!-- This is the My Account menu-->
