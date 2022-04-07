@@ -48,14 +48,16 @@
             <Menu DockPanel.Dock="Top" Margin="500, -905, 0, 0" Width="100" Height = "25"
                   Background="Transparent" Foreground="Black" FontSize="16" FontWeight="Bold">
                 <MenuItem 
-                    Header="My Account"
-                    Click="StaffMyAccountPageBtn_Click">
+                    Header="My Account">
                     <!--Should this one be staff account or volunteer account?
                         I changed it to reflect the staff account, but this can be changed later-->
                     <MenuItem 
                         Header="Staff Account"
+                        Click="StaffMyAccountBtn_Click"
                         />
-                    <MenuItem Header="Log out" />
+                    <MenuItem 
+                        Header="Log out"
+                        Click="LogOutBtn_Click"/>
                     <Separator />
                     <MenuItem Header="Exit" />
                 </MenuItem>

@@ -20,7 +20,7 @@ namespace QRbert
 
         public void Navigate(Window nextWindow)
         {
-            this.Content = nextWindow;
+            nextWindow.Show();
         }
 
         /// <summary>
@@ -47,15 +47,17 @@ namespace QRbert
                 // For now, true means staff, false means volunteer, but this must be changed according to the above
                 if (true)
                 {
-                    Window RedirectSignInStaffPortal = new StaffPortal();
-                    RedirectSignInStaffPortal.Show();
+                    // Window RedirectSignInStaffPortal = new StaffPortal();
+                    // RedirectSignInStaffPortal.Show();
+                    Switcher.LogIn_RegisterSwitch(new StaffPortal());
                     this.Close();
                 }
                 else
                 {
                     // This appears greyed out b/c true is always true, if condition must be changed
-                    Window RedirectSignInVolunteerPortal = new VolunteerPortal();
-                    RedirectSignInVolunteerPortal.Show();
+                    // Window RedirectSignInVolunteerPortal = new VolunteerPortal();
+                    // RedirectSignInVolunteerPortal.Show();
+                    Switcher.LogIn_RegisterSwitch(new VolunteerPortal());
                     this.Close();
                 }
             }

@@ -1,9 +1,8 @@
 using System.Windows;
-using System.Windows.Controls;
 
 namespace QRbert;
 
-public partial class StaffPortal : Window
+public partial class StaffPortal
 {
     public StaffPortal()
     {
@@ -17,9 +16,10 @@ public partial class StaffPortal : Window
     /// <param name="nextPage">
     /// Type Page, represents the next page to redirect to
     /// </param>
-    public void Navigate(Page nextPage)
+    public void Navigate(Window nextWindow)
     {
-        this.Content = nextPage;
+        nextWindow.Show();
+        this.Close();
     }
 
     /// <summary>
@@ -28,9 +28,20 @@ public partial class StaffPortal : Window
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void StaffMyAccountPageBtn_Click(object sender, RoutedEventArgs e)
+    private void StaffMyAccountBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.StaffPageSwitch(new StaffMyAccountPage());
+        Switcher.StaffPageSwitch(new StaffMyAccount());
+    }
+
+    /// <summary>
+    /// Logs out Staff and redirects user to the Log In page via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void LogOutBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.LogOutSwitch();
+        this.Close();
     }
 
 }
