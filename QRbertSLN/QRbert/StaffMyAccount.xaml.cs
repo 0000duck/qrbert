@@ -1,11 +1,10 @@
 using System.Windows;
-using System.Windows.Controls;
 
 namespace QRbert;
 
-public partial class StaffMyAccountPage : Window
+public partial class StaffMyAccount
 {
-    public StaffMyAccountPage()
+    public StaffMyAccount()
     {
         InitializeComponent();
         Switcher.staffMyAccountPageSwitcher = this;
@@ -17,9 +16,10 @@ public partial class StaffMyAccountPage : Window
     /// <param name="nextPage">
     /// Type Page, represents the next page to redirect to
     /// </param>
-    public void Navigate(Page nextPage)
+    public void Navigate(Window nextWindow)
     {
-        this.Content = nextPage;
+        nextWindow.Show();
+        this.Close();
     }
 
     /// <summary>
@@ -30,9 +30,9 @@ public partial class StaffMyAccountPage : Window
     /// <param name="e"></param>
     private void StaffChangeEmailBtn_Click(object sender, RoutedEventArgs e)
     {
-        Window redirectStaffToChangeEmail = new StaffChangeEmail();
-        this.Content = redirectStaffToChangeEmail;
-        // Switcher.StaffMyAccountPageSwitch(new StaffChangeEmail());
+        // Window redirectStaffToChangeEmail = new StaffChangeEmail();
+        // this.Content = redirectStaffToChangeEmail;
+        Switcher.StaffMyAccountSwitch(new StaffChangeEmail());
     }
 
     /// <summary>
@@ -64,8 +64,30 @@ public partial class StaffMyAccountPage : Window
     /// <param name="e"></param>
     private void StaffChangePersonalInfoBtn_Click(object sender, RoutedEventArgs e)
     {
-        Window redirectStaffToChangePersonalInfo = new StaffChangePersonalInfo();
-        this.Content = redirectStaffToChangePersonalInfo;
-        // Switcher.StaffMyAccountPageSwitch(new StaffChangePersonalInfo());
+        // Window redirectStaffToChangePersonalInfo = new StaffChangePersonalInfo();
+        // this.Content = redirectStaffToChangePersonalInfo;
+        Switcher.StaffMyAccountSwitch(new StaffChangePersonalInfo());
+    }
+
+    /// <summary>
+    /// Redirects staff user to staff portal (where they came from)
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void StaffPortalBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.RedirectStaffPortal();
+        this.Close();
+    }
+
+    /// <summary>
+    /// Logs out staff user and takes them to the Log In Page
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void LogOutBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.LogOutSwitch();
+        this.Close();
     }
 }

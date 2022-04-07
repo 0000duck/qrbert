@@ -16,7 +16,7 @@ namespace QRbert
     public partial class LogIn_Register : Window
     {
         // Denise will open the connection to the database
-        String connectionString = @"Data Source = qrbert-rds1.cfe8s1xr87h2.us-west-1.rds.amazonaws.com; 
+        string connectionString = @"Data Source = qrbert-rds1.cfe8s1xr87h2.us-west-1.rds.amazonaws.com; 
                                 Initial Catalog = QRbertDB; User ID = rds1_admin; Password = rds1_admin;";
 
         public LogIn_Register()
@@ -27,7 +27,7 @@ namespace QRbert
 
         public void Navigate(Window nextWindow)
         {
-            this.Content = nextWindow;
+            nextWindow.Show();
         }
 
 
@@ -90,16 +90,18 @@ namespace QRbert
 
                 if (string.Equals(msg, staff))
                 {
-                    Window RedirectSignInStaffPortal = new StaffPortal();
-                    RedirectSignInStaffPortal.Show();
+                    // Window RedirectSignInStaffPortal = new StaffPortal();
+                    // RedirectSignInStaffPortal.Show();
+                    Switcher.LogIn_RegisterSwitch(new StaffPortal());
                     this.Close();
                 }
 
                 else
                 {
                     // This appears greyed out b/c true is always true, if condition must be changed
-                    Window RedirectSignInVolunteerPortal = new VolunteerPortal();
-                    RedirectSignInVolunteerPortal.Show();
+                    // Window RedirectSignInVolunteerPortal = new VolunteerPortal();
+                    // RedirectSignInVolunteerPortal.Show();
+                    Switcher.LogIn_RegisterSwitch(new VolunteerPortal());
                     this.Close();
                 }
 
@@ -107,25 +109,6 @@ namespace QRbert
 
         }
 
-    /// <summary>
-    /// Redirects user to the ForgotPassword Window where they will be able to reset their password
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void ForgotPasswordBtn_Click(object sender, RoutedEventArgs e)
-    {
-        // Make a Window for this
-    }
-
-    public string verifyRole(string s)
-    {
-        using SqlConnection sqlCon = new SqlConnection(connectionString);
-        sqlCon.Open();
-        SqlCommand command = new SqlCommand(s, sqlCon);
-        string query = command.ExecuteScalar().ToString();
-        return query;
-    }
-    
         /// <summary>
         /// Redirects user to the ForgotPassword Window where they will be able to reset their password
         /// </summary>
@@ -133,8 +116,18 @@ namespace QRbert
         /// <param name="e"></param>
         private void ForgotPasswordBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+            // Make a Window for this
         }
+
+        public string verifyRole(string s)
+        {
+            using SqlConnection sqlCon = new SqlConnection(connectionString);
+            sqlCon.Open();
+            SqlCommand command = new SqlCommand(s, sqlCon);
+            string query = command.ExecuteScalar().ToString();
+            return query;
+        }
+    
 
         /// <summary>
         /// Takes user to a new window to scan their QR code via the device webcam
@@ -149,8 +142,7 @@ namespace QRbert
             // I commented out the above line as it is for testing, feel free to uncomment it
             // I need Denise to add code here to verify a user log in
             // For now, I will redirect them to the staff portal
-            StaffPortal redirectStaffPortal = new StaffPortal();
-            redirectStaffPortal.Show();
+            Switcher.LogIn_RegisterSwitch(new StaffPortal());
             this.Close();
         }
     }
