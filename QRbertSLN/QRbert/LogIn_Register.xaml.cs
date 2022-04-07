@@ -1,11 +1,12 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using System.Windows.Threading;
 using System.Data.SqlClient;
+using OpenCVDemo;
+using OpenCvSharp;
+using Window = System.Windows.Window;
+using static QRbert.QRCodeScanner;
 
 namespace QRbert
 {
@@ -46,6 +47,7 @@ namespace QRbert
             this.Close();
 
         }
+
 
         /// <summary>
         /// Signs the user in given their account type and redirects them to the correct portal page
@@ -122,6 +124,34 @@ namespace QRbert
         SqlCommand command = new SqlCommand(s, sqlCon);
         string query = command.ExecuteScalar().ToString();
         return query;
+    }
+    
+        /// <summary>
+        /// Redirects user to the ForgotPassword Window where they will be able to reset their password
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ForgotPasswordBtn_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        /// <summary>
+        /// Takes user to a new window to scan their QR code via the device webcam
+        /// Calls DecodeQRCode function from ScanQRCode class and verifies via a query to the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SignInViaQRCodeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DecodeQRCode();
+            // MessageBox.Show(result);
+            // I commented out the above line as it is for testing, feel free to uncomment it
+            // I need Denise to add code here to verify a user log in
+            // For now, I will redirect them to the staff portal
+            StaffPortal redirectStaffPortal = new StaffPortal();
+            redirectStaffPortal.Show();
+            this.Close();
         }
     }
 
