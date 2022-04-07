@@ -27,7 +27,7 @@ namespace QRbert
 
         public void Navigate(Window nextWindow)
         {
-            this.Content = nextWindow;
+            nextWindow.Show();
         }
 
 
@@ -90,16 +90,18 @@ namespace QRbert
 
                 if (string.Equals(msg, staff))
                 {
-                    Window RedirectSignInStaffPortal = new StaffPortal();
-                    RedirectSignInStaffPortal.Show();
+                    // Window RedirectSignInStaffPortal = new StaffPortal();
+                    // RedirectSignInStaffPortal.Show();
+                    Switcher.LogIn_RegisterSwitch(new StaffPortal());
                     this.Close();
                 }
 
                 else
                 {
                     // This appears greyed out b/c true is always true, if condition must be changed
-                    Window RedirectSignInVolunteerPortal = new VolunteerPortal();
-                    RedirectSignInVolunteerPortal.Show();
+                    // Window RedirectSignInVolunteerPortal = new VolunteerPortal();
+                    // RedirectSignInVolunteerPortal.Show();
+                    Switcher.LogIn_RegisterSwitch(new VolunteerPortal());
                     this.Close();
                 }
 
@@ -149,8 +151,7 @@ namespace QRbert
             // I commented out the above line as it is for testing, feel free to uncomment it
             // I need Denise to add code here to verify a user log in
             // For now, I will redirect them to the staff portal
-            StaffPortal redirectStaffPortal = new StaffPortal();
-            redirectStaffPortal.Show();
+            Switcher.LogIn_RegisterSwitch(new StaffPortal());
             this.Close();
         }
     }

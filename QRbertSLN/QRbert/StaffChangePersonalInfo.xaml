@@ -144,8 +144,12 @@
         <!-- This is the My Account menu-->
         <Menu Width="100" Height="22" Margin="600, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Staff Account"/>
-                <MenuItem Header="Log out"/>
+                <MenuItem 
+                    Header="Staff Account"
+                    Click="StaffAccountBtn_Click"/>
+                <MenuItem 
+                    Header="Log out"
+                    Click="LogOutBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This the orange semitransparent stack panel in the center with the button/textbox controls-->
