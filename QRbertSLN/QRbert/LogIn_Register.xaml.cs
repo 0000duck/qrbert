@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using System.Windows.Threading;
+using System.Data.SqlClient;
 
 namespace QRbert
 {
@@ -13,6 +14,10 @@ namespace QRbert
     /// </summary>
     public partial class LogIn_Register : Window
     {
+        // Denise will open the connection to the database
+        String connectionString = @"Data Source = qrbert-rds1.cfe8s1xr87h2.us-west-1.rds.amazonaws.com; 
+                                Initial Catalog = QRbertDB; User ID = rds1_admin; Password = rds1_admin;";
+
         public LogIn_Register()
         {
             InitializeComponent();
@@ -39,9 +44,9 @@ namespace QRbert
             Window RegisterNewUser = new Register();
             RegisterNewUser.Show();
             this.Close();
-            
+
         }
-        
+
         /// <summary>
         /// Signs the user in given their account type and redirects them to the correct portal page
         /// Given the portals are pages, they will be able to navigate between the pages
@@ -54,22 +59,40 @@ namespace QRbert
         /// <param name="e"></param>
         private void SignInUserBtn_Click(object sender, RoutedEventArgs e)
         {
-            // Denise will open the connection to the database
+
+            // Takes them to the correct portal depending on the type of user
+            // Given the username, Denise will query the database to retrieve the account type
+            string staff = "Staff";
+
+            // email and password input from the user
+            string emailInput = txtEmail.Text;
+            string pwInput = txtPassword.Text;
+
+            // Given the username, Denise will query the database to retrieve the account type
+            string msg = verifyRole("SELECT count(*) From QRbertTables.Registration where email = '" + emailInput +
+                                    "' and password ='" + pwInput + "'");
             // David will get the password salt/hash thing to validate their credentials and make sure they match
             // If statement will control whether this is correct or not
             // Else will throw a message box displaying incorrect credentials
-            if (true)
+            if (msg.Equals("0"))
             {
-                // Takes them to the correct portal depending on the type of user
-                // Given the username, Denise will query the database to retrieve the account type
-                // If statement will control whether they are taken to the staff/volunteer portal
-                // For now, true means staff, false means volunteer, but this must be changed according to the above
-                if (true)
+                MessageBox.Show("One of the inputted credentials is incorrect. Please try again.");
+            }
+            // If statement will control whether they are taken to the staff/volunteer portal
+            // For now, true means staff, false means volunteer, but this must be changed according to the above
+            else
+            {
+                // finds a matching email and password and retrieves the faculty role to store in "msg" 
+                msg = verifyRole("Select [Faculty-Role] From QRbertTables.Registration Where email = '" + emailInput +
+                                 "' and password ='" + pwInput + "'");
+
+                if (string.Equals(msg, staff))
                 {
                     Window RedirectSignInStaffPortal = new StaffPortal();
                     RedirectSignInStaffPortal.Show();
                     this.Close();
                 }
+
                 else
                 {
                     // This appears greyed out b/c true is always true, if condition must be changed
@@ -77,21 +100,30 @@ namespace QRbert
                     RedirectSignInVolunteerPortal.Show();
                     this.Close();
                 }
+
             }
-            else
-            {
-                MessageBox.Show("One of the inputted credentials is incorrect. Please try again.");
-            }
+
         }
-        
-        /// <summary>
-        /// Redirects user to the ForgotPassword Window where they will be able to reset their password
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ForgotPasswordBtn_Click(object sender, RoutedEventArgs e)
-        {
-            // Make a Window for this
+
+    /// <summary>
+    /// Redirects user to the ForgotPassword Window where they will be able to reset their password
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ForgotPasswordBtn_Click(object sender, RoutedEventArgs e)
+    {
+        // Make a Window for this
+    }
+
+    public string verifyRole(string s)
+    {
+        using SqlConnection sqlCon = new SqlConnection(connectionString);
+        sqlCon.Open();
+        SqlCommand command = new SqlCommand(s, sqlCon);
+        string query = command.ExecuteScalar().ToString();
+        return query;
         }
     }
+
 }
+

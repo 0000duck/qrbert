@@ -28,6 +28,7 @@ public partial class Register : Window
                                 Initial Catalog = QRbertDB; User ID = rds1_admin; Password = rds1_admin;";
 
   private string facultyRole;
+  private string staff = "Staff";
   
   /// <summary>
   /// Function that initializes the Register window
@@ -437,10 +438,15 @@ public partial class Register : Window
 
         else
         {
+            /* creates and opens a connection to the Database. connectionString was declared in line #27
+              * which validates the DB credentials 
+              */
             using SqlConnection sqlCon = new SqlConnection(connectionString);
             sqlCon.Open();
             
-            // User Input stored in Registration table 
+            /* User Input stored in Registration table
+             * RegUser is the stored procedure created in the DB that inserts data into each row of the Registration table
+            */ 
             SqlCommand sqlCmd = new SqlCommand("RegUser", sqlCon);
             sqlCmd.CommandType = CommandType.StoredProcedure;
             sqlCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
@@ -449,6 +455,7 @@ public partial class Register : Window
             sqlCmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
             sqlCmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
             
+            // Contact Info stored in Contact_Info Table using Contact stored procedure created in database
             SqlCommand contact = new SqlCommand("Contact", sqlCon);
             contact.CommandType = CommandType.StoredProcedure;
             contact.Parameters.AddWithValue("@Email", txtEmail.Text);
@@ -461,8 +468,43 @@ public partial class Register : Window
             contact.Parameters.AddWithValue("@PhoneNum", txtPhone.Text);
             contact.Parameters.AddWithValue("@DL_ID", txtDriver.Text);
 
-            sqlCmd.ExecuteNonQuery();
-            contact.ExecuteNonQuery();
+            // connection to Staff input stored procedure from Database
+           SqlCommand staffCon = new SqlCommand("StaffInput", sqlCon);
+           // connection to Volunteer input stored procedure from Database
+           SqlCommand volCon = new SqlCommand("VolInput", sqlCon);
+           
+           /* verify what faculty role was created during Registration , if it is a Staff
+            * then store and create a New staff profile in the Staff table database
+            * if Volunteer, then skip the Staff stored procedure and use the Volunteer stored procedure instead
+            * to create a New and save Volunteer profile
+            */
+            if (string.Equals(facultyRole, staff))
+            {
+                // Staff credentials created and stored in Contact_Info Table 
+
+                staffCon.CommandType = CommandType.StoredProcedure;
+                staffCon.Parameters.AddWithValue("@Email", txtEmail.Text);
+                staffCon.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
+                staffCon.Parameters.AddWithValue("@Faculty_Role", facultyRole);
+                sqlCmd.ExecuteNonQuery();
+                contact.ExecuteNonQuery();
+                staffCon.ExecuteNonQuery();
+            }
+            
+            else
+            {
+                // Volunteer credentials created and stored in Contact_Info Table 
+                
+                volCon.CommandType = CommandType.StoredProcedure;
+                volCon.Parameters.AddWithValue("@Email", txtEmail.Text);
+                volCon.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
+                volCon.Parameters.AddWithValue("@Faculty_Role", facultyRole);
+                sqlCmd.ExecuteNonQuery();
+                contact.ExecuteNonQuery();
+                volCon.ExecuteNonQuery();
+                
+            }
+            
             MessageBox.Show("Sign up successful. Please log in.");
             
             // After a successful registration, user is redirected to 
