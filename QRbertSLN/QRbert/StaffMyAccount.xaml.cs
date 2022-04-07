@@ -68,17 +68,7 @@ public partial class StaffMyAccount
         // this.Content = redirectStaffToChangePersonalInfo;
         Switcher.StaffMyAccountSwitch(new StaffChangePersonalInfo());
     }
-
-    /// <summary>
-    /// Redirects staff user to staff portal (where they came from)
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void StaffPortalBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.RedirectStaffPortal();
-        this.Close();
-    }
+    
 
     /// <summary>
     /// Logs out staff user and takes them to the Log In Page
@@ -88,6 +78,18 @@ public partial class StaffMyAccount
     private void LogOutBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.LogOutSwitch();
+        this.Close();
+    }
+    
+    
+    /// <summary>
+    /// Redirects user to home page - staff portal via QRbert image click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void HomeStaffPortalBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.RedirectStaffPortal();
         this.Close();
     }
 }

@@ -43,4 +43,15 @@ public partial class StaffChangePassword : Window
     {
         Switcher.LogOutSwitch();
     }
+    
+    /// <summary>
+    /// Redirects user to home page - staff portal via QRbert image click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void HomeStaffPortalBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.RedirectStaffPortal();
+        this.Close();
+    }
 }
