@@ -51,6 +51,7 @@
                 BorderBrush="#FF9100"
                 BorderThickness="2" 
                 Text="Email" 
+                Name = "txtEmail"
                 Height="25"
                 >
                 <TextBox.Resources>
@@ -80,6 +81,7 @@
                 BorderBrush="#FF9100"
                 BorderThickness="2" 
                 Text="Password"
+                Name = "txtPassword"
                 >
                 <TextBox.Resources>
                     <Style 
@@ -127,7 +129,7 @@
         the form. -->
         <StackPanel 
             Height="40" 
-            Width="110" 
+            Width="100" 
             Margin="30, -400, 0, 0" 
             Background="Transparent"
             >
@@ -137,7 +139,7 @@
                 FontWeight="Bold" 
                 FontSize="25"
                 >
-                Register
+                Sign In
             </Label>
         </StackPanel>
         <!--With Your QR Code label for user centered in the middle of the white
@@ -145,7 +147,7 @@
             and the QR code so that it doesn't look too clumped together. -->
         <StackPanel 
             Height="40" 
-            Width="130" 
+            Width="160" 
             Margin="25,-325,-25,0" 
             Background="Transparent"
             >
@@ -154,7 +156,7 @@
                 FontWeight="Bold" 
                 FontSize="25"
                 >
-                New User
+                Via QR Code
             </Label>
         </StackPanel>
         <!--QR code image from the Github repository. Not meant to be scanned. Just
@@ -171,7 +173,7 @@
             radius.-->
         <StackPanel 
             Height="40" 
-            Width="150" 
+            Width="155" 
             Margin="0,20,-25,0" 
             Background="Transparent"
             >
@@ -183,9 +185,9 @@
                 BorderThickness="2" 
                 BorderBrush="#FF9100" 
                 Padding="1"
-                Click="RegisterNewUserBtn_Click"
+                Click="SignInViaQRCodeBtn_Click"
                 >
-                Register
+                Scan QR Code
                 <Button.Resources>
                     <Style 
                         TargetType="{x:Type Border}"

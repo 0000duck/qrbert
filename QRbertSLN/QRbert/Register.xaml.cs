@@ -5,9 +5,11 @@ using System.Windows.Controls;
 using System.Data.SqlClient;
 using System.Windows.Navigation;
 using System.Text.RegularExpressions;
+using System.Windows.Media;
 //using System.Windows.Interactivity
 using Microsoft.Xaml.Behaviors;
-
+using QRCoder;
+using QRCoder.Xaml;
 
 
 //using SqlCommand = Microsoft.Data.SqlClient.SqlCommand;
@@ -28,6 +30,7 @@ public partial class Register : Window
                                 Initial Catalog = QRbertDB; User ID = rds1_admin; Password = rds1_admin;";
 
   private string facultyRole;
+  private string staff = "Staff";
   
   /// <summary>
   /// Function that initializes the Register window
@@ -416,7 +419,8 @@ public partial class Register : Window
     
     /// <summary>
     /// Function that when a button is clicked, it validates all textbox information before sending it to the database.
-    /// If anything is not filled out properly, it does not get added to the database. Otherwise, add it to the database.
+    /// If anything is not filled out properly, it does not get added to the database. Otherwise, add it to the
+    /// database and displays the QR code for the user to save. Then, redirects them to the LogIn Window.
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -429,7 +433,6 @@ public partial class Register : Window
 
         if (!Authenticate(txtFirstName,txtLastName,txtEmail,txtDriver,txtAddress,txtCity,txtState,txtZipcode,txtPhone,Password,ConfirmPassword))
         {
-            
             MessageBox.Show("Please fill out all mandatory fields on the page.");
         }
         
@@ -437,10 +440,15 @@ public partial class Register : Window
 
         else
         {
+            /* creates and opens a connection to the Database. connectionString was declared in line #27
+              * which validates the DB credentials 
+              */
             using SqlConnection sqlCon = new SqlConnection(connectionString);
             sqlCon.Open();
             
-            // User Input stored in Registration table 
+            /* User Input stored in Registration table
+             * RegUser is the stored procedure created in the DB that inserts data into each row of the Registration table
+            */ 
             SqlCommand sqlCmd = new SqlCommand("RegUser", sqlCon);
             sqlCmd.CommandType = CommandType.StoredProcedure;
             sqlCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
@@ -449,6 +457,7 @@ public partial class Register : Window
             sqlCmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
             sqlCmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
             
+            // Contact Info stored in Contact_Info Table using Contact stored procedure created in database
             SqlCommand contact = new SqlCommand("Contact", sqlCon);
             contact.CommandType = CommandType.StoredProcedure;
             contact.Parameters.AddWithValue("@Email", txtEmail.Text);
@@ -461,18 +470,73 @@ public partial class Register : Window
             contact.Parameters.AddWithValue("@PhoneNum", txtPhone.Text);
             contact.Parameters.AddWithValue("@DL_ID", txtDriver.Text);
 
-            sqlCmd.ExecuteNonQuery();
-            contact.ExecuteNonQuery();
-            MessageBox.Show("Sign up successful. Please log in.");
+            // connection to Staff input stored procedure from Database
+           SqlCommand staffCon = new SqlCommand("StaffInput", sqlCon);
+           // connection to Volunteer input stored procedure from Database
+           SqlCommand volCon = new SqlCommand("VolInput", sqlCon);
+           
+           /* verify what faculty role was created during Registration , if it is a Staff
+            * then store and create a New staff profile in the Staff table database
+            * if Volunteer, then skip the Staff stored procedure and use the Volunteer stored procedure instead
+            * to create a New and save Volunteer profile
+            */
+            if (string.Equals(facultyRole, staff))
+            {
+                // Staff credentials created and stored in Contact_Info Table 
+
+                staffCon.CommandType = CommandType.StoredProcedure;
+                staffCon.Parameters.AddWithValue("@Email", txtEmail.Text);
+                staffCon.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
+                staffCon.Parameters.AddWithValue("@Faculty_Role", facultyRole);
+                sqlCmd.ExecuteNonQuery();
+                contact.ExecuteNonQuery();
+                staffCon.ExecuteNonQuery();
+            }
             
+            else
+            {
+                // Volunteer credentials created and stored in Contact_Info Table 
+                
+                volCon.CommandType = CommandType.StoredProcedure;
+                volCon.Parameters.AddWithValue("@Email", txtEmail.Text);
+                volCon.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
+                volCon.Parameters.AddWithValue("@Faculty_Role", facultyRole);
+                sqlCmd.ExecuteNonQuery();
+                contact.ExecuteNonQuery();
+                volCon.ExecuteNonQuery();
+                
+            }
+            
+            MessageBox.Show("Sign up successful. Please log in.");
+
+            
+            // Creating the user's QR code and displaying it
+            QRCodeGenerator qrCodeGenerator = new QRCodeGenerator();
+            // Saves the email, password, and facultyrole as a string for the QR code, this can be changed later
+            String userInfo = txtEmail.Text + ConfirmPassword.Password + facultyRole;
+            QRCodeData data = qrCodeGenerator.CreateQrCode(userInfo, QRCodeGenerator.ECCLevel.Q);
+            XamlQRCode qrCode = new XamlQRCode(data);
+            DrawingImage qrCodeImage = qrCode.GetGraphic(20);
+            // Creates a new window to display the QR code and shows it
+            ShowQRCode showQRCode = new ShowQRCode();
+            showQRCode.QRCodeViewer.Source = qrCodeImage;
+            showQRCode.QRCodeViewer.Visibility = Visibility.Visible;
+            MessageBox.Show("Sign up successful. Save your QR code and log in.");
+            while (true)
+            {
+                showQRCode.Show();
+                if (!showQRCode.IsActive)
+                {
+                    break;
+                }
+            }
+
             // After a successful registration, user is redirected to 
             // the Log In window to login with their new credentials
             Window redirectNewUser = new LogIn_Register();      // Creates the new window
             redirectNewUser.Show();     // Opens the new window
             this.Close();       // Closes the current window
         }
-
-        
     }
 
     
