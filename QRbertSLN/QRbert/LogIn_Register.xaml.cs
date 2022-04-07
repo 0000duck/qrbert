@@ -2,9 +2,10 @@
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Navigation;
 using System.Windows.Threading;
+using Aspose.Pdf;
+using Page = System.Windows.Controls.Page;
 
 namespace QRbert
 {
@@ -81,6 +82,22 @@ namespace QRbert
         private void ForgotPasswordBtn_Click(object sender, RoutedEventArgs e)
         {
             // Make a Window for this
+            PdfMaker();
         }
+        
+        public void PdfMaker()
+        {
+            Document pdfTest = new Document();
+            // Add page
+            Aspose.Pdf.Page page = pdfTest.Pages.Add();
+            string practiceText = "I just want to see how it looks on the page.";
+
+            // Add text to new page
+            page.Paragraphs.Add(new Aspose.Pdf.Text.TextFragment("Hello World!"));
+            page.Paragraphs.Add(new Aspose.Pdf.Text.TextFragment(practiceText));
+
+            pdfTest.Save("document.pdf");
+        }
+
     }
 }
