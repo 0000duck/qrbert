@@ -16,7 +16,7 @@ namespace QRbert
     public partial class LogIn_Register : Window
     {
         // Denise will open the connection to the database
-        String connectionString = @"Data Source = qrbert-rds1.cfe8s1xr87h2.us-west-1.rds.amazonaws.com; 
+        string connectionString = @"Data Source = qrbert-rds1.cfe8s1xr87h2.us-west-1.rds.amazonaws.com; 
                                 Initial Catalog = QRbertDB; User ID = rds1_admin; Password = rds1_admin;";
 
         public LogIn_Register()
@@ -109,25 +109,6 @@ namespace QRbert
 
         }
 
-    /// <summary>
-    /// Redirects user to the ForgotPassword Window where they will be able to reset their password
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void ForgotPasswordBtn_Click(object sender, RoutedEventArgs e)
-    {
-        // Make a Window for this
-    }
-
-    public string verifyRole(string s)
-    {
-        using SqlConnection sqlCon = new SqlConnection(connectionString);
-        sqlCon.Open();
-        SqlCommand command = new SqlCommand(s, sqlCon);
-        string query = command.ExecuteScalar().ToString();
-        return query;
-    }
-    
         /// <summary>
         /// Redirects user to the ForgotPassword Window where they will be able to reset their password
         /// </summary>
@@ -135,8 +116,18 @@ namespace QRbert
         /// <param name="e"></param>
         private void ForgotPasswordBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+            // Make a Window for this
         }
+
+        public string verifyRole(string s)
+        {
+            using SqlConnection sqlCon = new SqlConnection(connectionString);
+            sqlCon.Open();
+            SqlCommand command = new SqlCommand(s, sqlCon);
+            string query = command.ExecuteScalar().ToString();
+            return query;
+        }
+    
 
         /// <summary>
         /// Takes user to a new window to scan their QR code via the device webcam
