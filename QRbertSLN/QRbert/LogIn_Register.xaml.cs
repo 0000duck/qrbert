@@ -88,8 +88,7 @@ namespace QRbert
             // I commented out the above line as it is for testing, feel free to uncomment it
             // I need Denise to add code here to verify a user log in
             // For now, I will redirect them to the staff portal
-            StaffPortal redirectStaffPortal = new StaffPortal();
-            redirectStaffPortal.Show();
+            Switcher.LogIn_RegisterSwitch(new StaffPortal());
             this.Close();
         }
     }
