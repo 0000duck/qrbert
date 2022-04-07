@@ -10,18 +10,19 @@ public partial class VolunteerPortal : Window
     public VolunteerPortal()
     {
         InitializeComponent();
-        Switcher.volunteerpageSwitcher = this;
+        Switcher.VolunteerPortalSwitcher = this;
     }
     
     /// <summary>
     /// Function to navigate within the VolunteerPortal
     /// </summary>
-    /// <param name="nextPage">
+    /// <param name="nextWindow">
     /// Type page, represents the next desired page to navigate to
     /// </param>
-    public void Navigate(Page nextPage)
+    public void Navigate(Window nextWindow)
     {
-        this.Content = nextPage;
+        nextWindow.Show();
+        this.Close();
     }
     
     /// <summary>
@@ -35,14 +36,31 @@ public partial class VolunteerPortal : Window
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void VolunteerAcctPageRedirectBtn_Click(object sender, RoutedEventArgs e)
+    private void VolunteerMyAcctBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.VolunteerPageSwitch(new VolunteerMyAccountPage());
-        /*
-        Page redirectVolunteerMyAcctPage = new VolunteerMyAccountPage();
-        this.Content = redirectVolunteerMyAcctPage;
-        */
+        Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
+        this.Close();
     }
-    
-    
+
+    /// <summary>
+    /// Logs out Volunteer and redirects user to the Log In page via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void LogOutBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.LogOutSwitch();
+        this.Close();
+    }
+
+    /// <summary>
+    /// Redirects user to home page - volunteer portal via QRbert image click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void HomeVolunteerPortalBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.RedirectVolunteerPortal();
+        this.Close();
+    }
 }

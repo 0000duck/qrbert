@@ -13,13 +13,13 @@ public class Switcher
     public static StaffPortal staffpageSwitcher;
     // Static class variable staffpageSwitcher of type VolunteerPortal
     // Allows this class variable to only be used for the volunteer portal
-    public static VolunteerPortal volunteerpageSwitcher;
+    public static VolunteerPortal VolunteerPortalSwitcher;
     // Static class variable staffMyAccountPageSwitcher of type StaffMyAccount page
     // Allows this class variable to only be used for the MyAccount Page for Staff
     public static StaffMyAccount staffMyAccountPageSwitcher;
     // Static class variable volunteerMyAccountPageSwitcher of type VolunteerMyAccount page
     // Allows this class variable to only be used for the MyAccount page for volunteer
-    public static VolunteerMyAccountPage volunteerMyAccountPageSwitcher;
+    public static VolunteerMyAccount VolunteerMyAccountSwitcher;
     // Static class variable LogInPageSwitcher of type LogIn/Register Window
     // Allows this class variable to only be used for the LogIn/Register Window for users
     public static LogIn_Register LogInRegisterSwitcher;
@@ -44,6 +44,15 @@ public class Switcher
     // Static class variable StaffViewPetReportSwitcher of type StaffViewPetReport window
     // Allows this class variable to only be used for the StaffViewPetReportSwitcher window for users
     public static StaffViewPetReport StaffViewPetReportSwitcher;
+    // Static class variable VolunteerChangeEmailSwitcher of type VolunteerChangeEmail window
+    // Allows this class variable to only be used for the VolunteerChangeEmailSwitcher window for users
+    public static VolunteerChangeEmail VolunteerChangeEmailSwitcher;
+    // Static class variable VolunteerChangePwdSwitcher of type VolunteerChangePassword window
+    // Allows this class variable to only be used for the VolunteerChangePwdSwitcher window for users
+    public static VolunteerChangePassword VolunteerChangePwdSwitcher;
+    // Static class variable VolunteerForgotPwdSwitcher of type VolunteerForgotPassword window
+    // Allows this class variable to only be used for the VolunteerForgotPwdSwitcher window for users
+    public static VolunteerForgotPassword VolunteerForgotPasswordSwitcher;
 
     /// <summary>
     /// Static function that only works for the StaffPortal Window
@@ -63,12 +72,12 @@ public class Switcher
     /// Gets newPage object and uses the built-in navigate windows method to get the page and load it
     /// Calls the Navigate function written in the VolunteerPortal cs file and passes the page to it
     /// </summary>
-    /// <param name="newPage">
+    /// <param name="newWindow">
     /// Type Page, represents the desired page to navigate to
     /// </param>
-    public static void VolunteerPageSwitch(Page newPage)
+    public static void VolunteerPortalSwitch(Window newWindow)
     {
-        volunteerpageSwitcher.Navigate(newPage);
+        VolunteerPortalSwitcher.Navigate(newWindow);
     }
 
     /// <summary>
@@ -86,17 +95,16 @@ public class Switcher
     }
     
     /// <summary>
-    /// Static function that only works for the Volunteer MyAccount Page
+    /// Static function that only works for the Volunteer MyAccount Window
     /// Gets newPage object and uses the built-in navigate windows method to get the page and load it
     /// Calls the Navigate function written in the VolunteerMyAccount cs file and passes the page to it
     /// </summary>
-    /// <param name="newPage">
+    /// <param name="newWindow">
     /// Type page, represents the desired page to navigate to
     /// </param>
-    public static void VolunteerMyAccountPageSwitch(Page newPage) 
+    public static void VolunteerMyAcctSwitch(Window newWindow) 
     {
-        volunteerMyAccountPageSwitcher.Navigate(newPage);
-        
+        VolunteerMyAccountSwitcher.Navigate(newWindow);
     }
     
     /// <summary>
@@ -225,5 +233,44 @@ public class Switcher
     public static void StaffViewPetReportSwitch(Window newWindow)
     {
         StaffViewPetReportSwitcher.Navigate(newWindow);
+    }
+
+    /// <summary>
+    /// Static function that only works for the VolunteerChangeEmail method
+    /// Gets newWindow object and uses the built-in navigate windows method to get the window and loads it
+    /// Calls the Navigate window written in the VolunteerChangeEmail cs file and passes the window to it
+    /// </summary>
+    /// <param name="newWindow">
+    /// Type window, represents the desired window to navigate to
+    /// </param>
+    public static void VolunteerChangeEmailSwitch(Window newWindow)
+    {
+        VolunteerChangeEmailSwitcher.Navigate(newWindow);
+    }
+
+    /// <summary>
+    /// Static function that only works for the VolunteerChangeEmail method
+    /// Gets newWindow object and uses the built-in navigate windows method to get the window and loads it
+    /// Calls the Navigate window written in the VolunteerChangeEmail cs file and passes the window to it
+    /// </summary>
+    /// <param name="newWindow">
+    /// Type Window, represents the desired window to navigate to
+    /// </param>
+    public static void VolunteerChangePwdSwitch(Window newWindow)
+    {
+        VolunteerChangePwdSwitcher.Navigate(newWindow);
+    }
+
+    /// <summary>
+    /// Static function that only works for the VolunteerForgotPwd method
+    /// Gets newWindow object and uses the built-in navigate windows method to get the window and loads it
+    /// Calls the Navigate window written in the VolunteerForgotPassword cs file and passes the window to it
+    /// </summary>
+    /// <param name="newWindow">
+    /// Type Window, represents the desired window to navigate to
+    /// </param>
+    public static void VolunteerForgotPwdSwitch(Window newWindow)
+    {
+        VolunteerForgotPasswordSwitcher.Navigate(newWindow);
     }
 }

@@ -3,23 +3,24 @@ using System.Windows.Controls;
 
 namespace QRbert;
 
-public partial class VolunteerMyAccountPage : Page
+public partial class VolunteerMyAccount : Window
 {
-    public VolunteerMyAccountPage()
+    public VolunteerMyAccount()
     {
         InitializeComponent();
-        Switcher.volunteerMyAccountPageSwitcher = this;
+        Switcher.VolunteerMyAccountSwitcher = this;
     }
     
     /// <summary>
     /// Public function that allows to navigate to the next desired page
     /// </summary>
-    /// <param name="nextPage">
+    /// <param name="nextWindow">
     /// Type Page, represents the next page to redirect to
     /// </param>
-    public void Navigate(Page nextPage)
+    public void Navigate(Window nextWindow)
     {
-        this.Content = nextPage;
+        nextWindow.Show();
+        this.Close();
     }
     
     /// <summary>
@@ -30,7 +31,8 @@ public partial class VolunteerMyAccountPage : Page
     /// <param name="e"></param>
     private void VolunteerChangeEmailBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.VolunteerMyAccountPageSwitch(new VolunteerChangeEmail());
+        Switcher.VolunteerMyAcctSwitch(new VolunteerChangeEmail());
+        this.Close();
     }
 
     /// <summary>
@@ -62,6 +64,28 @@ public partial class VolunteerMyAccountPage : Page
     /// <param name="e"></param>
     private void VolunteerChangePersonalInfoBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.VolunteerMyAccountPageSwitch(new VolunteerChangePersonalInformation());
+        Switcher.VolunteerMyAcctSwitch(new VolunteerChangePersonalInformation());
+    }
+
+    /// <summary>
+    /// Logs out Volunteer and redirects user to the Log In page via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void LogOutBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.LogOutSwitch();
+        this.Close();
+    }
+
+    /// <summary>
+    /// Redirects user to home page - volunteer portal via QRbert image click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void HomeVolunteerPortalBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.RedirectVolunteerPortal();
+        this.Close();
     }
 }
