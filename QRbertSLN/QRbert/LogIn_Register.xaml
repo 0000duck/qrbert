@@ -51,6 +51,7 @@
                 BorderBrush="#FF9100"
                 BorderThickness="2" 
                 Text="Email" 
+                Name = "txtEmail"
                 Height="25"
                 >
                 <TextBox.Resources>
@@ -80,6 +81,7 @@
                 BorderBrush="#FF9100"
                 BorderThickness="2" 
                 Text="Password"
+                Name = "txtPassword"
                 >
                 <TextBox.Resources>
                     <Style 
