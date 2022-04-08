@@ -53,6 +53,12 @@ public class Switcher
     // Static class variable VolunteerForgotPwdSwitcher of type VolunteerForgotPassword window
     // Allows this class variable to only be used for the VolunteerForgotPwdSwitcher window for users
     public static VolunteerForgotPassword VolunteerForgotPasswordSwitcher;
+    // Static class variable StaffPetReportViewerSwitcher of type StaffPetReportViewer window
+    // Allows this class variable to only be used for the StaffPetReportViewerSwitcher window for users
+    public static StaffPetReportViewer StaffPetReportViewerSwitcher;
+    // Static class variable VolunteerPetReportViewerSwitcher of type VolunteerPetReportViewer window
+    // Allows this class variable to only be used for the VolunteerPetReportViewerSwitcher window for users
+    public static VolunteerPetReportViewer VolunteerPetReportViewerSwitcher;
 
     /// <summary>
     /// Static function that only works for the StaffPortal Window
@@ -60,7 +66,7 @@ public class Switcher
     /// Calls the Navigate function written in the StaffPortal cs file and passes the page to it
     /// </summary>
     /// <param name="newWindow">
-    /// Type Page, represents the desired page to navigate to
+    /// Type Window, represents the desired window to navigate to
     /// </param>
     public static void StaffPageSwitch(Window newWindow)
     {
@@ -272,5 +278,31 @@ public class Switcher
     public static void VolunteerForgotPwdSwitch(Window newWindow)
     {
         VolunteerForgotPasswordSwitcher.Navigate(newWindow);
+    }
+
+    /// <summary>
+    /// Static function that only works for the StaffPetReportViewer method
+    /// Gets newWindow object and uses the built-in navigate windows method to get the window and loads it
+    /// Calls the Navigate window written in the StaffPetReportViewer cs file and passes the window to it
+    /// </summary>
+    /// <param name="newWindow">
+    /// Type Window, represents the desired window to navigate to
+    /// </param>
+    public static void StaffPetReportViewerSwitch(Window newWindow)
+    {
+        StaffPetReportViewerSwitcher.Navigate(newWindow);
+    }
+
+    /// <summary>
+    /// Static function that only works for the VolunteerPetReportViewer method
+    /// Gets newWindow object and uses the built-in navigate windows method to get the window and loads it
+    /// Calls the Navigate window written in the VolunteerPetReportViewer cs file and passes the window to it
+    /// </summary>
+    /// <param name="newWindow">
+    /// Type Window, represents the desired window to navigate to
+    /// </param>
+    public static void VolunteerPetReportViewerSwitch(Window newWindow)
+    {
+        VolunteerPetReportViewerSwitcher.Navigate(newWindow);
     }
 }
