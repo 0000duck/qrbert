@@ -54,4 +54,26 @@ public partial class StaffPetReport : Window
         Switcher.RedirectStaffPortal();
         this.Close();
     }
+
+    /// <summary>
+    /// Redirects staff user to View Pet Report window via button click and closes the current window
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void StaffViewPetReportBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPetReportSwitch(new StaffViewPetReport());
+        this.Close();
+    }
+
+    /// <summary>
+    /// Redirects staff user to Create Pet Report window via button click and closes the current window
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void StaffCreatePetReportBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPetReportSwitch(new StaffCreatePetReport());
+        this.Close();
+    }
 }
