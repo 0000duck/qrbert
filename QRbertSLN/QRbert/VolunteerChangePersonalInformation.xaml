@@ -1,4 +1,4 @@
-<Page x:Class="QRbert.VolunteerChangePersonalInformation"
+<Window x:Class="QRbert.VolunteerChangePersonalInformation"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -8,7 +8,7 @@
       Title="VolunteerChangePersonalInformation" Height="550" Width="800">
     <!-- This the template for the Menus; It creates the menu with a white background and black bold letters;
         allows the user to hover over the menu and display the menus as well as change the letters to orange-->
-    <Page.Resources>
+    <Window.Resources>
         <LinearGradientBrush x:Key="DarkBrush" StartPoint="0.5,0" EndPoint="0.5,1">
             <GradientBrush.GradientStops>
                 <GradientStopCollection>
@@ -105,9 +105,10 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
-    </Page.Resources>
+    </Window.Resources>
     <!-- This the end of the menu template -->
     <!--  -->
+
     <!-- This the main stackpanel containing all the controls on the entire page-->
     <StackPanel Background="Transparent" Height="550" Width="800">
         <!-- This stackpanel contains the orange QRbert logo on the left corner as well as the perts background image-->
@@ -115,7 +116,8 @@
             <Image Width="800" Height="450" Source="Images/petsBackground.png" 
                    Margin="0,0,0,0"/>
             <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
-                   Margin="-650,-900,0,-100"/>
+                   Margin="-650,-900,0,-100"
+                   MouseDown="HomeVolunteerPortalBtn_Click"/>
             
         </StackPanel>
         <!-- This is the Timesheet menu-->
@@ -135,8 +137,12 @@
         <!-- This is the My Account menu-->
         <Menu Width="100" Height="22" Margin="600, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Volunteer Account"/>
-                <MenuItem Header="Log out"/>
+                <MenuItem 
+                    Header="Volunteer Account"
+                    Click="VolunteerMyAcctBtn_Click"/>
+                <MenuItem 
+                    Header="Log out"
+                    Click="LogOutBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This the orange semitransparent stack panel in the center with the button/textbox controls-->
@@ -226,25 +232,25 @@
             </Button.Resources>
             Save 
         </Button>
-        <!-- This the "Terms and Privacy Notice" button control at the bottom of the page -->
+        <!-- This the "Terms and Privacy Notice" button control at the bottom of the Window -->
         <Button Height = "25" Width = "300" Content="Terms and Privacy Notice" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
                 Margin="-500,25,0,0">
         </Button>
-        <!-- This the "Help" button control at the bottom of the page -->
+        <!-- This the "Help" button control at the bottom of the Window -->
         <Button Height = "25" Width = "50" Content="Help" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
                 Margin="-100,-25,0,0">
         </Button>
-        <!-- This the "FAQs" button control at the bottom of the page -->
+        <!-- This the "FAQs" button control at the bottom of the Window -->
         <Button Height = "25" Width = "150" Content="FAQs" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
                 Margin="200,-25,0,0">
         </Button>
-        <!-- This the "©2022 QRbert Inc." button control at the bottom of the page -->
+        <!-- This the "©2022 QRbert Inc." button control at the bottom of the Window -->
         <Button Height = "25" Width = "150" Content="©2022 QRbert Inc." Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
                 Margin="500,-25,0,0">
         </Button>
     </StackPanel>
-</Page>
+</Window>

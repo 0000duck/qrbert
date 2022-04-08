@@ -1,14 +1,12 @@
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 
 namespace QRbert;
 
-public partial class VolunteerChangeEmail : Window
+public partial class VolunteerPetReportViewer : Window
 {
-    public VolunteerChangeEmail()
+    public VolunteerPetReportViewer()
     {
         InitializeComponent();
-        Switcher.VolunteerChangeEmailSwitcher = this;
     }
     
     /// <summary>
@@ -37,6 +35,7 @@ public partial class VolunteerChangeEmail : Window
     private void VolunteerMyAcctBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
+        this.Close();
     }
 
     /// <summary>
