@@ -116,7 +116,8 @@
             <Image Width="800" Height="450" Source="Images/petsBackground.png" 
                    Margin="0,0,0,0"/>
             <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
-                   Margin="-650,-900,0,-100"/>
+                   Margin="-650,-900,0,-100"
+                   MouseDown="HomeVolunteerPortalBtn_Click"/>
             <Border BorderBrush="#FF9100" Opacity = "0.85" CornerRadius="2,2,2,2" BorderThickness="2,2,2,2"
                     Margin="-500,-400,0,0"
                     Height="300"
@@ -149,8 +150,10 @@
                 >
                 <MenuItem 
                     Header="Volunteer Account"
-                    Click="VolunteerAcctPageRedirectBtn_Click"/>
-                <MenuItem Header="Log out"/>
+                    Click="VolunteerMyAcctBtn_Click"/>
+                <MenuItem 
+                    Header="Log out"
+                    Click="LogOutBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This the "Terms and Privacy Notice" button control at the bottom of the page -->
