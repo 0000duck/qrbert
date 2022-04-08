@@ -90,17 +90,14 @@ namespace QRbert
 
                 if (string.Equals(msg, staff))
                 {
-                    // Window RedirectSignInStaffPortal = new StaffPortal();
-                    // RedirectSignInStaffPortal.Show();
+                   // if email and password match a Staff faculty role
                     Switcher.LogIn_RegisterSwitch(new StaffPortal());
                     this.Close();
                 }
 
                 else
                 {
-                    // This appears greyed out b/c true is always true, if condition must be changed
-                    // Window RedirectSignInVolunteerPortal = new VolunteerPortal();
-                    // RedirectSignInVolunteerPortal.Show();
+                    // if email and password match a Volunteer faculty role
                     Switcher.LogIn_RegisterSwitch(new VolunteerPortal());
                     this.Close();
                 }
@@ -138,12 +135,36 @@ namespace QRbert
         private void SignInViaQRCodeBtn_Click(object sender, RoutedEventArgs e)
         {
             DecodeQRCode();
-            // MessageBox.Show(result);
-            // I commented out the above line as it is for testing, feel free to uncomment it
-            // I need Denise to add code here to verify a user log in
-            // For now, I will redirect them to the staff portal
-            Switcher.LogIn_RegisterSwitch(new StaffPortal());
-            this.Close();
+
+            // saves the result QR code string into an array QRresult
+            string[] QRresult = result.Split(' ');
+            
+            // first element of the QR string is the email
+            string QRemail = QRresult[0];
+            // second element of the QR string is the password
+            string QRpwd = QRresult[1];
+
+            string staff = "Staff";
+        
+             // finds a matching email and password and retrieves the faculty role to store in "msg" 
+             string msg = verifyRole("Select [Faculty-Role] From QRbertTables.Registration Where email = '" + QRemail +
+                                     "' and password ='" + QRpwd + "'");
+
+             // string msg matches the Staff faculty role then user is redirected to staff portal
+             if (string.Equals(msg, staff))
+             {
+                 // if email and password match a Staff faculty role
+                 Switcher.LogIn_RegisterSwitch(new StaffPortal());
+                 this.Close();
+             }
+            // if Not staff then user must be a volunteer, then redirects to volunteer portal
+             else
+             {
+                 // if email and password match a Volunteer faculty role
+                 Switcher.LogIn_RegisterSwitch(new VolunteerPortal());
+                 this.Close();
+             }
+
         }
     }
 
