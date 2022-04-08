@@ -49,6 +49,11 @@ public class Switcher
         staffpageSwitcher.Navigate(newWindow);
     }
 
+    private void PetSearchViaQRCodeBtn_Click(object sender, RoutedEventArgs e)
+    {
+        
+    }
+
     /// <summary>
     /// Static function that only works for the VolunteerPortal Window
     /// Gets newPage object and uses the built-in navigate windows method to get the page and load it
