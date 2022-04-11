@@ -24,6 +24,7 @@ public partial class VolunteerChangeEmail : Window
     private void VolunteerMyAcctBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
+        this.Close();
     }
 
     /// <summary>

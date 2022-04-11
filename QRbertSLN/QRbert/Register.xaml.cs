@@ -522,10 +522,11 @@ public partial class Register : Window
             showQRCode.QRCodeViewer.Source = qrCodeImage;
             showQRCode.QRCodeViewer.Visibility = Visibility.Visible;
             MessageBox.Show("Sign up successful. Save your QR code and log in.");
-            while (true)
+            this.Close();
+            showQRCode.Show();
+            while (showQRCode.IsLoaded)
             {
-                showQRCode.Show();
-                if (!showQRCode.IsActive)
+                if (!showQRCode.IsLoaded)
                 {
                     break;
                 }
