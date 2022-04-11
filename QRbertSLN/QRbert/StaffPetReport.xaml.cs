@@ -7,19 +7,6 @@ public partial class StaffPetReport : Window
     public StaffPetReport()
     {
         InitializeComponent();
-        Switcher.StaffPetReportSwitcher = this;
-    }
-    
-    /// <summary>
-    /// Public function that allows to navigate to the next desired page
-    /// </summary>
-    /// <param name="nextPage">
-    /// Type Page, represents the next page to redirect to
-    /// </param>
-    public void Navigate(Window nextWindow)
-    {
-        nextWindow.Show();
-        this.Close();
     }
 
     /// <summary>
@@ -62,7 +49,7 @@ public partial class StaffPetReport : Window
     /// <param name="e"></param>
     private void StaffViewPetReportBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.StaffPetReportSwitch(new StaffViewPetReport());
+        Switcher.StaffPageSwitch(new StaffViewPetReport());
         this.Close();
     }
 
@@ -73,7 +60,7 @@ public partial class StaffPetReport : Window
     /// <param name="e"></param>
     private void StaffCreatePetReportBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.StaffPetReportSwitch(new StaffCreatePetReport());
+        Switcher.StaffPageSwitch(new StaffCreatePetReport());
         this.Close();
     }
 }

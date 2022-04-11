@@ -8,19 +8,6 @@ public partial class VolunteerMyAccount : Window
     public VolunteerMyAccount()
     {
         InitializeComponent();
-        Switcher.VolunteerMyAccountSwitcher = this;
-    }
-    
-    /// <summary>
-    /// Public function that allows to navigate to the next desired page
-    /// </summary>
-    /// <param name="nextWindow">
-    /// Type Page, represents the next page to redirect to
-    /// </param>
-    public void Navigate(Window nextWindow)
-    {
-        nextWindow.Show();
-        this.Close();
     }
     
     /// <summary>
@@ -31,7 +18,7 @@ public partial class VolunteerMyAccount : Window
     /// <param name="e"></param>
     private void VolunteerChangeEmailBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.VolunteerMyAcctSwitch(new VolunteerChangeEmail());
+        Switcher.VolunteerPortalSwitch(new VolunteerChangeEmail());
         this.Close();
     }
 
@@ -43,7 +30,8 @@ public partial class VolunteerMyAccount : Window
     /// <param name="e"></param>
     private void VolunteerChangePasswordBtn_Click(object sender, RoutedEventArgs e)
     {
-        // Missing Change Password page, waiting on Marisol
+        Switcher.VolunteerPortalSwitch(new VolunteerChangePassword());
+        this.Close();
     }
 
     /// <summary>
@@ -53,7 +41,8 @@ public partial class VolunteerMyAccount : Window
     /// <param name="e"></param>
     private void VolunteerForgotPasswordBtn_Click(object sender, RoutedEventArgs e)
     {
-        MessageBox.Show("Um, what's the difference between the one above and this one?");
+        Switcher.VolunteerPortalSwitch(new VolunteerForgotPassword());
+        this.Close();
     }
 
     /// <summary>
@@ -64,7 +53,8 @@ public partial class VolunteerMyAccount : Window
     /// <param name="e"></param>
     private void VolunteerChangePersonalInfoBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.VolunteerMyAcctSwitch(new VolunteerChangePersonalInformation());
+        Switcher.VolunteerPortalSwitch(new VolunteerChangePersonalInformation());
+        this.Close();
     }
 
     /// <summary>

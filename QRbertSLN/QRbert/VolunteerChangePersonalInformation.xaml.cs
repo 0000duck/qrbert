@@ -8,21 +8,8 @@ public partial class VolunteerChangePersonalInformation : Window
     public VolunteerChangePersonalInformation()
     {
         InitializeComponent();
-        
     }
-    
-    /// <summary>
-    /// Function to navigate within the VolunteerPortal
-    /// </summary>
-    /// <param name="nextWindow">
-    /// Type page, represents the next desired page to navigate to
-    /// </param>
-    public void Navigate(Window nextWindow)
-    {
-        nextWindow.Show();
-        this.Close();
-    }
-    
+
     /// <summary>
     /// Redirects volunteer user to their MyAccountPage via a button click on the menu item
     /// Since the portal and the MyAccount page are both Pages, we should be able to save the previous pages visited
