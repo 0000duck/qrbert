@@ -22,32 +22,7 @@ namespace QRbert
         public LogIn_Register()
         {
             InitializeComponent();
-            Switcher.LogInRegisterSwitcher = this;
         }
-
-        public void Navigate(Window nextWindow)
-        {
-            nextWindow.Show();
-        }
-
-
-        private void RegisterNewUserBtn_Click(object sender, RoutedEventArgs e)
-        {
-            /*
-            Process process = new Process();
-            process.StartInfo.FileName = "zbarcam.exe";
-            process.Start();
-            */
-            // Page generateQRCodePage = new GenerateQrCode();
-            // this.Content = generateQRCodePage;
-            // NavigationWindow redirectNewUser = new NavigationWindow();
-            // redirectNewUser.Source = new Uri("Register.xaml", UriKind.Relative);
-            Window RegisterNewUser = new Register();
-            RegisterNewUser.Show();
-            this.Close();
-
-        }
-
 
         /// <summary>
         /// Signs the user in given their account type and redirects them to the correct portal page
@@ -94,16 +69,13 @@ namespace QRbert
                     Switcher.LogIn_RegisterSwitch(new StaffPortal());
                     this.Close();
                 }
-
                 else
                 {
                     // if email and password match a Volunteer faculty role
                     Switcher.LogIn_RegisterSwitch(new VolunteerPortal());
                     this.Close();
                 }
-
             }
-
         }
 
         /// <summary>
@@ -116,7 +88,7 @@ namespace QRbert
             // Make a Window for this
         }
 
-        public string verifyRole(string s)
+        private string verifyRole(string s)
         {
             using SqlConnection sqlCon = new SqlConnection(connectionString);
             sqlCon.Open();
@@ -125,7 +97,6 @@ namespace QRbert
             return query;
         }
     
-
         /// <summary>
         /// Takes user to a new window to scan their QR code via the device webcam
         /// Calls DecodeQRCode function from ScanQRCode class and verifies via a query to the database
@@ -164,7 +135,6 @@ namespace QRbert
                  Switcher.LogIn_RegisterSwitch(new VolunteerPortal());
                  this.Close();
              }
-
         }
     }
 

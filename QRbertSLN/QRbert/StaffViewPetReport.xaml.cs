@@ -7,21 +7,8 @@ public partial class StaffViewPetReport : Window
     public StaffViewPetReport()
     {
         InitializeComponent();
-        Switcher.StaffViewPetReportSwitcher = this;
     }
     
-    /// <summary>
-    /// Public function that allows to navigate to the next desired page
-    /// </summary>
-    /// <param name="nextPage">
-    /// Type Page, represents the next page to redirect to
-    /// </param>
-    public void Navigate(Window nextWindow)
-    {
-        nextWindow.Show();
-        this.Close();
-    }
-
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
     /// Since the portal and the MyAccount are both pages, they should be easily navigable
@@ -31,6 +18,7 @@ public partial class StaffViewPetReport : Window
     private void StaffMyAccountBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffMyAccount());
+        this.Close();
     }
 
     /// <summary>
@@ -56,17 +44,6 @@ public partial class StaffViewPetReport : Window
     }
 
     /// <summary>
-    /// Redirects user to Pet Report window via button click after giving a pet ID
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void StaffViewPetReportViewerBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.StaffViewPetReportSwitch(new StaffPetReportViewer());
-        this.Close();
-    }
-
-    /// <summary>
     /// Allows user to open camera and scan QR code which is decoded and passed to the database for verification
     /// The user is then redirected to the PDF viewer window to view the pet report
     /// </summary>
@@ -80,7 +57,7 @@ public partial class StaffViewPetReport : Window
         if (QRCodeScanner.result is in the database) 
         */
         {
-            Switcher.StaffViewPetReportSwitch(new StaffPetReportViewer());
+            Switcher.StaffPageSwitch(new StaffPetReportViewer());
             this.Close();
         }
     }
