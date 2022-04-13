@@ -44,17 +44,6 @@ public partial class StaffViewPetReport : Window
     }
 
     /// <summary>
-    /// Redirects user to Pet Report window via button click after giving a pet ID
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void StaffViewPetReportViewerBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.StaffPageSwitch(new StaffPetReportViewer());
-        this.Close();
-    }
-
-    /// <summary>
     /// Allows user to open camera and scan QR code which is decoded and passed to the database for verification
     /// The user is then redirected to the PDF viewer window to view the pet report
     /// </summary>

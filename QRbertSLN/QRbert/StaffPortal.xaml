@@ -26,7 +26,9 @@
                 <MenuItem Header="Volunteer">
                     <MenuItem Header="Track Active" />
                     <MenuItem Header="Staff Search" />
-                    <MenuItem Header="Scan Pet QR Code" />
+                    <MenuItem 
+                        Header="Scan Pet QR Code"
+                        Click="ScanPetQRCodeRedirectBtn_Click"/>
                     <Separator />
                     <MenuItem Header="Exit" />
                 </MenuItem>
@@ -37,8 +39,10 @@
             <Menu DockPanel.Dock="Top" Margin="300, -870, 0, 0" Width="100" Height = "25"
                   Background="Transparent" Foreground="Black" FontSize="16" FontWeight="Bold">
                 <MenuItem Header="Animals">
-                    <MenuItem Header="My Pets" />
-                    <MenuItem Header="Create a Pet Report"/>
+                    <MenuItem Header="My Pets"/>
+                    <MenuItem 
+                        Header="Create a Pet Report"
+                        />
                     <Separator />
                     <MenuItem Header="Exit" />
                 </MenuItem>

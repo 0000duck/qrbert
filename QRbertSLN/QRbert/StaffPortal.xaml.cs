@@ -43,4 +43,14 @@ public partial class StaffPortal
         this.Close();
     }
 
+    /// <summary>
+    /// Redirects user to scan pet's QR Code in StaffViewPetReport window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ScanPetQRCodeRedirectBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffViewPetReport());
+    }
+
 }

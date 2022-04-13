@@ -1,10 +1,13 @@
 using System;
+using System.ComponentModel;
 using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 using System.Data.SqlClient;
 using System.Windows.Navigation;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Media;
 //using System.Windows.Interactivity
 using Microsoft.Xaml.Behaviors;
@@ -226,10 +229,6 @@ public partial class Register : Window
             MessageBox.Show("Zipcode must be between " + min+ " and " + max + ".");
             //textBox.Focus();
             return false;
-        }
-        else
-        {
-            MessageBox.Show(number.ToString());
         }
         return true;
     }
@@ -522,25 +521,16 @@ public partial class Register : Window
             showQRCode.QRCodeViewer.Source = qrCodeImage;
             showQRCode.QRCodeViewer.Visibility = Visibility.Visible;
             MessageBox.Show("Sign up successful. Save your QR code and log in.");
-            this.Close();
-            showQRCode.Show();
-            while (showQRCode.IsLoaded)
-            {
-                if (!showQRCode.IsLoaded)
-                {
-                    break;
-                }
-            }
-
+            this.Close();       // Closes the register page
+            showQRCode.Show();  
+            
             // After a successful registration, user is redirected to 
             // the Log In window to login with their new credentials
-            Window redirectNewUser = new LogIn_Register();      // Creates the new window
-            redirectNewUser.Show();     // Opens the new window
-            this.Close();       // Closes the current window
+            Window redirectNewUser = new LogIn_Register(); // Creates the new window
+            redirectNewUser.Show(); // Opens the new window
+            showQRCode.Topmost = true;
         }
     }
-
-    
     /// <summary>
     /// Function that when the first name textbox has any text, the first name textblock disappears. The textblock reappears when no text is found
     /// </summary>
