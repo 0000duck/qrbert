@@ -7,21 +7,8 @@ public partial class StaffPetReportViewer : Window
     public StaffPetReportViewer()
     {
         InitializeComponent();
-        Switcher.StaffPetReportViewerSwitcher = this;
     }
     
-    /// <summary>
-    /// Public function that allows to navigate to the next desired page
-    /// </summary>
-    /// <param name="nextWindow">
-    /// Type Page, represents the next page to redirect to
-    /// </param>
-    public void Navigate(Window nextWindow)
-    {
-        nextWindow.Show();
-        this.Close();
-    }
-
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
     /// Since the portal and the MyAccount are both pages, they should be easily navigable

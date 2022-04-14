@@ -158,26 +158,27 @@
                     Margin = "0, -400, 0, 0"/>
         <!-- This the "View Pet Reports" label at the top center of the orange semitransaprent stackpanel-->
         <Label 
-            Width = "250"
+            Width = "350"
             Height="50"
             FontWeight="Bold" 
             HorizontalAlignment="Center"
-            Content="View Pet Report" 
+            Content="View Pet Report via QRcode" 
             Foreground="White" 
-            FontSize="30"
+            FontSize="25"
             Margin="25,-600,0,0"
         />
-        <!-- This the "Enter Pet ID" textbox control-->
-        <DockPanel LastChildFill="False">
-            <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
-                     FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-450,-800,0" FontSize="14">
-                Enter Pet ID
-            </TextBox>
-            <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
-                       Margin="0,-410,0,0"/>
-        </DockPanel>
-        <!-- This the "View" button control-->
+        <!--QR code image from the Github repository. Not meant to be scanned. Just
+            represents how QRbert logos look like for all users, staff and
+            volunteers. -->
+        <Image 
+            Width="200" 
+            Height="150" 
+            Source="Images/QRbertQRCode-White.png" 
+            Margin="0,-400,0,0" 
+        />
+        <!--Activate Camera button so that user clicks on it to activate the camera 
+            on the next page then the user can scan the pet qrcode and the pet report will be viewed . Using the resource property, we managed to make a corner 
+            radius.-->
         <Button 
             Background="White" 
             Foreground="Orange" 
@@ -188,7 +189,8 @@
             Width="200" 
             FontSize="16" 
             ClickMode="Press"
-            Margin="0,-300,0,0">
+            Margin="0,-175,0,0"
+            Click="PetSearchViaQRCodeBtn_Click">
             <Button.Resources>
                 <Style 
                     TargetType="{x:Type Border}"
@@ -199,8 +201,9 @@
                     />
                 </Style>
             </Button.Resources>
-            View  
+            Scan and View
         </Button>
+        
         <!-- This the "Terms and Privacy Notice" button control at the bottom of the page -->
         <Button Height = "25" Width = "300" Content="Terms and Privacy Notice" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"

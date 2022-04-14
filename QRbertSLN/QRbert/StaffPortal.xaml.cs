@@ -7,19 +7,6 @@ public partial class StaffPortal
     public StaffPortal()
     {
         InitializeComponent();
-        Switcher.staffpageSwitcher = this;
-    }
-    
-    /// <summary>
-    /// Public function that allows to navigate to the next desired page
-    /// </summary>
-    /// <param name="nextPage">
-    /// Type Page, represents the next page to redirect to
-    /// </param>
-    public void Navigate(Window nextWindow)
-    {
-        nextWindow.Show();
-        this.Close();
     }
 
     /// <summary>
@@ -31,6 +18,7 @@ public partial class StaffPortal
     private void StaffMyAccountBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffMyAccount());
+        this.Close();
     }
 
     /// <summary>
@@ -53,6 +41,16 @@ public partial class StaffPortal
     {
         Switcher.RedirectStaffPortal();
         this.Close();
+    }
+
+    /// <summary>
+    /// Redirects user to scan pet's QR Code in StaffViewPetReport window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ScanPetQRCodeRedirectBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffViewPetReport());
     }
 
 }

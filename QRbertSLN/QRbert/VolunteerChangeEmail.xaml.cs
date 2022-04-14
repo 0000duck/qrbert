@@ -8,19 +8,6 @@ public partial class VolunteerChangeEmail : Window
     public VolunteerChangeEmail()
     {
         InitializeComponent();
-        Switcher.VolunteerChangeEmailSwitcher = this;
-    }
-    
-    /// <summary>
-    /// Function to navigate within the VolunteerPortal
-    /// </summary>
-    /// <param name="nextWindow">
-    /// Type page, represents the next desired page to navigate to
-    /// </param>
-    public void Navigate(Window nextWindow)
-    {
-        nextWindow.Show();
-        this.Close();
     }
     
     /// <summary>
@@ -37,6 +24,7 @@ public partial class VolunteerChangeEmail : Window
     private void VolunteerMyAcctBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
+        this.Close();
     }
 
     /// <summary>

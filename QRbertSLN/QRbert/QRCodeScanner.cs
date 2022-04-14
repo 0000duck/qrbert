@@ -59,7 +59,7 @@ namespace QRbert
                 }
                 // Manually closes the window
                 if (Cv2.WaitKey(1) == 113)
-                    break;
+                    window.Close();
             }
         }
     }

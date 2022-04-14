@@ -10,19 +10,6 @@ public partial class VolunteerPortal : Window
     public VolunteerPortal()
     {
         InitializeComponent();
-        Switcher.VolunteerPortalSwitcher = this;
-    }
-    
-    /// <summary>
-    /// Function to navigate within the VolunteerPortal
-    /// </summary>
-    /// <param name="nextWindow">
-    /// Type page, represents the next desired page to navigate to
-    /// </param>
-    public void Navigate(Window nextWindow)
-    {
-        nextWindow.Show();
-        this.Close();
     }
     
     /// <summary>
