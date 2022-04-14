@@ -2,11 +2,10 @@
 
 namespace QRbert;
 
-public partial class StaffSearch : Window
+public partial class StaffLockTimesheet : Window
 {
-    public StaffSearch()
+    public StaffLockTimesheet()
     {
         InitializeComponent();
     }
 }
-

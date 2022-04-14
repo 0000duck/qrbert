@@ -2,11 +2,10 @@
 
 namespace QRbert;
 
-public partial class StaffSearch : Window
+public partial class VolunteerViewPetReport : Window
 {
-    public StaffSearch()
+    public VolunteerViewPetReport()
     {
         InitializeComponent();
     }
 }
-

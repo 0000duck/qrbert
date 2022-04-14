@@ -2,11 +2,10 @@
 
 namespace QRbert;
 
-public partial class StaffSearch : Window
+public partial class StaffRoundingRules : Window
 {
-    public StaffSearch()
+    public StaffRoundingRules()
     {
         InitializeComponent();
     }
 }
-
