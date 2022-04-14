@@ -5,9 +5,11 @@ using System.Windows.Controls;
 using System.Data.SqlClient;
 using System.Windows.Navigation;
 using System.Text.RegularExpressions;
+using System.Windows.Media;
 //using System.Windows.Interactivity
 using Microsoft.Xaml.Behaviors;
-
+using QRCoder;
+using QRCoder.Xaml;
 
 
 //using SqlCommand = Microsoft.Data.SqlClient.SqlCommand;
@@ -28,13 +30,22 @@ public partial class Register : Window
                                 Initial Catalog = QRbertDB; User ID = rds1_admin; Password = rds1_admin;";
 
   private string facultyRole;
+  private string staff = "Staff";
+  
+  /// <summary>
+  /// Function that initializes the Register window
+  /// </summary>
     public Register()
     {
         InitializeComponent();
         
     }
 
-    //Creates a list of states using their abbreviations
+    
+    /// <summary>
+    /// Function that makes a list of state abbrevations
+    /// </summary>
+    /// <returns>string[]</returns>
     public static string[] makeStateList()
     {
         string[] stateAbbr = new string[50];
@@ -112,49 +123,11 @@ public partial class Register : Window
     }*/
     
 
-    
-    public static bool isFirstNameValid(string text)
-    {
-        return checkString(text);
-
-    }
-
-    public static bool isLastNameValid(string text)
-    {
-        return checkString(text);
-    }
-
-    public static bool isEmailValid(string text)
-    {
-        return IsValidEmail(text);
-    }
-
-    public static bool isLicenseValid(string text)
-    {
-        return checkString(text);
-    }
-
-    public static bool isAddressValid(string text)
-    {
-        return checkString(text);
-    }
-
-    public static bool isCityValid(string text)
-    {
-        return checkString(text);
-    }
-    public static bool isStateValid(string text)
-    {
-        return checkString(text);
-    }
-
-    public static bool isZipCodeValid(string text)
-    {
-        return checkString(text);
-        //possibly add a range check for zipcode
-    }
-
-
+/// <summary>
+/// Function that makes sure that it is a valid string
+/// </summary>
+/// <param name="words"></param>
+/// <returns></returns>
     public static bool checkString(string words)
     {
         if (words == null || words == "")
@@ -167,7 +140,12 @@ public partial class Register : Window
         }
         
     }
-
+/// <summary>
+/// Function that makes sure that there is some text in the TextBox
+/// </summary>
+/// <param name="textBox"></param>
+/// <param name="textBoxName"></param>
+/// <returns>bool</returns>
     public static bool isPresent(string textBox, string textBoxName)
     {
         if (textBox == null || textBox == "")
@@ -179,6 +157,11 @@ public partial class Register : Window
 
         return true;
     }
+/// <summary>
+/// Function that makes sure the string is a decimal
+/// </summary>
+/// <param name="textBox"></param>
+/// <returns>bool</returns>
     public static bool isDecimal(string textBox)
     {
         decimal number = 0m;
@@ -193,7 +176,11 @@ public partial class Register : Window
             return false;
         }
     }
-
+/// <summary>
+/// Function that checks to make sure the string can be turned into an integer
+/// </summary>
+/// <param name="textBox"></param>
+/// <returns>bool</returns>
     public static bool IsInt32(string textBox)
     {
         int number = 0;
@@ -208,13 +195,17 @@ public partial class Register : Window
             return false;
         }
     }
+/// <summary>
+/// Function that determines if the string is in range.
+/// </summary>
+/// <param name="textBox"></param>
+/// <returns>bool</returns>
 
-    //Used for Zipcodes. Fits into the given range to check validation
     public static bool IsWithinRange(string textBox)
     {
-        //decimal number = Convert.ToDecimal(textBox.Text);
-        //This is incorrect but it's just a school project so it's alright
+        
         //Zipcodes can be 4 digits in older states like Massachusetts
+        //This is incorrect but it's just a school project so it's alright
         int min = 10000;
         int max = 99999;
 
@@ -242,8 +233,12 @@ public partial class Register : Window
         }
         return true;
     }
-
-    //checks to see if it has the characters in the email textbox
+/// <summary>
+/// Function that checks for a valid email
+/// </summary>
+/// <param name="textBox"></param>
+/// <returns>bool</returns>
+    
     public static bool IsValidEmail(string textBox)
     {
         string strRegex = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
@@ -264,6 +259,11 @@ public partial class Register : Window
             
         
     }
+/// <summary>
+/// Function that checks for two letters to represent the state
+/// </summary>
+/// <param name="state"></param>
+/// <returns>bool</returns>
     //Checks to make sure that a valid state abbrevation
     public static bool isValidState(TextBox state)
     {
@@ -286,16 +286,14 @@ public partial class Register : Window
         return false;
 
     }
-    
+    /// <summary>
+    /// Function that validates the driver's license
+    /// </summary>
+    /// <param name="driver"></param>
+    /// <returns>bool</returns>
     //Checks for a valid driver's license
     public static bool isValidDriver(string driver)
     {
-        //string firstLetter = driver.Substring(0);
-
-        //int compare = string.Compare(firstLetter, "A");
-        //string comparedNumber = compare.ToString();
-        //MessageBox.Show(comparedNumber);
-        //if(firstLetter < "A" || firstLetter > "Z")
         string regexDriver = @"[A-Z]{1}[0-9]{7}";
         Regex re = new Regex(regexDriver, RegexOptions.IgnoreCase);
 
@@ -308,19 +306,24 @@ public partial class Register : Window
         //MessageBox.Show("No good bro");
         return false;
     }
-
+/// <summary>
+/// Function that determines if the string in the TextBox is valid
+/// </summary>
+/// <param name="number"></param>
+/// <returns>bool</returns>
     //Checks for a valid phone number
     public static bool isValidPhone(TextBox number)
     {
-        if (!IsInt32(number.Text))
+        /*if (!IsInt32(number.Text))
         {
             MessageBox.Show("Can't have any characters. Only numbers");
             return false;
         }
+        */
         //this looks for a pattern that has 10 numbers to make up a phone number
         string regexPhone = @"[0-9]{10}";
         Regex re = new Regex(number.Text);
-        if(re.IsMatch(regexPhone)&&number.Text.Length < 11)
+        if(re.IsMatch(number.Text)&&number.Text.Length < 11)
         {
             //MessageBox.Show("Very based");
             return true;
@@ -330,7 +333,21 @@ public partial class Register : Window
         return false;
     }
     
-    
+    /// <summary>
+    /// Function that checks all information in the Register page is filled out before entering it to the database.
+    /// </summary>
+    /// <param name="firstName"></param>
+    /// <param name="lastName"></param>
+    /// <param name="email"></param>
+    /// <param name="driver"></param>
+    /// <param name="address"></param>
+    /// <param name="city"></param>
+    /// <param name="state"></param>
+    /// <param name="zipcode"></param>
+    /// <param name="phoneNumber"></param>
+    /// <param name="password"></param>
+    /// <param name="confirmPassword"></param>
+    /// <returns>bool</returns>
 
     
 
@@ -400,7 +417,13 @@ public partial class Register : Window
     }
 
     
-    
+    /// <summary>
+    /// Function that when a button is clicked, it validates all textbox information before sending it to the database.
+    /// If anything is not filled out properly, it does not get added to the database. Otherwise, add it to the
+    /// database and displays the QR code for the user to save. Then, redirects them to the LogIn Window.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     
     // Link the "sign Up" button to DB to save user registration info
     private void RegUser_Button(object sender, EventArgs e)
@@ -410,23 +433,22 @@ public partial class Register : Window
 
         if (!Authenticate(txtFirstName,txtLastName,txtEmail,txtDriver,txtAddress,txtCity,txtState,txtZipcode,txtPhone,Password,ConfirmPassword))
         {
-            
             MessageBox.Show("Please fill out all mandatory fields on the page.");
         }
         
-
-        if (!IsValidEmail(txtEmail.Text) || Password.Password == "") 
-            MessageBox.Show("Please fill out all mandatory fields");
-        else if (Password.Password != ConfirmPassword.Password)
-            MessageBox.Show("Passwords Do Not Match");
-
+        
 
         else
         {
+            /* creates and opens a connection to the Database. connectionString was declared in line #27
+              * which validates the DB credentials 
+              */
             using SqlConnection sqlCon = new SqlConnection(connectionString);
             sqlCon.Open();
             
-            // User Input stored in Registration table 
+            /* User Input stored in Registration table
+             * RegUser is the stored procedure created in the DB that inserts data into each row of the Registration table
+            */ 
             SqlCommand sqlCmd = new SqlCommand("RegUser", sqlCon);
             sqlCmd.CommandType = CommandType.StoredProcedure;
             sqlCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
@@ -435,6 +457,7 @@ public partial class Register : Window
             sqlCmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
             sqlCmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
             
+            // Contact Info stored in Contact_Info Table using Contact stored procedure created in database
             SqlCommand contact = new SqlCommand("Contact", sqlCon);
             contact.CommandType = CommandType.StoredProcedure;
             contact.Parameters.AddWithValue("@Email", txtEmail.Text);
@@ -447,40 +470,82 @@ public partial class Register : Window
             contact.Parameters.AddWithValue("@PhoneNum", txtPhone.Text);
             contact.Parameters.AddWithValue("@DL_ID", txtDriver.Text);
 
-            sqlCmd.ExecuteNonQuery();
-            contact.ExecuteNonQuery();
-            MessageBox.Show("Sign up successful. Please log in.");
+            // connection to Staff input stored procedure from Database
+           SqlCommand staffCon = new SqlCommand("StaffInput", sqlCon);
+           // connection to Volunteer input stored procedure from Database
+           SqlCommand volCon = new SqlCommand("VolInput", sqlCon);
+           
+           /* verify what faculty role was created during Registration , if it is a Staff
+            * then store and create a New staff profile in the Staff table database
+            * if Volunteer, then skip the Staff stored procedure and use the Volunteer stored procedure instead
+            * to create a New and save Volunteer profile
+            */
+            if (string.Equals(facultyRole, staff))
+            {
+                // Staff credentials created and stored in Contact_Info Table 
+
+                staffCon.CommandType = CommandType.StoredProcedure;
+                staffCon.Parameters.AddWithValue("@Email", txtEmail.Text);
+                staffCon.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
+                staffCon.Parameters.AddWithValue("@Faculty_Role", facultyRole);
+                sqlCmd.ExecuteNonQuery();
+                contact.ExecuteNonQuery();
+                staffCon.ExecuteNonQuery();
+            }
             
+            else
+            {
+                // Volunteer credentials created and stored in Contact_Info Table 
+                
+                volCon.CommandType = CommandType.StoredProcedure;
+                volCon.Parameters.AddWithValue("@Email", txtEmail.Text);
+                volCon.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
+                volCon.Parameters.AddWithValue("@Faculty_Role", facultyRole);
+                sqlCmd.ExecuteNonQuery();
+                contact.ExecuteNonQuery();
+                volCon.ExecuteNonQuery();
+                
+            }
+            
+            MessageBox.Show("Sign up successful. Please log in.");
+
+            
+            // Creating the user's QR code and displaying it
+            QRCodeGenerator qrCodeGenerator = new QRCodeGenerator();
+            // Saves the email, password, and facultyrole as a string for the QR code, this can be changed later
+            String userInfo = txtEmail.Text + " "  + ConfirmPassword.Password + " " + facultyRole;
+            QRCodeData data = qrCodeGenerator.CreateQrCode(userInfo, QRCodeGenerator.ECCLevel.Q);
+            XamlQRCode qrCode = new XamlQRCode(data);
+            DrawingImage qrCodeImage = qrCode.GetGraphic(20);
+            // Creates a new window to display the QR code and shows it
+            ShowQRCode showQRCode = new ShowQRCode();
+            showQRCode.QRCodeViewer.Source = qrCodeImage;
+            showQRCode.QRCodeViewer.Visibility = Visibility.Visible;
+            MessageBox.Show("Sign up successful. Save your QR code and log in.");
+            while (true)
+            {
+                showQRCode.Show();
+                if (!showQRCode.IsActive)
+                {
+                    break;
+                }
+            }
+
             // After a successful registration, user is redirected to 
             // the Log In window to login with their new credentials
             Window redirectNewUser = new LogIn_Register();      // Creates the new window
             redirectNewUser.Show();     // Opens the new window
             this.Close();       // Closes the current window
         }
-
-        
     }
 
-    /*private void Password_OnPasswordChanged(object sender, RoutedEventArgs e)
-    {
-        if (Password.Password.Length == 0)
-            Password.Background.Opacity = 1;
-        else
-            Password.Background.Opacity = 0;
-    }
-    */
     
-    //Function that creates a watermark-like text for Faculty
-    /*private void FacultyRole_OnPasswordChanged(object sender, RoutedEventArgs e)
-    {
-        txtFacultyRoleBlock.Visibility = Visibility.Visible;
-        if (txtFacultyRole.Text.Length > 0)
-        {
-            txtFacultyRoleBlock.Visibility = Visibility.Hidden;
-        }
-    }*/
+    /// <summary>
+    /// Function that when the first name textbox has any text, the first name textblock disappears. The textblock reappears when no text is found
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     
-    //Function that creates a watermark-like text for First Name
     private void txtFirstNameBlock_OnPasswordChanged(object sender, RoutedEventArgs e)
     {
         txtFirstNameBlock.Visibility = Visibility.Visible;
@@ -489,7 +554,11 @@ public partial class Register : Window
             txtFirstNameBlock.Visibility = Visibility.Hidden;
         }
     }
-    
+    /// <summary>
+    /// Function that when the passwordbox has any text, the password textblock disappears. The textblock reappears when no text is found
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     //Function that creates a watermark-like text for Password
     private void Password_OnPasswordChanged(object sender, RoutedEventArgs e)
     {
@@ -507,8 +576,13 @@ public partial class Register : Window
         ListBoxItem lbi = ((sender as ListBox).SelectedItem as ListBoxItem);
         MessageBox.Show("You selected " + lbi.Content.ToString() + ".");
     }
-
-    //Function that creates a watermark-like text for Confirm Password
+/// <summary>
+/// Function that when the confirm passwordbox has any text, the confirm password textblock disappears.
+/// The textblock reappears when no text is found
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
+    
     private void ConfirmPassword_OnPasswordChanged(object sender, RoutedEventArgs e)
     {
         txtHintConfirmPassword.Visibility = Visibility.Visible;
@@ -517,7 +591,11 @@ public partial class Register : Window
             txtHintConfirmPassword.Visibility = Visibility.Hidden;
         }
     }
-
+/// <summary>
+/// Function that when the last name textbox has any text, the last name textblock disappears. The textblock reappears when no text is found
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
     //Function that creates a watermark-like text for Last Name
     private void TxtLastName_OnTextChanged(object sender, TextChangedEventArgs e)
     {
@@ -528,7 +606,11 @@ public partial class Register : Window
         }
         
     }
-
+/// <summary>
+/// Function that when the email textbox has any text, the email textblock disappears. The textblock reappears when no text is found
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
     //Function that creates a watermark-like text for Email
     private void TxtEmail_OnTextChanged(object sender, TextChangedEventArgs e)
     {
@@ -538,7 +620,12 @@ public partial class Register : Window
             txtEmailBlock.Visibility = Visibility.Hidden;
         }
     }
-
+/// <summary>
+/// Function that when the driver's license textbox has any text, the driver's license textblock disappears.
+/// The textblock reappears when no text is found
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
     //Function that creates a watermark-like text for Driver's License
     private void TxtDriver_OnTextChanged(object sender, TextChangedEventArgs e)
     {
@@ -548,7 +635,11 @@ public partial class Register : Window
             txtDriverBlock.Visibility = Visibility.Hidden;
         }
     }
-
+/// <summary>
+/// Function that when the address textbox has any text, the address textblock disappears. The textblock reappears when no text is found
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
     //Function that creates a watermark-like text for Address
     private void TxtAddress_OnTextChanged(object sender, TextChangedEventArgs e)
     {
@@ -558,7 +649,11 @@ public partial class Register : Window
             txtAddressBlock.Visibility = Visibility.Hidden;
         }
     }
-
+/// <summary>
+/// Function that when the city textbox has any text, the city textblock disappears. The textblock reappears when no text is found
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
     //Function that creates a watermark-like text for City
     private void TxtCity_OnTextChanged(object sender, TextChangedEventArgs e)
     {
@@ -568,7 +663,11 @@ public partial class Register : Window
             txtCityBlock.Visibility = Visibility.Hidden;
         }
     }
-
+/// <summary>
+/// Function that when the state textbox has any text, the state textblock disappears. The textblock reappears when no text is found
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
     //Function that creates a watermark-like text for State
     private void TxtState_OnTextChanged(object sender, TextChangedEventArgs e)
     {
@@ -578,7 +677,11 @@ public partial class Register : Window
             txtStateBlock.Visibility = Visibility.Hidden;
         }
     }
-    
+    /// <summary>
+    /// Function that when the phone textbox has any text, the phone textblock disappears. The textblock reappears when no text is found
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     //Function that creates a watermark-like text for Phone Number
     private void TxtPhone_OnTextChanged(object sender, TextChangedEventArgs e)
     {
@@ -588,7 +691,11 @@ public partial class Register : Window
             txtPhoneBlock.Visibility = Visibility.Hidden;
         }
     }
-
+/// <summary>
+/// Function that when the zipcode textbox has any text, the zipcode textblock disappears. The textblock reappears when no text is found
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
     //Function that creates a watermark-like text for Zipcode
     private void TxtZipcode_OnTextChanged(object sender, TextChangedEventArgs e)
     {
@@ -598,6 +705,12 @@ public partial class Register : Window
             txtZipcodeBlock.Visibility = Visibility.Hidden;
         }
     }
+/// <summary>
+/// Function that when the radio button is selected, the text for that specific button is added to a string variable
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
+    //Function that gathers the Faculty Role from the Radio Buttons
     void FacultyChoice (object sender, RoutedEventArgs e)
     {
         RadioButton li = (sender as RadioButton);
@@ -605,7 +718,8 @@ public partial class Register : Window
         facultyRole = li.Content.ToString();
     }
 
-    /*private void ConfirmPassword_OnLostFocus(object sender, RoutedEventArgs e)
+    /* This can be used for letting the user know about how they need more than 8 characters
+     private void ConfirmPassword_OnLostFocus(object sender, RoutedEventArgs e)
     {
         if (ConfirmPassword.Password.Length < 8)
         {

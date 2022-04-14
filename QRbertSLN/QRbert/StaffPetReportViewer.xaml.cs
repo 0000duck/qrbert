@@ -1,21 +1,20 @@
 using System.Windows;
-using System.Windows.Controls;
 
 namespace QRbert;
 
-public partial class StaffChangeEmail : Window
+public partial class StaffPetReportViewer : Window
 {
-    public StaffChangeEmail()
+    public StaffPetReportViewer()
     {
         InitializeComponent();
-        Switcher.StaffChangeEmailSwitcher = this;
+        Switcher.StaffPetReportViewerSwitcher = this;
     }
-
+    
     /// <summary>
-    /// Public function that allows to navigate to the next desired window
+    /// Public function that allows to navigate to the next desired page
     /// </summary>
     /// <param name="nextWindow">
-    /// Type window, represents the next window to redirect to
+    /// Type Page, represents the next page to redirect to
     /// </param>
     public void Navigate(Window nextWindow)
     {
@@ -24,26 +23,27 @@ public partial class StaffChangeEmail : Window
     }
 
     /// <summary>
-    /// Redirects staff to their MyAccount window via button click
-    /// Since the portal and the MyAccount are both windows, they are easily navigable
+    /// Redirects staff to their MyAccount page via button click
+    /// Since the portal and the MyAccount are both pages, they should be easily navigable
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void StaffAccountBtn_Click(object sender, RoutedEventArgs e)
+    private void StaffMyAccountBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.StaffChangeEmailSwitch(new StaffMyAccount());
+        Switcher.StaffPageSwitch(new StaffMyAccount());
     }
 
     /// <summary>
-    /// Logs out staff and redirects user to the Log In window via button click
+    /// Logs out Staff and redirects user to the Log In page via button click
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
     private void LogOutBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.LogOutSwitch();
+        this.Close();
     }
-    
+
     /// <summary>
     /// Redirects user to home page - staff portal via QRbert image click
     /// </summary>

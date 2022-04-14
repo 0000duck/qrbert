@@ -3,14 +3,14 @@ using System.Windows.Controls;
 
 namespace QRbert;
 
-public partial class StaffChangeEmail : Window
+public partial class StaffChangePassword : Window
 {
-    public StaffChangeEmail()
+    public StaffChangePassword()
     {
         InitializeComponent();
-        Switcher.StaffChangeEmailSwitcher = this;
+        Switcher.StaffChangePasswordSwitcher = this;
     }
-
+    
     /// <summary>
     /// Public function that allows to navigate to the next desired window
     /// </summary>

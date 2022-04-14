@@ -3,12 +3,12 @@ using System.Windows.Controls;
 
 namespace QRbert;
 
-public partial class VolunteerChangeEmail : Window
+public partial class VolunteerForgotPassword : Window
 {
-    public VolunteerChangeEmail()
+    public VolunteerForgotPassword()
     {
         InitializeComponent();
-        Switcher.VolunteerChangeEmailSwitcher = this;
+        Switcher.VolunteerForgotPasswordSwitcher = this;
     }
     
     /// <summary>
@@ -37,6 +37,7 @@ public partial class VolunteerChangeEmail : Window
     private void VolunteerMyAcctBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
+        this.Close();
     }
 
     /// <summary>

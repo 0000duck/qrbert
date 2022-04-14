@@ -3,12 +3,12 @@ using System.Windows.Controls;
 
 namespace QRbert;
 
-public partial class VolunteerChangeEmail : Window
+public partial class VolunteerChangePassword : Window
 {
-    public VolunteerChangeEmail()
+    public VolunteerChangePassword()
     {
         InitializeComponent();
-        Switcher.VolunteerChangeEmailSwitcher = this;
+        Switcher.VolunteerChangePwdSwitcher = this;
     }
     
     /// <summary>

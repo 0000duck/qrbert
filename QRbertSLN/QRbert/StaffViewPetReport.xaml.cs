@@ -2,12 +2,12 @@ using System.Windows;
 
 namespace QRbert;
 
-public partial class StaffPortal
+public partial class StaffViewPetReport : Window
 {
-    public StaffPortal()
+    public StaffViewPetReport()
     {
         InitializeComponent();
-        Switcher.staffpageSwitcher = this;
+        Switcher.StaffViewPetReportSwitcher = this;
     }
     
     /// <summary>
@@ -55,4 +55,14 @@ public partial class StaffPortal
         this.Close();
     }
 
+    /// <summary>
+    /// Redirects user to Pet Report window via button click after giving a pet ID
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void StaffViewPetReportViewerBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffViewPetReportSwitch(new StaffPetReportViewer());
+        this.Close();
+    }
 }
