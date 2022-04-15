@@ -39,20 +39,72 @@
         <!--This stack panel contains the text box Email, which was designed in a way to disappear once the user
             starts to type inside it. It has a corner radius and value, with its target being the text boxes' 
             border.-->
-        <StackPanel 
+        <DockPanel 
             Height="25" 
             Width="200" 
             Margin="540,50,-300,0"
+            
             >
+            <!-- To make the watermark work, I got a TextBlock that had a white background
+                 And then I had the TextBlock with the word "Email" and then I had the
+                 TextBox over that one.
+                 -->
+            <TextBlock
+                Background="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="190"
+                Margin="5,0,0,0"
+                
+                >
+                <TextBlock.Resources>
+                    <Style 
+                        TargetType="{x:Type Border}"
+                    >
+                        <Setter 
+                            Property="CornerRadius" 
+                            Value="10" 
+                        />
+                    </Style>
+                </TextBlock.Resources>
+                
+            </TextBlock>
+            <TextBlock
+                Text="Email"
+                Foreground="#FF9100"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="70"
+                Name="txtSignInEmail"
+                Margin="-310,0,0,0"
+                
+            >
+                <TextBlock.Resources>
+                    <Style 
+                        TargetType="{x:Type Border}"
+                    >
+                        <Setter 
+                            Property="CornerRadius" 
+                            Value="10" 
+                        />
+                    </Style>
+                </TextBlock.Resources>
+                
+            </TextBlock>
+            
             <TextBox 
-                Background="White" 
+                Background="Transparent" 
                 Foreground="#FF9100" 
                 FontWeight="Bold" 
                 BorderBrush="#FF9100"
-                BorderThickness="2" 
-                Text="Email" 
+                BorderThickness="3" 
+                 
                 Name = "txtEmail"
-                Height="25"
+                TextChanged="TxtEmail_OnTextChanged"
+                Height="24"
+                Margin="-195,0,0,0"
                 >
                 <TextBox.Resources>
                     <Style 
@@ -65,35 +117,80 @@
                     </Style>
                 </TextBox.Resources>
             </TextBox>
-        </StackPanel>
+            
+            
+        </DockPanel>
         <!--This stack panel contains the text box password, which was designed in a way to disappear once the user
             starts to type inside it. It has a corner radius and value, with its target being the text boxes'
             border.-->
-        <StackPanel 
+        <DockPanel 
             Height="20" 
             Width="200" 
             Margin="540,7,-300,0"
             >
-            <TextBox 
-                Background="White" 
-                Foreground="#FF9100" 
-                FontWeight="Bold" 
-                BorderBrush="#FF9100"
-                BorderThickness="2" 
-                Text="Password"
-                Name = "txtPassword"
-                >
-                <TextBox.Resources>
+            <TextBlock
+                Background="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="190"
+                Margin="5,0,0,0"
+                
+            >
+                <TextBlock.Resources>
                     <Style 
-                        TargetType="{x:Type Border}">
+                        TargetType="{x:Type Border}"
+                    >
                         <Setter 
                             Property="CornerRadius" 
                             Value="10" 
                         />
                     </Style>
-                </TextBox.Resources>
-            </TextBox>
-        </StackPanel>
+                </TextBlock.Resources>
+                
+            </TextBlock>
+            <TextBlock
+                Text="Password"
+                Foreground="#FF9100"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="70"
+                Name="txtSignInPassword"
+                Margin="-310,0,0,0"
+                
+            >
+                <TextBlock.Resources>
+                    <Style 
+                        TargetType="{x:Type Border}"
+                    >
+                        <Setter 
+                            Property="CornerRadius" 
+                            Value="10" 
+                        />
+                    </Style>
+                </TextBlock.Resources>
+                
+            </TextBlock>
+            <PasswordBox 
+                    
+                    
+                PasswordChar="*" 
+                 
+                Height="20" 
+                PasswordChanged="TxtPassword_OnPasswordChanged"
+                Background="Transparent" 
+                Foreground="#FF9100" 
+                FontWeight="Bold" 
+                BorderBrush="Transparent" 
+                BorderThickness="0"
+                Margin="-191,0,0,0" 
+                FontSize="14"
+                Name="txtPassword"
+            >
+                         
+            </PasswordBox>
+        </DockPanel>
         <!--This stack panel contains the button Forgot your password?, which was designed in a translucent pattern
             with no border. However, if the user clicks anywhere within the stack panel's border, it will activate
             the button and take them to another page.-->

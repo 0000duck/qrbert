@@ -43,7 +43,7 @@ namespace QRbert
 
             // email and password input from the user
             string emailInput = txtEmail.Text;
-            string pwInput = txtPassword.Text;
+            string pwInput = (string)txtPassword.Password;
 
             // Given the username, Denise will query the database to retrieve the account type
             string msg = verifyRole("SELECT count(*) From QRbertTables.Registration where email = '" + emailInput +
@@ -135,6 +135,29 @@ namespace QRbert
                  Switcher.LogIn_RegisterSwitch(new VolunteerPortal());
                  this.Close();
              }
+        }
+        
+
+        //If there is text in the TextBox, the Email text goes away
+        //Returns if there is no text in the TextBox
+        private void TxtEmail_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            txtSignInEmail.Visibility = Visibility.Visible;
+            if (txtEmail.Text.Length > 0)
+            {
+                txtSignInEmail.Visibility = Visibility.Hidden;
+            }
+        }
+
+        //If there is text in the PasswordBox, the Password text goes away
+        //Returns if there is no text in the PasswordBox
+        private void TxtPassword_OnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            txtSignInPassword.Visibility = Visibility.Visible;
+            if (txtPassword.Password.Length > 0)
+            {
+                txtSignInPassword.Visibility = Visibility.Hidden;
+            }
         }
     }
 

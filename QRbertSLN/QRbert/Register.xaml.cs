@@ -131,10 +131,11 @@ public partial class Register : Window
 /// </summary>
 /// <param name="words"></param>
 /// <returns></returns>
-    public static bool checkString(string words)
+    public static bool checkString(TextBox textBox)
     {
-        if (words == null || words == "")
+        if (textBox.Text == null || textBox.Text == "")
         {
+            MessageBox.Show(textBox.Name + " is required.");
             return false;
         }
         else
@@ -252,7 +253,7 @@ public partial class Register : Window
             
         else
         {
-            //MessageBox.Show("Not a valid email");
+            MessageBox.Show("Not a valid email");
             return false;
         }
             
@@ -281,7 +282,7 @@ public partial class Register : Window
             }
         }
 
-        //MessageBox.Show("What's good bro?!");
+        MessageBox.Show("Not a valid input for a state.");
         return false;
 
     }
@@ -302,7 +303,7 @@ public partial class Register : Window
             return true;
         }
 
-        //MessageBox.Show("No good bro");
+        MessageBox.Show("Invalid Driver's License format");
         return false;
     }
 /// <summary>
@@ -328,7 +329,7 @@ public partial class Register : Window
             return true;
         }
 
-        //MessageBox.Show("Not based");
+        MessageBox.Show("Invalid phone number");
         return false;
     }
     
@@ -356,12 +357,12 @@ public partial class Register : Window
         TextBox city, TextBox state, TextBox zipcode, TextBox phoneNumber, PasswordBox password, PasswordBox confirmPassword)
     {
         bool isGood = false;
-        if (firstName.Text == "")
+        if (checkString(firstName))
         {
             return isGood;
         }
 
-        if (lastName.Text == "")
+        if (checkString(lastName))
         {
             return isGood;
         }
@@ -432,7 +433,7 @@ public partial class Register : Window
 
         if (!Authenticate(txtFirstName,txtLastName,txtEmail,txtDriver,txtAddress,txtCity,txtState,txtZipcode,txtPhone,Password,ConfirmPassword))
         {
-            MessageBox.Show("Please fill out all mandatory fields on the page.");
+            //MessageBox.Show("Please fill out all mandatory fields on the page.");
         }
         
         
