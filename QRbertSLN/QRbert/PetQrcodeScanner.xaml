@@ -1,11 +1,11 @@
-<Window x:Class="QRbert.StaffViewPetReport"
+<Window x:Class="QRbert.PetQrcodeScanner"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:QRbert"
         mc:Ignorable="d"
-        Title="StaffViewPetReport" Height="450" Width="800">
+        Title="PetQrcodeScanner" Height="450" Width="800">
     <!-- This the template for the Menus; It creates the menu with a white background and black bold letters;
         allows the user to hover over the menu and display the menus as well as change the letters to orange-->
     <Window.Resources>
@@ -156,13 +156,13 @@
         <!-- This the orange semitransparent stack panel in the center with the button controls-->
         <StackPanel Background="#FF9100" Width="400" Height="300" Opacity="0.7" 
                     Margin = "0, -400, 0, 0"/>
-        <!-- This the "View Pet Reports" label at the top center of the orange semitransaprent stackpanel-->
+        <!-- This the "Scan Pet qrcode" label at the top center of the orange semitransaprent stackpanel-->
         <Label 
-            Width = "350"
+            Width = "250"
             Height="50"
             FontWeight="Bold" 
             HorizontalAlignment="Center"
-            Content="View Pet Report via QRcode" 
+            Content="Scan Pet QRcode" 
             Foreground="White" 
             FontSize="25"
             Margin="25,-600,0,0"
@@ -176,9 +176,9 @@
             Source="Images/QRbertQRCode-White.png" 
             Margin="0,-400,0,0" 
         />
-        <!--Activate Camera button so that user clicks on it to activate the camera 
-            on the next page then the user can scan the pet qrcode and the pet report will be viewed . Using the resource property, we managed to make a corner 
-            radius.-->
+        <!--This is the "scan" button that will activate the camera; 
+            Once the user successfully scans the pet qr code the user will be able to view/edit/create pet report or remove animal
+            depending on what button the user had previously clicked to perform the action they want to perform-->
         <Button 
             Background="White" 
             Foreground="Orange" 
@@ -201,7 +201,7 @@
                     />
                 </Style>
             </Button.Resources>
-            Scan and View
+            Scan 
         </Button>
         
         <!-- This the "Terms and Privacy Notice" button control at the bottom of the page -->
