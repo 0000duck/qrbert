@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media;
 using OpenCVDemo;
 using OpenCvSharp;
 using Window = OpenCvSharp.Window;
+using QRCoder;
+using QRCoder.Xaml;
 
 
 namespace QRbert
@@ -61,6 +64,20 @@ namespace QRbert
                 if (Cv2.WaitKey(1) == 113)
                     window.Close();
             }
+        }
+        
+        public static DrawingImage Generate_QR_Click(string info)
+        {
+            QRCodeGenerator gen = new QRCodeGenerator();
+            /*
+             * Currently using user's full name, date of birth, and random integer as encoded data
+             * Use of random integer reduces chance of collision, reduces chance of someone guessing the encoded data,
+             * and allows for a user to easily reset their QR code with a new one.
+             */
+            QRCodeData data = gen.CreateQrCode(info, QRCodeGenerator.ECCLevel.Q);
+            XamlQRCode qrCode = new XamlQRCode(data);
+            DrawingImage qrCodeImage = qrCode.GetGraphic(20);
+            return qrCodeImage;
         }
     }
 }

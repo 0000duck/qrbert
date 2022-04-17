@@ -510,12 +510,9 @@ public partial class Register : Window
 
             
             // Creating the user's QR code and displaying it
-            QRCodeGenerator qrCodeGenerator = new QRCodeGenerator();
             // Saves the email, password, and facultyrole as a string for the QR code, this can be changed later
             String userInfo = txtEmail.Text + " "  + ConfirmPassword.Password + " " + facultyRole;
-            QRCodeData data = qrCodeGenerator.CreateQrCode(userInfo, QRCodeGenerator.ECCLevel.Q);
-            XamlQRCode qrCode = new XamlQRCode(data);
-            DrawingImage qrCodeImage = qrCode.GetGraphic(20);
+            DrawingImage qrCodeImage = QRCodeScanner.Generate_QR_Click(userInfo);
             // Creates a new window to display the QR code and shows it
             ShowQRCode showQRCode = new ShowQRCode();
             showQRCode.QRCodeViewer.Source = qrCodeImage;
