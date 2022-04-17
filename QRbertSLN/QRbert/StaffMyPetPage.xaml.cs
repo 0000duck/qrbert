@@ -2,9 +2,9 @@ using System.Windows;
 
 namespace QRbert;
 
-public partial class SelectAPet : Window
+public partial class StaffMyPetPage : Window
 {
-    public SelectAPet()
+    public StaffMyPetPage()
     {
         InitializeComponent();
     }
