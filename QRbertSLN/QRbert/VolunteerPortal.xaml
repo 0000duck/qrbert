@@ -130,24 +130,25 @@
         <!-- This is the Timesheet menu-->
         <Menu Width="100" Height="22" Margin="300, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Timesheet" Name="mm" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="View Timesheet"/>
+                <MenuItem 
+                    Header="View Timesheet"
+                    Click="ViewTimesheetBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This is the Animal menu for a volunteer-->
         <Menu Width="100" Height="22" Margin="450, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="My Pets"/>
-                <MenuItem Header="Select a Pet"/>
-                <MenuItem Header="Pet Report"/>
+                <MenuItem 
+                    Header="Select a Pet"
+                    Click="ScanPetQRCodeBtn_Click"/>
+                <MenuItem 
+                    Header="Pet Report"
+                    Click="PetReportsBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This is the My Account menu for a volunteer-->
         <Menu Width="100" Height="22" Margin="600, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem 
-                Header="My Account" 
-                Name="mm3" 
-                Template="{DynamicResource MenuItemControlTemplate1}"
-                >
+            <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem 
                     Header="Volunteer Account"
                     Click="VolunteerMyAcctBtn_Click"/>

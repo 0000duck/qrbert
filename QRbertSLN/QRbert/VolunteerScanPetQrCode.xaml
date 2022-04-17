@@ -1,11 +1,11 @@
-<Window x:Class="QRbert.PetQrcodeScanner"
+﻿<Window x:Class="QRbert.VolunteerScanPetQrCode"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:QRbert"
         mc:Ignorable="d"
-        Title="PetQrcodeScanner" Height="450" Width="800">
+        Title="VolunteerScanPetQrCode" Height="450" Width="800">
     <!-- This the template for the Menus; It creates the menu with a white background and black bold letters;
         allows the user to hover over the menu and display the menus as well as change the letters to orange-->
     <Window.Resources>
@@ -116,38 +116,22 @@
                    Margin="0,0,0,0"/>
             <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
                    Margin="-650,-900,0,-100"
-                   MouseDown="HomeStaffPortalBtn_Click"/>
-            
+                   MouseDown="HomeVolunteerPortalBtn_Click"/>
         </StackPanel>
         <!-- This is the Timesheet menu-->
         <Menu Width="100" Height="22" Margin="300, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Timesheet" Name="mm" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Lock Timesheets"/>
-                <MenuItem Header="Rounding Rule"/>
+                <MenuItem 
+                    Header="View Timesheet"
+                    Click="ViewTimesheetBtn_Click"/>
             </MenuItem>
         </Menu>
-        <!-- This is the Volunteer menu-->
-        <Menu Width="100" Height="22" Margin="400, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem Header="Volunteer" Name="mm1" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Track Active"/>
-                <MenuItem Header="Staff Search"/>
-                <MenuItem Header="Assign Pet"/>
-            </MenuItem>
-        </Menu>
-        <!-- This is the Animal menu-->
-        <Menu Width="100" Height="22" Margin="500, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Select a Pet"/>
-                <MenuItem Header="Remove Animal"/>
-                <MenuItem Header="Pet Reports"/>
-            </MenuItem>
-        </Menu>
-        <!-- This is the My Account menu-->
+        <!-- This is the My Account menu for a volunteer-->
         <Menu Width="100" Height="22" Margin="600, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem 
-                    Header="Staff Account"
-                    Click="StaffMyAccountBtn_Click"/>
+                    Header="Volunteer Account"
+                    Click="VolunteerMyAcctBtn_Click"/>
                 <MenuItem 
                     Header="Log out"
                     Click="LogOutBtn_Click"/>
@@ -190,7 +174,7 @@
             FontSize="16" 
             ClickMode="Press"
             Margin="0,-175,0,0"
-            Click="PetSearchViaQRCodeBtn_Click">
+            Click="ScanPetQRCodeBtn_Click">
             <Button.Resources>
                 <Style 
                     TargetType="{x:Type Border}"

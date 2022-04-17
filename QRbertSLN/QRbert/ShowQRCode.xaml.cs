@@ -11,14 +11,4 @@ public partial class ShowQRCode : Window
     {
         InitializeComponent();
     }
-        
-    void ShowQRCode_Closing(object sender, CancelEventArgs e)
-    {
-        MessageBoxResult response = MessageBox.Show("Have you saved your QR code?", 
-            "Your QR Code", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-        if (response == MessageBoxResult.No)
-        {
-            e.Cancel = true;
-        }
-    }
 }

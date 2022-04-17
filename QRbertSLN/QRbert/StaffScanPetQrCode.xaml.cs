@@ -2,13 +2,13 @@ using System.Windows;
 
 namespace QRbert;
 
-public partial class StaffChangeEmail : Window
+public partial class StaffScanPetQrCode : Window
 {
-    public StaffChangeEmail()
+    public StaffScanPetQrCode()
     {
         InitializeComponent();
     }
-
+    
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
     /// Since the portal and the MyAccount are both pages, they should be easily navigable
@@ -42,27 +42,16 @@ public partial class StaffChangeEmail : Window
         Switcher.RedirectStaffPortal();
         this.Close();
     }
-    
+
     /// <summary>
     /// Redirects user to scan pet's QR Code in PetQrcodeScanner window via button click
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void ScanPetQRCodeRedirectBtn_Click(object sender, RoutedEventArgs e)
+    private void ScanPetQRCodeBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.StaffPageSwitch(new StaffScanPetQrCode());
-        this.Close();
-    }
-
-    /// <summary>
-    /// Redirects user to Pet Reports window via button click
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void PetReportsBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.StaffPageSwitch(new StaffPetReport());
-        this.Close();
+        QRCodeScanner.DecodeQRCode();
+        // Need Denise's help to finish this part
     }
 
     /// <summary>
