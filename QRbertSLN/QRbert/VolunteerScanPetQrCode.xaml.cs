@@ -1,11 +1,11 @@
+﻿using System.Data.SqlClient;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace QRbert;
 
-public partial class VolunteerForgotPassword : Window
+public partial class VolunteerScanPetQrCode : Window
 {
-    public VolunteerForgotPassword()
+    public VolunteerScanPetQrCode()
     {
         InitializeComponent();
     }
@@ -53,26 +53,43 @@ public partial class VolunteerForgotPassword : Window
         Switcher.VolunteerPortalSwitch(new VolunteerViewTimesheets());
         this.Close();
     }
-
+    
     /// <summary>
-    /// Redirects user to scan pet qr code window via button click
+    /// Redirects user to scan pet's QR Code in PetQrcodeScanner window via button click
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
     private void ScanPetQRCodeBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
-        this.Close();
+        QRCodeScanner.DecodeQRCode();
+        string petId = QRCodeScanner.result;
+        string msg = 
+            verifyRole("SELECT count(*) From QRbertDB.QRbertTables.Pet where PetID = '" + petId + "'");
+        // Scans the QR Code and tries to get the amount of records in the database for that string
+        // If there were no results
+        if (int.Parse(msg) == 0)
+        {
+            MessageBox.Show("Invalid Pet QR Code. Please try scanning again or try a different Pet QR Code.");
+        }
+        // At least one result
+        else
+        {
+            Switcher.StaffPageSwitch(new VolunteerMyPets());
+            this.Close();
+        }
     }
-
+    
     /// <summary>
-    /// Redirects user to pet report window via button click
+    /// Verifies a string via an SQL connection to our database
     /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void PetReportBtn_Click(object sender, RoutedEventArgs e)
+    /// <param name="s"></param>
+    /// <returns></returns>
+    private string verifyRole(string s)
     {
-        Switcher.VolunteerPortalSwitch(new VolunteerPetReport());
-        this.Close();
+        using SqlConnection sqlCon = new SqlConnection(Switcher.connectionString);
+        sqlCon.Open();
+        SqlCommand command = new SqlCommand(s, sqlCon);
+        string query = command.ExecuteScalar().ToString();
+        return query;
     }
 }

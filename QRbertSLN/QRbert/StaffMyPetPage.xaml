@@ -1,12 +1,12 @@
-<Window x:Class="QRbert.StaffEditPetReportQRcode_scanner"
+<Window x:Class="QRbert.StaffMyPetPage"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:QRbert"
         mc:Ignorable="d"
-        Title="StaffEditPetReportQRcode_scanner" Height="450" Width="800">
-        <!-- This the template for the Menus; It creates the menu with a white background and black bold letters;
+        Title="StaffMyPetPage" Height="450" Width="800">
+    <!-- This the template for the Menus; It creates the menu with a white background and black bold letters;
         allows the user to hover over the menu and display the menus as well as change the letters to orange-->
     <Window.Resources>
         <LinearGradientBrush x:Key="DarkBrush" StartPoint="0.5,0" EndPoint="0.5,1">
@@ -116,7 +116,7 @@
                    Margin="0,0,0,0"/>
             <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
                    Margin="-650,-900,0,-100"
-                   />
+                   MouseDown="HomeStaffPortalBtn_Click"/>
             
         </StackPanel>
         <!-- This is the Timesheet menu-->
@@ -147,49 +147,72 @@
             <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem 
                     Header="Staff Account"
-                    />
+                    Click="StaffMyAccountBtn_Click"/>
                 <MenuItem 
                     Header="Log out"
-                    />
+                    Click="LogOutBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This the orange semitransparent stack panel in the center with the button controls-->
         <StackPanel Background="#FF9100" Width="400" Height="300" Opacity="0.7" 
-                    Margin = "0, -400, 0, 0"/>
-        <!-- This the "Edit Pet Reports" label at the top center of the orange semitransaprent stackpanel-->
-        <Label 
-            Width = "350"
-            Height="50"
+                    Margin = "-300, -400, 0, 0"/>
+        <!-- The pet name will go here at the top center of the orange semitransaprent stackpanel-->
+            <Label 
+            Name="PetName"
+            Visibility="Visible"
+            Width = "250"
+            Height="40"
             FontWeight="Bold" 
             HorizontalAlignment="Center"
-            Content="Edit Pet Report via QRcode" 
+            Content="" 
+            Foreground="Orange" 
+            FontSize="30"
+            Margin="450,-500,0,0"
+        />
+        <Border Height = "90" Width = "140" CornerRadius="8,8,8,8" Margin="300, -650, 0, 0">
+            <Border.Background>
+                <ImageBrush Stretch="Fill" ImageSource="Images/puppy.jpg" />
+            </Border.Background>
+        </Border> 
+        <TextBlock
+            Text="Enter Pet Name"
+            Foreground="White"
+            FontWeight="Bold"
+            FontSize="18"
+            Height="20"
+            Width="250"
+            Name="txtFindPetBlock"
+            Margin="-300,-600,0,0"
+        >
+                
+        </TextBlock>
+        <TextBox 
+            Name = "txtFindPet" 
+            Width = "250" 
+            Height="20" 
+            Background="Transparent" 
             Foreground="White" 
-            FontSize="25"
-            Margin="25,-600,0,0"
-        />
-        <!--QR code image from the Github repository. Not meant to be scanned. Just
-            represents how QRbert logos look like for all users, staff and
-            volunteers. -->
-        <Image 
-            Width="200" 
-            Height="150" 
-            Source="Images/QRbertQRCode-White.png" 
-            Margin="0,-400,0,0" 
-        />
-        <!--"Scan and Edit" button will activate the camera; 
-            The user will scan the pet qr code and will be able to edit that pet's report-->
+            FontWeight="Bold" 
+            BorderBrush="Transparent" 
+            BorderThickness="2"
+            Margin="-300,-600,0,0"
+            FontSize="14"
+        >
+                    
+        </TextBox>
+        <!-- This the "View pet " button control-->
         <Button 
             Background="White" 
             Foreground="Orange" 
             FontWeight="Bold" 
             BorderBrush="Orange" 
             BorderThickness="2" 
-            Height="35" 
-            Width="200" 
-            FontSize="16" 
+            Height="50"
+            Width = "250"
+            FontSize="30"
             ClickMode="Press"
-            Margin="0,-175,0,0"
-            >
+            Margin="-300,-500,0,0"
+            Click="ViewPetBtn_Click">
             <Button.Resources>
                 <Style 
                     TargetType="{x:Type Border}"
@@ -200,9 +223,86 @@
                     />
                 </Style>
             </Button.Resources>
-            Scan and Edit
+            
+            Search Pet Name 
         </Button>
+        <!-- There will be three buttons here per the conversation I had with denise; "Pet Activity", "Treatment", "Breed Info"-->
         
+        <Button 
+            Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
+            Height="35" Width="100" FontSize="16" ClickMode="Press" Margin="-575,-300,0,0">
+            <Button.Resources>
+                <Style 
+                    TargetType="{x:Type Border}"
+                >
+                    <Setter 
+                        Property="CornerRadius" 
+                        Value="15"
+                    />
+                </Style>
+            </Button.Resources>
+            Breed Info 
+        </Button>
+        <Button 
+            Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
+            Height="35" Width="120" FontSize="16" ClickMode="Press" Margin="-25,-300,0,0">
+            <Button.Resources>
+                <Style 
+                    TargetType="{x:Type Border}"
+                >
+                    <Setter 
+                        Property="CornerRadius" 
+                        Value="15"
+                    />
+                </Style>
+            </Button.Resources>
+            Pet Treatment 
+        </Button>
+        <Button 
+            Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
+            Height="35" Width="120" FontSize="16" ClickMode="Press" Margin="-285,-300,0,0">
+            <Button.Resources>
+                <Style 
+                    TargetType="{x:Type Border}"
+                >
+                    <Setter 
+                        Property="CornerRadius" 
+                        Value="15"
+                    />
+                </Style>
+            </Button.Resources>
+            Pet Activity 
+        </Button>
+        <Button 
+            Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
+            Height="35" Width="150" FontSize="16" ClickMode="Press" Margin="-75,-200,0,0">
+            <Button.Resources>
+                <Style 
+                    TargetType="{x:Type Border}"
+                >
+                    <Setter 
+                        Property="CornerRadius" 
+                        Value="15"
+                    />
+                </Style>
+            </Button.Resources>
+            Add Pet Activity 
+        </Button>
+        <Button 
+            Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
+            Height="35" Width="160" FontSize="16" ClickMode="Press" Margin="-475,-200,0,0">
+            <Button.Resources>
+                <Style 
+                    TargetType="{x:Type Border}"
+                >
+                    <Setter 
+                        Property="CornerRadius" 
+                        Value="15"
+                    />
+                </Style>
+            </Button.Resources>
+            Add Pet Treatment 
+        </Button>
         <!-- This the "Terms and Privacy Notice" button control at the bottom of the page -->
         <Button Height = "25" Width = "300" Content="Terms and Privacy Notice" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
@@ -224,5 +324,4 @@
                 Margin="500,-50,0,0">
         </Button>
     </StackPanel>
-    
 </Window>

@@ -123,24 +123,38 @@
         <!-- This is the Timesheet menu-->
         <Menu Width="100" Height="22" Margin="300, -700, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Timesheet" Name="mm" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Lock Timesheets"/>
-                <MenuItem Header="Rounding Rule"/>
+                <MenuItem 
+                    Header="Lock Timesheets"
+                    Click="LockTimesheetsBtn_Click"/>
+                <MenuItem 
+                    Header="Rounding Rule"
+                    Click="RoundingRulesBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This is the Volunteer menu-->
         <Menu Width="100" Height="22" Margin="400, -700, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Volunteer" Name="mm1" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Track Active"/>
-                <MenuItem Header="Staff Search"/>
+                <MenuItem 
+                    Header="Track Active"
+                    Click="TrackActiveVolunteersBtn_Click"/>
+                <MenuItem 
+                    Header="Staff Search"
+                    Click="StaffSearchBtn_Click"/>
                 <MenuItem Header="Assign Pet"/>
             </MenuItem>
         </Menu>
         <!-- This is the Animal menu-->
         <Menu Width="100" Height="22" Margin="500, -700, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Select a Pet"/>
-                <MenuItem Header="Remove Animal"/>
-                <MenuItem Header="Pet Reports"/>
+                <MenuItem 
+                    Header="Select a Pet"
+                    Click="ScanPetQRCodeRedirectBtn_Click"/>
+                <MenuItem 
+                    Header="Remove Animal"
+                    Click="ScanPetQRCodeRedirectBtn_Click"/>
+                <MenuItem 
+                    Header="Pet Reports"
+                    Click="PetReportsBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This is the My Account menu-->
@@ -170,7 +184,9 @@
         />
         <!-- This the "Pet Name" textbox control-->
         <DockPanel LastChildFill="False">
-            <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
+            <TextBox 
+                Name = "txtPetName"
+                Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      Margin="0,-1100,-800,0" FontSize="14">
                 Pet Name
@@ -180,17 +196,21 @@
         </DockPanel>
         <!-- This the "DOB" textbox control-->
         <DockPanel LastChildFill="False">
-            <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
+            <TextBox 
+                Name = "txtDOB"
+                Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      Margin="0,-1000,-800,0" FontSize="14">
-                DOB (MM/DD/YYYY)
+                DOB (YYYY-MM-DD)
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-960,0,0"/>
         </DockPanel>
         <!-- This the "Animal Type" textbox control-->
         <DockPanel LastChildFill="False">
-            <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
+            <TextBox 
+                Name = "txtType"
+                Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      Margin="0,-900,-800,0" FontSize="14">
                 Animal Type
@@ -200,7 +220,9 @@
         </DockPanel>
         <!-- This the "Breed" textbox control-->
         <DockPanel LastChildFill="False">
-            <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
+            <TextBox 
+                Name = "txtBreed"
+                Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      Margin="0,-800,-800,0" FontSize="14">
                 Breed
@@ -210,7 +232,9 @@
         </DockPanel>
         <!-- This the "Gender" textbox control-->
         <DockPanel LastChildFill="False">
-            <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
+            <TextBox 
+                Name = "txtGender"
+                Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      Margin="0,-700,-800,0" FontSize="14">
                 Gender
@@ -249,7 +273,8 @@
             Width="100" 
             FontSize="16" 
             ClickMode="Press"
-            Margin="0,-300,0,0">
+            Margin="0,-300,0,0"
+            Click="CreatePet_Button" >
             <Button.Resources>
                 <Style 
                     TargetType="{x:Type Border}"

@@ -1,11 +1,10 @@
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 
 namespace QRbert;
 
-public partial class VolunteerForgotPassword : Window
+public partial class VolunteerPetReport : Window
 {
-    public VolunteerForgotPassword()
+    public VolunteerPetReport()
     {
         InitializeComponent();
     }
@@ -59,20 +58,20 @@ public partial class VolunteerForgotPassword : Window
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void ScanPetQRCodeBtn_Click(object sender, RoutedEventArgs e)
+    private void ViewPetReportBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
         this.Close();
     }
-
+    
     /// <summary>
-    /// Redirects user to pet report window via button click
+    /// Redirects user to scan pet qr code window via button click
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void PetReportBtn_Click(object sender, RoutedEventArgs e)
+    private void ScanPetQRCodeBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.VolunteerPortalSwitch(new VolunteerPetReport());
+        Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
         this.Close();
     }
 }

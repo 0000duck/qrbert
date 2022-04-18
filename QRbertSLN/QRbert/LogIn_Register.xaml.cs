@@ -15,10 +15,6 @@ namespace QRbert
     /// </summary>
     public partial class LogIn_Register : Window
     {
-        // Denise will open the connection to the database
-        string connectionString = @"Data Source = qrbert-rds1.cfe8s1xr87h2.us-west-1.rds.amazonaws.com; 
-                                Initial Catalog = QRbertDB; User ID = rds1_admin; Password = rds1_admin;";
-
         public LogIn_Register()
         {
             InitializeComponent();
@@ -90,7 +86,7 @@ namespace QRbert
 
         private string verifyRole(string s)
         {
-            using SqlConnection sqlCon = new SqlConnection(connectionString);
+            using SqlConnection sqlCon = new SqlConnection(Switcher.connectionString);
             sqlCon.Open();
             SqlCommand command = new SqlCommand(s, sqlCon);
             string query = command.ExecuteScalar().ToString();

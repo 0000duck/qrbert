@@ -1,11 +1,11 @@
-<Window x:Class="QRbert.StaffViewPetReport"
+﻿<Window x:Class="QRbert.VolunteerPetReport"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:QRbert"
         mc:Ignorable="d"
-        Title="StaffViewPetReport" Height="450" Width="800">
+        Title="VolunteerPetReport" Height="450" Width="800">
     <!-- This the template for the Menus; It creates the menu with a white background and black bold letters;
         allows the user to hover over the menu and display the menus as well as change the letters to orange-->
     <Window.Resources>
@@ -116,38 +116,31 @@
                    Margin="0,0,0,0"/>
             <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
                    Margin="-650,-900,0,-100"
-                   MouseDown="HomeStaffPortalBtn_Click"/>
+                   MouseDown="HomeVolunteerPortalBtn_Click"/>
             
         </StackPanel>
         <!-- This is the Timesheet menu-->
         <Menu Width="100" Height="22" Margin="300, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Timesheet" Name="mm" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Lock Timesheets"/>
-                <MenuItem Header="Rounding Rule"/>
-            </MenuItem>
-        </Menu>
-        <!-- This is the Volunteer menu-->
-        <Menu Width="100" Height="22" Margin="400, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem Header="Volunteer" Name="mm1" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Track Active"/>
-                <MenuItem Header="Staff Search"/>
-                <MenuItem Header="Assign Pet"/>
+                <MenuItem 
+                    Header="View Timesheets"
+                    Click="ViewTimesheetBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This is the Animal menu-->
         <Menu Width="100" Height="22" Margin="500, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Select a Pet"/>
-                <MenuItem Header="Remove Animal"/>
-                <MenuItem Header="Pet Reports"/>
+                <MenuItem 
+                    Header="Select a Pet"
+                    Click="ScanPetQRCodeBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This is the My Account menu-->
         <Menu Width="100" Height="22" Margin="600, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem 
-                    Header="Staff Account"
-                    Click="StaffMyAccountBtn_Click"/>
+                    Header="Volunteer Account"
+                    Click="VolunteerMyAcctBtn_Click"/>
                 <MenuItem 
                     Header="Log out"
                     Click="LogOutBtn_Click"/>
@@ -156,29 +149,18 @@
         <!-- This the orange semitransparent stack panel in the center with the button controls-->
         <StackPanel Background="#FF9100" Width="400" Height="300" Opacity="0.7" 
                     Margin = "0, -400, 0, 0"/>
-        <!-- This the "View Pet Reports" label at the top center of the orange semitransaprent stackpanel-->
+        <!-- This the "Pet Reports" label at the top center of the orange semitransaprent stackpanel-->
         <Label 
-            Width = "350"
+            Width = "200"
             Height="50"
             FontWeight="Bold" 
             HorizontalAlignment="Center"
-            Content="View Pet Report via QRcode" 
+            Content="Pet Reports" 
             Foreground="White" 
-            FontSize="25"
+            FontSize="30"
             Margin="25,-600,0,0"
         />
-        <!--QR code image from the Github repository. Not meant to be scanned. Just
-            represents how QRbert logos look like for all users, staff and
-            volunteers. -->
-        <Image 
-            Width="200" 
-            Height="150" 
-            Source="Images/QRbertQRCode-White.png" 
-            Margin="0,-400,0,0" 
-        />
-        <!--Activate Camera button so that user clicks on it to activate the camera 
-            on the next page then the user can scan the pet qrcode and the pet report will be viewed . Using the resource property, we managed to make a corner 
-            radius.-->
+        <!-- This the "View pet report" button control-->
         <Button 
             Background="White" 
             Foreground="Orange" 
@@ -189,21 +171,19 @@
             Width="200" 
             FontSize="16" 
             ClickMode="Press"
-            Margin="0,-175,0,0"
-            Click="PetSearchViaQRCodeBtn_Click">
+            Margin="0,-350,0,0"
+            Click="ViewPetReportBtn_Click">
             <Button.Resources>
                 <Style 
-                    TargetType="{x:Type Border}"
-                >
+                    TargetType="{x:Type Border}">
                     <Setter 
                         Property="CornerRadius" 
                         Value="15"
                     />
                 </Style>
             </Button.Resources>
-            Scan and View
+            View  
         </Button>
-        
         <!-- This the "Terms and Privacy Notice" button control at the bottom of the page -->
         <Button Height = "25" Width = "300" Content="Terms and Privacy Notice" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
