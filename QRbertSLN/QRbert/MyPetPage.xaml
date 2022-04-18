@@ -155,31 +155,82 @@
         </Menu>
         <!-- This the orange semitransparent stack panel in the center with the button controls-->
         <StackPanel Background="#FF9100" Width="400" Height="300" Opacity="0.7" 
-                    Margin = "0, -400, 0, 0"/>
+                    Margin = "-300, -400, 0, 0"/>
         <!-- The pet name will go here at the top center of the orange semitransaprent stackpanel-->
-        <Label 
+            <Label 
             Name="PetName"
             Visibility="Visible"
             Width = "250"
-            Height="50"
+            Height="40"
             FontWeight="Bold" 
             HorizontalAlignment="Center"
-            Content="Pet Name Here" 
-            Foreground="White" 
+            Content="" 
+            Foreground="Orange" 
             FontSize="30"
-            Margin="0,-400,0,0"
+            Margin="450,-500,0,0"
         />
-        <Border Height = "90" Width = "140" CornerRadius="8,8,8,8" Margin="0, -550, 0, 0">
+        <Border Height = "90" Width = "140" CornerRadius="8,8,8,8" Margin="300, -650, 0, 0">
             <Border.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Images/puppy.jpg" />
             </Border.Background>
-        </Border>
-
+        </Border> 
+        <TextBlock
+            Text="Enter Pet Name"
+            Foreground="White"
+            FontWeight="Bold"
+            FontSize="18"
+            Height="20"
+            Width="250"
+            Name="txtFindPetBlock"
+            Margin="-300,-600,0,0"
+        >
+                
+        </TextBlock>
+        <TextBox 
+            Name = "txtFindPet" 
+            Width = "250" 
+            Height="20" 
+            Background="Transparent" 
+            Foreground="White" 
+            FontWeight="Bold" 
+            BorderBrush="Transparent" 
+            BorderThickness="2"
+            Margin="-300,-600,0,0"
+            FontSize="14"
+        >
+                    
+        </TextBox>
+        <!-- This the "View pet " button control-->
+        <Button 
+            Background="White" 
+            Foreground="Orange" 
+            FontWeight="Bold" 
+            BorderBrush="Orange" 
+            BorderThickness="2" 
+            Height="50"
+            Width = "250"
+            FontSize="30"
+            ClickMode="Press"
+            Margin="-300,-500,0,0"
+            Click="ViewPetBtn_Click">
+            <Button.Resources>
+                <Style 
+                    TargetType="{x:Type Border}"
+                >
+                    <Setter 
+                        Property="CornerRadius" 
+                        Value="15"
+                    />
+                </Style>
+            </Button.Resources>
+            
+            Search Pet Name 
+        </Button>
         <!-- There will be three buttons here per the conversation I had with denise; "Pet Activity", "Treatment", "Breed Info"-->
         
         <Button 
             Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
-            Height="35" Width="100" FontSize="16" ClickMode="Press" Margin="-275,-300,0,0">
+            Height="35" Width="100" FontSize="16" ClickMode="Press" Margin="-575,-300,0,0">
             <Button.Resources>
                 <Style 
                     TargetType="{x:Type Border}"
@@ -209,7 +260,7 @@
         </Button>
         <Button 
             Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
-            Height="35" Width="120" FontSize="16" ClickMode="Press" Margin="245,-300,0,0">
+            Height="35" Width="120" FontSize="16" ClickMode="Press" Margin="-285,-300,0,0">
             <Button.Resources>
                 <Style 
                     TargetType="{x:Type Border}"
@@ -224,7 +275,7 @@
         </Button>
         <Button 
             Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
-            Height="35" Width="150" FontSize="16" ClickMode="Press" Margin="175,-200,0,0">
+            Height="35" Width="150" FontSize="16" ClickMode="Press" Margin="-75,-200,0,0">
             <Button.Resources>
                 <Style 
                     TargetType="{x:Type Border}"
@@ -239,7 +290,7 @@
         </Button>
         <Button 
             Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
-            Height="35" Width="160" FontSize="16" ClickMode="Press" Margin="-175,-200,0,0">
+            Height="35" Width="160" FontSize="16" ClickMode="Press" Margin="-475,-200,0,0">
             <Button.Resources>
                 <Style 
                     TargetType="{x:Type Border}"
