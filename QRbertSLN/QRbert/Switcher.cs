@@ -71,4 +71,9 @@ public class Switcher
     {
         new VolunteerPortal().Show();
     }
+
+    public static void RedirectPetPage(Window newWindow)
+    {
+        newWindow.Show();
+    }
 }
