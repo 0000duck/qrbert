@@ -1,13 +1,10 @@
-﻿using System.Windows;
+using System.Windows;
 
 namespace QRbert;
 
-public partial class VolunteerMyPets : Window
+public partial class StaffMyPetPage : Window
 {
-    /*
-     * Volunteer window to view their MyPets page
-     */
-    public VolunteerMyPets()
+    public StaffMyPetPage()
     {
         InitializeComponent();
     }
@@ -16,7 +13,7 @@ public partial class VolunteerMyPets : Window
         
     }
 
-    private void VolunteerMyAccountBtn_Click(object sender, RoutedEventArgs e)
+    private void StaffMyAccountBtn_Click(object sender, RoutedEventArgs e)
     {
         
     }

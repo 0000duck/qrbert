@@ -7,8 +7,9 @@ using Label = System.Windows.Controls.Label;
 
 namespace QRbert;
 
-public partial class SelectAPet : Window
+public partial class AddPetActivity : Window
 {
+
     string connectionString = @"Data Source = qrbert-rds1.cfe8s1xr87h2.us-west-1.rds.amazonaws.com; 
                                 Initial Catalog = QRbertDB; User ID = rds1_admin; Password = rds1_admin;";
     public SelectAPet()
@@ -20,11 +21,11 @@ public partial class SelectAPet : Window
     {
         
     }
-
     private void StaffMyAccountBtn_Click(object sender, RoutedEventArgs e)
     {
         
     }
+
     private void LogOutBtn_Click(object sender, RoutedEventArgs e)
     {
         
