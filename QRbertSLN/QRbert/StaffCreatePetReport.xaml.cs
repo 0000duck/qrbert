@@ -131,6 +131,9 @@ public partial class StaffCreatePetReport : Window
         sqlCmd.Parameters.AddWithValue("@Gender ", txtGender.Text);
         sqlCmd.ExecuteNonQuery();
         MessageBox.Show("You have Registered a New Pet");
+        
+       Switcher.RedirectPetPage(new SelectAPet());
+       this.Close();
     }
     
 
