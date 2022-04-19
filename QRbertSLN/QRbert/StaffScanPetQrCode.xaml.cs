@@ -108,7 +108,7 @@ public partial class StaffScanPetQrCode : Window
         // At least 1 result
         else
         {
-            Switcher.StaffPageSwitch(new StaffMyPets());
+            Switcher.StaffPageSwitch(new StaffMyPetPage());
             this.Close();
         }
     }
