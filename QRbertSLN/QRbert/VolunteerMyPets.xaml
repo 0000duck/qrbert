@@ -167,53 +167,36 @@
             </Border.Background>
         </Border>
 
-        <!-- There will be three buttons here per the conversation I had with denise; "Pet Activity", "Treatment", "Breed Info"-->
-        
-        <Button 
-            Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
-            Height="35" Width="100" FontSize="16" ClickMode="Press" Margin="-275,-250,0,0">
-            <Button.Resources>
-                <Style 
-                    TargetType="{x:Type Border}"
-                >
-                    <Setter 
-                        Property="CornerRadius" 
-                        Value="15"
-                    />
-                </Style>
-            </Button.Resources>
-            Breed Info 
-        </Button>
-        <Button 
-            Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
-            Height="35" Width="120" FontSize="16" ClickMode="Press" Margin="-25,-250,0,0">
-            <Button.Resources>
-                <Style 
-                    TargetType="{x:Type Border}"
-                >
-                    <Setter 
-                        Property="CornerRadius" 
-                        Value="15"
-                    />
-                </Style>
-            </Button.Resources>
-            Pet Treatment 
-        </Button>
-        <Button 
-            Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
-            Height="35" Width="120" FontSize="16" ClickMode="Press" Margin="245,-250,0,0">
-            <Button.Resources>
-                <Style 
-                    TargetType="{x:Type Border}"
-                >
-                    <Setter 
-                        Property="CornerRadius" 
-                        Value="15"
-                    />
-                </Style>
-            </Button.Resources>
-            Pet Activity 
-        </Button>
+        <!-- This is the "Pet ID:" label, this shouldn't change-->
+        <TextBlock Width = "100" Height = "35" Text="Pet ID:" Foreground="White" Fontweight = "DemiBold" FontSize="20"
+                   Margin = "-275, -300, 00, 0" >
+            
+        </TextBlock>
+        <!-- This is the textblock where the pet Id will be displayed-->
+        <TextBlock Name = "PetId" Width = "100" Height = "35" Text="Pet ID" Foreground="White" Fontweight = "DemiBold" FontSize="20"
+                   Margin = "-275, -200, 00, 0" >
+            
+        </TextBlock>
+        <!-- This is the "Breed Type:" label, this shouldn't change-->
+        <TextBlock Width = "120" Height = "35" Text="Breed Type: " Foreground="White" Fontweight = "DemiBold" FontSize="20"
+                   Margin = "-25, -300, 00, 0" >
+            
+        </TextBlock>
+        <!-- This is the textblock where the Breed type will be displayed-->
+        <TextBlock Name = "BreedType" Width = "120" Height = "35" Text="Breed Type " Foreground="White" Fontweight = "DemiBold" FontSize="20"
+                   Margin = "-25, -200, 00, 0" >
+            
+        </TextBlock>
+        <!-- This is the "DOB:" label, this shouldn't change-->
+        <TextBlock Width = "75" Height = "35" Text="DOB: " Foreground="White" Fontweight = "DemiBold" FontSize="20"
+                   Margin = "245, -300, 00, 0" >
+            
+        </TextBlock>
+        <!-- This is the textblock where the DOB will be displayed-->
+        <TextBlock Name = "DOB" Width = "75" Height = "35" Text="DOB " Foreground="White" Fontweight = "DemiBold" FontSize="20"
+                   Margin = "245, -200, 00, 0" >
+            
+        </TextBlock>
         
         <!-- This the "Terms and Privacy Notice" button control at the bottom of the page -->
         <Button Height = "25" Width = "300" Content="Terms and Privacy Notice" Background="Transparent" Foreground="#FF9100" FontSize="16" 
