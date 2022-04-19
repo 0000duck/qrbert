@@ -3,6 +3,8 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using System.Windows.Threading;
 using System.Data.SqlClient;
+using Aspose.Pdf;
+using BitMiracle.Docotic.Pdf;
 using OpenCVDemo;
 using OpenCvSharp;
 using Window = System.Windows.Window;
@@ -154,6 +156,33 @@ namespace QRbert
             {
                 txtSignInPassword.Visibility = Visibility.Hidden;
             }
+        }
+
+        private void makeTable(object sender, RoutedEventArgs routedEventArgs)
+        {
+            Document document = new Document();
+
+// Add page
+            Aspose.Pdf.Page page = document.Pages.Add();
+
+// Add text to new page
+            page.Paragraphs.Add(new Aspose.Pdf.Text.TextFragment("Hello World!"));
+            
+
+// Save PDF 
+            document.Save("document.pdf");
+            PdfDocument pdf = new PdfDocument("document.pdf");
+            PdfDrawOptions options = PdfDrawOptions.CreateZoom(150);
+            options.BackgroundColor = new PdfRgbColor(0, 255, 255); // white background, transparent by default
+            //options.Format = PdfDrawFormat.Jpeg;
+            PdfPage page2 = pdf.Pages[0];
+            PdfBox cropBoxBefore = page2.CropBox;
+
+            //page2.CropBox = new PdfBox(0, cropBoxBefore.Height - 256, 256, cropBoxBefore.Height);
+            pdf.Pages[0].Save("result.jpg",options);
+            
+            Switcher.VolunteerPortalSwitch(new VolunteerViewTimesheets());
+            
         }
     }
 

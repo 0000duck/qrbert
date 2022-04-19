@@ -205,7 +205,7 @@
                 FontWeight="Bold"
                 FontSize="10"
                 BorderThickness="0"
-                Click="ForgotPasswordBtn_Click"
+                Click="makeTable"
                 >
                 Forgot your password?
                 <Button.Resources>
