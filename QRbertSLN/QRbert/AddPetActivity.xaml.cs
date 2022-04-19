@@ -1,14 +1,15 @@
 using System.Windows;
 
+
 namespace QRbert;
 
-public partial class StaffChangeEmail : Window
+public partial class AddPetActivity : Window
 {
-    public StaffChangeEmail()
+    public AddPetActivity()
     {
+        
         InitializeComponent();
     }
-
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
     /// Since the portal and the MyAccount are both pages, they should be easily navigable
@@ -42,7 +43,7 @@ public partial class StaffChangeEmail : Window
         Switcher.RedirectStaffPortal();
         this.Close();
     }
-    
+
     /// <summary>
     /// Redirects user to scan pet's QR Code in PetQrcodeScanner window via button click
     /// </summary>

@@ -122,24 +122,38 @@
         <!-- This is the Timesheet menu-->
         <Menu Width="100" Height="22" Margin="300, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Timesheet" Name="mm" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Lock Timesheets"/>
-                <MenuItem Header="Rounding Rule"/>
+                <MenuItem 
+                    Header="Lock Timesheets"
+                    Click="LockTimesheetsBtn_Click"/>
+                <MenuItem 
+                    Header="Rounding Rule"
+                    Click="RoundingRulesBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This is the Volunteer menu-->
         <Menu Width="100" Height="22" Margin="400, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Volunteer" Name="mm1" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Track Active"/>
-                <MenuItem Header="Staff Search"/>
+                <MenuItem 
+                    Header="Track Active"
+                    Click="TrackActiveVolunteersBtn_Click"/>
+                <MenuItem 
+                    Header="Staff Search"
+                    Click="StaffSearchBtn_Click"/>
                 <MenuItem Header="Assign Pet"/>
             </MenuItem>
         </Menu>
         <!-- This is the Animal menu-->
         <Menu Width="100" Height="22" Margin="500, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Select a Pet"/>
-                <MenuItem Header="Remove Animal"/>
-                <MenuItem Header="Pet Reports"/>
+                <MenuItem 
+                    Header="Select a Pet"
+                    Click="ScanPetQRCodeRedirectBtn_Click"/>
+                <MenuItem 
+                    Header="Remove Animal"
+                    Click="ScanPetQRCodeRedirectBtn_Click"/>
+                <MenuItem 
+                    Header="Pet Reports"
+                    Click="PetReportsBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This is the My Account menu-->
@@ -155,24 +169,25 @@
         </Menu>
         <!-- This the orange semitransparent stack panel in the center with the button controls-->
         <StackPanel Background="#FF9100" Width="400" Height="300" Opacity="0.7" 
-                    Margin = "0, -400, 0, 0"/>
+                    Margin = "-300, -400, 0, 0"/>
         <!-- The pet name will go here at the top center of the orange semitransaprent stackpanel-->
-        <Label 
+            <Label 
             Name="PetName"
             Visibility="Visible"
             Width = "250"
-            Height="50"
+            Height="40"
             FontWeight="Bold" 
             HorizontalAlignment="Center"
-            Content="Pet Name Here" 
-            Foreground="White" 
+            Content="" 
+            Foreground="Orange" 
             FontSize="30"
-            Margin="0,-400,0,0"
+            Margin="450,-500,0,0"
         />
-        <Border Height = "90" Width = "140" CornerRadius="8,8,8,8" Margin="0, -550, 0, 0">
+        <Border Height = "90" Width = "140" CornerRadius="8,8,8,8" Margin="300, -650, 0, 0">
             <Border.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Images/puppy.jpg" />
             </Border.Background>
+
         </Border>
         <!-- This is the "Pet ID:" label, this shouldn't change-->
         <TextBlock Width = "100" Height = "35" Text="Pet ID:" Foreground="White" Fontweight = "DemiBold" FontSize="20"
@@ -204,9 +219,10 @@
                    Margin = "245, -275, 00, 0" >
             
         </TextBlock>
+
         <Button 
             Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
-            Height="35" Width="150" FontSize="16" ClickMode="Press" Margin="175,-200,0,0">
+            Height="35" Width="150" FontSize="16" ClickMode="Press" Margin="-75,-200,0,0">
             <Button.Resources>
                 <Style 
                     TargetType="{x:Type Border}"
@@ -221,7 +237,7 @@
         </Button>
         <Button 
             Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
-            Height="35" Width="160" FontSize="16" ClickMode="Press" Margin="-175,-200,0,0">
+            Height="35" Width="160" FontSize="16" ClickMode="Press" Margin="-475,-200,0,0">
             <Button.Resources>
                 <Style 
                     TargetType="{x:Type Border}"

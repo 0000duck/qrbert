@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Configuration;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace QRbert;
@@ -7,7 +8,18 @@ namespace QRbert;
 /// Class that allows for page switching
 /// </summary>
 public class Switcher
-{
+{ 
+    /*
+     * connects DB to Register Page
+     * Data source is the name of the DB server
+     * Initial Catalog the QRbert database we want to connect to
+     * User name and Password -> temp log in solution until we find a more secure way to log into the DB
+     * so that the log in credentials aren't in the code for all to see
+     */ 
+    public static string connectionString = 
+        @"Data Source = qrbert-rds1.cfe8s1xr87h2.us-west-1.rds.amazonaws.com;
+        Initial Catalog = QRbertDB; User ID = rds1_admin; Password = rds1_admin;";
+    
     /// <summary>
     /// Static function that only works for the StaffPortal Window
     /// Gets page object and uses the built-in navigate windows method to get the page and load it
@@ -70,5 +82,10 @@ public class Switcher
     public static void RedirectVolunteerPortal()
     {
         new VolunteerPortal().Show();
+    }
+
+    public static void RedirectPetPage(Window newWindow)
+    {
+        newWindow.Show();
     }
 }
