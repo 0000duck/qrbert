@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Aspose.Pdf;
 
 namespace QRbert;
 
@@ -8,6 +9,7 @@ public partial class VolunteerViewTimesheets : Window
     {
         InitializeComponent();
     }
+
     
     /// <summary>
     /// Redirects volunteer user to their MyAccount window via a button click on the menu item
@@ -74,4 +76,14 @@ public partial class VolunteerViewTimesheets : Window
         Switcher.VolunteerPortalSwitch(new VolunteerPetReport());
         this.Close();
     }
+
+
+    public void makeTable()
+    {
+        Aspose.Pdf.Table table = new Table();
+        Aspose.Pdf.Row row1 = table.Rows.Add();
+        
+    }
+    
+
 }
