@@ -132,7 +132,7 @@ public partial class StaffCreatePetReport : Window
         sqlCmd.ExecuteNonQuery();
         MessageBox.Show("You have Registered a New Pet");
         
-       Switcher.RedirectPetPage(new SelectAPet());
+       Switcher.RedirectPetPage(new StaffMyPetPage());
        this.Close();
     }
     
