@@ -1,68 +1,29 @@
-﻿using System.Windows;
+using System.Windows;
+
 
 namespace QRbert;
 
-public partial class StaffMyPets : Window
+public partial class AddPetActivity : Window
 {
-    /*
-     * Staff window to view my pets
-     */
-    public StaffMyPets()
+    public AddPetActivity()
     {
+        
         InitializeComponent();
     }
-    
     /// <summary>
-    /// Redirects Staff to the ChangeEmail page via a button click
-    /// Since this and the ChangeEmail are both pages, they should be easily navigable
+    /// Redirects staff to their MyAccount page via button click
+    /// Since the portal and the MyAccount are both pages, they should be easily navigable
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void StaffChangeEmailBtn_Click(object sender, RoutedEventArgs e)
+    private void StaffMyAccountBtn_Click(object sender, RoutedEventArgs e)
     {
-        // Window redirectStaffToChangeEmail = new StaffChangeEmail();
-        // this.Content = redirectStaffToChangeEmail;
-        Switcher.StaffPageSwitch(new StaffChangeEmail());
+        Switcher.StaffPageSwitch(new StaffMyAccount());
         this.Close();
     }
 
     /// <summary>
-    /// Redirects staff to change their password page via a button click
-    /// Since this page and the ChangePassword are both pages, they should be easily navigable
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void StaffChangePasswordBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.StaffPageSwitch(new StaffChangePassword());
-        this.Close();
-    }
-
-    /// <summary>
-    /// I don't know what the difference is and I put a messagebox to reflect my confusion
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void StaffForgotPasswordBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.StaffPageSwitch(new StaffForgotPassword());
-        this.Close();
-    }
-
-    /// <summary>
-    /// Redirects staff to the ChangePersonalInfo page via a button click
-    /// Since the current page and the ChangePersonalInfo page are both pages, they should be easily navigable
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void StaffChangePersonalInfoBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.StaffPageSwitch(new StaffChangePersonalInfo());
-        this.Close();
-    }
-    
-    /// <summary>
-    /// Logs out staff user and takes them to the Log In Page
+    /// Logs out Staff and redirects user to the Log In page via button click
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -71,7 +32,7 @@ public partial class StaffMyPets : Window
         Switcher.LogOutSwitch();
         this.Close();
     }
-    
+
     /// <summary>
     /// Redirects user to home page - staff portal via QRbert image click
     /// </summary>
@@ -82,7 +43,7 @@ public partial class StaffMyPets : Window
         Switcher.RedirectStaffPortal();
         this.Close();
     }
-    
+
     /// <summary>
     /// Redirects user to scan pet's QR Code in PetQrcodeScanner window via button click
     /// </summary>

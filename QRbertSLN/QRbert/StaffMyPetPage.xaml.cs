@@ -1,19 +1,14 @@
-using System.Windows;
-using System.Data;
-using System.Windows;
-using System.Windows.Controls;
 using System.Data.SqlClient;
+using System.Windows;
+
 namespace QRbert;
 
-public partial class StaffCreatePetReport : Window
+public partial class StaffMyPetPage : Window
 {
-    string connectionString = @"Data Source = qrbert-rds1.cfe8s1xr87h2.us-west-1.rds.amazonaws.com; 
-                                Initial Catalog = QRbertDB; User ID = rds1_admin; Password = rds1_admin;";
-    public StaffCreatePetReport()
+    public StaffMyPetPage()
     {
         InitializeComponent();
     }
-    
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
     /// Since the portal and the MyAccount are both pages, they should be easily navigable
@@ -47,7 +42,7 @@ public partial class StaffCreatePetReport : Window
         Switcher.RedirectStaffPortal();
         this.Close();
     }
-    
+
     /// <summary>
     /// Redirects user to scan pet's QR Code in PetQrcodeScanner window via button click
     /// </summary>
@@ -114,27 +109,18 @@ public partial class StaffCreatePetReport : Window
         this.Close();
     }
     
-    private void CreatePet_Button(object sender, RoutedEventArgs e)
+    private void SearchPetBtn_Click(object sender, RoutedEventArgs e)
     {
-        using SqlConnection sqlCon = new SqlConnection(connectionString);
+        string petNameInput = TxtFindPet.Text;
+        using SqlConnection sqlCon = new SqlConnection(Switcher.connectionString);
         sqlCon.Open();
-            
-        /* User Input stored in Pet table
-         * NewPet is the stored procedure created in the DB that inserts data into each row of the Pet table
-        */ 
-        SqlCommand sqlCmd = new SqlCommand("NewPet", sqlCon);
-        sqlCmd.CommandType = CommandType.StoredProcedure;
-        sqlCmd.Parameters.AddWithValue("@PetName", txtPetName.Text);
-        sqlCmd.Parameters.AddWithValue("@DOB",txtDOB.Text);
-        sqlCmd.Parameters.AddWithValue("@Type", txtType.Text);
-        sqlCmd.Parameters.AddWithValue("@Breed", txtBreed.Text);
-        sqlCmd.Parameters.AddWithValue("@Gender ", txtGender.Text);
-        sqlCmd.ExecuteNonQuery();
-        MessageBox.Show("You have Registered a New Pet");
-        
-       Switcher.RedirectPetPage(new StaffMyPetPage());
-       this.Close();
-    }
-    
+        string petDml = ("Select PetName From QRbertTables.Pet Where petName = '" + petNameInput  + "'");
+        SqlCommand command = new SqlCommand(petDml, sqlCon);
 
+        int results = command.ExecuteNonQuery();
+        //  string msg = verifyPet("Select PetName From QRbertTables.Pet Where petName = '" + petNameInput  +
+        //   "'");
+        MessageBox.Show(results.ToString());
+        PetName.Content = " Pet Name: " + petDml;
+    }
 }
