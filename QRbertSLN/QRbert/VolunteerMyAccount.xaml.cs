@@ -78,4 +78,37 @@ public partial class VolunteerMyAccount : Window
         Switcher.RedirectVolunteerPortal();
         this.Close();
     }
+    
+    /// <summary>
+    /// Redirects user to view timesheet window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ViewTimesheetBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.VolunteerPortalSwitch(new VolunteerViewTimesheets());
+        this.Close();
+    }
+
+    /// <summary>
+    /// Redirects user to scan pet qr code window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ScanPetQRCodeBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
+        this.Close();
+    }
+
+    /// <summary>
+    /// Redirects user to pet report window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void PetReportBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.VolunteerPortalSwitch(new VolunteerPetReport());
+        this.Close();
+    }
 }
