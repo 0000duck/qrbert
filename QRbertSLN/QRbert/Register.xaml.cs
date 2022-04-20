@@ -394,7 +394,7 @@ public partial class Register : Window
             /* creates and opens a connection to the Database. connectionString was declared in line #27
               * which validates the DB credentials 
               */
-            using SqlConnection sqlCon = new SqlConnection(Switcher.connectionString);
+            using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
             sqlCon.Open();
             
             /* User Input stored in Registration table

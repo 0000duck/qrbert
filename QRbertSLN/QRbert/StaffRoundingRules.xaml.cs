@@ -92,20 +92,20 @@ public partial class StaffRoundingRules : Window
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void LockTimesheetsBtn_Click(object sender, RoutedEventArgs e)
+    private void LockTimeSheetsBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffLockTimesheet());
         this.Close();
     }
 
     /// <summary>
-    /// Redirects user to Rounding rules window via button click 
+    /// Redirects user to staff portal via button click
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void RoundingRulesBtn_Click(object sender, RoutedEventArgs e)
+    private void ConfirmRoundingRulesBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.StaffPageSwitch(new StaffRoundingRules());
+        Switcher.RedirectStaffPortal();
         this.Close();
     }
 }
