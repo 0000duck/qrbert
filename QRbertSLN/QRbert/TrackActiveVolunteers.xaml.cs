@@ -11,6 +11,7 @@ public partial class TrackActiveVolunteers : Window
     public TrackActiveVolunteers()
     {
         InitializeComponent();
+        // Should populate a window with the table listing once window loads
     }
     
     /// <summary>
