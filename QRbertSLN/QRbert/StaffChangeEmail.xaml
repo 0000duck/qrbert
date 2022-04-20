@@ -184,7 +184,8 @@
         <DockPanel LastChildFill="False">
             <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-500,-800,0" FontSize="14">
+                     Margin="0,-500,-800,0" FontSize="14"
+                     Name="NewEmailInput">
                 New Email
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
@@ -194,7 +195,8 @@
         <DockPanel LastChildFill="False">
             <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-400,-800,0" FontSize="14">
+                     Margin="0,-400,-800,0" FontSize="14"
+                     Name="ConfirmNewEmailInput">
                 Confirm New Email
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
@@ -211,6 +213,7 @@
             Width="100" 
             FontSize="16" 
             ClickMode="Press"
+            Click="SaveBtn_Click"
             Margin="0,-250,0,0">
             <Button.Resources>
                 <Style 
