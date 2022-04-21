@@ -3,7 +3,9 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using System.Windows.Threading;
 using System.Data.SqlClient;
+using System.Net.Mime;
 using Aspose.Pdf;
+using Aspose.Pdf.Text;
 using BitMiracle.Docotic.Pdf;
 using OpenCVDemo;
 using OpenCvSharp;
@@ -166,7 +168,32 @@ namespace QRbert
             Aspose.Pdf.Page page = document.Pages.Add();
 
 // Add text to new page
-            page.Paragraphs.Add(new Aspose.Pdf.Text.TextFragment("Hello World!"));
+            
+            TextFragment textFragment = new TextFragment("Hello World!");
+            textFragment.TextState.FontSize = 120;
+
+
+            Table table = new Table();
+            // Add row to table
+            Aspose.Pdf.Row header = table.Rows.Add();
+            // Add table cells
+            header.Cells.Add("User ID");
+            header.Cells.Add("First Name");
+            header.Cells.Add("Last Name");
+            header.Cells.Add("Log In");
+            header.Cells.Add("Log Out");
+            
+            for (int row_count = 1; row_count < 3; row_count++)
+            {
+                // Add row to table
+                Aspose.Pdf.Row row = table.Rows.Add();
+                // Add table cells
+                row.Cells.Add("Column (" + row_count + ", 1)");
+                row.Cells.Add("Column (" + row_count + ", 2)");
+                row.Cells.Add("Column (" + row_count + ", 3)");
+            }
+            page.Paragraphs.Add(table);
+            page.PageInfo.IsLandscape = true;
             
 
 // Save PDF 
@@ -180,6 +207,8 @@ namespace QRbert
 
             //page2.CropBox = new PdfBox(0, cropBoxBefore.Height - 256, 256, cropBoxBefore.Height);
             pdf.Pages[0].Save("result.jpg",options);
+            
+            
             
             Switcher.VolunteerPortalSwitch(new VolunteerViewTimesheets());
             
