@@ -1,0 +1,357 @@
+<Window x:Class="QRbert.FAQs"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:QRbert"
+        mc:Ignorable="d"
+        Title="FAQs" Height="1800" Width="800">
+    <!-- ScrollViewer is used here to make the window scrollable-->
+    <ScrollViewer 
+        HorizontalScrollBarVisibility = "Auto"
+        VerticalScrollBarVisibility="Auto"
+        >
+        <!-- This StackPanel holds the entire window-->
+        <StackPanel 
+            Height="2105" 
+            Width="800" 
+            Background="Transparent" 
+            >
+            <!-- This is the QRbert image in the top left corner. This image is located in the Images
+                 folder in the application-->
+            <Image 
+                Width="150" 
+                Height="150" 
+                Source="Images/Qbert_logo_orange.png" 
+                Margin="-600,-25,0,-100"
+            />
+            
+            <!-- This label displays the text Let's Get Started to make the user feel welcomed-->
+            <Label 
+                Content="FAQs" 
+                Margin="0,-300,0,-400"
+                Foreground = "#FF9100" 
+                FontSize="45" 
+                FontWeight="Bold" 
+                Height= "75" 
+                Width="150"
+            />
+            
+            <!-- The following 4 images are used to make up the background of the scrollable window
+                 These images are found in the Images folder in the application--> 
+            <Image 
+                Width="800" 
+                Height="450" 
+                Source="Images/petsBackground.png" 
+                Margin="0,0,0,0"
+            />
+            <Image 
+                Width="800" 
+                Height="450" 
+                Source="Images/petsBackground.png" 
+                Margin="0,-150,0,0"
+            />
+            <Image 
+                Width="800" 
+                Height="450" 
+                Source="Images/petsBackground.png" 
+                Margin="0,-150,0,0"
+            />
+            <Image 
+                Width="800" 
+                Height="450" 
+                Source="Images/petsBackground.png" 
+                Margin="0,-150,0,0"
+            />
+            <Image 
+                Width="800" 
+                Height="450" 
+                Source="Images/petsBackground.png" 
+                Margin="0,-150,0,0"
+            />
+            
+            <!-- This StackPanel holds all the text blocks that contain the questions and answers-->
+            <StackPanel 
+                Background="#FF9100" 
+                Width="400" 
+                Height="1500" 
+                Opacity="0.85" 
+                Margin = "0, -1625, 0, 0">
+                <!-- How can a volunteer user add a pet?-->
+                <TextBlock Height = "20" Width = "360" Margin="0,25,0,0" 
+                           Foreground="White" FontSize="16" FontWeight="Bold">
+                    How can a volunteer user add a pet to their list?
+                </TextBlock>
+                <TextBlock Height = "75" Width = "355" Margin="0,0,0,0" 
+                           Foreground="White" FontSize="14" FontWeight="Normal">
+                    The volunteer user navigates to their user portal
+                    <LineBreak/>
+                    and hovers over their "Animals" menu and clicks on
+                    <LineBreak/>
+                    "Select a Pet." Then the user will be redirected to scan
+                    <LineBreak/>
+                    the Qrcode of the pet they desire to add to their pet list.
+                </TextBlock>
+                
+                <!-- How can a volunteer user print a pet report?-->
+                <TextBlock Height = "20" Width = "355" Margin="0,0,0,0" 
+                           Foreground="White" FontSize="16" FontWeight="Bold">
+                    How can a volunteer user print a pet report?
+                </TextBlock>
+                <TextBlock Height = "90" Width = "355" Margin="0,0,0,0" 
+                           Foreground="White" FontSize="14" FontWeight="Normal">
+                    The volunteer user navigates to their user portal
+                    <LineBreak/>
+                    and hovers over their "Animals" menu and clicks on
+                    <LineBreak/>
+                    "Pet Report." Then the user will be redirected to scan
+                    <LineBreak/>
+                    the Qrcode of the pet they they wish to print the pet 
+                    <LineBreak/>
+                    report of.
+                </TextBlock>
+                <!-- How can a volunteer user view/print their timesheet?-->
+                <TextBlock Height = "40" Width = "355" Margin="0,0,0,0" 
+                           Foreground="White" FontSize="16" FontWeight="Bold">
+                    How can a volunteer user view/print their 
+                    <LineBreak/>
+                    timesheet?
+                </TextBlock>
+                <TextBlock Height = "75" Width = "355" Margin="0,0,0,0" 
+                           Foreground="White" FontSize="14" FontWeight="Normal">
+                    The volunteer user navigates to their user portal and
+                    <LineBreak/>
+                    hovers over their "Timesheet" menu and clicks on "View
+                    <LineBreak/>
+                    Timesheet." Then the user will be redirected to view their
+                    <LineBreak/>
+                    Timesheet and they will be able to download it as well.
+                </TextBlock>
+                
+                <!-- How can a user update their personal information?-->
+                <TextBlock Height = "40" Width = "355" Margin="0,0,0,0" 
+                           Foreground="White" FontSize="16" FontWeight="Bold">
+                    How can a user update their personal
+                    <LineBreak/>
+                    information?
+                </TextBlock>
+                <TextBlock Height = "130" Width = "355" Margin="0,0,0,0" 
+                           Foreground="White" FontSize="14" FontWeight="Normal">
+                    The user navigates to their user portal and hovers over
+                    <LineBreak/>
+                    their "My Account" menu and clicks on "Staff Account"
+                    <LineBreak/>
+                    or "Volunteer Account" depending on the user. Then the
+                    <LineBreak/>
+                    user will be redirected to their account page where they 
+                    <LineBreak/>
+                    will click on the "Change Personal Information" button.
+                    <LineBreak/>
+                    Then they will be redirected to a page where they can
+                    <LineBreak/>
+                    change their personal information.
+                </TextBlock>
+                
+                <!-- How can a user update their Email?-->
+                <TextBlock Height = "20" Width = "355" Margin="0,0,0,0" 
+                           Foreground="White" FontSize="16" FontWeight="Bold">
+                    How can a user update their Email?  
+                </TextBlock>
+                <TextBlock Height = "110" Width = "355" Margin="0,0,0,0" 
+                           Foreground="White" FontSize="14" FontWeight="Normal">
+                    The user navigates to their user portal and hovers over
+                    <LineBreak/>
+                    their "My Account" menu and clicks on "Staff Account"
+                    <LineBreak/>
+                    or "Volunteer Account" depending on the user. Then the
+                    <LineBreak/>
+                    user will be redirected to their account page where they 
+                    <LineBreak/>
+                    will click on the "Change Email" button. Then they will be
+                    <LineBreak/>
+                    redirected to a page where they can change their email.
+                </TextBlock>
+                
+                <!-- What if a user forgot their password?-->
+                <TextBlock Height = "20" Width = "355" Margin="0,0,0,0" 
+                           Foreground="White" FontSize="16" FontWeight="Bold">
+                    What if a user forgot their password?
+                </TextBlock>
+                <TextBlock Height = "190" Width = "360" Margin="0,0,0,0" 
+                           Foreground="White" FontSize="14" FontWeight="Normal">
+                    The user navigates to their user portal and hovers over
+                    <LineBreak/>
+                    their "My Account" menu and clicks on "Staff Account"
+                    <LineBreak/>
+                    or "Volunteer Account" depending on the user. Then the
+                    <LineBreak/>
+                    user will be redirected to their account page where they 
+                    <LineBreak/>
+                    will click on the "Forgot Password?" button. Then they will
+                    <LineBreak/>
+                    be redirected to a page where they can change their
+                    <LineBreak/>
+                    password. If the user is not signed in they can click on
+                    <LineBreak/>
+                    "Forgot password?" on the sign in page and will be
+                    <LineBreak/>
+                    redirected to a page where they will be instructed on how
+                    <LineBreak/>
+                    to reset their password.
+                </TextBlock>
+                <!-- How can a staff user add a pet to the database?-->
+                <TextBlock Height = "20" Width = "355" Margin="0,0,0,0" 
+                           Foreground="White" FontSize="16" FontWeight="Bold">
+                    How can a staff user add a pet to the database?  
+                </TextBlock>
+                <TextBlock Height = "100" Width = "355" Margin="0,0,0,0" 
+                           Foreground="White" FontSize="14" FontWeight="Normal">
+                    The user navigates to their user portal and hovers over
+                    <LineBreak/>
+                    their "Animals" menu and clicks on "Pet Reports." They 
+                    <LineBreak/>
+                    will be redirected to a page where they will click on the 
+                    <LineBreak/>
+                    "Create" button then will be redirected to a form where  
+                    <LineBreak/>
+                    they will fill out the new pet's general information.
+                </TextBlock>
+                <!-- How can a staff user view a pet report?-->
+                <TextBlock Height = "20" Width = "355" Margin="0,0,0,0" 
+                           Foreground="White" FontSize="16" FontWeight="Bold">
+                    How can a staff user view a pet report? 
+                </TextBlock>
+                <TextBlock Height = "130" Width = "355" Margin="0,0,0,0" 
+                           Foreground="White" FontSize="14" FontWeight="Normal">
+                    The user navigates to their user portal and hovers over
+                    <LineBreak/>
+                    their "Animals" menu and clicks on "Pet Reports." They 
+                    <LineBreak/>
+                    will be redirected to a page where they will click on the 
+                    <LineBreak/>
+                    "View" button then will be redirected to a page where  
+                    <LineBreak/>
+                    they will scan the pet's Qrcode they wish to view the 
+                    <LineBreak/>
+                    pet report of and then will be able to view and download  
+                    <LineBreak/>
+                    the report.
+                </TextBlock>
+                <!-- How can a staff user add a treatment to a pet's pet report?-->
+                <TextBlock Height = "45" Width = "355" Margin="0,0,0,0" 
+                           Foreground="White" FontSize="16" FontWeight="Bold">
+                    How can a staff user add a treatment to a pet's
+                    <LineBreak/>
+                    pet report?
+                </TextBlock>
+                <TextBlock Height = "130" Width = "355" Margin="0,0,0,0" 
+                           Foreground="White" FontSize="14" FontWeight="Normal">
+                    The user navigates to their user portal and hovers over
+                    <LineBreak/>
+                    their "Animals" menu and clicks on "Select a Pet." They 
+                    <LineBreak/>
+                    will be redirected to a page where they will scan the pet's 
+                    <LineBreak/>
+                    Qrcode. Then they will be redirected to the pet's page   
+                    <LineBreak/>
+                    where they will click on the "Add Treatment" button
+                    <LineBreak/>
+                     and be redirected to a form where they will fill out the 
+                    <LineBreak/>
+                    treatment information.
+                </TextBlock>
+                <!-- How can a staff user add a pet activity to a pet's pet report?-->
+                <TextBlock Height = "45" Width = "355" Margin="0,0,0,0" 
+                           Foreground="White" FontSize="16" FontWeight="Bold">
+                    How can a staff user add a pet activity to a 
+                    <LineBreak/>
+                    pet's pet report?
+                </TextBlock>
+                <TextBlock Height = "130" Width = "355" Margin="0,0,0,0" 
+                           Foreground="White" FontSize="14" FontWeight="Normal">
+                    The user navigates to their user portal and hovers over
+                    <LineBreak/>
+                    their "Animals" menu and clicks on "Select a Pet." They 
+                    <LineBreak/>
+                    will be redirected to a page where they will scan the pet's 
+                    <LineBreak/>
+                    Qrcode. Then they will be redirected to the pet's page   
+                    <LineBreak/>
+                    where they will click on the "Add Pet Activity" button
+                    <LineBreak/>
+                    and be redirected to a form where they will fill out the 
+                    <LineBreak/>
+                    pet activity information.
+                </TextBlock>
+            </StackPanel>
+            <!-- This displays the QRbert logo to remind the user of how great the software is. -->
+            <Image 
+                Width="200" 
+                Height="150" 
+                Source= "Images/Qbert_logo_orange.png" 
+                Margin = "0, -100, 0, 0" 
+            />
+            
+            <!-- Clicking this button will lead to our terms and privacy notice page. -->
+            <Button
+                Height="40"
+                Width = "200"
+                Content="Terms and Privacy Notice"
+                Background="Transparent"
+                Foreground="#FF9100"
+                BorderBrush="Transparent"
+                FontSize="16"
+                FontWeight="Normal"
+                ClickMode="Press"
+                Margin="-400,-50,0,0"
+            >
+            </Button>
+            
+            <!-- Clicking this button takes the user to a page where they can be assisted. -->
+            <Button
+                Height="40"
+                Width = "75"
+                Content="Help"
+                Background="Transparent"
+                Foreground="#FF9100"
+                BorderBrush="Transparent"
+                FontSize="16"
+                FontWeight="Normal"
+                ClickMode="Press"
+                Margin="-50,-50,0,0"
+            >
+            </Button>
+            
+            <!-- Clicking this button takes you to a page where a question you have might
+                 be answered. -->
+            <Button
+                Height="40"
+                Width = "50"
+                Content="FAQs"
+                Background="Transparent"
+                Foreground="#FF9100"
+                BorderBrush="Transparent"
+                FontSize="16"
+                FontWeight="Normal"
+                ClickMode="Press"
+                Margin="150,-50,0,0"
+            >
+            </Button>
+            
+            <!-- Clicking this button takes you to the page where we get to promote ourselves. -->
+            <Button
+                Height="40"
+                Width = "200"
+                Content="©2022 QRbert Inc."
+                Background="Transparent"
+                Foreground="#FF9100"
+                BorderBrush="Transparent"
+                FontSize="16"
+                FontWeight="Normal"
+                ClickMode="Press"
+                Margin="450,-50,0,0"
+            >
+            </Button>
+        </StackPanel>
+    </ScrollViewer>    
+</Window>

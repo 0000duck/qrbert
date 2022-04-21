@@ -7,8 +7,6 @@ namespace QRbert;
 
 public partial class StaffCreatePetReport : Window
 {
-    string connectionString = @"Data Source = qrbert-rds1.cfe8s1xr87h2.us-west-1.rds.amazonaws.com; 
-                                Initial Catalog = QRbertDB; User ID = rds1_admin; Password = rds1_admin;";
     public StaffCreatePetReport()
     {
         InitializeComponent();
@@ -114,9 +112,14 @@ public partial class StaffCreatePetReport : Window
         this.Close();
     }
     
+    /// <summary>
+    /// Creates Pet in DB and redirects user to MyPets page for staff
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void CreatePet_Button(object sender, RoutedEventArgs e)
     {
-        using SqlConnection sqlCon = new SqlConnection(connectionString);
+        using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
         sqlCon.Open();
             
         /* User Input stored in Pet table
@@ -131,9 +134,11 @@ public partial class StaffCreatePetReport : Window
         sqlCmd.Parameters.AddWithValue("@Gender ", txtGender.Text);
         sqlCmd.ExecuteNonQuery();
         MessageBox.Show("You have Registered a New Pet");
-        
-       Switcher.RedirectPetPage(new StaffMyPetPage());
-       this.Close();
+        Switcher.PetId =
+           int.Parse(Switcher.VerifyRole(
+                "SELECT PetID From QRbertDB.QRbertTables.Pet where PetName = '" + txtPetName.Text + "' and DOB = '" + txtDOB.Text + "'"));
+        Switcher.StaffPageSwitch(new StaffMyPets());
+        this.Close();
     }
     
 

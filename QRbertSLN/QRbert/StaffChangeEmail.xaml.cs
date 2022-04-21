@@ -1,3 +1,5 @@
+using System.Data;
+using System.Data.SqlClient;
 using System.Windows;
 
 namespace QRbert;
@@ -107,5 +109,49 @@ public partial class StaffChangeEmail : Window
     {
         Switcher.StaffPageSwitch(new StaffRoundingRules());
         this.Close();
+    }
+    
+    /// <summary>
+    /// Updates the user email to a new email they register and redirects them to MyAccount Page
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void SaveBtn_Click(object sender, RoutedEventArgs e)
+    {
+        // If textboxes aren't empty
+        if (NewEmailInput.Text != "" && ConfirmNewEmailInput.Text != "")
+        {
+            // If the textboxes do not contain the same email
+            if (NewEmailInput.Text != ConfirmNewEmailInput.Text)
+            {
+                NewEmailInput.Text = "";
+                ConfirmNewEmailInput.Text = "";
+                MessageBox.Show("Emails don't match, please try again.");
+            }
+            // If they do contain the same email
+            else
+            {
+                // Query the database and update email
+                using (SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString))
+                {
+                    string msg = 
+                        Switcher.VerifyRole("Select [Faculty-Role] From QRbertTables.Registration Where email = '" + Switcher.ConnectionString + "'");
+                    string userType = msg;
+                    sqlCon.Open();
+                    SqlCommand sqlCmd = new SqlCommand("Update Registration Set Email = '" + NewEmailInput.Text + "' Where Faculty-role = '" + userType + "'", sqlCon);
+                    sqlCmd.ExecuteScalar();
+                    MessageBox.Show("Email has been updated.");
+                    Switcher.StaffPageSwitch(new StaffMyAccount());
+                    this.Close();
+                }
+            }
+        }
+        // The textboxes are empty
+        else 
+        {
+            NewEmailInput.Text = "";
+            ConfirmNewEmailInput.Text = "";
+            MessageBox.Show("One of the email fields is empty, please try again.");
+        }
     }
 }

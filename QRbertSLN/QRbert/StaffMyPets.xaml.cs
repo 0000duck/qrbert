@@ -1,13 +1,20 @@
-using System.Data.SqlClient;
 using System.Windows;
 
 namespace QRbert;
 
-public partial class StaffMyPetPage : Window
+public partial class StaffMyPets : Window
 {
-    public StaffMyPetPage()
+    public StaffMyPets()
     {
         InitializeComponent();
+        // Loads information when windows loads
+        PetId.Text = Switcher.PetId.ToString();
+        PetName.Content =
+                Switcher.VerifyRole("SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "''");
+        BreedType.Text =
+                Switcher.VerifyRole("SELECT Breed From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
+        DOB.Text =
+                Switcher.VerifyRole("SELECT DOB From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
     }
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
@@ -18,7 +25,6 @@ public partial class StaffMyPetPage : Window
     private void StaffMyAccountBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffMyAccount());
-        this.Close();
     }
 
     /// <summary>
@@ -108,19 +114,26 @@ public partial class StaffMyPetPage : Window
         Switcher.StaffPageSwitch(new StaffRoundingRules());
         this.Close();
     }
-    
-    private void SearchPetBtn_Click(object sender, RoutedEventArgs e)
-    {
-        string petNameInput = TxtFindPet.Text;
-        using SqlConnection sqlCon = new SqlConnection(Switcher.connectionString);
-        sqlCon.Open();
-        string petDml = ("Select PetName From QRbertTables.Pet Where petName = '" + petNameInput  + "'");
-        SqlCommand command = new SqlCommand(petDml, sqlCon);
 
-        int results = command.ExecuteNonQuery();
-        //  string msg = verifyPet("Select PetName From QRbertTables.Pet Where petName = '" + petNameInput  +
-        //   "'");
-        MessageBox.Show(results.ToString());
-        PetName.Content = " Pet Name: " + petDml;
+    /// <summary>
+    /// Redirects user to Add Pet Treatment window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void AddPetTreatmentBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new AddPetTreatment());
+        this.Close();
+    }
+
+    /// <summary>
+    /// Redirects user to Add Pet Activity window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void AddPetActivityBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new AddPetActivity());
+        this.Close();
     }
 }

@@ -1,55 +1,32 @@
 using System;
-using System.ComponentModel;
 using System.Data;
 using System.Windows;
-using System.Windows.Controls;
-using System.Data.SqlClient;
-using System.Windows.Navigation;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Timers;
 using System.Windows.Media;
-//using System.Windows.Interactivity
-using Microsoft.Xaml.Behaviors;
-using QRCoder;
-using QRCoder.Xaml;
-
-
-//using SqlCommand = Microsoft.Data.SqlClient.SqlCommand;
+using System.Data.SqlClient;
+using System.Windows.Controls;
+using System.Text.RegularExpressions;
 
 
 namespace QRbert;
 
 public partial class Register : Window
-{
-    /*
-     * connects DB to Register Page
-     * Data source is the name of the DB server
-     * Initial Catalog the QRbert database we want to connect to
-     * User name and Password -> temp log in solution until we find a more secure way to log into the DB
-     * so that the log in credentials aren't in the code for all to see
-     */ 
-  String connectionString = @"Data Source = qrbert-rds1.cfe8s1xr87h2.us-west-1.rds.amazonaws.com; 
-                                Initial Catalog = QRbertDB; User ID = rds1_admin; Password = rds1_admin;";
-
-  private string facultyRole;
-  private string staff = "Staff";
-  
-  /// <summary>
-  /// Function that initializes the Register window
-  /// </summary>
+{ 
+    private string _facultyRole = ""; 
+    private const string Staff = "Staff";
+    
+    /// <summary>
+    /// Function that initializes the Register window
+    /// </summary>
     public Register()
     {
         InitializeComponent();
-        
     }
 
-    
     /// <summary>
     /// Function that makes a list of state abbrevations
     /// </summary>
     /// <returns>string[]</returns>
-    public static string[] makeStateList()
+    private static string[] MakeStateList()
     {
         string[] stateAbbr = new string[50];
         stateAbbr[0] = "AL"; //Alabama
@@ -104,38 +81,17 @@ public partial class Register : Window
         stateAbbr[49] = "WY"; //Wyoming
         return stateAbbr;
     }
-
-
-    
-    /*private void runSignUp(object sender, RoutedEventArgs e)
-    {
-        
-        //Console.WriteLine("Here");
-        bool firstNameCheck = isFirstNameValid(RegFirst.Text);
-        if (firstNameCheck)
-        {
-            //accept the sign up form
-            MessageBox.Show("Good to submit");
-        }
-        else
-        {
-            //reload page and show what needs to be changed
-            MessageBox.Show("Not good to submit");
-        }
-        MessageBox.Show(Password.Password);
-    }*/
     
 
-/// <summary>
-/// Function that makes sure that it is a valid string
-/// </summary>
-/// <param name="words"></param>
-/// <returns></returns>
-    public static bool checkString(TextBox textBox)
+    /// <summary>
+    /// Function that makes sure that it is a valid string
+    /// </summary>
+    /// <param name="words"></param>
+    /// <returns></returns>
+    public static bool checkString(string words)
     {
-        if (textBox.Text == null || textBox.Text == "")
+        if (words == null || words == "")
         {
-            MessageBox.Show(textBox.Name + " is required.");
             return false;
         }
         else
@@ -241,7 +197,6 @@ public partial class Register : Window
     
     public static bool IsValidEmail(string textBox)
     {
-        string strRegex = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
         string strRegex2 = @"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}";
         Regex re = new Regex(strRegex2, RegexOptions.IgnoreCase);
 
@@ -253,7 +208,7 @@ public partial class Register : Window
             
         else
         {
-            MessageBox.Show("Not a valid email");
+            //MessageBox.Show("Not a valid email");
             return false;
         }
             
@@ -272,7 +227,7 @@ public partial class Register : Window
             MessageBox.Show("Needs to be 2 letters only. (ex. CA for California)");
             return false;
         }
-        string[] states = makeStateList();
+        string[] states = MakeStateList();
         for (int i = 0; i < 50; i++)
         {
             if (states[i] == state.Text)
@@ -282,7 +237,7 @@ public partial class Register : Window
             }
         }
 
-        MessageBox.Show("Not a valid input for a state.");
+        //MessageBox.Show("What's good bro?!");
         return false;
 
     }
@@ -303,7 +258,7 @@ public partial class Register : Window
             return true;
         }
 
-        MessageBox.Show("Invalid Driver's License format");
+        //MessageBox.Show("No good bro");
         return false;
     }
 /// <summary>
@@ -321,7 +276,6 @@ public partial class Register : Window
         }
         */
         //this looks for a pattern that has 10 numbers to make up a phone number
-        string regexPhone = @"[0-9]{10}";
         Regex re = new Regex(number.Text);
         if(re.IsMatch(number.Text)&&number.Text.Length < 11)
         {
@@ -329,7 +283,7 @@ public partial class Register : Window
             return true;
         }
 
-        MessageBox.Show("Invalid phone number");
+        //MessageBox.Show("Not based");
         return false;
     }
     
@@ -357,12 +311,12 @@ public partial class Register : Window
         TextBox city, TextBox state, TextBox zipcode, TextBox phoneNumber, PasswordBox password, PasswordBox confirmPassword)
     {
         bool isGood = false;
-        if (checkString(firstName))
+        if (firstName.Text == "")
         {
             return isGood;
         }
 
-        if (checkString(lastName))
+        if (lastName.Text == "")
         {
             return isGood;
         }
@@ -433,17 +387,14 @@ public partial class Register : Window
 
         if (!Authenticate(txtFirstName,txtLastName,txtEmail,txtDriver,txtAddress,txtCity,txtState,txtZipcode,txtPhone,Password,ConfirmPassword))
         {
-            //MessageBox.Show("Please fill out all mandatory fields on the page.");
+            MessageBox.Show("Please fill out all mandatory fields on the page.");
         }
-        
-        
-
         else
         {
             /* creates and opens a connection to the Database. connectionString was declared in line #27
               * which validates the DB credentials 
               */
-            using SqlConnection sqlCon = new SqlConnection(connectionString);
+            using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
             sqlCon.Open();
             
             /* User Input stored in Registration table
@@ -453,7 +404,7 @@ public partial class Register : Window
             sqlCmd.CommandType = CommandType.StoredProcedure;
             sqlCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
             sqlCmd.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
-            sqlCmd.Parameters.AddWithValue("@Faculty_Role", facultyRole);
+            sqlCmd.Parameters.AddWithValue("@Faculty_Role", _facultyRole);
             sqlCmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
             sqlCmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
             
@@ -462,7 +413,7 @@ public partial class Register : Window
             contact.CommandType = CommandType.StoredProcedure;
             contact.Parameters.AddWithValue("@Email", txtEmail.Text);
             contact.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
-            contact.Parameters.AddWithValue("@Faculty_Role", facultyRole);
+            contact.Parameters.AddWithValue("@Faculty_Role", _facultyRole);
             contact.Parameters.AddWithValue("@Street", txtAddress.Text);
             contact.Parameters.AddWithValue("@City", txtCity.Text);
             contact.Parameters.AddWithValue("@State", txtState.Text);
@@ -480,14 +431,14 @@ public partial class Register : Window
             * if Volunteer, then skip the Staff stored procedure and use the Volunteer stored procedure instead
             * to create a New and save Volunteer profile
             */
-            if (string.Equals(facultyRole, staff))
+            if (string.Equals(_facultyRole, Staff))
             {
                 // Staff credentials created and stored in Contact_Info Table 
 
                 staffCon.CommandType = CommandType.StoredProcedure;
                 staffCon.Parameters.AddWithValue("@Email", txtEmail.Text);
                 staffCon.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
-                staffCon.Parameters.AddWithValue("@Faculty_Role", facultyRole);
+                staffCon.Parameters.AddWithValue("@Faculty_Role", _facultyRole);
                 sqlCmd.ExecuteNonQuery();
                 contact.ExecuteNonQuery();
                 staffCon.ExecuteNonQuery();
@@ -500,7 +451,7 @@ public partial class Register : Window
                 volCon.CommandType = CommandType.StoredProcedure;
                 volCon.Parameters.AddWithValue("@Email", txtEmail.Text);
                 volCon.Parameters.AddWithValue("@Password", ConfirmPassword.Password);
-                volCon.Parameters.AddWithValue("@Faculty_Role", facultyRole);
+                volCon.Parameters.AddWithValue("@Faculty_Role", _facultyRole);
                 sqlCmd.ExecuteNonQuery();
                 contact.ExecuteNonQuery();
                 volCon.ExecuteNonQuery();
@@ -511,12 +462,9 @@ public partial class Register : Window
 
             
             // Creating the user's QR code and displaying it
-            QRCodeGenerator qrCodeGenerator = new QRCodeGenerator();
             // Saves the email, password, and facultyrole as a string for the QR code, this can be changed later
-            String userInfo = txtEmail.Text + " "  + ConfirmPassword.Password + " " + facultyRole;
-            QRCodeData data = qrCodeGenerator.CreateQrCode(userInfo, QRCodeGenerator.ECCLevel.Q);
-            XamlQRCode qrCode = new XamlQRCode(data);
-            DrawingImage qrCodeImage = qrCode.GetGraphic(20);
+            String userInfo = txtEmail.Text + " "  + ConfirmPassword.Password + " " + _facultyRole;
+            DrawingImage qrCodeImage = QRCodeScanner.Generate_QR_Click(userInfo);
             // Creates a new window to display the QR code and shows it
             ShowQRCode showQRCode = new ShowQRCode();
             showQRCode.QRCodeViewer.Source = qrCodeImage;
@@ -707,17 +655,7 @@ public partial class Register : Window
     {
         RadioButton li = (sender as RadioButton);
         //MessageBox.Show("You clicked " + li.Content.ToString() + ".");
-        facultyRole = li.Content.ToString();
+        _facultyRole = li.Content.ToString();
     }
-
-    /* This can be used for letting the user know about how they need more than 8 characters
-     private void ConfirmPassword_OnLostFocus(object sender, RoutedEventArgs e)
-    {
-        if (ConfirmPassword.Password.Length < 8)
-        {
-            MessageBox.Show("You need to write at least 8 characters");
-        }
-    }*/
-    
 }
     
