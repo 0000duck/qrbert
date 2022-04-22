@@ -177,9 +177,9 @@ namespace QRbert
             // Add row to table
             Aspose.Pdf.Row header = table.Rows.Add();
             // Add table cells
-            header.Cells.Add("User ID");
-            header.Cells.Add("First Name");
-            header.Cells.Add("Last Name");
+            header.Cells.Add("User ID: 600");
+            header.Cells.Add("First Name: Melanie");
+            header.Cells.Add("Last Name: Bee");
             Row header2 = table.Rows.Add();
             header2.Cells.Add("      ");
             Row header3 = table.Rows.Add();
@@ -214,14 +214,14 @@ namespace QRbert
                 MessageBox.Show(msg);
                 msg = Switcher.VerifyRole("Select QRbertTables.TimeSheet.Clock_Out FROM ((QRbertTables.TimeSheet INNER JOIN QRbertTables.Volunteer ON QRbertTables.TimeSheet.ID = QRbertTables.Volunteer.ID));");
                 row.Cells.Add(msg);
-                row.Cells.Add("Column (" + row_count + ", 3)");
-                row.Cells.Add("Column (" + row_count + ", 4)");
-                row.Cells.Add("Column (" + row_count + ", 5)");
-                row.Cells.Add("Column (" + row_count + ", 6)");
-                row.Cells.Add("Column (" + row_count + ", 7)");
-                row.Cells.Add("Column (" + row_count + ", 8)");
-                row.Cells.Add("Column (" + row_count + ", 9)");
-                row.Cells.Add("Column (" + row_count + ", 0)");
+                row.Cells.Add("4/5/2022 12:00:32 PM");
+                row.Cells.Add("4/5/2022 4:30:45 PM");
+                row.Cells.Add("4/6/2022 9:30:18 AM");
+                row.Cells.Add("4/6/2022 12:30:37 PM");
+                row.Cells.Add("4/7/2022 7:00:00 AM");
+                row.Cells.Add("4/7/2022 2:00:12 PM");
+                row.Cells.Add("4/8/2022 10:00:43 AM");
+                row.Cells.Add("4/8/2022 1:00:57 PM");
             }
             page.Paragraphs.Add(table);
             page.Paragraphs.Add(timeTable);

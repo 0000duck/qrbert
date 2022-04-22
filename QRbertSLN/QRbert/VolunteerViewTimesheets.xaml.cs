@@ -99,9 +99,10 @@ public partial class VolunteerViewTimesheets : Window
             // Add row to table
             Aspose.Pdf.Row header = table.Rows.Add();
             // Add table cells
-            header.Cells.Add("User ID");
-            header.Cells.Add("First Name");
-            header.Cells.Add("Last Name");
+            var header1 = header.Cells.Add("User ID: 600");
+            header1.ColSpan = 2;
+            header.Cells.Add("First Name: Melanie");
+            header.Cells.Add("Last Name: Bee");
             Row header2 = table.Rows.Add();
             header2.Cells.Add("      ");
             Row header3 = table.Rows.Add();
