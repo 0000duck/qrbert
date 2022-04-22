@@ -169,6 +169,7 @@
             Margin="0,-650,0,0"
         />
         <!-- The following text blocks contain the rounding rule explanation-->
+
         <TextBlock Width = "300" Height = "35" Foreground="White" FontWeight = "Normal" FontSize="18"
                    Margin = "0, -575, 00, 0" >
             The rounding rule consists of the
@@ -194,6 +195,7 @@
             So on their timesheet it will appear as 
         </TextBlock>
         <TextBlock Width = "300" Height = "35" Foreground="White" FontWeight = "Normal" FontSize="18"
+
                    Margin = "0, -125, 00, 0" >
             3.2 hours.
         </TextBlock>
