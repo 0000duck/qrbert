@@ -169,31 +169,33 @@
             Margin="0,-650,0,0"
         />
         <!-- The following text blocks contain the rounding rule explanation-->
-        <TextBlock Width = "300" Height = "35" Foreground="White" Fontweight = "Bold" FontSize="18"
+
+        <TextBlock Width = "300" Height = "35" Foreground="White" FontWeight = "Normal" FontSize="18"
                    Margin = "0, -575, 00, 0" >
             The rounding rule consists of the
         </TextBlock>
-        <TextBlock Width = "300" Height = "35" Foreground="White" Fontweight = "Bold" FontSize="18"
+        <TextBlock Width = "300" Height = "35" Foreground="White" FontWeight = "Normal" FontSize="18"
                    Margin = "0, -500, 00, 0" >
             6-minute rounding method. Ex: If
         </TextBlock>
-        <TextBlock Width = "300" Height = "35" Foreground="White" Fontweight = "Bold" FontSize="18"
+        <TextBlock Width = "300" Height = "35" Foreground="White" FontWeight = "Normal" FontSize="18"
                    Margin = "0, -425, 00, 0" >
             a volunteer has completed 3 hours
         </TextBlock>
-        <TextBlock Width = "300" Height = "35" Foreground="White" Fontweight = "Bold" FontSize="18"
+        <TextBlock Width = "300" Height = "35" Foreground="White" FontWeight = "Normal" FontSize="18"
                    Margin = "0, -350, 00, 0" >
             and 7 minutes, their new rounded 
         </TextBlock>
-        <TextBlock Width = "310" Height = "35" Foreground="White" Fontweight = "Bold" FontSize="18"
+        <TextBlock Width = "310" Height = "35" Foreground="White" FontWeight = "Normal" FontSize="18"
                    Margin = "0, -275, 00, 0" >
             time would be 3 hours and 12 minutes.
         </TextBlock>
-        <TextBlock Width = "300" Height = "35" Foreground="White" Fontweight = "Bold" FontSize="18"
+        <TextBlock Width = "300" Height = "35" Foreground="White" FontWeight = "Normal" FontSize="18"
                    Margin = "0, -200, 00, 0" >
             So on their timesheet it will appear as 
         </TextBlock>
-        <TextBlock Width = "300" Height = "35" Foreground="White" Fontweight = "Bold" FontSize="18"
+        <TextBlock Width = "300" Height = "35" Foreground="White" FontWeight = "Normal" FontSize="18"
+
                    Margin = "0, -125, 00, 0" >
             3.2 hours.
         </TextBlock>
