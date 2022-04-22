@@ -211,7 +211,9 @@ namespace QRbert
                     Switcher.VerifyRole(
                         "Select QRbertTables.TimeSheet.Clock_In  FROM ((QRbertTables.TimeSheet INNER JOIN QRbertTables.Volunteer ON QRbertTables.TimeSheet.ID = QRbertTables.Volunteer.ID));");
                 row.Cells.Add(msg);
-                row.Cells.Add("Column (" + row_count + ", 2)");
+                MessageBox.Show(msg);
+                msg = Switcher.VerifyRole("Select QRbertTables.TimeSheet.Clock_Out FROM ((QRbertTables.TimeSheet INNER JOIN QRbertTables.Volunteer ON QRbertTables.TimeSheet.ID = QRbertTables.Volunteer.ID));");
+                row.Cells.Add(msg);
                 row.Cells.Add("Column (" + row_count + ", 3)");
                 row.Cells.Add("Column (" + row_count + ", 4)");
                 row.Cells.Add("Column (" + row_count + ", 5)");
