@@ -108,4 +108,9 @@ public partial class StaffPortal
         Switcher.StaffPageSwitch(new StaffRoundingRules());
         this.Close();
     }
+
+    private void AssignPetBtn_Click(object sender, RoutedEventArgs e)
+    {
+        throw new System.NotImplementedException();
+    }
 }
