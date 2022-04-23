@@ -151,6 +151,7 @@
                     Click="StaffSearchBtn_Click"/>
                 <MenuItem 
                     Header="Assign Pet"
+                    Click="AssignPetBtn_Click"
                     />
             </MenuItem>
         </Menu>
