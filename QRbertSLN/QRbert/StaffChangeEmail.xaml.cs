@@ -138,7 +138,7 @@ public partial class StaffChangeEmail : Window
                 using (SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString))
                 {
                     string msg = 
-                        Switcher.VerifyRole("Select [Faculty-Role] From QRbertTables.Registration Where email = '" + Switcher.ConnectionString + "'");
+                        Switcher.VerifyRole("Select [Faculty-Role] From QRbertTables.Registration Where email = '" + Switcher.CurrentSessionEmail + "'");
                     string userType = msg;
                     sqlCon.Open();
                     SqlCommand sqlCmd = new SqlCommand("Update Registration Set Email = '" + NewEmailInput.Text + "' Where Faculty-role = '" + userType + "'", sqlCon);

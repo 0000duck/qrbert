@@ -1,3 +1,4 @@
+using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -73,6 +74,52 @@ public partial class VolunteerChangePersonalInformation : Window
     private void PetReportBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerPetReport());
+        this.Close();
+    }
+
+    /// <summary>
+    /// Saves all personal information via button click
+    /// Makes a new connection to the database for every non-empty textbox
+    /// Redirects user to the my account page
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void SaveBtn_Click(object sender, RoutedEventArgs e)
+    {
+        using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
+        sqlCon.Open();
+        string userType = Switcher.VerifyRole("Select [Faculty-Role] From QRbertTables.Registration Where email = '"
+                                              + Switcher.CurrentSessionEmail + "'");
+        
+        if (AddressInputTxt.Text != "")
+        {
+            SqlCommand sqlCmd = new SqlCommand(
+                "Update Contact_Info Set Street-Add = '" + AddressInputTxt.Text + "' Where Faculty-role = ' " +
+                userType + "'", new SqlConnection(Switcher.ConnectionString));
+        }
+
+        if (CityInputTxt.Text != "")
+        {
+            SqlCommand sqlCmd = new SqlCommand(
+                "Update Contact_Info Set City ='" + CityInputTxt.Text + "' Where Faculty-role = ' " +
+                userType + "'", new SqlConnection(Switcher.ConnectionString));
+        }
+
+        if (StateInputTxt.Text != "")
+        {
+            SqlCommand sqlCmd = new SqlCommand(
+                "Update Contact_Info Set State ='" + StateInputTxt.Text + "' Where Faculty-role = ' " +
+                userType + "'", new SqlConnection(Switcher.ConnectionString));
+        }
+
+        if (ZipcodeInputTxt.Text != "")
+        {
+            SqlCommand sqlCmd = new SqlCommand(
+                "Update Contact_Info Set ZipCode ='" + ZipcodeInputTxt.Text + "' Where Faculty-role = ' " +
+                userType + "'", new SqlConnection(Switcher.ConnectionString));
+        }
+        MessageBox.Show("All information updated.");
+        Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
         this.Close();
     }
 }
