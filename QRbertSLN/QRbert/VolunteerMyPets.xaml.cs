@@ -8,7 +8,13 @@ public partial class VolunteerMyPets : Window
     {
         InitializeComponent();
     }
+    private void NotificationBtn_Click(object sender, RoutedEventArgs e) {}
     private void HomeStaffPortalBtn_Click(object sender, RoutedEventArgs e) {}
-    private void VolunteerMyAccountBtn_Click(object sender, RoutedEventArgs e) {}
+    private void ViewTimesheetBtn_Click(object sender, RoutedEventArgs e) {}
+    private void ScanPetQRCodeBtn_Click(object sender, RoutedEventArgs e) {}
+    private void PetReportBtn_Click(object sender, RoutedEventArgs e) {}
+    private void VolunteerMyAcctBtn_Click(object sender, RoutedEventArgs e) {}
     private void LogOutBtn_Click(object sender, RoutedEventArgs e) {}
+    
+    private void AddPetBtn_Click(object sender, RoutedEventArgs e) {}
 }
