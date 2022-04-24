@@ -50,6 +50,10 @@ public partial class StaffRoundingRules : Window
     /// <param name="e"></param>
     private void ScanPetQRCodeRedirectBtn_Click(object sender, RoutedEventArgs e)
     {
+        if (Equals(RemoveAnimal.Header, "RemoveAnimal"))
+        {
+            Switcher.RemoveAnimal = true;
+        }
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         this.Close();
     }
@@ -95,17 +99,6 @@ public partial class StaffRoundingRules : Window
     private void LockTimeSheetsBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffLockTimesheet());
-        this.Close();
-    }
-
-    /// <summary>
-    /// Redirects user to staff portal via button click
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void ConfirmRoundingRulesBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.RedirectStaffPortal();
         this.Close();
     }
 }
