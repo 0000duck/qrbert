@@ -8,6 +8,10 @@ public partial class StaffPortal
     {
         InitializeComponent();
     }
+    private void NotificationBtn_Click(object sender, RoutedEventArgs e)
+    {
+        
+    }
 
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
@@ -31,6 +35,7 @@ public partial class StaffPortal
         Switcher.LogOutSwitch();
         this.Close();
     }
+    
 
     /// <summary>
     /// Redirects user to home page - staff portal via QRbert image click
@@ -113,4 +118,5 @@ public partial class StaffPortal
     {
         throw new System.NotImplementedException();
     }
+    
 }
