@@ -28,6 +28,11 @@ public class Switcher
     /// Saves PetID int of most recently scanned PetID
     /// </summary>
     public static int PetId = 0000;
+
+    /// <summary>
+    /// Saves the state of RemoveAnimal option as boolean
+    /// </summary>
+    public static bool RemoveAnimal = false;
     
     /// <summary>
     /// Verifies the role of the user type

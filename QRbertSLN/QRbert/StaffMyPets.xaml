@@ -152,7 +152,8 @@
                     Click="ScanPetQRCodeRedirectBtn_Click"/>
                 <MenuItem 
                     Header="Remove Animal"
-                    Click="ScanPetQRCodeRedirectBtn_Click"/>
+                    Click="ScanPetQRCodeRedirectBtn_Click"
+                    Name="RemoveAnimal"/>
                 <MenuItem 
                     Header="Pet Reports"
                     Click="PetReportsBtn_Click"/>
