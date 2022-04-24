@@ -183,7 +183,8 @@
         <DockPanel LastChildFill="False">
             <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-600,-800,0" FontSize="14">
+                     Margin="0,-600,-800,0" FontSize="14"
+                     Name="AddressInputTxt">
                 Address
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
@@ -193,7 +194,8 @@
         <DockPanel LastChildFill="False">
             <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-500,-800,0" FontSize="14">
+                     Margin="0,-500,-800,0" FontSize="14"
+                     Name="CityInputTxt">
                 City
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
@@ -203,7 +205,8 @@
         <DockPanel LastChildFill="False">
             <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-400,-800,0" FontSize="14">
+                     Margin="0,-400,-800,0" FontSize="14"
+                     Name="StateInputTxt">
                 State
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
@@ -213,7 +216,8 @@
         <DockPanel LastChildFill="False">
             <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-300,-800,0" FontSize="14">
+                     Margin="0,-300,-800,0" FontSize="14"
+                     Name="ZipcodeInputTxt">
                 Zipcode
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
@@ -223,7 +227,8 @@
         <DockPanel LastChildFill="False">
             <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-200,-800,0" FontSize="14">
+                     Margin="0,-200,-800,0" FontSize="14"
+                     Name="PhoneNumberInputTxt">
                 Phone Number
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
@@ -240,7 +245,8 @@
             Width="100" 
             FontSize="16" 
             ClickMode="Press"
-            Margin="0,-80,0,0">
+            Margin="0,-80,0,0"
+            Click="SaveBtn_Click">
             <Button.Resources>
                 <Style 
                     TargetType="{x:Type Border}"
