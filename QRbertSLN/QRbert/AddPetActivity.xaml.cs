@@ -10,6 +10,10 @@ public partial class AddPetActivity : Window
         
         InitializeComponent();
     }
+    private void NotificationBtn_Click(object sender, RoutedEventArgs e)
+    {
+        
+    }
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
     /// Since the portal and the MyAccount are both pages, they should be easily navigable
@@ -43,6 +47,7 @@ public partial class AddPetActivity : Window
         Switcher.RedirectStaffPortal();
         this.Close();
     }
+    
 
     /// <summary>
     /// Redirects user to scan pet's QR Code in PetQrcodeScanner window via button click
