@@ -9,11 +9,11 @@ public partial class StaffMyPets : Window
         InitializeComponent();
         // Loads information when windows loads
         PetId.Text = Switcher.PetId.ToString();
-        PetName.Content =
+        PetName.Text =
                 Switcher.VerifyRole("SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "''");
         BreedType.Text =
                 Switcher.VerifyRole("SELECT Breed From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
-        DOB.Text =
+        Dob.Text =
                 Switcher.VerifyRole("SELECT DOB From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
     }
     private void NotificationBtn_Click(object sender, RoutedEventArgs e)
