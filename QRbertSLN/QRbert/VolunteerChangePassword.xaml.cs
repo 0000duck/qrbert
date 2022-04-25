@@ -96,6 +96,10 @@ public partial class VolunteerChangePassword : Window
 
     private void ConfirmNewPassword_OnPasswordChanged(object sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        txtConfirmNewPassword.Visibility = Visibility.Visible;
+        if (ConfirmNewPassword.Password.Length > 0)
+        {
+            txtConfirmNewPassword.Visibility = Visibility.Hidden;
+        }
     }
 }
