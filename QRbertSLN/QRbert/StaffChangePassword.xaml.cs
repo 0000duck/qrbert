@@ -117,6 +117,33 @@ public partial class StaffChangePassword : Window
         this.Close();
     }
 
+    private void Password_OnPasswordChanged(object sender, RoutedEventArgs e)
+    {
+        txtCurrentPassword.Visibility = Visibility.Visible;
+        if (Password.Password.Length > 0)
+        {
+            txtCurrentPassword.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void NewPassword_OnPasswordChanged(object sender, RoutedEventArgs e)
+    {
+        txtNewPassword.Visibility = Visibility.Visible;
+        if (NewPassword.Password.Length > 0)
+        {
+            txtNewPassword.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void ConfirmNewPassword_OnPasswordChanged(object sender, RoutedEventArgs e)
+    {
+        txtConfirmNewPassword.Visibility = Visibility.Visible;
+        if (ConfirmNewPassword.Password.Length > 0)
+        {
+            txtConfirmNewPassword.Visibility = Visibility.Hidden;
+        }
+    }
+
     /// <summary>
     /// Changes staff user password to desired new password given inputted in textboxes and executed via button click
     /// </summary>
