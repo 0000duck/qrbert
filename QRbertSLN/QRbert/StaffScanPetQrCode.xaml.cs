@@ -110,10 +110,20 @@ public partial class StaffScanPetQrCode : Window
         // At least 1 result
         else
         {
-            // Saves PetID to active session
-            Switcher.PetId = petId;
-            Switcher.StaffPageSwitch(new StaffMyPets());
-            this.Close();
+            if (Switcher.RemoveAnimal)
+            {
+                Switcher.VerifyRole("Delete From QRbertDB.QRbertTables.Pet where PetID = '" + petId + "'");
+                MessageBox.Show("Pet successfully removed.");
+                Switcher.RedirectStaffPortal();
+                this.Close();
+            }
+            else
+            {
+                // Saves PetID to active session
+                Switcher.PetId = petId;
+                Switcher.StaffPageSwitch(new StaffMyPets());
+                this.Close();
+            }
         }
     }
 }
