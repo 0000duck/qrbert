@@ -1,3 +1,5 @@
+using System.Data;
+using System.Data.SqlClient;
 using System.Windows;
 
 namespace QRbert;
@@ -7,10 +9,19 @@ public partial class AddPetTreatment : Window
     public AddPetTreatment()
     {
         InitializeComponent();
-        
+        // Load Pet ID, Pet Name, and current Date when Window loads
+        PetIdLabel.Content = Switcher.PetId.ToString();
+        string petName =
+            Switcher.VerifyRole("Select PetName From QRbertTables.Pet Where PetID = '" + Switcher.PetId + "'");
+        string date =
+            Switcher.VerifyRole("Select Activity_Date From QRbertTables.Pet_Activity Where PetID = '" + Switcher.PetId + "'");
+        PetNameLabel.Content = petName;
+        IncidentDateLabel.Content = date;
+    }
+    private void NotificationBtn_Click(object sender, RoutedEventArgs e)
+    {
         
     }
-    
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
     /// Since the portal and the MyAccount are both pages, they should be easily navigable
@@ -108,6 +119,31 @@ public partial class AddPetTreatment : Window
     private void RoundingRulesBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffRoundingRules());
+        this.Close();
+    }
+
+    /// <summary>
+    /// Adds New Pet Treatment to the Pet Treatment table via button click
+    /// Redirects user to My Pets page
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void AddPetTreatmentBtn_Click(object sender, RoutedEventArgs e)
+    {
+        SqlCommand sqlCmd = new SqlCommand("AddPetTreatment", new SqlConnection(Switcher.ConnectionString));
+        sqlCmd.CommandType = CommandType.StoredProcedure;
+        sqlCmd.Parameters.AddWithValue("@PetName", PetNameLabel.Content.ToString());
+        sqlCmd.Parameters.AddWithValue("@PetID", PetIdLabel.Content.ToString());
+        sqlCmd.Parameters.AddWithValue("@Incident_Date", IncidentDateLabel.Content.ToString());
+        sqlCmd.Parameters.AddWithValue("@InjuryType", InjuryTypeTxt.Text);
+        sqlCmd.Parameters.AddWithValue("@Recovered_Date", RecoveredDateTxt.Text);
+        sqlCmd.Parameters.AddWithValue("@Vet_Assign", VetAssignedTxt.Text);
+        sqlCmd.Parameters.AddWithValue("@Rx", RxTxt.Text);
+        sqlCmd.Parameters.AddWithValue("@Notes", NotesTxt.Text);
+
+        sqlCmd.ExecuteNonQuery();
+        MessageBox.Show("Successfully saved Pet Treatment.");
+        Switcher.StaffPageSwitch(new StaffMyPets());
         this.Close();
     }
 }

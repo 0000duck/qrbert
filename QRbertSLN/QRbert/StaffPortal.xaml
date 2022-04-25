@@ -115,6 +115,9 @@
         <StackPanel>
             <Image Width="800" Height="450" Source="Images/petsBackground.png" 
                    Margin="0,0,0,0"/>
+            <Image Width="40" Height="40" Source="Images/Notification.png" 
+                   Margin="700,-800,0,0"
+                   MouseDown="NotificationBtn_Click"/>
             <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
                    Margin="-650,-900,0,-100"
                    MouseDown="HomeStaffPortalBtn_Click"
@@ -164,7 +167,7 @@
                 <MenuItem 
                     Header="Remove Animal"
                     Click="ScanPetQRCodeRedirectBtn_Click"
-                    />
+                    Name="RemoveAnimal"/>
                 <MenuItem 
                     Header="Pet Reports"
                     Click="PetReportsBtn_Click"

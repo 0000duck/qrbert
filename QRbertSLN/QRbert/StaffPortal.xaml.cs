@@ -8,6 +8,10 @@ public partial class StaffPortal
     {
         InitializeComponent();
     }
+    private void NotificationBtn_Click(object sender, RoutedEventArgs e)
+    {
+        
+    }
 
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
@@ -31,6 +35,7 @@ public partial class StaffPortal
         Switcher.LogOutSwitch();
         this.Close();
     }
+    
 
     /// <summary>
     /// Redirects user to home page - staff portal via QRbert image click
@@ -50,6 +55,10 @@ public partial class StaffPortal
     /// <param name="e"></param>
     private void ScanPetQRCodeRedirectBtn_Click(object sender, RoutedEventArgs e)
     {
+        if (Equals(RemoveAnimal.Header, "RemoveAnimal"))
+        {
+            Switcher.RemoveAnimal = true;
+        }
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         this.Close();
     }
@@ -113,4 +122,5 @@ public partial class StaffPortal
     {
         throw new System.NotImplementedException();
     }
+    
 }

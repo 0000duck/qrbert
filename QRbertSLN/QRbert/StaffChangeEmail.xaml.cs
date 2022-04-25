@@ -10,7 +10,10 @@ public partial class StaffChangeEmail : Window
     {
         InitializeComponent();
     }
-
+    private void NotificationBtn_Click(object sender, RoutedEventArgs e)
+    {
+        
+    }
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
     /// Since the portal and the MyAccount are both pages, they should be easily navigable
@@ -52,6 +55,10 @@ public partial class StaffChangeEmail : Window
     /// <param name="e"></param>
     private void ScanPetQRCodeRedirectBtn_Click(object sender, RoutedEventArgs e)
     {
+        if (Equals(RemoveAnimal.Header, "RemoveAnimal"))
+        {
+            Switcher.RemoveAnimal = true;
+        }
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         this.Close();
     }
@@ -135,7 +142,7 @@ public partial class StaffChangeEmail : Window
                 using (SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString))
                 {
                     string msg = 
-                        Switcher.VerifyRole("Select [Faculty-Role] From QRbertTables.Registration Where email = '" + Switcher.ConnectionString + "'");
+                        Switcher.VerifyRole("Select [Faculty-Role] From QRbertTables.Registration Where email = '" + Switcher.CurrentSessionEmail + "'");
                     string userType = msg;
                     sqlCon.Open();
                     SqlCommand sqlCmd = new SqlCommand("Update Registration Set Email = '" + NewEmailInput.Text + "' Where Faculty-role = '" + userType + "'", sqlCon);

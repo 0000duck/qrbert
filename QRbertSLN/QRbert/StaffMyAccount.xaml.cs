@@ -9,7 +9,10 @@ public partial class StaffMyAccount
     {
         InitializeComponent();
     }
-    
+    private void NotificationBtn_Click(object sender, RoutedEventArgs e)
+    {
+        
+    }
     /// <summary>
     /// Redirects Staff to the ChangeEmail page via a button click
     /// Since this and the ChangeEmail are both pages, they should be easily navigable
@@ -88,6 +91,10 @@ public partial class StaffMyAccount
     /// <param name="e"></param>
     private void ScanPetQRCodeRedirectBtn_Click(object sender, RoutedEventArgs e)
     {
+        if (Equals(RemoveAnimal.Header, "RemoveAnimal"))
+        {
+            Switcher.RemoveAnimal = true;
+        }
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         this.Close();
     }

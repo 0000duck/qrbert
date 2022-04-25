@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:QRbert"
         mc:Ignorable="d"
-        Title="StaffMyPets" Height="450" Width="800">
+        Title="StaffMyPets" Height="550" Width="800">
      <!-- This the template for the Menus; It creates the menu with a white background and black bold letters;
         allows the user to hover over the menu and display the menus as well as change the letters to orange-->
     <Window.Resources>
@@ -109,11 +109,17 @@
     <!-- This the end of the menu template -->
     <!--  -->
     <!-- This the main stackpanel containing all the controls on the entire page-->
-    <StackPanel Background="Transparent" Height="450" Width="800">
+    <StackPanel Background="Transparent" Height="550" Width="800">
         <!-- This stackpanel contains the orange QRbert logo on the left corner as well as the perts background image-->
         <StackPanel>
             <Image Width="800" Height="450" Source="Images/petsBackground.png" 
                    Margin="0,0,0,0"/>
+
+            <Image Width="40" Height="40" Source="Images/Notification.png" 
+                   Margin="700,-800,0,0"/>
+            <Image Width="40" Height="40" Source="Images/Notification.png" 
+                   Margin="700,-800,0,0"
+                   MouseDown="NotificationBtn_Click"/>
             <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
                    Margin="-650,-900,0,-100"
                    MouseDown="HomeStaffPortalBtn_Click"/>
@@ -129,7 +135,7 @@
                     Click="RoundingRulesBtn_Click"/>
             </MenuItem>
         </Menu>
-        <!-- This is the Volunteer menu-->
+        <!-- This is the Volunteer menu available to staff users only-->
         <Menu Width="100" Height="22" Margin="400, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Volunteer" Name="mm1" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem 
@@ -149,7 +155,8 @@
                     Click="ScanPetQRCodeRedirectBtn_Click"/>
                 <MenuItem 
                     Header="Remove Animal"
-                    Click="ScanPetQRCodeRedirectBtn_Click"/>
+                    Click="ScanPetQRCodeRedirectBtn_Click"
+                    Name="RemoveAnimal"/>
                 <MenuItem 
                     Header="Pet Reports"
                     Click="PetReportsBtn_Click"/>
@@ -166,110 +173,107 @@
                     Click="LogOutBtn_Click"/>
             </MenuItem>
         </Menu>
-        <!-- This the orange semitransparent stack panel in the center with the button controls-->
-        <StackPanel Background="#FF9100" Width="400" Height="300" Opacity="0.7" 
-                    Margin = "0, -400, 0, 0"/>
-        <!-- The pet name will go here at the top center of the orange semitransaprent stackpanel-->
-        <Label 
-            Name="PetName"
-            Visibility="Visible"
-            Width = "250"
-            Height="50"
-            FontWeight="Bold" 
-            HorizontalAlignment="Center"
-            Content="Pet Name Here" 
-            Foreground="White" 
-            FontSize="30"
-            Margin="0,-400,0,0"
-        />
-        
-        <Border Height = "90" Width = "140" CornerRadius="8,8,8,8" Margin="0, -550, 0, 0">
+        <!-- This the orange semitransparent stack panel in the center with the button/text box controls-->
+        <StackPanel Background="#FF9100" Width="400" Height="375" Opacity="0.7" 
+                    Margin = "0, -350, 0, 0"/>
+        <Border Height = "90" Width = "140" CornerRadius="8,8,8,8" Margin="0, -600, 0, 0">
             <Border.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Images/puppy.jpg" />
             </Border.Background>
         </Border>
-
+        <!-- This is where the pet name will go-->
+        <TextBlock Name = "PetName" Width = "150" Height = "35" Text="Pet Name" Foreground="White" FontWeight = " DemiBold" FontSize="28"
+                   Margin = "0, -475, 00, 0" >
+            
+        </TextBlock>
         <!-- This is the "Pet ID:" label, this shouldn't change-->
         <TextBlock Width = "100" Height = "35" Text="Pet ID:" Foreground="White" FontWeight = " DemiBold" FontSize="20"
-                   Margin = "-275, -325, 00, 0" >
+                   Margin = "-105, -400, 00, 0" >
             
         </TextBlock>
         <!-- This is the textblock where the pet Id will be displayed-->
         <TextBlock Name = "PetId" Width = "100" Height = "35" Text="Pet ID" Foreground="White" FontWeight = "   DemiBold" FontSize="20"
-                   Margin = "-275, -275, 00, 0" >
+                   Margin = "100, -400, 00, 0" >
             
         </TextBlock>
         <!-- This is the "Breed Type:" label, this shouldn't change-->
-        <TextBlock Width = "120" Height = "35" Text="Breed Type: " Foreground="White" FontWeight = "    DemiBold" FontSize="20"
-                   Margin = "-25, -325, 00, 0" >
+        <TextBlock Width = "125" Height = "35" Text="Breed Type:" Foreground="White" FontWeight = " DemiBold" FontSize="20"
+                   Margin = "-175, -325, 00, 0" >
             
         </TextBlock>
-        <!-- This is the textblock where the Breed type will be displayed-->
-        <TextBlock Name = "BreedType" Width = "120" Height = "35" Text="Breed Type " Foreground="White" FontWeight = "  DemiBold" FontSize="20"
-                   Margin = "-25, -275, 00, 0" >
+        <!-- This is the textblock where the breed type will be displayed-->
+        <TextBlock Name = "BreedType" Width = "200" Height = "35" Text="Breed Type" Foreground="White" FontWeight = "DemiBold" FontSize="20"
+                   Margin = "200, -325, 00, 0" >
             
         </TextBlock>
         <!-- This is the "DOB:" label, this shouldn't change-->
-        <TextBlock Width = "75" Height = "35" Text="DOB: " Foreground="White" FontWeight = "    DemiBold" FontSize="20"
-                   Margin = "245, -325, 00, 0" >
+        <TextBlock Width = "50" Height = "35" Text="DOB:" Foreground="White" FontWeight = " DemiBold" FontSize="20"
+                   Margin = "-130, -250, 00, 0" >
             
         </TextBlock>
         <!-- This is the textblock where the DOB will be displayed-->
-        <TextBlock Name = "DOB" Width = "75" Height = "35" Text="DOB " Foreground="White" FontWeight = "    DemiBold" FontSize="20"
-                   Margin = "245, -275, 00, 0" >
+        <TextBlock Name = "Dob" Width = "100" Height = "35" Text="DOB" Foreground="White" FontWeight = "DemiBold" FontSize="20"
+                   Margin = "100, -250, 00, 0" >
             
         </TextBlock>
+        <!-- "Add Pet Activity" "Add Pet Treatment" "View Pet Treatment"-->
+        <!-- This the "Add Pet Treatment" button control-->
         <Button 
             Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
-            Height="35" Width="150" FontSize="16" ClickMode="Press" Margin="175,-200,0,0"
+            Height="35" Width="175" FontSize="16" ClickMode="Press" Margin="-180,-175,0,0">
+            <Button.Resources>
+                <Style 
+                    TargetType="{x:Type Border}">
+                    <Setter 
+                        Property="CornerRadius" 
+                        Value="15"/>
+                </Style>
+            </Button.Resources>
+            Add Pet Treatment  
+        </Button>
+        <!-- This the "Add Pet Activity" button control-->
+        <Button 
+            Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
+            Height="35" Width="175" FontSize="16" ClickMode="Press" Margin="180,-175,0,0"
             Click="AddPetActivityBtn_Click">
             <Button.Resources>
                 <Style 
-                    TargetType="{x:Type Border}"
-                >
+                    TargetType="{x:Type Border}">
                     <Setter 
                         Property="CornerRadius" 
-                        Value="15"
-                    />
+                        Value="15"/>
                 </Style>
             </Button.Resources>
-            Add Pet Activity 
+            Add Pet Activity  
         </Button>
+        <!-- This the "View Pet Treatment" button control-->
         <Button 
             Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
-            Height="35" Width="160" FontSize="16" ClickMode="Press" Margin="-175,-200,0,0"
-            Click="AddPetTreatmentBtn_Click">
+            Height="35" Width="175" FontSize="16" ClickMode="Press" Margin="0,-75,0,0">
             <Button.Resources>
                 <Style 
-                    TargetType="{x:Type Border}"
-                >
+                    TargetType="{x:Type Border}">
                     <Setter 
                         Property="CornerRadius" 
-                        Value="15"
-                    />
+                        Value="15"/>
                 </Style>
             </Button.Resources>
-            Add Pet Treatment 
+            View Pet Treatment  
         </Button>
         <!-- This the "Terms and Privacy Notice" button control at the bottom of the page -->
         <Button Height = "25" Width = "300" Content="Terms and Privacy Notice" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
-                Margin="-500,-50,0,0">
-        </Button>
-        <!-- This the "Help" button control at the bottom of the page -->
-        <Button Height = "25" Width = "50" Content="Help" Background="Transparent" Foreground="#FF9100" FontSize="16" 
-                BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
-                Margin="-100,-50,0,0">
+                Margin="-500,25,0,0">
         </Button>
         <!-- This the "FAQs" button control at the bottom of the page -->
         <Button Height = "25" Width = "150" Content="FAQs" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
-                Margin="200,-50,0,0">
+                Margin="0,-25,0,0">
         </Button>
         <!-- This the "©2022 QRbert Inc." button control at the bottom of the page -->
         <Button Height = "25" Width = "150" Content="©2022 QRbert Inc." Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
-                Margin="500,-50,0,0">
+                Margin="500,-25,0,0">
         </Button>
     </StackPanel>
 </Window>

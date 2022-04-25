@@ -14,7 +14,10 @@ public partial class StaffForgotPassword : Window
     {
         InitializeComponent();
     }
-    
+    private void NotificationBtn_Click(object sender, RoutedEventArgs e)
+    {
+        
+    }
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
     /// Since the portal and the MyAccount are both pages, they should be easily navigable
@@ -56,6 +59,10 @@ public partial class StaffForgotPassword : Window
     /// <param name="e"></param>
     private void ScanPetQRCodeRedirectBtn_Click(object sender, RoutedEventArgs e)
     {
+        if (Equals(RemoveAnimal.Header, "RemoveAnimal"))
+        {
+            Switcher.RemoveAnimal = true;
+        }
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         this.Close();
     }
@@ -132,7 +139,7 @@ public partial class StaffForgotPassword : Window
         from = "matt.zaldana@gmail.com";
         pass = "QRbert Temporary Code";
         messageBody = "Hello, this is QRbert. " +
-                      "If you have recieved this message, plesae input the following " +
+                      "If you have received this message, please input the following " +
                       "6 digit code in the textbox in the QRbert window: " + randomCode;
         message.To.Add(to);
         message.From = new MailAddress(from);

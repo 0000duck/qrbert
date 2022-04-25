@@ -115,6 +115,9 @@
             <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
                    Margin="-650,-25,0,0"
                    MouseDown="HomeStaffPortalBtn_Click"/>
+            <Image Width="40" Height="40" Source="Images/Notification.png" 
+                   Margin="700,-100,0,0"
+                   MouseDown="NotificationBtn_Click"/>
             <Image Width="800" Height="450" Source="Images/petsBackground.png" 
                    Margin="0,-100,0,-50"/>
             <Image Width="800" Height="450" Source="Images/petsBackground.png" 
@@ -184,31 +187,33 @@
         />
         <!-- This the "Pet ID" textbox control-->
         <DockPanel LastChildFill="False">
-            <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
+            <Label Width = "250" Height="35" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-1100,-800,0" FontSize="14">
+                     Margin="0,-1100,-800,0" FontSize="14"
+                     Name="PetID">
                 Pet ID
-            </TextBox>
+            </Label>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-1060,0,0"/>
         </DockPanel>
         <!-- This the "Pet Name" textbox control-->
         <DockPanel LastChildFill="False">
-            <TextBox x:Name="PetName" Width = "250" Height="25" Background="Transparent" Foreground="White" 
+            <Label x:Name="PetName" Width = "250" Height="35" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      Margin="0,-1000,-800,0" FontSize="14">
                 Pet Name
-            </TextBox>
+            </Label>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-960,0,0"/>
         </DockPanel>
         <!-- This the "Activity Date" textbox control-->
         <DockPanel LastChildFill="False">
-            <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
+            <Label Width = "250" Height="35" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-900,-800,0" FontSize="14">
+                     Margin="0,-900,-800,0" FontSize="14"
+                     Name="ActivityDate">
                 Activity Date (MM/DD/YYYY)
-            </TextBox>
+            </Label>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-860,0,0"/>
         </DockPanel>
@@ -216,7 +221,8 @@
         <DockPanel LastChildFill="False">
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-800,-800,0" FontSize="14">
+                     Margin="0,-800,-800,0" FontSize="14"
+                     Name="WaterGivenTxt">
                 Water Given
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
@@ -226,7 +232,8 @@
         <DockPanel LastChildFill="False">
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-700,-800,0" FontSize="14">
+                     Margin="0,-700,-800,0" FontSize="14"
+                     Name="CleanKennelTxt">
                 Clean Kennel
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
@@ -236,7 +243,8 @@
         <DockPanel LastChildFill="False">
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-600,-800,0" FontSize="14">
+                     Margin="0,-600,-800,0" FontSize="14"
+                     Name="StaffIdTxt">
                 Staff ID
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
@@ -246,7 +254,8 @@
         <DockPanel LastChildFill="False">
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-500,-800,0" FontSize="14">
+                     Margin="0,-500,-800,0" FontSize="14"
+                     Name="VolunteerIdTxt">
                 Volunteer ID
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
@@ -256,7 +265,8 @@
         <DockPanel LastChildFill="False">
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-400,-800,0" FontSize="14">
+                     Margin="0,-400,-800,0" FontSize="14"
+                     Name="NotesTxt">
                 Notes
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
@@ -273,7 +283,8 @@
             Width="200" 
             FontSize="16" 
             ClickMode="Press"
-            Margin="0,-250,0,0">
+            Margin="0,-250,0,0"
+            Click="AddPetActivityBtn_Click">
             <Button.Resources>
                 <Style 
                     TargetType="{x:Type Border}"

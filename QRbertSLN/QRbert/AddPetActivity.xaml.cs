@@ -1,3 +1,6 @@
+using System;
+using System.Data;
+using System.Data.SqlClient;
 using System.Windows;
 
 
@@ -7,8 +10,19 @@ public partial class AddPetActivity : Window
 {
     public AddPetActivity()
     {
-        
         InitializeComponent();
+        // Load Pet ID, Pet Name, and current Date when Window loads
+        PetID.Content = Switcher.PetId.ToString();
+        string petName =
+            Switcher.VerifyRole("Select PetName From QRbertTables.Pet Where PetID = '" + Switcher.PetId + "'");
+        string date =
+            Switcher.VerifyRole("Select Activity_Date From QRbertTables.Pet_Activity Where PetID = '" + Switcher.PetId + "'");
+        PetName.Content = petName;
+        ActivityDate.Content = date;
+    }
+    private void NotificationBtn_Click(object sender, RoutedEventArgs e)
+    {
+        
     }
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
@@ -43,6 +57,7 @@ public partial class AddPetActivity : Window
         Switcher.RedirectStaffPortal();
         this.Close();
     }
+    
 
     /// <summary>
     /// Redirects user to scan pet's QR Code in PetQrcodeScanner window via button click
@@ -107,6 +122,28 @@ public partial class AddPetActivity : Window
     private void RoundingRulesBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffRoundingRules());
+        this.Close();
+    }
+
+    /// <summary>
+    /// Adds Pet Activity to the Pet Activity Table via button click
+    /// Redirects user to My Pets page
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void AddPetActivityBtn_Click(object sender, RoutedEventArgs e)
+    {
+        SqlCommand sqlCmd = new SqlCommand("AddPetActivity", new SqlConnection(Switcher.ConnectionString));
+        sqlCmd.CommandType = CommandType.StoredProcedure;
+        sqlCmd.Parameters.AddWithValue("@PetName", PetName.Content.ToString());
+        sqlCmd.Parameters.AddWithValue("@PetID", PetID.Content.ToString());
+        sqlCmd.Parameters.AddWithValue("@Activity_Date", ActivityDate.Content.ToString());
+        sqlCmd.Parameters.AddWithValue("@WaterGiven", WaterGivenTxt.Text);
+        sqlCmd.Parameters.AddWithValue("@Clean_Kennel", CleanKennelTxt.Text);
+
+        sqlCmd.ExecuteNonQuery();
+        MessageBox.Show("Successfully saved New Pet Activity.");
+        Switcher.StaffPageSwitch(new StaffMyPets());
         this.Close();
     }
 }
