@@ -163,7 +163,7 @@
             Height="50"
             FontWeight="Bold" 
             HorizontalAlignment="Center"
-            Content="Create Pet Report" 
+            Content="Edit Pet Report" 
             Foreground="White" 
             FontSize="30"
             Margin="25,-1200,0,0"
