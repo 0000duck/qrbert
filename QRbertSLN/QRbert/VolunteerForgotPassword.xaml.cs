@@ -1,3 +1,6 @@
+using System;
+using System.Net;
+using System.Net.Mail;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -5,19 +8,16 @@ namespace QRbert;
 
 public partial class VolunteerForgotPassword : Window
 {
+    private string randomCode;
+    public static string to;
+    
     public VolunteerForgotPassword()
     {
         InitializeComponent();
     }
     
     /// <summary>
-    /// Redirects volunteer user to their MyAccountPage via a button click on the menu item
-    /// Since the portal and the MyAccount page are both Pages, we should be able to save the previous pages visited
-    /// and go back to them if needed
-    ///
-    /// Scratch the above, this comment was for the commented out code in the function that creates a page and
-    /// makes the content change to that page
-    /// Currently, we can switch to the page given the code that functions below and written in the Switcher class
+    /// Redirects volunteer user to their MyAccount window via a button click on the menu item
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -47,5 +47,97 @@ public partial class VolunteerForgotPassword : Window
     {
         Switcher.RedirectVolunteerPortal();
         this.Close();
+    }
+    
+    /// <summary>
+    /// Redirects user to view timesheet window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ViewTimesheetBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.VolunteerPortalSwitch(new VolunteerViewTimesheets());
+        this.Close();
+    }
+
+    /// <summary>
+    /// Redirects user to scan pet qr code window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ScanPetQRCodeBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
+        this.Close();
+    }
+
+    /// <summary>
+    /// Redirects user to pet report window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void PetReportBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.VolunteerPortalSwitch(new VolunteerPetReport());
+        this.Close();
+    }
+
+    /// <summary>
+    /// Sends a code to a user to input to reset their password
+    /// Uses SMTP to send code fro mmy personal email, but we could set one up
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void SendCodeBtn_Click(object sender, RoutedEventArgs e)
+    {
+        string from, pass, messageBody;
+
+        Random rand = new Random();
+        randomCode = (rand.Next(999999)).ToString();
+        MailMessage message = new MailMessage();
+        to = Switcher.CurrentSessionEmail;
+        from = "matt.zaldana@gmail.com";
+        pass = "QRbert Temporary Code";
+        messageBody = "Hello, this is QRbert. " +
+                      "If you have received this message, please input the following " +
+                      "6 digit code in the textbox in the QRbert window: " + randomCode;
+        message.To.Add(to);
+        message.From = new MailAddress(from);
+        message.Body = messageBody;
+        message.Subject = "QRbert Temporary code";
+        SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+        smtp.EnableSsl = true;
+        smtp.Port = 587;
+        smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+        smtp.Credentials = new NetworkCredential(from, pass);
+        try
+        {
+            smtp.Send(message);
+            MessageBox.Show("Please check your email for your 6 digit code.");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Method that checks if inputted code is correct
+    /// Redirects user to ChangePassword window if it is, otherwise, resets the textbox
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void EnterCodeBtn_Click(object sender, RoutedEventArgs e)
+    {
+        if (randomCode == EnterCodeInput.Text)
+        {
+            Switcher.VolunteerPortalSwitch(new VolunteerChangePassword());
+            this.Close();
+        }
+        else
+        {
+            MessageBox.Show("Wrong code. Try again.");
+            EnterCodeInput.Text = "";
+        }
     }
 }

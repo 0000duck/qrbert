@@ -1,5 +1,5 @@
+using System.Data.SqlClient;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace QRbert;
 
@@ -11,13 +11,7 @@ public partial class VolunteerChangeEmail : Window
     }
     
     /// <summary>
-    /// Redirects volunteer user to their MyAccountPage via a button click on the menu item
-    /// Since the portal and the MyAccount page are both Pages, we should be able to save the previous pages visited
-    /// and go back to them if needed
-    ///
-    /// Scratch the above, this comment was for the commented out code in the function that creates a page and
-    /// makes the content change to that page
-    /// Currently, we can switch to the page given the code that functions below and written in the Switcher class
+    /// Redirects volunteer user to their MyAccount window via a button click on the menu item
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -47,5 +41,81 @@ public partial class VolunteerChangeEmail : Window
     {
         Switcher.RedirectVolunteerPortal();
         this.Close();
+    }
+    
+    /// <summary>
+    /// Redirects user to view timesheet window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ViewTimesheetBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.VolunteerPortalSwitch(new VolunteerViewTimesheets());
+        this.Close();
+    }
+
+    /// <summary>
+    /// Redirects user to scan pet qr code window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ScanPetQRCodeBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
+        this.Close();
+    }
+
+    /// <summary>
+    /// Redirects user to pet report window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void PetReportBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.VolunteerPortalSwitch(new VolunteerPetReport());
+        this.Close();
+    }
+
+    /// <summary>
+    /// Updates user email in Registration with new inputted email; then takes them to the MyAccount Page
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void SaveBtn_Click(object sender, RoutedEventArgs e)
+    {
+        // If textboxes aren't empty
+        if (NewEmailInput.Text != "" && ConfirmNewEmailInput.Text != "")
+        {
+            // If the textboxes do not contain the same email
+            if (NewEmailInput.Text != ConfirmNewEmailInput.Text)
+            {
+                NewEmailInput.Text = "";
+                ConfirmNewEmailInput.Text = "";
+                MessageBox.Show("Emails don't match, please try again.");
+            }
+            // If they do contain the same email
+            else
+            {
+                // Query the database and update email
+                string userType = 
+                        Switcher.VerifyRole("Select [Faculty-Role] From QRbertTables.Registration Where email = '" 
+                                            + Switcher.CurrentSessionEmail + "'");
+                SqlCommand sqlCmd =
+                    new SqlCommand(
+                        "Update Registration Set Email = '" + NewEmailInput.Text + "' Where Faculty-role = '" +
+                        userType + "'", new SqlConnection(Switcher.ConnectionString));
+                sqlCmd.ExecuteScalar();
+                MessageBox.Show("Email has been updated.");
+                Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
+                this.Close();
+            }
+        }
+        // The textboxes are empty
+        else 
+        {
+            NewEmailInput.Text = "";
+            ConfirmNewEmailInput.Text = "";
+            MessageBox.Show("One of the email fields is empty, please try again.");
+        }
     }
 }

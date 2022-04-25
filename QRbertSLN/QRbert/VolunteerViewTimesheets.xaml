@@ -8,5 +8,22 @@
         Title="VolunteerViewTimesheets" Height="450" Width="800">
     <Grid>
         <!--Window so that volunteer can view their timesheets-->
+        
+        <Image
+            Width="800" 
+            Height="450" 
+            Source="C:\Users\JawKnee\Documents\GitHub\qrbert\QRbertSLN\QRbert\bin\Debug\net6.0-windows\result.jpg" 
+            Margin="0,0,0,0" >
+            
+        </Image>
+        <TextBlock
+            Width="1000" 
+            Height="50"
+            Background="White"
+            Margin="0,35,0,0"
+            >
+            
+        </TextBlock>
     </Grid>
+    
 </Window>

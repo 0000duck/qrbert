@@ -114,6 +114,9 @@
         <StackPanel>
             <Image Width="800" Height="450" Source="Images/petsBackground.png" 
                    Margin="0,0,0,0"/>
+            <Image Width="40" Height="40" Source="Images/Notification.png" 
+                   Margin="700,-800,0,0"
+                   MouseDown="NotificationBtn_Click"/>
             <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
                    Margin="-650,-900,0,-100"
                    MouseDown="HomeStaffPortalBtn_Click"/>
@@ -122,24 +125,39 @@
         <!-- This is the Timesheet menu-->
         <Menu Width="100" Height="22" Margin="300, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Timesheet" Name="mm" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Lock Timesheets"/>
-                <MenuItem Header="Rounding Rule"/>
+                <MenuItem 
+                    Header="Lock Timesheets"
+                    Click="LockTimesheetsBtn_Click"/>
+                <MenuItem 
+                    Header="Rounding Rule"
+                    Click="RoundingRulesBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This is the Volunteer menu-->
         <Menu Width="100" Height="22" Margin="400, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Volunteer" Name="mm1" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Track Active"/>
-                <MenuItem Header="Staff Search"/>
+                <MenuItem 
+                    Header="Track Active"
+                    Click="TrackActiveVolunteersBtn_Click"/>
+                <MenuItem 
+                    Header="Staff Search"
+                    Click="StaffSearchBtn_Click"/>
                 <MenuItem Header="Assign Pet"/>
             </MenuItem>
         </Menu>
         <!-- This is the Animal menu-->
         <Menu Width="100" Height="22" Margin="500, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Select a Pet"/>
-                <MenuItem Header="Remove Animal"/>
-                <MenuItem Header="Pet Reports"/>
+                <MenuItem 
+                    Header="Select a Pet"
+                    Click="ScanPetQRCodeRedirectBtn_Click"/>
+                <MenuItem 
+                    Header="Remove Animal"
+                    Click="ScanPetQRCodeRedirectBtn_Click"
+                    Name="RemoveAnimal"/>
+                <MenuItem 
+                    Header="Pet Reports"
+                    Click="PetReportsBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This is the My Account menu-->
@@ -203,7 +221,8 @@
             Width="200" 
             FontSize="16" 
             ClickMode="Press"
-            Margin="0,-350,0,0">
+            Margin="0,-350,0,0"
+            Click="StaffEditPetReportBtn_Click">
             <Button.Resources>
                 <Style 
                     TargetType="{x:Type Border}"
