@@ -117,6 +117,33 @@ public partial class StaffChangePassword : Window
         this.Close();
     }
 
+    private void Password_OnPasswordChanged(object sender, RoutedEventArgs e)
+    {
+        txtCurrentPassword.Visibility = Visibility.Visible;
+        if (CurrentPasswordBox.Password.Length > 0)
+        {
+            txtCurrentPassword.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void NewPassword_OnPasswordChanged(object sender, RoutedEventArgs e)
+    {
+        txtNewPassword.Visibility = Visibility.Visible;
+        if (NewPasswordBox.Password.Length > 0)
+        {
+            txtNewPassword.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void ConfirmNewPassword_OnPasswordChanged(object sender, RoutedEventArgs e)
+    {
+        txtConfirmNewPassword.Visibility = Visibility.Visible;
+        if (ConfirmNewPasswordBox.Password.Length > 0)
+        {
+            txtConfirmNewPassword.Visibility = Visibility.Hidden;
+        }
+    }
+
     /// <summary>
     /// Changes staff user password to desired new password given inputted in textboxes and executed via button click
     /// </summary>
@@ -129,28 +156,28 @@ public partial class StaffChangePassword : Window
                                                       Switcher.CurrentSessionEmail + "'");
         // If the verified password string isn't the same as the inputted current password,
         // then catch error and reset to empty textboxes
-        if (verifyCurrentPwd != CurrentPwdInput.Text)
+        if (verifyCurrentPwd != CurrentPasswordBox.Password)
         {
             MessageBox.Show("The inputted current password was incorrect. Please try again.");
-            CurrentPwdInput.Text = "";
-            NewPwdInput.Text = "";
-            ConfirmNewPwdInput.Text = "";
+            CurrentPasswordBox.Password = "";
+            NewPasswordBox.Password = "";
+            ConfirmNewPasswordBox.Password = "";
         }
         else
         {
             // If the new passwords don't match, catch the error and reset textboxes
-            if (NewPwdInput.Text != ConfirmNewPwdInput.Text)
+            if (NewPasswordBox.Password != ConfirmNewPasswordBox.Password)
             {
                 MessageBox.Show("Your new password did not match the other. Please type them again.");
-                NewPwdInput.Text = "";
-                ConfirmNewPwdInput.Text = "";
+                NewPasswordBox.Password = "";
+                ConfirmNewPasswordBox.Password = "";
             }
             // If the length is too short
-            else if (NewPwdInput.Text.Length < 8 || ConfirmNewPwdInput.Text.Length < 8)
+            else if (NewPasswordBox.Password.Length < 8 || ConfirmNewPasswordBox.Password.Length < 8)
             {
                 MessageBox.Show("Your new password is too short. Please try a different password.");
-                NewPwdInput.Text = "";
-                ConfirmNewPwdInput.Text = "";
+                NewPasswordBox.Password = "";
+                ConfirmNewPasswordBox.Password = "";
             }
             // Passes all the checks, updates password and takes to MyAccount page
             else
@@ -159,7 +186,7 @@ public partial class StaffChangePassword : Window
                                                       + Switcher.CurrentSessionEmail + "'");
                 SqlCommand sqlCmd =
                     new SqlCommand(
-                        "Update Registration Set Password = '" + ConfirmNewPwdInput.Text + "' Where Faculty-role = ' " +
+                        "Update Registration Set Password = '" + ConfirmNewPasswordBox.Password + "' Where Faculty-role = ' " +
                         userType + "'", new SqlConnection(Switcher.ConnectionString));
                 sqlCmd.ExecuteScalar();
                 MessageBox.Show("Password has been updated.");

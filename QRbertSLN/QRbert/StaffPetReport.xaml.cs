@@ -89,17 +89,6 @@ public partial class StaffPetReport : Window
     }
 
     /// <summary>
-    /// Redirects user to Pet Reports window via button click
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void PetReportsBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.StaffPageSwitch(new StaffPetReport());
-        this.Close();
-    }
-
-    /// <summary>
     /// Redirects user to Track Active Volunteers window via button click
     /// </summary>
     /// <param name="sender"></param>
