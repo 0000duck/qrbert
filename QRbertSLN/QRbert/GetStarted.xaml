@@ -162,27 +162,6 @@
                   >
               </Button>
             </StackPanel>
-            
-
-            <!-- This StackPanel has a transparent background that holds the button FAQs. 
-               It has a transparent background with white text with no border. As of now, clicking the button does
-               not do anything. -->
-            <StackPanel 
-              Height="50" 
-              Width = "50" 
-              Background="Transparent" 
-              Margin="-800,650,0,0"
-              >
-              <Button 
-                  Content="FAQs" 
-                  Background="Transparent" 
-                  Foreground="White" 
-                  BorderBrush="Transparent"
-                  FontSize="16" 
-                  FontWeight="Normal"
-                  >
-              </Button>
-            </StackPanel>
 
             <!-- This StackPanel has a transparent background that holds the button ©2022 QRbert Inc.. 
                It has a transparent background with white text with no border. As of now, clicking the button does
