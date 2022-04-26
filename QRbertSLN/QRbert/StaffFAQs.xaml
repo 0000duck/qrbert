@@ -121,6 +121,8 @@
             <StackPanel>
                 <Image Width="40" Height="40" Source="Images/Notification.png" 
                        Margin="700,50,0,0"
+                       Name="AlertStaffBellIcon"
+                       Visibility="Hidden"
                        MouseDown="NotificationBtn_Click"/>
                 <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
                        Margin="-600,-150,0,-100"

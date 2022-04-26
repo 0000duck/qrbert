@@ -8,6 +8,9 @@ namespace QRbert;
 
 public partial class AddPetActivity : Window
 {
+    /// <summary>
+    /// Upon loading the page, Window checks if boolean is true to turn on Bell Icon
+    /// </summary>
     public AddPetActivity()
     {
         InitializeComponent();
@@ -19,11 +22,33 @@ public partial class AddPetActivity : Window
             Switcher.VerifyRole("Select Activity_Date From QRbertTables.Pet_Activity Where PetID = '" + Switcher.PetId + "'");
         PetName.Content = petName;
         ActivityDate.Content = date;
+        if (Switcher.IsPetNeglected)
+        {
+            AlertStaffBellIcon.Visibility = Visibility.Visible;
+        }
     }
+
+    /// <summary>
+    /// If the Icon is not visible, method does nothing
+    /// Else redirects user to Staff Neglected Animals page and closes portal 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void NotificationBtn_Click(object sender, RoutedEventArgs e)
     {
-        
+        if (AlertStaffBellIcon.Visibility == Visibility.Hidden)
+        {
+            // do nothing
+        }
+        else
+        {
+            // At least one Pet is Neglected
+            // Means that Switcher.IsPetNeglected = true
+            Switcher.StaffPageSwitch(new StaffNeglectedAnimals());
+            this.Close();
+        }
     }
+    
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
     /// Since the portal and the MyAccount are both pages, they should be easily navigable
