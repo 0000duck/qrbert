@@ -165,7 +165,8 @@
         <DockPanel LastChildFill="False">
             <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-500,-800,0" FontSize="14">
+                     Margin="0,-500,-800,0" FontSize="14"
+                     Name="NewEmailInput">
                 New Email
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
@@ -175,7 +176,8 @@
         <DockPanel LastChildFill="False">
             <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-400,-800,0" FontSize="14">
+                     Margin="0,-400,-800,0" FontSize="14"
+                     Name="ConfirmNewEmailInput">
                 Confirm New Email
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
@@ -192,7 +194,8 @@
             Width="100" 
             FontSize="16" 
             ClickMode="Press"
-            Margin="0,-250,0,0">
+            Margin="0,-250,0,0"
+            Click="SaveBtn_Click">
             <Button.Resources>
                 <Style 
                     TargetType="{x:Type Border}"
@@ -210,15 +213,10 @@
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
                 Margin="-500,-50,0,0">
         </Button>
-        <!-- This the "Help" button control at the bottom of the Window -->
-        <Button Height = "25" Width = "50" Content="Help" Background="Transparent" Foreground="#FF9100" FontSize="16" 
-                BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
-                Margin="-100,-50,0,0">
-        </Button>
         <!-- This the "FAQs" button control at the bottom of the Window -->
         <Button Height = "25" Width = "150" Content="FAQs" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
-                Margin="200,-50,0,0">
+                Margin="0,-50,0,0">
         </Button>
         <!-- This the "©2022 QRbert Inc." button control at the bottom of the Window -->
         <Button Height = "25" Width = "150" Content="©2022 QRbert Inc." Background="Transparent" Foreground="#FF9100" FontSize="16" 

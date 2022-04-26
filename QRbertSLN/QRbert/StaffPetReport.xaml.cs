@@ -80,18 +80,11 @@ public partial class StaffPetReport : Window
     /// <param name="e"></param>
     private void ScanPetQRCodeRedirectBtn_Click(object sender, RoutedEventArgs e)
     {
+        if (Equals(RemoveAnimal.Header, "RemoveAnimal"))
+        {
+            Switcher.RemoveAnimal = true;
+        }
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
-        this.Close();
-    }
-
-    /// <summary>
-    /// Redirects user to Pet Reports window via button click
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void PetReportsBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.StaffPageSwitch(new StaffPetReport());
         this.Close();
     }
 
