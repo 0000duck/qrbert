@@ -117,6 +117,8 @@
                    MouseDown="HomeStaffPortalBtn_Click"/>
             <Image Width="40" Height="40" Source="Images/Notification.png" 
                    Margin="700,-100,0,0"
+                   Name="AlertStaffBellIcon"
+                   Visibility="Hidden"
                    MouseDown="NotificationBtn_Click"/>
             <Image Width="800" Height="450" Source="Images/petsBackground.png" 
                    Margin="0,-100,0,-50"/>

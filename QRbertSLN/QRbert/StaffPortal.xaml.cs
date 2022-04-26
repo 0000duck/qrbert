@@ -4,13 +4,39 @@ namespace QRbert;
 
 public partial class StaffPortal
 {
+    /// <summary>
+    /// Upon loading window, query returns Pet IDs of Pets Neglected
+    /// If at least 1, makes the Bell Icon visible and boolean true
+    /// </summary>
     public StaffPortal()
     {
         InitializeComponent();
+        // Denise, query goes here
+        /*
+         * if neglected pets query returns at least one pet ID
+         * then make AlertStaffBellIcon visible and Switcher.IsPetNeglected = true
+         */
     }
+    
+    /// <summary>
+    /// If the Icon is not visible, method does nothing
+    /// Else redirects user to Staff Neglected Animals page and closes portal 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void NotificationBtn_Click(object sender, RoutedEventArgs e)
     {
-        
+        if (AlertStaffBellIcon.Visibility == Visibility.Hidden)
+        {
+            // do nothing
+        }
+        else
+        {
+            // At least one Pet is Neglected
+            // Means that Switcher.IsPetNeglected = true
+            Switcher.StaffPageSwitch(new StaffNeglectedAnimals());
+            this.Close();
+        }
     }
 
     /// <summary>
