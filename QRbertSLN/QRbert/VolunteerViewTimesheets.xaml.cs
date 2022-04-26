@@ -76,7 +76,7 @@ public partial class VolunteerViewTimesheets : Window
     /// <param name="e"></param>
     private void PetReportBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.VolunteerPortalSwitch(new VolunteerPetReport());
+        Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
         this.Close();
     }
 
