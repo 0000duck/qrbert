@@ -226,15 +226,10 @@
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
                 Margin="-500,-50,0,0">
         </Button>
-        <!-- This the "Help" button control at the bottom of the page -->
-        <Button Height = "25" Width = "50" Content="Help" Background="Transparent" Foreground="#FF9100" FontSize="16" 
-                BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
-                Margin="-100,-50,0,0">
-        </Button>
         <!-- This the "FAQs" button control at the bottom of the page -->
         <Button Height = "25" Width = "150" Content="FAQs" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
-                Margin="200,-50,0,0">
+                Margin="0,-50,0,0">
         </Button>
         <!-- This the "©2022 QRbert Inc." button control at the bottom of the page -->
         <Button Height = "25" Width = "150" Content="©2022 QRbert Inc." Background="Transparent" Foreground="#FF9100" FontSize="16" 
