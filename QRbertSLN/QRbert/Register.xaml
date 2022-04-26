@@ -662,21 +662,6 @@
             >
             </Button>
             
-            <!-- Clicking this button takes the user to a page where they can be assisted. -->
-            <Button
-                Height="40"
-                Width = "75"
-                Content="Help"
-                Background="Transparent"
-                Foreground="#FF9100"
-                BorderBrush="Transparent"
-                FontSize="16"
-                FontWeight="Normal"
-                ClickMode="Press"
-                Margin="-50,-50,0,0"
-            >
-            </Button>
-            
             <!-- Clicking this button takes you to a page where a question you have might
                  be answered. -->
             <Button
@@ -689,7 +674,7 @@
                 FontSize="16"
                 FontWeight="Normal"
                 ClickMode="Press"
-                Margin="150,-50,0,0"
+                Margin="0,-50,0,0"
             >
             </Button>
             

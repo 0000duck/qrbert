@@ -128,7 +128,7 @@
             </MenuItem>
         </Menu>
         <!-- This is the Animal menu-->
-        <Menu Width="100" Height="22" Margin="500, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
+        <Menu Width="100" Height="22" Margin="450, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem 
                     Header="Select a Pet"
