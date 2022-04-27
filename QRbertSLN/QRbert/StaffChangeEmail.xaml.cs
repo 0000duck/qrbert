@@ -26,11 +26,7 @@ public partial class StaffChangeEmail : Window
     /// <param name="e"></param>
     private void NotificationBtn_Click(object sender, RoutedEventArgs e)
     {
-        if (AlertStaffBellIcon.Visibility == Visibility.Hidden)
-        {
-            // do nothing
-        }
-        else
+        if (AlertStaffBellIcon.IsVisible) 
         {
             // At least one Pet is Neglected
             // Means that Switcher.IsPetNeglected = true
@@ -167,10 +163,10 @@ public partial class StaffChangeEmail : Window
                 using (SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString))
                 {
                     string msg = 
-                        Switcher.VerifyRole("Select [Faculty-Role] From QRbertTables.Registration Where email = '" + Switcher.CurrentSessionEmail + "'");
+                        Switcher.VerifyRole("Select [Faculty-Role] From QRbertDB.QRbertTables.Registration Where email = '" + Switcher.CurrentSessionEmail + "'");
                     string userType = msg;
                     sqlCon.Open();
-                    SqlCommand sqlCmd = new SqlCommand("Update Registration Set Email = '" + NewEmailInput.Text + "' Where Faculty-role = '" + userType + "'", sqlCon);
+                    SqlCommand sqlCmd = new SqlCommand("Update QRbertDB.QRbertTables.Registration Set Email = '" + NewEmailInput.Text + "' Where Faculty-role = '" + userType + "'", sqlCon);
                     sqlCmd.ExecuteScalar();
                     MessageBox.Show("Email has been updated.");
                     Switcher.StaffPageSwitch(new StaffMyAccount());

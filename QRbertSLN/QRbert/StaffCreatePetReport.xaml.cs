@@ -27,11 +27,7 @@ public partial class StaffCreatePetReport : Window
     /// <param name="e"></param>
     private void NotificationBtn_Click(object sender, RoutedEventArgs e)
     {
-        if (AlertStaffBellIcon.Visibility == Visibility.Hidden)
-        {
-            // do nothing
-        }
-        else
+        if (AlertStaffBellIcon.IsVisible) 
         {
             // At least one Pet is Neglected
             // Means that Switcher.IsPetNeglected = true
