@@ -11,11 +11,16 @@ public partial class StaffPortal
     public StaffPortal()
     {
         InitializeComponent();
-        // Denise, query goes here
-        /*
-         * if neglected pets query returns at least one pet ID
-         * then make AlertStaffBellIcon visible and Switcher.IsPetNeglected = true
-         */
+        Switcher.PetsNeglected = Switcher.VerifyRole(
+            "Select QRbertTables.Pet.PetID from QRbertTables.Pet " + 
+            "left join QRbertTables.Pet_Activity "  + 
+            "on QRbertTables.Pet.PetName = QRbertTables.Pet_Activity.PetName " + 
+            "where QRbertTables.Pet_Activity.Activity_Date is null;");
+        if (int.TryParse(Switcher.PetsNeglected, out Switcher.PetId))
+        {
+            AlertStaffBellIcon.Visibility = Visibility.Visible;
+            Switcher.IsPetNeglected = true;
+        }
     }
     
     /// <summary>
@@ -26,11 +31,7 @@ public partial class StaffPortal
     /// <param name="e"></param>
     private void NotificationBtn_Click(object sender, RoutedEventArgs e)
     {
-        if (AlertStaffBellIcon.Visibility == Visibility.Hidden)
-        {
-            // do nothing
-        }
-        else
+        if (AlertStaffBellIcon.IsVisible) 
         {
             // At least one Pet is Neglected
             // Means that Switcher.IsPetNeglected = true

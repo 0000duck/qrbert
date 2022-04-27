@@ -17,9 +17,9 @@ public partial class AddPetActivity : Window
         // Load Pet ID, Pet Name, and current Date when Window loads
         PetID.Content = Switcher.PetId.ToString();
         string petName =
-            Switcher.VerifyRole("Select PetName From QRbertTables.Pet Where PetID = '" + Switcher.PetId + "'");
+            Switcher.VerifyRole("Select PetName From QRbertDB.QRbertTables.Pet Where PetID = '" + Switcher.PetId + "'");
         string date =
-            Switcher.VerifyRole("Select Activity_Date From QRbertTables.Pet_Activity Where PetID = '" + Switcher.PetId + "'");
+            Switcher.VerifyRole("Select Activity_Date From QRbertDB.QRbertTables.Pet_Activity Where PetID = '" + Switcher.PetId + "'");
         PetName.Content = petName;
         ActivityDate.Content = date;
         if (Switcher.IsPetNeglected)
@@ -36,11 +36,7 @@ public partial class AddPetActivity : Window
     /// <param name="e"></param>
     private void NotificationBtn_Click(object sender, RoutedEventArgs e)
     {
-        if (AlertStaffBellIcon.Visibility == Visibility.Hidden)
-        {
-            // do nothing
-        }
-        else
+        if (AlertStaffBellIcon.IsVisible) 
         {
             // At least one Pet is Neglected
             // Means that Switcher.IsPetNeglected = true
