@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:QRbert"
         mc:Ignorable="d"
-        Title="VolunteerFAQs" Height="1800" Width="800">
+        Title="VolunteerFAQs" Height="500" Width="800">
     <Window.Resources>
     <!-- This the template for the Menus; It creates the menu with a white background and black bold letters;
     allows the user to hover over the menu and display the menus as well as change the letters to orange-->
@@ -120,7 +120,7 @@
         <StackPanel Background="Transparent">
             <StackPanel>
                 <Image Width="40" Height="40" Source="Images/Notification.png" 
-                       Margin="700,50,0,0"
+                       Margin="650,50,0,0"
                        MouseDown="NotificationBtn_Click"/>
                 <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
                        Margin="-600,-150,0,-100"
