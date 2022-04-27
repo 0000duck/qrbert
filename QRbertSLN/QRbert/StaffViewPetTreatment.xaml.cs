@@ -15,6 +15,7 @@ public partial class StaffViewPetTreatment : Window
             AlertStaffBellIcon.Visibility = Visibility.Visible;
         }
     }
+<<<<<<< Updated upstream
     
     /// <summary>
     /// If the Icon is not visible, method does nothing
@@ -33,6 +34,12 @@ public partial class StaffViewPetTreatment : Window
         }
     }
     
+=======
+    private void NotificationBtn_Click(object sender, RoutedEventArgs e)
+    {
+        
+    }
+>>>>>>> Stashed changes
     private void HomeStaffPortalBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffMyAccount());
