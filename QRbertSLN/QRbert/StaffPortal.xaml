@@ -116,13 +116,9 @@
             <Image Width="800" Height="450" Source="Images/petsBackground.png" 
                    Margin="0,0,0,0"/>
             <Image Width="40" Height="40" Source="Images/Notification.png" 
-<<<<<<< Updated upstream
-                   Margin="700,-800,0,0"
                    Name="AlertStaffBellIcon"
                    Visibility = "Hidden"
-=======
                    Margin="650,-950,0,-100"
->>>>>>> Stashed changes
                    MouseDown="NotificationBtn_Click"/>
             <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
                    Margin="-650,-900,0,-100"

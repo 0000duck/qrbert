@@ -120,13 +120,9 @@
         <StackPanel Background="Transparent">
             <StackPanel>
                 <Image Width="40" Height="40" Source="Images/Notification.png" 
-<<<<<<< Updated upstream
-                       Margin="700,50,0,0"
                        Name="AlertStaffBellIcon"
                        Visibility="Hidden"
-=======
                        Margin="650,50,0,0"
->>>>>>> Stashed changes
                        MouseDown="NotificationBtn_Click"/>
                 <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
                        Margin="-600,-150,0,-100"

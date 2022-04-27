@@ -120,13 +120,9 @@
                    Margin="-650,-25,0,0"
                    MouseDown="HomeStaffPortalBtn_Click"/>
             <Image Width="40" Height="40" Source="Images/Notification.png" 
-<<<<<<< Updated upstream
-                   Margin="700,-100,0,0"
                    Name="AlertStaffBellIcon"
                    Visibility="Hidden"
-=======
                    Margin="650,-250,0,-100"
->>>>>>> Stashed changes
                    MouseDown="NotificationBtn_Click"/>
             <Image Width="800" Height="450" Source="Images/petsBackground.png" 
                    Margin="0,-100,0,-50"/>

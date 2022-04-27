@@ -113,16 +113,10 @@
         <!-- This stackpanel contains the orange QRbert logo on the left corner as well as the perts background image-->
         <StackPanel>
             <Image Width="800" Height="450" Source="Images/petsBackground.png" 
-                   Margin="0,0,0,0"/>
-            <Image Width="40" Height="40" Source="Images/Notification.png" 
-<<<<<<< Updated upstream
                    Name="AlertStaffBellIcon"
-                   Visibility="Hidden"
-                   Margin="700,-800,0,0"/>
-=======
-                   Margin="650,-950,0,-100"
+                    Margin="650,-950,0,-100"
                    MouseDown="NotificationBtn_Click"/>
->>>>>>> Stashed changes
+            
             <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
                    Margin="-650,-900,0,-100"
                    MouseDown="HomeStaffPortalBtn_Click"/>
