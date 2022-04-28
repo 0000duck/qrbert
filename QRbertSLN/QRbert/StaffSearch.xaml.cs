@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Windows;
 
 namespace QRbert;
 
