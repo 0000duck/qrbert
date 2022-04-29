@@ -3,7 +3,6 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:QRbert"
       mc:Ignorable="d"
       Title="StaffPortal" Height="485" Width="800">
       <Window.Resources>
@@ -29,7 +28,7 @@
         </LinearGradientBrush>
 
 
-        <Style x:Key="{x:Type Menu}" TargetType="Menu">
+        <Style TargetType="Menu">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="SnapsToDevicePixels" Value="True"/>
             <Setter Property="Foreground" Value="Black"/>
@@ -109,8 +108,8 @@
     </Window.Resources>
     <!-- This the end of the binding menu template -->
     <!--  -->
-    <!-- This the main stackpanel containing all the controls on the entire page
-        (the 3 menus, the pets background, the logo, the links at the bottom and the orange semitransparent stackpanel-->
+    <!-- This the main stack-panel containing all the controls on the entire page
+        (the 3 menus, the pets background, the logo, the links at the bottom and the orange semitransparent stack-panel-->
     <StackPanel Background="Transparent" Height="450" Width="800">
         <StackPanel>
             <Image Width="800" Height="450" Source="Images/petsBackground.png" 
@@ -135,10 +134,10 @@
         </StackPanel>
         <!-- This is the Timesheet menu-->
         <Menu Width="100" Height="22" Margin="300, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem Header="Timesheet" Name="mm" Template="{DynamicResource MenuItemControlTemplate1}">
+            <MenuItem Header="Timesheet" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem 
-                    Header="Lock Timesheets"
-                    Click="LockTimesheetsBtn_Click"/>
+                    Header="Lock Timesheet"
+                    Click="LockTimesheetBtn_Click"/>
                 <MenuItem 
                     Header="Rounding Rule"
                     Click="RoundingRulesBtn_Click"/>
@@ -147,22 +146,18 @@
         </Menu>
         <!-- This is the Volunteer menu available only to staff users -->
         <Menu Width="100" Height="22" Margin="400, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem Header="Volunteer" Name="mm1" Template="{DynamicResource MenuItemControlTemplate1}">
+            <MenuItem Header="Volunteer" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem 
                     Header="Track Active"
                     Click="TrackActiveVolunteersBtn_Click"/>
                 <MenuItem 
                     Header="Staff Search"
                     Click="StaffSearchBtn_Click"/>
-                <MenuItem 
-                    Header="Assign Pet"
-                    Click="AssignPetBtn_Click"
-                    />
             </MenuItem>
         </Menu>
         <!-- This is the Animal menu for staff users -->
         <Menu Width="100" Height="22" Margin="500, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
+            <MenuItem Header="Animals" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem 
                     Header="Select a Pet"
                     Click="ScanPetQRCodeRedirectBtn_Click"/>
@@ -178,7 +173,7 @@
         </Menu>
         <!-- This is the My Account menu for staff-->
         <Menu Width="100" Height="22" Margin="600, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
+            <MenuItem Header="My Account" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem 
                     Header="Staff Account"
                     Click="StaffMyAccountBtn_Click"/>
@@ -196,6 +191,7 @@
         <!-- This the "FAQs" button control at the bottom of the page -->
         <Button Height = "25" Width = "150" Content="FAQs" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
+                Click="FAQRedirectBtn_Click"
                 Margin="0,-50,0,0">
         </Button>
         <!-- This the "©2022 QRbert Inc." button control at the bottom of the page -->

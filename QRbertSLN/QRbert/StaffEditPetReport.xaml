@@ -133,8 +133,8 @@
         <Menu Width="100" Height="22" Margin="300, -700, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Timesheet" Name="mm" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem 
-                    Header="Lock Timesheets"
-                    Click="LockTimesheetsBtn_Click"/>
+                    Header="Lock Timesheet"
+                    Click="LockTimesheetBtn_Click"/>
                 <MenuItem 
                     Header="Rounding Rule"
                     Click="RoundingRulesBtn_Click"/>
@@ -149,7 +149,6 @@
                 <MenuItem 
                     Header="Staff Search"
                     Click="StaffSearchBtn_Click"/>
-                <MenuItem Header="Assign Pet"/>
             </MenuItem>
         </Menu>
         <!-- This is the Animal menu-->
@@ -294,6 +293,7 @@
         <!-- This the "FAQs" button control at the bottom of the page -->
         <Button Height = "25" Width = "150" Content="FAQs" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
+                Click="FAQRedirectBtn_Click"
                 Margin="0,-25,0,0">
         </Button>
         <!-- This the "©2022 QRbert Inc." button control at the bottom of the page -->

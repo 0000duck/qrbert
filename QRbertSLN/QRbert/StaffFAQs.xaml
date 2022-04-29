@@ -173,8 +173,8 @@
         <Menu Width="100" Height="22" Margin="300, -1675, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Timesheet" Name="mm" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem 
-                    Header="Lock Timesheets"
-                    Click="LockTimesheetsBtn_Click"/>
+                    Header="Lock Timesheet"
+                    Click="LockTimesheetBtn_Click"/>
                 <MenuItem 
                     Header="Rounding Rule"
                     Click="RoundingRulesBtn_Click"/>
@@ -190,10 +190,6 @@
                 <MenuItem 
                     Header="Staff Search"
                     Click="StaffSearchBtn_Click"/>
-                <MenuItem 
-                    Header="Assign Pet"
-                    Click="AssignPetBtn_Click"
-                    />
             </MenuItem>
         </Menu>
         <!-- This is the Animal menu for staff users -->

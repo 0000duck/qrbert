@@ -38,7 +38,7 @@ public partial class StaffViewPetTreatment : Window
         Switcher.StaffPageSwitch(new StaffMyAccount());
         this.Close();
     }
-    private void LockTimesheetsBtn_Click(object sender, RoutedEventArgs e)
+    private void LockTimesheetBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffMyAccount());
         this.Close();
@@ -77,5 +77,16 @@ public partial class StaffViewPetTreatment : Window
     {
         Switcher.StaffPageSwitch(new StaffMyAccount());
         this.Close();
+    }
+    
+    /// <summary>
+    /// Redirects user to the FAQ window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffFAQs());
+        Close();
     }
 }

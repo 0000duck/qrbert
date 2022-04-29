@@ -140,6 +140,17 @@ public partial class StaffChangeEmail : Window
     }
     
     /// <summary>
+    /// Redirects user to the FAQ window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffFAQs());
+        Close();
+    }
+    
+    /// <summary>
     /// Updates the user email to a new email they register and redirects them to MyAccount Page
     /// </summary>
     /// <param name="sender"></param>

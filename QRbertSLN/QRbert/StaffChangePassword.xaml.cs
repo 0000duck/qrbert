@@ -137,16 +137,37 @@ public partial class StaffChangePassword : Window
         Switcher.StaffPageSwitch(new StaffRoundingRules());
         this.Close();
     }
+    
+    /// <summary>
+    /// Redirects user to the FAQ window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffFAQs());
+        Close();
+    }
 
+    /// <summary>
+    /// If input is in password, makes textblock visible
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void Password_OnPasswordChanged(object sender, RoutedEventArgs e)
     {
-        txtCurrentPassword.Visibility = Visibility.Visible;
+        TxtCurrentPassword.Visibility = Visibility.Visible;
         if (CurrentPasswordBox.Password.Length > 0)
         {
-            txtCurrentPassword.Visibility = Visibility.Hidden;
+            TxtCurrentPassword.Visibility = Visibility.Hidden;
         }
     }
 
+    /// <summary>
+    /// If New password input is observed, makes new password textbox visible
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void NewPassword_OnPasswordChanged(object sender, RoutedEventArgs e)
     {
         txtNewPassword.Visibility = Visibility.Visible;
@@ -156,6 +177,11 @@ public partial class StaffChangePassword : Window
         }
     }
 
+    /// <summary>
+    /// If confirm new password box input is observed, makes textbox visible
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void ConfirmNewPassword_OnPasswordChanged(object sender, RoutedEventArgs e)
     {
         txtConfirmNewPassword.Visibility = Visibility.Visible;
@@ -173,7 +199,7 @@ public partial class StaffChangePassword : Window
     private void ChangePasswordBtn_Click(object sender, RoutedEventArgs e)
     {
         // Verifies the current password the user has
-        string verifyCurrentPwd = Switcher.VerifyRole("Select Password From QRbertTables.Registration Where email = '" +
+        string verifyCurrentPwd = Switcher.VerifyRole("Select Password From QRbertDB.QRbertTables.Registration Where email = '" +
                                                       Switcher.CurrentSessionEmail + "'");
         // If the verified password string isn't the same as the inputted current password,
         // then catch error and reset to empty textboxes
@@ -203,11 +229,11 @@ public partial class StaffChangePassword : Window
             // Passes all the checks, updates password and takes to MyAccount page
             else
             {
-                string userType = Switcher.VerifyRole("Select [Faculty-Role] From QRbertTables.Registration Where email = '" 
+                string userType = Switcher.VerifyRole("Select [Faculty-Role] From QRbertDB.QRbertTables.Registration Where email = '" 
                                                       + Switcher.CurrentSessionEmail + "'");
                 SqlCommand sqlCmd =
                     new SqlCommand(
-                        "Update Registration Set Password = '" + ConfirmNewPasswordBox.Password + "' Where Faculty-role = ' " +
+                        "Update QRbertDB.QRbertTables.Registration Set Password = '" + ConfirmNewPasswordBox.Password + "' Where Faculty-role = ' " +
                         userType + "'", new SqlConnection(Switcher.ConnectionString));
                 sqlCmd.ExecuteScalar();
                 MessageBox.Show("Password has been updated.");

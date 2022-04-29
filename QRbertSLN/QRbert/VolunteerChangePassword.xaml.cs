@@ -75,6 +75,17 @@ public partial class VolunteerChangePassword
         Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
         this.Close();
     }
+    
+    /// <summary>
+    /// Redirects user to the FAQ window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.VolunteerPortalSwitch(new VolunteerFAQs());
+        Close();
+    }
 
     private void Password_OnPasswordChanged(object sender, RoutedEventArgs e)
     {
