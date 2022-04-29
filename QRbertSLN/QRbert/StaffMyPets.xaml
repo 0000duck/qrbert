@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:QRbert"
         mc:Ignorable="d"
-        Title="StaffMyPets" Height="550" Width="800">
+        Title="StaffMyPets" Height="600" Width="800">
      <!-- This the template for the Menus; It creates the menu with a white background and black bold letters;
         allows the user to hover over the menu and display the menus as well as change the letters to orange-->
     <Window.Resources>
@@ -114,13 +114,10 @@
         <StackPanel>
             <Image Width="800" Height="450" Source="Images/petsBackground.png" 
                    Margin="0,0,0,0"/>
-
             <Image Width="40" Height="40" Source="Images/Notification.png" 
-                   Margin="700,-800,0,0"/>
-            <Image Width="40" Height="40" Source="Images/Notification.png" 
-                   Margin="700,-800,0,0"
                    Name="AlertStaffBellIcon"
                    Visibility="Hidden"
+                   Margin="650,-950,0,-100"
                    MouseDown="NotificationBtn_Click"/>
             <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
                    Margin="-650,-900,0,-100"

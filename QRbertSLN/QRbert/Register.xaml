@@ -7,7 +7,7 @@
       xmlns:qRbert="clr-namespace:QRbert"
       mc:Ignorable="d"
       Title="Register" 
-      Height="1500" 
+      Height="500" 
       Width="800" 
 >
     <!-- ScrollViewer is used here to make the window scrollable-->
@@ -17,7 +17,7 @@
         >
         <!-- This StackPanel holds the entire window-->
         <StackPanel 
-            Height="2105" 
+            Height="1500" 
             Width="800" 
             Background="Transparent" 
             >
@@ -27,7 +27,7 @@
                 Width="150" 
                 Height="150" 
                 Source="Images/Qbert_logo_orange.png" 
-                Margin="-600,-75,0,-100"
+                Margin="-600,0,0,-100"
             />
             
             <!-- This label displays the text Let's Get Started to make the user feel welcomed-->
@@ -173,7 +173,7 @@
                     Fill="White" 
                     Height="2" 
                     Width="250" 
-                    Margin="0,-2115,0,0"
+                    Margin="-25,-2115,0,0"
                 />
             </DockPanel>
             
@@ -452,7 +452,7 @@
                     Height="20"
                     Width="250"
                     Name="txtZipcodeBlock"
-                    Margin="289,-1100,-500,0"
+                    Margin="275,-1100,-500,0"
                 >
                 
                 </TextBlock>

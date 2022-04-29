@@ -15,7 +15,7 @@ public partial class StaffViewPetTreatment : Window
             AlertStaffBellIcon.Visibility = Visibility.Visible;
         }
     }
-    
+
     /// <summary>
     /// If the Icon is not visible, method does nothing
     /// Else redirects user to Staff Neglected Animals page and closes portal 
