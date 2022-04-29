@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:QRbert"
         mc:Ignorable="d"
         Title="LogIn_Register" 
         Height="450"
@@ -77,7 +76,7 @@
                 FontSize="14"
                 Height="20"
                 Width="70"
-                Name="txtSignInEmail"
+                Name="TxtSignInEmail"
                 Margin="-310,0,0,0"
                 
             >
@@ -101,7 +100,7 @@
                 BorderBrush="#FF9100"
                 BorderThickness="3" 
                  
-                Name = "txtEmail"
+                Name = "TxtEmail"
                 TextChanged="TxtEmail_OnTextChanged"
                 Height="24"
                 Margin="-195,0,0,0"
@@ -156,7 +155,7 @@
                 FontSize="14"
                 Height="20"
                 Width="70"
-                Name="txtSignInPassword"
+                Name="TxtSignInPassword"
                 Margin="-310,0,0,0"
                 
             >
@@ -186,7 +185,7 @@
                 BorderThickness="0"
                 Margin="-191,0,0,0" 
                 FontSize="14"
-                Name="txtPassword"
+                Name="TxtPassword"
             >
                          
             </PasswordBox>
@@ -204,8 +203,8 @@
                 Foreground="White" 
                 FontWeight="Bold"
                 FontSize="10"
-                BorderThickness="0"
-                Click="makeTable"
+                BorderThickness="0" 
+                Click="ForgotPasswordBtn_Click"
                 >
                 Forgot your password?
                 <Button.Resources>

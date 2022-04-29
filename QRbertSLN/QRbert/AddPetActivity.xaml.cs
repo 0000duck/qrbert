@@ -1,4 +1,3 @@
-using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
@@ -6,7 +5,7 @@ using System.Windows;
 
 namespace QRbert;
 
-public partial class AddPetActivity : Window
+public partial class AddPetActivity
 {
     /// <summary>
     /// Upon loading the page, Window checks if boolean is true to turn on Bell Icon
@@ -15,7 +14,7 @@ public partial class AddPetActivity : Window
     {
         InitializeComponent();
         // Load Pet ID, Pet Name, and current Date when Window loads
-        PetID.Content = Switcher.PetId.ToString();
+        PetId.Content = Switcher.PetId.ToString();
         string petName =
             Switcher.VerifyRole("Select PetName From QRbertDB.QRbertTables.Pet Where PetID = '" + Switcher.PetId + "'");
         string date =
@@ -129,7 +128,7 @@ public partial class AddPetActivity : Window
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void LockTimesheetsBtn_Click(object sender, RoutedEventArgs e)
+    private void LockTimesheetBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffLockTimesheet());
         this.Close();
@@ -147,6 +146,17 @@ public partial class AddPetActivity : Window
     }
 
     /// <summary>
+    /// Redirects user to the FAQ window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffFAQs());
+        Close();
+    }
+
+    /// <summary>
     /// Adds Pet Activity to the Pet Activity Table via button click
     /// Redirects user to My Pets page
     /// </summary>
@@ -157,7 +167,7 @@ public partial class AddPetActivity : Window
         SqlCommand sqlCmd = new SqlCommand("AddPetActivity", new SqlConnection(Switcher.ConnectionString));
         sqlCmd.CommandType = CommandType.StoredProcedure;
         sqlCmd.Parameters.AddWithValue("@PetName", PetName.Content.ToString());
-        sqlCmd.Parameters.AddWithValue("@PetID", PetID.Content.ToString());
+        sqlCmd.Parameters.AddWithValue("@PetID", PetId.Content.ToString());
         sqlCmd.Parameters.AddWithValue("@Activity_Date", ActivityDate.Content.ToString());
         sqlCmd.Parameters.AddWithValue("@WaterGiven", WaterGivenTxt.Text);
         sqlCmd.Parameters.AddWithValue("@Clean_Kennel", CleanKennelTxt.Text);

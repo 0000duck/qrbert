@@ -76,6 +76,17 @@ public partial class VolunteerChangePersonalInformation : Window
         Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
         this.Close();
     }
+    
+    /// <summary>
+    /// Redirects user to the FAQ window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.VolunteerPortalSwitch(new VolunteerFAQs());
+        Close();
+    }
 
     /// <summary>
     /// Saves all personal information via button click
@@ -88,34 +99,34 @@ public partial class VolunteerChangePersonalInformation : Window
     {
         using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
         sqlCon.Open();
-        string userType = Switcher.VerifyRole("Select [Faculty-Role] From QRbertTables.Registration Where email = '"
+        string userType = Switcher.VerifyRole("Select [Faculty-Role] From QRbertDB.QRbertTables.Registration Where email = '"
                                               + Switcher.CurrentSessionEmail + "'");
         
         if (AddressInputTxt.Text != "")
         {
             SqlCommand sqlCmd = new SqlCommand(
-                "Update Contact_Info Set Street-Add = '" + AddressInputTxt.Text + "' Where Faculty-role = ' " +
+                "Update QRbertDB.QRbertTables.Contact_Info Set Contact_Info.[Street-Add] = '" + AddressInputTxt.Text + "' Where Faculty-role = ' " +
                 userType + "'", new SqlConnection(Switcher.ConnectionString));
         }
 
         if (CityInputTxt.Text != "")
         {
             SqlCommand sqlCmd = new SqlCommand(
-                "Update Contact_Info Set City ='" + CityInputTxt.Text + "' Where Faculty-role = ' " +
+                "Update QRbertDB.QRbertTables.Contact_Info Set City ='" + CityInputTxt.Text + "' Where Faculty-role = ' " +
                 userType + "'", new SqlConnection(Switcher.ConnectionString));
         }
 
         if (StateInputTxt.Text != "")
         {
             SqlCommand sqlCmd = new SqlCommand(
-                "Update Contact_Info Set State ='" + StateInputTxt.Text + "' Where Faculty-role = ' " +
+                "Update QRbertDB.QRbertTables.Contact_Info Set State ='" + StateInputTxt.Text + "' Where Faculty-role = ' " +
                 userType + "'", new SqlConnection(Switcher.ConnectionString));
         }
 
         if (ZipcodeInputTxt.Text != "")
         {
             SqlCommand sqlCmd = new SqlCommand(
-                "Update Contact_Info Set ZipCode ='" + ZipcodeInputTxt.Text + "' Where Faculty-role = ' " +
+                "Update QRbertDB.QRbertTables.Contact_Info Set ZipCode ='" + ZipcodeInputTxt.Text + "' Where Faculty-role = ' " +
                 userType + "'", new SqlConnection(Switcher.ConnectionString));
         }
         MessageBox.Show("All information updated.");

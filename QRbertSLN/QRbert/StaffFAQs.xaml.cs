@@ -48,7 +48,7 @@ public partial class StaffFAQs : Window
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void LockTimesheetsBtn_Click(object sender, RoutedEventArgs e)
+    private void LockTimesheetBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffLockTimesheet());
         this.Close();
@@ -83,10 +83,7 @@ public partial class StaffFAQs : Window
         Switcher.StaffPageSwitch(new StaffSearch());
         this.Close();
     }
-    private void AssignPetBtn_Click(object sender, RoutedEventArgs e)
-    {
-        throw new System.NotImplementedException();
-    }
+    
     /// <summary>
     /// Redirects user to scan pet's QR Code in PetQrcodeScanner window via button click
     /// </summary>

@@ -4,7 +4,7 @@ using System.Windows;
 
 namespace QRbert;
 
-public partial class AddPetTreatment : Window
+public partial class AddPetTreatment
 {
     /// <summary>
     /// Upon loading the page, Window checks if boolean is true to turn on Bell Icon
@@ -125,7 +125,7 @@ public partial class AddPetTreatment : Window
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void LockTimesheetsBtn_Click(object sender, RoutedEventArgs e)
+    private void LockTimesheetBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffLockTimesheet());
         this.Close();
@@ -140,6 +140,17 @@ public partial class AddPetTreatment : Window
     {
         Switcher.StaffPageSwitch(new StaffRoundingRules());
         this.Close();
+    }
+    
+    /// <summary>
+    /// Redirects user to the FAQ window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffFAQs());
+        Close();
     }
 
     /// <summary>

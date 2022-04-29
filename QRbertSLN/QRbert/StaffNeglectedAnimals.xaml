@@ -6,7 +6,282 @@
         xmlns:local="clr-namespace:QRbert"
         mc:Ignorable="d"
         Title="StaffNeglectedAnimals" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <!-- This the template for the Menus; It creates the menu with a white background and black bold letters;
+        allows the user to hover over the menu and display the menus as well as change the letters to orange-->
+    <Window.Resources>
+        <LinearGradientBrush x:Key="DarkBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="White" Offset="0.01"/>
+                    <GradientStop Color="White" Offset="0.05"/>
+                    <GradientStop Color="White" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="Clicked" StartPoint="0.5,0" EndPoint="0.5,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="White" Offset="0.0"/>
+                    <GradientStop Color="White" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+
+        <Style x:Key="{x:Type Menu}" TargetType="Menu">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value = "Bold"/>
+            <Setter Property= "FontSize" Value="15"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Menu">
+                        <Border x:Name="MainMenu" Background="White">
+                            <StackPanel ClipToBounds="True" Orientation="Horizontal" IsItemsHost="True"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="MenuItemControlTemplate1" TargetType="{x:Type MenuItem}">
+            <Border x:Name="templateRoot" 
+                    BorderBrush="White" 
+                    CornerRadius="3" 
+                    BorderThickness="1" 
+                    Background="{TemplateBinding Background}" 
+                    SnapsToDevicePixels="True">
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <ContentPresenter ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Grid.Column="1" ContentStringFormat="{TemplateBinding HeaderStringFormat}" ContentSource="Header" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                    <Popup x:Name="PART_Popup"  AllowsTransparency="True" Focusable="False" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" Placement="Bottom">
+                        <Border x:Name="SubMenuBorder" BorderBrush="White" BorderThickness="1" Background="White" Padding="2">
+                            <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
+                                <Grid RenderOptions.ClearTypeHint="Enabled">
+                                    <Canvas HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
+                                        <Rectangle x:Name="OpaqueRect" Fill="{Binding Background, ElementName=SubMenuBorder}" Height="{Binding ActualHeight, ElementName=SubMenuBorder}" Width="{Binding ActualWidth, ElementName=SubMenuBorder}"/>
+                                    </Canvas>
+                                    <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Cycle" Grid.IsSharedSizeScope="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" KeyboardNavigation.TabNavigation="Cycle"/>
+                                </Grid>
+                            </ScrollViewer>
+                        </Border>
+                    </Popup>
+                </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsSuspendingPopupAnimation" Value="True">
+                    <Setter Property="PopupAnimation" TargetName="PART_Popup" Value="None"/>
+                </Trigger>
+
+                <Trigger Property="IsHighlighted" Value="True">
+                    <Setter Property="Background" TargetName="templateRoot" Value="{StaticResource DarkBrush}"/>
+                    <Setter Property="BorderBrush" TargetName="templateRoot" Value="White"/>
+                    <Setter Property="BorderThickness" TargetName="templateRoot" Value="1"></Setter>
+                </Trigger>
+
+                <Trigger Property="CanContentScroll" SourceName="SubMenuScrollViewer" Value="False">
+                    <Setter Property="Canvas.Top" TargetName="OpaqueRect" Value="{Binding VerticalOffset, ElementName=SubMenuScrollViewer}"/>
+                    <Setter Property="Canvas.Left" TargetName="OpaqueRect" Value="{Binding HorizontalOffset, ElementName=SubMenuScrollViewer}"/>
+                </Trigger>
+                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                    <Setter TargetName="templateRoot" Property="Background" Value="{StaticResource Clicked}" />
+                    <Setter Property="Header" Value="Test" />
+                    <Setter Property="BorderBrush" Value="White"></Setter>
+                    <Setter Property="BorderThickness" Value="1"></Setter>
+                </Trigger>
+                <!-- This is the trigger that tells the program to display the menu when the mouse hovers over it
+                        as well change the black letters to orange-->
+                <Trigger Property="IsMouseOver" Value="True" >
+                    <Setter Property="IsOpen" TargetName="PART_Popup" Value="True"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="Foreground" Value="#FF9100"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+    <!-- This the end of the menu template -->
+    
+    <!--  -->
+    <!-- This the main stackpanel containing all the controls on the entire page-->
+    <StackPanel Background="Transparent" Height="550" Width="800">
+        <!-- This stackpanel contains the orange QRbert logo on the left corner as well as the perts background image-->
+        <StackPanel>
+            <Image Width="800" Height="450" Source="Images/petsBackground.png" 
+                   Margin="0,0,0,0"/>
+
+            <Image Width="40" Height="40" Source="Images/Notification.png" 
+                   Margin="700,-800,0,0"/>
+            <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
+                   Margin="-650,-900,0,-100"
+                   MouseDown="HomeStaffPortalBtn_Click"/>
+        </StackPanel>
+        <!-- This is the Timesheet menu-->
+        <Menu Width="100" Height="22" Margin="300, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
+            <MenuItem Header="Timesheet" Name="mm" Template="{DynamicResource MenuItemControlTemplate1}">
+                <MenuItem 
+                    Header="Lock Timesheets"
+                    Click="LockTimesheetsBtn_Click"/>
+                <MenuItem 
+                    Header="Rounding Rule"
+                    Click="RoundingRulesBtn_Click"/>
+            </MenuItem>
+        </Menu>
+        <!-- This is the Volunteer menu available to staff users only-->
+        <Menu Width="100" Height="22" Margin="400, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
+            <MenuItem Header="Volunteer" Name="mm1" Template="{DynamicResource MenuItemControlTemplate1}">
+                <MenuItem 
+                    Header="Track Active"
+                    Click="TrackActiveVolunteersBtn_Click"/>
+                <MenuItem 
+                    Header="Staff Search"
+                    Click="StaffSearchBtn_Click"/>
+                <MenuItem Header="Assign Pet"/>
+            </MenuItem>
+        </Menu>
+        <!-- This is the Animal menu-->
+        <Menu Width="100" Height="22" Margin="500, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
+            <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
+                <MenuItem 
+                    Header="Select a Pet"
+                    Click="ScanPetQRCodeRedirectBtn_Click"/>
+                <MenuItem 
+                    Header="Remove Animal"
+                    Click="ScanPetQRCodeRedirectBtn_Click"
+                    Name="RemoveAnimal"/>
+                <MenuItem 
+                    Header="Pet Reports"
+                    Click="PetReportsBtn_Click"/>
+            </MenuItem>
+        </Menu>
+        <!-- This is the My Account menu-->
+        <Menu Width="100" Height="22" Margin="600, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
+            <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
+                <MenuItem 
+                    Header="Staff Account"
+                    Click="StaffMyAccountBtn_Click"/>
+                <MenuItem 
+                    Header="Log out"
+                    Click="LogOutBtn_Click"/>
+            </MenuItem>
+        </Menu>
+        <!-- This the orange semitransparent stack panel in the center with the button/text box controls-->
+        <StackPanel Background="#FF9100" Width="600" Height="300" Opacity="0.7" 
+                    Margin = "0, -350, 0, 0">
+        </StackPanel>
+        <TextBlock 
+            Width = "400" 
+            Height = "60" 
+            Text="Neglected Animals: " 
+            Foreground="White" 
+            FontWeight = "Bold" 
+            FontSize="40"
+            Margin = "-50, -550, -100, 10" >
+        </TextBlock>
+        <RadioButton
+            Name="PetNeglectedChoiceRadBtn"
+            Height="25"
+            Width="25"
+            Background="Transparent"
+            Foreground="White"
+            Visibility="Hidden"
+            IsChecked="False"
+            Checked="IsPetRadBtnChecked"
+            Margin="-450,-375,0,0">
+        </RadioButton>
+        <TextBlock
+            Name="PetIdLabel"
+            Text="Pet ID:"
+            Width="100"
+            Height="30"
+            Foreground="White"
+            FontWeight="DemiBold"
+            FontSize="25"
+            Margin="-250, -475,0,0">
+        </TextBlock>
+        <TextBlock
+            Name="PetIdTxtBl"
+            Text="Pet ID"
+            Width="100"
+            Height="35"
+            Foreground="White"
+            FontWeight="DemiBold"
+            FontSize="25"
+            Visibility="Hidden"
+            Margin="-250, -375,0,0">
+        </TextBlock>
+        <TextBlock
+            Name="PetNameTxtLabel"
+            Text="Pet Name:"
+            Width="125"
+            Height="30"
+            Foreground="White"
+            FontWeight="DemiBold"
+            FontSize="25"
+            Margin="10, -475,0,0">
+        </TextBlock>
+        <TextBlock
+            Name="PetNameTxtBl"
+            Text="Pet Name"
+            Width="125"
+            Height="35"
+            Foreground="White"
+            FontWeight="DemiBold"
+            FontSize="25"
+            Visibility="Hidden"
+            Margin="10, -375,0,0">
+        </TextBlock>
+        <TextBlock
+            Name="PetTypeLabel"
+            Text="Pet Type:"
+            Width="125"
+            Height="30"
+            Foreground="White"
+            FontWeight="DemiBold"
+            FontSize="25"
+            Margin="325, -475,0,0">
+        </TextBlock>
+        <TextBlock
+            Name="PetTypeTxtBl"
+            Text="Pet Type"
+            Width="125"
+            Height="35"
+            Foreground="White"
+            FontWeight="DemiBold"
+            FontSize="25"
+            Visibility="Hidden"
+            Margin="325, -375,0,0">
+        </TextBlock>
+        <Button
+            Name="AssignPetToVolunteerBtn"
+            Content="Assign Pet"
+            Background="White" 
+            Foreground="#FF9100" 
+            FontWeight="Bold" 
+            BorderBrush="#FF9100"
+            BorderThickness="2"
+            Height="45"
+            Width="140"
+            FontSize="20"
+            ClickMode="Press"
+            Visibility="Hidden"
+            Click="AssignPetToVolunteer"
+            Margin="-500,-150,-500,0">
+            <Button.Resources>
+                <Style 
+                    TargetType="{x:Type Border}">
+                    <Setter 
+                        Property="CornerRadius" 
+                        Value="20"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+    </StackPanel>
+    
 </Window>

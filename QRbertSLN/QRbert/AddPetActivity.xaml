@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:QRbert"
         mc:Ignorable="d"
         Title="AddPetActivity" Height="800" Width="800">
     <!-- This the template for the Menus; It creates the menu with a white background and black bold letters;
@@ -29,7 +28,7 @@
         </LinearGradientBrush>
 
 
-        <Style x:Key="{x:Type Menu}" TargetType="Menu">
+        <Style TargetType="Menu">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="SnapsToDevicePixels" Value="True"/>
             <Setter Property="Foreground" Value="Black"/>
@@ -108,9 +107,9 @@
     </Window.Resources>
     <!-- This the end of the menu template -->
     <!--  -->
-    <!-- This the main stackpanel containing all the controls on the entire page-->
+    <!-- This the main stack-panel containing all the controls on the entire page-->
     <StackPanel Background="Transparent" Height="1200" Width="800" Margin="0,0,0,0">
-        <!-- This stackpanel contains the orange QRbert logo on the left corner as well as the perts background image-->
+        <!-- This stack-panel contains the orange QRbert logo on the left corner as well as the perts background image-->
         <StackPanel>
             <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
                    Margin="-650,-25,0,0"
@@ -127,10 +126,10 @@
         </StackPanel>
         <!-- This is the Timesheet menu-->
         <Menu Width="100" Height="22" Margin="300, -700, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem Header="Timesheet" Name="mm" Template="{DynamicResource MenuItemControlTemplate1}">
+            <MenuItem Header="Timesheet" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem 
-                    Header="Lock Timesheets"
-                    Click="LockTimesheetsBtn_Click"/>
+                    Header="Lock Timesheet"
+                    Click="LockTimesheetBtn_Click"/>
                 <MenuItem 
                     Header="Rounding Rule"
                     Click="RoundingRulesBtn_Click"/>
@@ -138,19 +137,18 @@
         </Menu>
         <!-- This is the Volunteer menu-->
         <Menu Width="100" Height="22" Margin="400, -700, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem Header="Volunteer" Name="mm1" Template="{DynamicResource MenuItemControlTemplate1}">
+            <MenuItem Header="Volunteer" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem 
                     Header="Track Active"
                     Click="TrackActiveVolunteersBtn_Click"/>
                 <MenuItem 
                     Header="Staff Search"
                     Click="StaffSearchBtn_Click"/>
-                <MenuItem Header="Assign Pet"/>
             </MenuItem>
         </Menu>
         <!-- This is the Animal menu-->
         <Menu Width="100" Height="22" Margin="500, -700, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
+            <MenuItem Header="Animals" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem 
                     Header="Select a Pet"
                     Click="ScanPetQRCodeRedirectBtn_Click"/>
@@ -164,7 +162,7 @@
         </Menu>
         <!-- This is the My Account menu-->
         <Menu Width="100" Height="22" Margin="600, -700, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
+            <MenuItem Header="My Account" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem 
                     Header="Staff Account"
                     Click="StaffMyAccountBtn_Click"/>
@@ -176,7 +174,7 @@
         <!-- This the orange semitransparent stack panel in the center with the button controls-->
         <StackPanel Background="#FF9100" Width="400" Height="600" Opacity="0.7" 
                     Margin = "0, -700, 0, 0"/>
-        <!-- This the "Add Pet Activity" label at the top center of the orange semitransaprent stackpanel-->
+        <!-- This the "Add Pet Activity" label at the top center of the orange semitransparent stack-panel-->
         <Label 
             Width = "300"
             Height="50"
@@ -187,18 +185,18 @@
             FontSize="30"
             Margin="25,-1200,0,0"
         />
-        <!-- This the "Pet ID" textbox control-->
+        <!-- This the "Pet ID" text-box control-->
         <DockPanel LastChildFill="False">
             <Label Width = "250" Height="35" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      Margin="0,-1100,-800,0" FontSize="14"
-                     Name="PetID">
+                     Name="PetId">
                 Pet ID
             </Label>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-1060,0,0"/>
         </DockPanel>
-        <!-- This the "Pet Name" textbox control-->
+        <!-- This the "Pet Name" text-box control-->
         <DockPanel LastChildFill="False">
             <Label x:Name="PetName" Width = "250" Height="35" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
@@ -208,7 +206,7 @@
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-960,0,0"/>
         </DockPanel>
-        <!-- This the "Activity Date" textbox control-->
+        <!-- This the "Activity Date" text-box control-->
         <DockPanel LastChildFill="False">
             <Label Width = "250" Height="35" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
@@ -219,7 +217,7 @@
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-860,0,0"/>
         </DockPanel>
-        <!-- This the "Water given" textbox control-->
+        <!-- This the "Water given" text-box control-->
         <DockPanel LastChildFill="False">
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
@@ -230,7 +228,7 @@
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-760,0,0"/>
         </DockPanel>
-        <!-- This the "Clean Kennel" textbox control-->
+        <!-- This the "Clean Kennel" text-box control-->
         <DockPanel LastChildFill="False">
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
@@ -241,7 +239,7 @@
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-660,0,0"/>
         </DockPanel>
-        <!-- This the "Staff ID" textbox control-->
+        <!-- This the "Staff ID" text-box control-->
         <DockPanel LastChildFill="False">
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
@@ -252,7 +250,7 @@
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-560,0,0"/>
         </DockPanel>
-        <!-- This the "Volunteer ID" textbox control-->
+        <!-- This the "Volunteer ID" text-box control-->
         <DockPanel LastChildFill="False">
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
@@ -263,7 +261,7 @@
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-460,0,0"/>
         </DockPanel>
-        <!-- This the "Notes" textbox control-->
+        <!-- This the "Notes" text-box control-->
         <DockPanel LastChildFill="False">
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
@@ -307,6 +305,7 @@
         <!-- This the "FAQs" button control at the bottom of the page -->
         <Button Height = "25" Width = "150" Content="FAQs" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
+                Click="FAQRedirectBtn_Click"
                 Margin="0,-25,0,0">
         </Button>
         <!-- This the "©2022 QRbert Inc." button control at the bottom of the page -->

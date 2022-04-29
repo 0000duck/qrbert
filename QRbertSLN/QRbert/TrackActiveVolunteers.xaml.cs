@@ -14,65 +14,6 @@ public partial class TrackActiveVolunteers : Window
     public TrackActiveVolunteers()
     {
         InitializeComponent();
-        Document document = new Document();
-
-// Add page
-            Aspose.Pdf.Page page = document.Pages.Add();
-
-// Add text to new page
-            
-            TextFragment textFragment = new TextFragment("Hello World!");
-            textFragment.TextState.FontSize = 120;
-
-            Table table = new Table();
-            
-            table.ColumnAdjustment = ColumnAdjustment.AutoFitToWindow;
-            // Add row to table
-            Aspose.Pdf.Row header = table.Rows.Add();
-            // Add table cells
-            header.Cells.Add("User ID");
-            header.Cells.Add("First Name");
-            header.Cells.Add("Last Name");
-            Row header2 = table.Rows.Add();
-            header2.Cells.Add("      ");
-            Row header3 = table.Rows.Add();
-            header3.Cells.Add("      ");
-            
-
-            Table timeTable = new Table();
-            timeTable.ColumnWidths = "70 2cm";
-            //timeTable.ColumnAdjustment = ColumnAdjustment.AutoFitToWindow;
-            //Aspose.Pdf.Row timeRows = timeTable.Rows.Add();
-            
-            
-            
-            for (int row_count = 1; row_count < 3; row_count++)
-            {
-                // Add row to table
-                Aspose.Pdf.Row row = timeTable.Rows.Add();
-                // Add table cells
-                row.Cells.Add("100");
-                row.Cells.Add("Some");
-                row.Cells.Add("Body");
-            }
-            page.Paragraphs.Add(table);
-            page.Paragraphs.Add(timeTable);
-            page.PageInfo.IsLandscape = true;
-            
-
-// Save PDF 
-            document.Save("activeVolunteerDocument.pdf");
-            PdfDocument pdf = new PdfDocument("activeVolunteerDocument.pdf");
-            PdfDrawOptions options = PdfDrawOptions.CreateZoom(150);
-            options.BackgroundColor = new PdfRgbColor(255, 255, 255); // white background, transparent by default
-            //options.Format = PdfDrawFormat.Jpeg;
-            PdfPage page2 = pdf.Pages[0];
-            PdfBox cropBoxBefore = page2.CropBox;
-
-            //page2.CropBox = new PdfBox(0, cropBoxBefore.Height - 256, 256, cropBoxBefore.Height);
-            pdf.Pages[0].Save("activeVolunteers.jpg",options);
-            
-        // Should populate a window with the table listing once window loads
     }
     
     /// <summary>
@@ -162,5 +103,16 @@ public partial class TrackActiveVolunteers : Window
     {
         Switcher.StaffPageSwitch(new StaffRoundingRules());
         this.Close();
+    }
+    
+    /// <summary>
+    /// Redirects user to the FAQ window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffFAQs());
+        Close();
     }
 }
