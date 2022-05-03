@@ -85,4 +85,14 @@ public partial class VolunteerPetBreedInfo : Window
         Switcher.VolunteerPortalSwitch(new VolunteerFAQs());
         Close();
     }
+
+    /// <summary>
+    /// Returns user to their MyPets page
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ReturnToMyPets_OnClick(object sender, RoutedEventArgs e)
+    {
+        throw new System.NotImplementedException();
+    }
 }
