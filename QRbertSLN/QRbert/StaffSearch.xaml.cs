@@ -48,6 +48,20 @@ public partial class StaffSearch : Window
         }
         else
         {
+            // Reset display on new search, clear old values
+            StaffName0.Content = "";
+            StaffName1.Content = "";
+            StaffName2.Content = "";
+            StaffName3.Content = "";
+            StaffName4.Content = "";
+            StaffName5.Content = "";
+            StaffID0.Content = "";
+            StaffID1.Content = "";
+            StaffID2.Content = "";
+            StaffID3.Content = "";
+            StaffID4.Content = "";
+            StaffID5.Content = "";
+            
             // Separate input into first and last names for searching
             String[] nameList = SearchInput.Text.Split(' ');
             String firstName = nameList[0];
@@ -65,7 +79,6 @@ public partial class StaffSearch : Window
                     MessageBox.Show(String.Format("{0}",reader[0]));
                 }
             }
-            
         }
     }
     
