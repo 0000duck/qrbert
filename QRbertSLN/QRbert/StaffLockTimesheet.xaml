@@ -162,14 +162,138 @@
         <Menu Width="100" Height="22" Margin="600, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem 
+                    Header="Staff Account"
+                    Click="StaffMyAccountBtn_Click"/>
+                <MenuItem 
                     Header="Log out"
                     Click="LogOutBtn_Click"
                     />
             </MenuItem>
         </Menu>
         <!-- This the orange semitransparent stack panel in the center with the button controls-->
-        <StackPanel Background="#FF9100" Width="700" Height="300" Opacity="0.7" 
-                    Margin = "0, -400, 0, 0"/>
+        <StackPanel Background="#FF9100" Width="800" Height="375" Opacity="0.7" 
+                    Margin = "0, -350, 0, 0"/>
+        <Label 
+            Width = "150"
+            Height="50"
+            FontWeight="Bold" 
+            Content="Timesheet" 
+            Foreground="White" 
+            FontSize="28"
+            Margin="0,-675,0,0"
+        />
+        <DockPanel LastChildFill="False">
+            <TextBlock
+                Width = "30" Height="20" Background="Transparent" Foreground="White" 
+                FontWeight="Bold" Text="ID"
+                Margin="0,-600,-90,0" FontSize="14">
+                
+            </TextBlock>
+            <TextBlock
+                Width = "40" Height="20" Background="Transparent" Foreground="White" 
+                FontWeight="Bold" Text="Name"
+                Margin="0,-600,-220,0" FontSize="14">
+                
+            </TextBlock>
+            <TextBlock
+                Width = "30" Height="20" Background="Transparent" Foreground="White" 
+                FontWeight="Bold" Text="Mon"
+                Margin="0,-600,-450,0" FontSize="14">
+                
+            </TextBlock>
+            <TextBlock
+                Width = "30" Height="20" Background="Transparent" Foreground="White" 
+                FontWeight="Bold" Text="Tues"
+                Margin="0,-600,-700,0" FontSize="14">
+                
+            </TextBlock>
+            <TextBlock
+                Width = "30" Height="20" Background="Transparent" Foreground="White" 
+                FontWeight="Bold" Text="Wed"
+                Margin="0,-600,-950,0" FontSize="14">
+                
+            </TextBlock>
+            <TextBlock
+                Width = "45" Height="20" Background="Transparent" Foreground="White" 
+                FontWeight="Bold" Text="Thurs"
+                Margin="0,-600,-1225,0" FontSize="14">
+                
+            </TextBlock>
+            <TextBlock
+                Width = "30" Height="20" Background="Transparent" Foreground="White" 
+                FontWeight="Bold" Text="Fri"
+                Margin="0,-600,-1500,0" FontSize="14">
+                
+            </TextBlock>
+            <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="5000" 
+                       Margin="0,-560,250,0"/>
+        </DockPanel>
+        <DockPanel LastChildFill="False">
+            
+            <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="5000" 
+                       Margin="0,-560,-175,0"/>
+        </DockPanel>
+        <TextBlock Name = "VolFirst1" Width = "30" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" 
+                 Margin="0,-500,715,0" FontSize="12" Text="600">
+        </TextBlock>
+        <!-- This the "Volunteer1" textbox control where the last name will go-->
+        <TextBox Name = "VolLast1" Width = "100" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                 Margin="0,-500,550,0" FontSize="12" Text="Melanie Bee">
+        </TextBox>
+        <!-- This the "Volunteer ID 1" textbox control-->
+        <TextBox Name = "MonLogIn" Width = "60" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                 Margin="0,-500,390,0" FontSize="12" Text="9:00AM-">
+        </TextBox>
+        <!-- This the "Volunteer2" textbox control where the first name will go-->
+        <TextBox Name = "VolFirst2" Width = "60" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                 Margin="0,-500,290,0" FontSize="12" Text="4:00pm">
+        </TextBox>
+        <!-- This the "Volunteer2" textbox control where the last name will go-->
+        <TextBox Name = "VolLast2" Width = "60" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                 Margin="0,-500,150,0" FontSize="12" Text="9:00AM -">
+        </TextBox>
+        <!-- This the "Volunteer ID 2" textbox control -->
+        <TextBox Name = "Id2" Width = "60" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                 Margin="0,-500,40,0" FontSize="12" Text="10:00PM">
+        </TextBox>
+        <!-- This the "Volunteer3" textbox control where the first name will go-->
+        <TextBox Name = "VolFirst3" Width = "60" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                 Margin="0,-500,-100,0" FontSize="12" Text="9:00AM -">
+        </TextBox>
+        <!-- This the "Volunteer3" textbox control where the last name will go-->
+        <TextBox Name = "VolLast3" Width = "60" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                 Margin="0,-500,-210,0" FontSize="12" Text="10:00PM">
+        </TextBox>
+        <!-- This the "Volunteer ID 3" textbox control-->
+        <TextBox Name = "Id3" Width = "70" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                 Margin="0,-500,-365,0" FontSize="12" Text="09:00AM -">
+        </TextBox>
+        <!-- This the "Volunteer4" textbox control where the first name will go-->
+        <TextBox Name = "VolFirst4" Width = "60" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                 Margin="0,-500,-480,0" FontSize="12" Text="10:00PM">
+        </TextBox>
+        <!-- This the "Volunteer4" textbox control where the last name will go-->
+        <TextBox Name = "VolLast4" Width = "70" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                 Margin="0,-500,-630,0" FontSize="12" Text="10:00AM -">
+        </TextBox>
+        <!-- This the "Volunteer ID 3" textbox control-->
+        <TextBox Name = "Id4" Width = "60" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                 Margin="0,-500,-750,0" FontSize="12" Text="10:00PM">
+        </TextBox>
+        <!-- This the "Volunteer5" textbox control where the first name will go-->
+        
         <Button
             Content="Lock Timesheet"
             Background="White" 
