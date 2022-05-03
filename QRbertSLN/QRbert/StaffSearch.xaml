@@ -164,17 +164,17 @@
             Content="Staff Search" 
             Foreground="White" 
             FontSize="25"
-            Margin="25,-600,0,0"
+            Margin="25,-650,0,0"
         />
         <!-- This the "Enter Name" textbox control-->
         <DockPanel LastChildFill="False">
             <TextBox Name="SearchInput" Width = "250" Height="20" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-500,-800,0" FontSize="14">
+                     Margin="-100,-600,-800,0" FontSize="14">
                 Enter Name
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
-                       Margin="0,-460,0,0"/>
+                       Margin="-100,-560,0,0"/>
         </DockPanel>
         <!--This is the "scan" button that will activate the camera; 
             Once the user successfully scans the pet qr code the user will be able to view/edit/create pet report or remove animal
@@ -186,10 +186,10 @@
             BorderBrush="Orange" 
             BorderThickness="2" 
             Height="35" 
-            Width="200" 
+            Width="125" 
             FontSize="16" 
             ClickMode="Press"
-            Margin="0,-350,0,0"
+            Margin="0,-600,-270,0"
             Click="Search">
             <Button.Resources>
                 <Style 
@@ -203,6 +203,173 @@
             </Button.Resources>
             Search 
         </Button>
+        
+        <Label 
+            Width = "100"
+            Height="50"
+            FontWeight="Bold" 
+            HorizontalAlignment="Center"
+            Content="Name" 
+            Foreground="White" 
+            FontSize="20"
+            Margin="-200,-500,0,0"
+        />
+        <Label 
+            Width = "100"
+            Height="50"
+            FontWeight="Bold" 
+            HorizontalAlignment="Center"
+            Content="ID" 
+            Foreground="White" 
+            FontSize="20"
+            Margin="0,-500,-200,0"
+        />
+        <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="375" 
+                   Margin="0,-480,0,0"/>
+        <Label 
+            Name="StaffName0"
+            Visibility="Hidden"
+            Width = "175"
+            Height="30"
+            FontWeight="Bold" 
+            HorizontalAlignment="Center"
+            Content="StaffName0" 
+            Foreground="White" 
+            FontSize="16"
+            Margin="-200,-450,0,0"
+        />
+        <Label 
+            Name="StaffID0"
+            Visibility="Hidden"
+            Width = "175"
+            Height="30"
+            FontWeight="Bold" 
+            HorizontalAlignment="Center"
+            Content="StaffID0" 
+            Foreground="White" 
+            FontSize="16"
+            Margin="0,-450,-200,0"
+        />
+        <Label 
+            Name="StaffName1"
+            Visibility="Hidden"
+            Width = "175"
+            Height="30"
+            FontWeight="Bold" 
+            HorizontalAlignment="Center"
+            Content="StaffName1" 
+            Foreground="White" 
+            FontSize="16"
+            Margin="-200,-400,0,0"
+        />
+        <Label 
+            Name="StaffID1"
+            Visibility="Hidden"
+            Width = "175"
+            Height="30"
+            FontWeight="Bold" 
+            HorizontalAlignment="Center"
+            Content="StaffID1" 
+            Foreground="White" 
+            FontSize="16"
+            Margin="0,-400,-200,0"
+        />
+        <Label 
+            Name="StaffName2"
+            Visibility="Hidden"
+            Width = "175"
+            Height="30"
+            FontWeight="Bold" 
+            HorizontalAlignment="Center"
+            Content="StaffName2" 
+            Foreground="White" 
+            FontSize="16"
+            Margin="-200,-350,0,0"
+        />
+        <Label 
+            Name="StaffID2"
+            Visibility="Hidden"
+            Width = "175"
+            Height="30"
+            FontWeight="Bold" 
+            HorizontalAlignment="Center"
+            Content="StaffID2" 
+            Foreground="White" 
+            FontSize="16"
+            Margin="0,-350,-200,0"
+        />
+        <Label 
+            Name="StaffName3"
+            Visibility="Hidden"
+            Width = "175"
+            Height="30"
+            FontWeight="Bold" 
+            HorizontalAlignment="Center"
+            Content="StaffName3" 
+            Foreground="White" 
+            FontSize="16"
+            Margin="-200,-300,0,0"
+        />
+        <Label 
+            Name="StaffID3"
+            Visibility="Hidden"
+            Width = "175"
+            Height="30"
+            FontWeight="Bold" 
+            HorizontalAlignment="Center"
+            Content="StaffID3" 
+            Foreground="White" 
+            FontSize="16"
+            Margin="0,-300,-200,0"
+        />
+        <Label 
+            Name="StaffName4"
+            Visibility="Hidden"
+            Width = "175"
+            Height="30"
+            FontWeight="Bold" 
+            HorizontalAlignment="Center"
+            Content="StaffName4" 
+            Foreground="White" 
+            FontSize="16"
+            Margin="-200,-250,0,0"
+        />
+        <Label 
+            Name="StaffID4"
+            Visibility="Hidden"
+            Width = "175"
+            Height="30"
+            FontWeight="Bold" 
+            HorizontalAlignment="Center"
+            Content="StaffID4" 
+            Foreground="White" 
+            FontSize="16"
+            Margin="0,-250,-200,0"
+        />
+        <Label 
+            Name="StaffName5"
+            Visibility="Hidden"
+            Width = "175"
+            Height="30"
+            FontWeight="Bold" 
+            HorizontalAlignment="Center"
+            Content="StaffName5" 
+            Foreground="White" 
+            FontSize="16"
+            Margin="-200,-200,0,0"
+        />
+        <Label 
+            Name="StaffID5"
+            Visibility="Hidden"
+            Width = "175"
+            Height="30"
+            FontWeight="Bold" 
+            HorizontalAlignment="Center"
+            Content="StaffID5" 
+            Foreground="White" 
+            FontSize="16"
+            Margin="0,-200,-200,0"
+        />
         
         <!-- This the "Terms and Privacy Notice" button control at the bottom of the page -->
         <Button Height = "25" Width = "300" Content="Terms and Privacy Notice" Background="Transparent" Foreground="#FF9100" FontSize="16" 
