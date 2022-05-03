@@ -8,6 +8,10 @@ public partial class StaffViewPetTreatment : Window
     {
         InitializeComponent();
     }
+    private void NotificationBtn_Click(object sender, RoutedEventArgs e)
+    {
+        
+    }
     private void HomeStaffPortalBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffMyAccount());
