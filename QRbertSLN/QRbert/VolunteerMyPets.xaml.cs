@@ -92,4 +92,15 @@ public partial class VolunteerMyPets : Window
         Switcher.VolunteerPortalSwitch(new VolunteerFAQs());
         Close();
     }
+
+    /// <summary>
+    /// Redirects user to the View Pet Breed info for Volunteers via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ViewPetBreedInfoBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.VolunteerPortalSwitch(new VolunteerPetBreedInfo());
+        Close();
+    }
 }
