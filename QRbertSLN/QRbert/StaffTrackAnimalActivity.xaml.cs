@@ -1,19 +1,12 @@
-using System.Windows;
+﻿using System.Windows;
 
 namespace QRbert;
 
-public partial class StaffPetReportViewer : Window
+public partial class StaffTrackAnimalActivity : Window
 {
-    /// <summary>
-    /// Upon loading the page, Window checks if boolean is true to turn on Bell Icon
-    /// </summary>
-    public StaffPetReportViewer()
+    public StaffTrackAnimalActivity()
     {
         InitializeComponent();
-        if (Switcher.IsPetNeglected)
-        {
-            AlertStaffBellIcon.Visibility = Visibility.Visible;
-        }
     }
     
     /// <summary>
@@ -32,7 +25,7 @@ public partial class StaffPetReportViewer : Window
             this.Close();
         }
     }
-    
+
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
     /// Since the portal and the MyAccount are both pages, they should be easily navigable
@@ -42,6 +35,7 @@ public partial class StaffPetReportViewer : Window
     private void StaffMyAccountBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffMyAccount());
+        this.Close();
     }
 
     /// <summary>
@@ -54,7 +48,7 @@ public partial class StaffPetReportViewer : Window
         Switcher.LogOutSwitch();
         this.Close();
     }
-
+    
     /// <summary>
     /// Redirects user to home page - staff portal via QRbert image click
     /// </summary>
@@ -65,7 +59,7 @@ public partial class StaffPetReportViewer : Window
         Switcher.RedirectStaffPortal();
         this.Close();
     }
-    
+
     /// <summary>
     /// Redirects user to scan pet's QR Code in PetQrcodeScanner window via button click
     /// </summary>
