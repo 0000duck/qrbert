@@ -13,7 +13,7 @@ public partial class StaffMyPets : Window
         // Loads information when windows loads
         PetId.Text = Switcher.PetId.ToString();
         PetName.Text =
-                Switcher.VerifyRole("SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "''");
+                Switcher.VerifyRole("SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
         BreedType.Text =
                 Switcher.VerifyRole("SELECT Breed From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
         Dob.Text =

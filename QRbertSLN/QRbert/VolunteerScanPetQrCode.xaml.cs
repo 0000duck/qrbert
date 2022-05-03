@@ -89,7 +89,7 @@ public partial class VolunteerScanPetQrCode : Window
         {
             // Saves PetID to active session
             Switcher.PetId = petId;
-            Switcher.VolunteerPortalSwitch(new ());
+            Switcher.VolunteerPortalSwitch(new VolunteerMyPets());
             this.Close();
         }
     }
