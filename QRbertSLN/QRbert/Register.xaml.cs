@@ -510,19 +510,12 @@ public partial class Register : Window
         }
     }
     
-    //Function that I have no idea what it does but it is still here
-    void PrintText(object sender, SelectionChangedEventArgs args)
-    {
-        ListBoxItem lbi = ((sender as ListBox).SelectedItem as ListBoxItem);
-        MessageBox.Show("You selected " + lbi.Content.ToString() + ".");
-    }
-/// <summary>
-/// Function that when the confirm passwordbox has any text, the confirm password textblock disappears.
-/// The textblock reappears when no text is found
-/// </summary>
-/// <param name="sender"></param>
-/// <param name="e"></param>
-    
+    /// <summary>
+    /// Function that when the confirm password-box has any text, the confirm password textblock disappears.
+    /// The text-block reappears when no text is found
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void ConfirmPassword_OnPasswordChanged(object sender, RoutedEventArgs e)
     {
         txtHintConfirmPassword.Visibility = Visibility.Visible;
@@ -645,11 +638,11 @@ public partial class Register : Window
             txtZipcodeBlock.Visibility = Visibility.Hidden;
         }
     }
-/// <summary>
-/// Function that when the radio button is selected, the text for that specific button is added to a string variable
-/// </summary>
-/// <param name="sender"></param>
-/// <param name="e"></param>
+    /// <summary>
+    /// Function that when the radio button is selected, the text for that specific button is added to a string variable
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     //Function that gathers the Faculty Role from the Radio Buttons
     void FacultyChoice (object sender, RoutedEventArgs e)
     {
