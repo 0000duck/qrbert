@@ -176,4 +176,26 @@ public partial class StaffMyPets : Window
         Switcher.StaffPageSwitch(new AddPetActivity());
         this.Close();
     }
+
+    /// <summary>
+    /// Redirects staff user to view the matched pets that are matched with the volunters
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ViewMatchedPetsToVolunteersBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffMatchVolunteerAnimals());
+        Close();
+    }
+
+    /// <summary>
+    /// Redirects user to view Pet Treatment via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ViewPetTreatmentBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffViewPetTreatment());
+        Close();
+    }
 }
