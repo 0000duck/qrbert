@@ -4,22 +4,43 @@ namespace QRbert;
 
 public partial class StaffMyPets : Window
 {
+    /// <summary>
+    /// Upon loading the page, Window checks if boolean is true to turn on Bell Icon
+    /// </summary>
     public StaffMyPets()
     {
         InitializeComponent();
         // Loads information when windows loads
         PetId.Text = Switcher.PetId.ToString();
-        PetName.Content =
-                Switcher.VerifyRole("SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "''");
+        PetName.Text =
+                Switcher.VerifyRole("SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
         BreedType.Text =
                 Switcher.VerifyRole("SELECT Breed From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
-        DOB.Text =
+        Dob.Text =
                 Switcher.VerifyRole("SELECT DOB From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
+        if (Switcher.IsPetNeglected)
+        {
+            AlertStaffBellIcon.Visibility = Visibility.Visible;
+        }
     }
+    
+    /// <summary>
+    /// If the Icon is not visible, method does nothing
+    /// Else redirects user to Staff Neglected Animals page and closes portal 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void NotificationBtn_Click(object sender, RoutedEventArgs e)
     {
-        
+        if (AlertStaffBellIcon.IsVisible) 
+        {
+            // At least one Pet is Neglected
+            // Means that Switcher.IsPetNeglected = true
+            Switcher.StaffPageSwitch(new StaffNeglectedAnimals());
+            this.Close();
+        }
     }
+    
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
     /// Since the portal and the MyAccount are both pages, they should be easily navigable
@@ -60,6 +81,10 @@ public partial class StaffMyPets : Window
     /// <param name="e"></param>
     private void ScanPetQRCodeRedirectBtn_Click(object sender, RoutedEventArgs e)
     {
+        if (Equals(RemoveAnimal.Header, "RemoveAnimal"))
+        {
+            Switcher.RemoveAnimal = true;
+        }
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         this.Close();
     }
@@ -102,7 +127,7 @@ public partial class StaffMyPets : Window
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void LockTimesheetsBtn_Click(object sender, RoutedEventArgs e)
+    private void LockTimesheetBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffLockTimesheet());
         this.Close();
@@ -117,6 +142,17 @@ public partial class StaffMyPets : Window
     {
         Switcher.StaffPageSwitch(new StaffRoundingRules());
         this.Close();
+    }
+    
+    /// <summary>
+    /// Redirects user to the FAQ window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffFAQs());
+        Close();
     }
 
     /// <summary>

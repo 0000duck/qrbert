@@ -1,18 +1,46 @@
+using System.Data;
+using System.Data.SqlClient;
 using System.Windows;
 
 namespace QRbert;
 
-public partial class AddPetTreatment : Window
+public partial class AddPetTreatment
 {
+    /// <summary>
+    /// Upon loading the page, Window checks if boolean is true to turn on Bell Icon
+    /// </summary>
     public AddPetTreatment()
     {
         InitializeComponent();
-        
-        
+        // Load Pet ID, Pet Name, and current Date when Window loads
+        PetIdLabel.Content = Switcher.PetId.ToString();
+        string petName =
+            Switcher.VerifyRole("Select PetName From QRbertDB.QRbertTables.Pet Where PetID = '" + Switcher.PetId + "'");
+        string date =
+            Switcher.VerifyRole("Select Activity_Date From QRbertDB.QRbertTables.Pet_Activity Where PetID = '" + Switcher.PetId + "'");
+        PetNameLabel.Content = petName;
+        IncidentDateLabel.Content = date;
+        if (Switcher.IsPetNeglected)
+        {
+            AlertStaffBellIcon.Visibility = Visibility.Visible;
+        }
     }
+
+    /// <summary>
+    /// If the Icon is not visible, method does nothing
+    /// Else redirects user to Staff Neglected Animals page and closes portal 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void NotificationBtn_Click(object sender, RoutedEventArgs e)
     {
-        
+        if (AlertStaffBellIcon.IsVisible) 
+        {
+            // At least one Pet is Neglected
+            // Means that Switcher.IsPetNeglected = true
+            Switcher.StaffPageSwitch(new StaffNeglectedAnimals());
+            this.Close();
+        }
     }
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
@@ -97,7 +125,7 @@ public partial class AddPetTreatment : Window
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void LockTimesheetsBtn_Click(object sender, RoutedEventArgs e)
+    private void LockTimesheetBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffLockTimesheet());
         this.Close();
@@ -111,6 +139,42 @@ public partial class AddPetTreatment : Window
     private void RoundingRulesBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffRoundingRules());
+        this.Close();
+    }
+    
+    /// <summary>
+    /// Redirects user to the FAQ window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffFAQs());
+        Close();
+    }
+
+    /// <summary>
+    /// Adds New Pet Treatment to the Pet Treatment table via button click
+    /// Redirects user to My Pets page
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void AddPetTreatmentBtn_Click(object sender, RoutedEventArgs e)
+    {
+        SqlCommand sqlCmd = new SqlCommand("AddPetTreatment", new SqlConnection(Switcher.ConnectionString));
+        sqlCmd.CommandType = CommandType.StoredProcedure;
+        sqlCmd.Parameters.AddWithValue("@PetName", PetNameLabel.Content.ToString());
+        sqlCmd.Parameters.AddWithValue("@PetID", PetIdLabel.Content.ToString());
+        sqlCmd.Parameters.AddWithValue("@Incident_Date", IncidentDateLabel.Content.ToString());
+        sqlCmd.Parameters.AddWithValue("@InjuryType", InjuryTypeTxt.Text);
+        sqlCmd.Parameters.AddWithValue("@Recovered_Date", RecoveredDateTxt.Text);
+        sqlCmd.Parameters.AddWithValue("@Vet_Assign", VetAssignedTxt.Text);
+        sqlCmd.Parameters.AddWithValue("@Rx", RxTxt.Text);
+        sqlCmd.Parameters.AddWithValue("@Notes", NotesTxt.Text);
+
+        sqlCmd.ExecuteNonQuery();
+        MessageBox.Show("Successfully saved Pet Treatment.");
+        Switcher.StaffPageSwitch(new StaffMyPets());
         this.Close();
     }
 }

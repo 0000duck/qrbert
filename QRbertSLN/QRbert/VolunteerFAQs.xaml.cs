@@ -2,35 +2,23 @@
 
 namespace QRbert;
 
-public partial class VolunteerPetReport : Window
+public partial class VolunteerFAQs : Window
 {
-    public VolunteerPetReport()
+    public VolunteerFAQs()
     {
         InitializeComponent();
     }
-    
+    private void NotificationBtn_Click(object sender, RoutedEventArgs e)
+    {
+        
+    }
     /// <summary>
-    /// Redirects volunteer user to their MyAccount window via a button click on the menu item
+    /// Redirects user to home page - staff portal via QRbert image click
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void VolunteerMyAcctBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
-        this.Close();
-    }
-
-    /// <summary>
-    /// Logs out Volunteer and redirects user to the Log In page via button click
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void LogOutBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.LogOutSwitch();
-        this.Close();
-    }
-
+    ///
+    /// 
     /// <summary>
     /// Redirects user to home page - volunteer portal via QRbert image click
     /// </summary>
@@ -41,7 +29,6 @@ public partial class VolunteerPetReport : Window
         Switcher.RedirectVolunteerPortal();
         this.Close();
     }
-    
     /// <summary>
     /// Redirects user to view timesheet window via button click
     /// </summary>
@@ -52,18 +39,6 @@ public partial class VolunteerPetReport : Window
         Switcher.VolunteerPortalSwitch(new VolunteerViewTimesheets());
         this.Close();
     }
-
-    /// <summary>
-    /// Redirects user to scan pet qr code window via button click
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void ViewPetReportBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
-        this.Close();
-    }
-    
     /// <summary>
     /// Redirects user to scan pet qr code window via button click
     /// </summary>
@@ -72,6 +47,36 @@ public partial class VolunteerPetReport : Window
     private void ScanPetQRCodeBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
+        this.Close();
+    }
+    // <summary>
+    /// Redirects user to pet report window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void PetReportBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
+        this.Close();
+    }
+    /// <summary>
+    /// Redirects volunteer user to their MyAccount window via a button click on the menu item
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void VolunteerMyAcctBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
+        this.Close();
+    }
+    /// <summary>
+    /// Logs out Volunteer and redirects user to the Log In page via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void LogOutBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.LogOutSwitch();
         this.Close();
     }
 }

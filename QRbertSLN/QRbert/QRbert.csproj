@@ -82,4 +82,9 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Images\Notification.png" />
+      <Resource Include="Images\Notification.png" />
+    </ItemGroup>
+
 </Project>

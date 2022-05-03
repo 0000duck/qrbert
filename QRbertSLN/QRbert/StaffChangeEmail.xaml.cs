@@ -6,14 +6,35 @@ namespace QRbert;
 
 public partial class StaffChangeEmail : Window
 {
+    /// <summary>
+    /// Upon loading the page, Window checks if boolean is true to turn on Bell Icon
+    /// </summary>
     public StaffChangeEmail()
     {
         InitializeComponent();
+        if (Switcher.IsPetNeglected)
+        {
+            AlertStaffBellIcon.Visibility = Visibility.Visible;
+        }
     }
+    
+    /// <summary>
+    /// If the Icon is not visible, method does nothing
+    /// Else redirects user to Staff Neglected Animals page and closes portal 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void NotificationBtn_Click(object sender, RoutedEventArgs e)
     {
-        
+        if (AlertStaffBellIcon.IsVisible) 
+        {
+            // At least one Pet is Neglected
+            // Means that Switcher.IsPetNeglected = true
+            Switcher.StaffPageSwitch(new StaffNeglectedAnimals());
+            this.Close();
+        }
     }
+    
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
     /// Since the portal and the MyAccount are both pages, they should be easily navigable
@@ -55,6 +76,10 @@ public partial class StaffChangeEmail : Window
     /// <param name="e"></param>
     private void ScanPetQRCodeRedirectBtn_Click(object sender, RoutedEventArgs e)
     {
+        if (Equals(RemoveAnimal.Header, "RemoveAnimal"))
+        {
+            Switcher.RemoveAnimal = true;
+        }
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         this.Close();
     }
@@ -115,6 +140,17 @@ public partial class StaffChangeEmail : Window
     }
     
     /// <summary>
+    /// Redirects user to the FAQ window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffFAQs());
+        Close();
+    }
+    
+    /// <summary>
     /// Updates the user email to a new email they register and redirects them to MyAccount Page
     /// </summary>
     /// <param name="sender"></param>
@@ -138,10 +174,10 @@ public partial class StaffChangeEmail : Window
                 using (SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString))
                 {
                     string msg = 
-                        Switcher.VerifyRole("Select [Faculty-Role] From QRbertTables.Registration Where email = '" + Switcher.ConnectionString + "'");
+                        Switcher.VerifyRole("Select [Faculty-Role] From QRbertDB.QRbertTables.Registration Where email = '" + Switcher.CurrentSessionEmail + "'");
                     string userType = msg;
                     sqlCon.Open();
-                    SqlCommand sqlCmd = new SqlCommand("Update Registration Set Email = '" + NewEmailInput.Text + "' Where Faculty-role = '" + userType + "'", sqlCon);
+                    SqlCommand sqlCmd = new SqlCommand("Update QRbertDB.QRbertTables.Registration Set Email = '" + NewEmailInput.Text + "' Where Faculty-role = '" + userType + "'", sqlCon);
                     sqlCmd.ExecuteScalar();
                     MessageBox.Show("Email has been updated.");
                     Switcher.StaffPageSwitch(new StaffMyAccount());

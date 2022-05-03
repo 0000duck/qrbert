@@ -8,7 +8,10 @@ public partial class StaffScanPetQrCode : Window
     {
         InitializeComponent();
     }
-    
+    private void NotificationBtn_Click(object sender, RoutedEventArgs e)
+    {
+        
+    }
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
     /// Since the portal and the MyAccount are both pages, they should be easily navigable
@@ -70,7 +73,7 @@ public partial class StaffScanPetQrCode : Window
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void LockTimesheetsBtn_Click(object sender, RoutedEventArgs e)
+    private void LockTimesheetBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffLockTimesheet());
         this.Close();
@@ -85,6 +88,17 @@ public partial class StaffScanPetQrCode : Window
     {
         Switcher.StaffPageSwitch(new StaffRoundingRules());
         this.Close();
+    }
+    
+    /// <summary>
+    /// Redirects user to the FAQ window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffFAQs());
+        Close();
     }
     
     /// <summary>
@@ -110,10 +124,20 @@ public partial class StaffScanPetQrCode : Window
         // At least 1 result
         else
         {
-            // Saves PetID to active session
-            Switcher.PetId = petId;
-            Switcher.StaffPageSwitch(new StaffMyPets());
-            this.Close();
+            if (Switcher.RemoveAnimal)
+            {
+                Switcher.VerifyRole("Delete From QRbertDB.QRbertTables.Pet where PetID = '" + petId + "'");
+                MessageBox.Show("Pet successfully removed.");
+                Switcher.RedirectStaffPortal();
+                this.Close();
+            }
+            else
+            {
+                // Saves PetID to active session
+                Switcher.PetId = petId;
+                Switcher.StaffPageSwitch(new StaffMyPets());
+                this.Close();
+            }
         }
     }
 }

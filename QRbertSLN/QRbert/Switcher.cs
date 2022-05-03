@@ -28,6 +28,23 @@ public class Switcher
     /// Saves PetID int of most recently scanned PetID
     /// </summary>
     public static int PetId = 0000;
+
+    /// <summary>
+    /// Saves the state of RemoveAnimal option as boolean
+    /// </summary>
+    public static bool RemoveAnimal = false;
+
+    /// <summary>
+    /// Saves the state of the Neglected Pets as boolean
+    /// </summary>
+    public static bool IsPetNeglected = false;
+
+    /// <summary>
+    /// Saves the query of the Neglected Pets as a string
+    /// This is in case the user does not see the Bell Icon visible when Staff Portal loads
+    /// That way the query runs once and can be saved and accessed anywhere
+    /// </summary>
+    public static string PetsNeglected = "";
     
     /// <summary>
     /// Verifies the role of the user type
@@ -112,5 +129,14 @@ public class Switcher
     public static void RedirectVolunteerPortal()
     {
         new VolunteerPortal().Show();
+    }
+    
+    /// <summary>
+    /// Static function that displays a new Staff Neglected Animals window
+    /// Used when there exists at least 1 pet that has not been assigned to a volunteer when the staff logs in
+    /// </summary>
+    public static void AlertStaffNeglectedPetBellIcon()
+    {
+        new StaffNeglectedAnimals().Show();
     }
 }

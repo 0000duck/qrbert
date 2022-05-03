@@ -3,18 +3,41 @@ using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 using System.Data.SqlClient;
+using System.Windows.Media;
+
 namespace QRbert;
 
 public partial class StaffCreatePetReport : Window
 {
+    /// <summary>
+    /// Upon loading the page, Window checks if boolean is true to turn on Bell Icon
+    /// </summary>
     public StaffCreatePetReport()
     {
         InitializeComponent();
+        if (Switcher.IsPetNeglected)
+        {
+            AlertStaffBellIcon.Visibility = Visibility.Visible;
+        }
     }
+    
+    /// <summary>
+    /// If the Icon is not visible, method does nothing
+    /// Else redirects user to Staff Neglected Animals page and closes portal 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void NotificationBtn_Click(object sender, RoutedEventArgs e)
     {
-        
+        if (AlertStaffBellIcon.IsVisible) 
+        {
+            // At least one Pet is Neglected
+            // Means that Switcher.IsPetNeglected = true
+            Switcher.StaffPageSwitch(new StaffNeglectedAnimals());
+            this.Close();
+        }
     }
+    
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
     /// Since the portal and the MyAccount are both pages, they should be easily navigable
@@ -56,6 +79,10 @@ public partial class StaffCreatePetReport : Window
     /// <param name="e"></param>
     private void ScanPetQRCodeRedirectBtn_Click(object sender, RoutedEventArgs e)
     {
+        if (Equals(RemoveAnimal.Header, "RemoveAnimal"))
+        {
+            Switcher.RemoveAnimal = true;
+        }
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         this.Close();
     }
@@ -116,6 +143,17 @@ public partial class StaffCreatePetReport : Window
     }
     
     /// <summary>
+    /// Redirects user to the FAQ window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffFAQs());
+        Close();
+    }
+    
+    /// <summary>
     /// Creates Pet in DB and redirects user to MyPets page for staff
     /// </summary>
     /// <param name="sender"></param>
@@ -140,8 +178,18 @@ public partial class StaffCreatePetReport : Window
         Switcher.PetId =
            int.Parse(Switcher.VerifyRole(
                 "SELECT PetID From QRbertDB.QRbertTables.Pet where PetName = '" + txtPetName.Text + "' and DOB = '" + txtDOB.Text + "'"));
-        Switcher.StaffPageSwitch(new StaffMyPets());
-        this.Close();
+        // Creating the user's QR code and displaying it
+        // Saves the email, password, and facultyrole as a string for the QR code, this can be changed later
+        string petInfo = txtPetName.Text + Switcher.PetId + txtType.Text;
+        DrawingImage qrCodeImage = QRCodeScanner.Generate_QR_Click(petInfo);
+        // Creates a new window to display the QR code and shows it
+        ShowQRCode showQRCode = new ShowQRCode();
+        showQRCode.QRCodeViewer.Source = qrCodeImage;
+        showQRCode.QRCodeViewer.Visibility = Visibility.Visible;
+        MessageBox.Show("Please save your Pet's QR Code.");
+        showQRCode.Show();  // Show QR Code
+        Switcher.StaffPageSwitch(new StaffMyPets());    // show my pets page
+        this.Close();   // close create pet page
     }
     
 

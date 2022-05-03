@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:QRbert"
         mc:Ignorable="d"
-        Title="StaffRoundingRules" Height="450" Width="800">
+        Title="StaffRoundingRules" Height="485" Width="800">
     <!-- This the template for the Menus; It creates the menu with a white background and black bold letters;
         allows the user to hover over the menu and display the menus as well as change the letters to orange-->
     <Window.Resources>
@@ -115,7 +115,9 @@
             <Image Width="800" Height="450" Source="Images/petsBackground.png" 
                    Margin="0,0,0,0"/>
             <Image Width="40" Height="40" Source="Images/Notification.png" 
-                   Margin="700,-800,0,0"
+                   Name="AlertStaffBellIcon"
+                   Visibility="Hidden"
+                   Margin="650,-950,0,-100"
                    MouseDown="NotificationBtn_Click"/>
             <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
                    Margin="-650,-900,0,-100"
@@ -125,24 +127,35 @@
         <!-- This is the Timesheet menu-->
         <Menu Width="100" Height="22" Margin="300, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Timesheet" Name="mm" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Lock Timesheets"/>
-                <MenuItem Header="Rounding Rule"/>
+                <MenuItem 
+                    Header="Lock Timesheet"
+                    Click="LockTimeSheetBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This is the Volunteer menu-->
         <Menu Width="100" Height="22" Margin="400, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Volunteer" Name="mm1" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Track Active"/>
-                <MenuItem Header="Staff Search"/>
-                <MenuItem Header="Assign Pet"/>
+                <MenuItem 
+                    Header="Track Active"
+                    Click="TrackActiveVolunteersBtn_Click"/>
+                <MenuItem 
+                    Header="Staff Search"
+                    Click="StaffSearchBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This is the Animal menu-->
         <Menu Width="100" Height="22" Margin="500, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem Header="Select a Pet"/>
-                <MenuItem Header="Remove Animal"/>
-                <MenuItem Header="Pet Reports"/>
+                <MenuItem 
+                    Header="Select a Pet"
+                    Click="ScanPetQRCodeRedirectBtn_Click"/>
+                <MenuItem 
+                    Header="Remove Animal"
+                    Click="ScanPetQRCodeRedirectBtn_Click"
+                    Name="RemoveAnimal"/>
+                <MenuItem 
+                    Header="Pet Reports"
+                    Click="PetReportsBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This is the My Account menu-->
@@ -207,15 +220,11 @@
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
                 Margin="-500,-50,0,0">
         </Button>
-        <!-- This the "Help" button control at the bottom of the page -->
-        <Button Height = "25" Width = "50" Content="Help" Background="Transparent" Foreground="#FF9100" FontSize="16" 
-                BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
-                Margin="-100,-50,0,0">
-        </Button>
         <!-- This the "FAQs" button control at the bottom of the page -->
         <Button Height = "25" Width = "150" Content="FAQs" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
-                Margin="200,-50,0,0">
+                Click="FAQRedirectBtn_Click"
+                Margin="0,-50,0,0">
         </Button>
         <!-- This the "©2022 QRbert Inc." button control at the bottom of the page -->
         <Button Height = "25" Width = "150" Content="©2022 QRbert Inc." Background="Transparent" Foreground="#FF9100" FontSize="16" 

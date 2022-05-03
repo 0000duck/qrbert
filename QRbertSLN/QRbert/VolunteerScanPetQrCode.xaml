@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:QRbert"
         mc:Ignorable="d"
-        Title="VolunteerScanPetQrCode" Height="450" Width="800">
+        Title="VolunteerScanPetQrCode" Height="485" Width="800">
     <!-- This the template for the Menus; It creates the menu with a white background and black bold letters;
         allows the user to hover over the menu and display the menus as well as change the letters to orange-->
     <Window.Resources>
@@ -193,15 +193,11 @@
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
                 Margin="-500,-50,0,0">
         </Button>
-        <!-- This the "Help" button control at the bottom of the page -->
-        <Button Height = "25" Width = "50" Content="Help" Background="Transparent" Foreground="#FF9100" FontSize="16" 
-                BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
-                Margin="-100,-50,0,0">
-        </Button>
         <!-- This the "FAQs" button control at the bottom of the page -->
         <Button Height = "25" Width = "150" Content="FAQs" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
-                Margin="200,-50,0,0">
+                Click="FAQRedirectBtn_Click"
+                Margin="0,-50,0,0">
         </Button>
         <!-- This the "©2022 QRbert Inc." button control at the bottom of the page -->
         <Button Height = "25" Width = "150" Content="©2022 QRbert Inc." Background="Transparent" Foreground="#FF9100" FontSize="16" 
