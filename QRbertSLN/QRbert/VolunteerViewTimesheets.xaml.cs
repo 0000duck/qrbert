@@ -88,43 +88,15 @@ public partial class VolunteerViewTimesheets
         Close();
     }
 
-    private void StaffMyAccountBtn_Click(object sender, RoutedEventArgs e)
-    {
-        throw new System.NotImplementedException();
-    }
+    
 
-    private void PetReportsBtn_Click(object sender, RoutedEventArgs e)
-    {
-        throw new System.NotImplementedException();
-    }
+    
 
-    private void ScanPetQRCodeRedirectBtn_Click(object sender, RoutedEventArgs e)
-    {
-        throw new System.NotImplementedException();
-    }
+    
 
-    private void StaffSearchBtn_Click(object sender, RoutedEventArgs e)
-    {
-        throw new System.NotImplementedException();
-    }
+    
 
-    private void RoundingRulesBtn_Click(object sender, RoutedEventArgs e)
-    {
-        throw new System.NotImplementedException();
-    }
+    
 
-    private void LockTimesheetsBtn_Click(object sender, RoutedEventArgs e)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    private void HomeStaffPortalBtn_Click(object sender, MouseButtonEventArgs e)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    private void NotificationBtn_Click(object sender, MouseButtonEventArgs e)
-    {
-        throw new System.NotImplementedException();
-    }
+    
 }

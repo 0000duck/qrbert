@@ -162,6 +162,9 @@
         <Menu Width="100" Height="22" Margin="600, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem 
+                    Header="Staff Account"
+                    Click="StaffMyAccountBtn_Click"/>
+                <MenuItem 
                     Header="Log out"
                     Click="LogOutBtn_Click"
                     />
