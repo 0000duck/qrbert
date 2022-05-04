@@ -1,14 +1,40 @@
-﻿using System.Windows;
+﻿using System;
+using System.Data;
+using System.Windows;
+using System.Data.SqlClient;
 
 namespace QRbert;
 
-public partial class StaffTrackAnimalActivity : Window
+public partial class StaffTrackAnimalActivity : Window 
 {
+    public static string ConnectionString = 
+        @"Data Source = qrbert-rds1.cfe8s1xr87h2.us-west-1.rds.amazonaws.com;
+        Initial Catalog = QRbertDB; User ID = rds1_admin; Password = rds1_admin;";
     public StaffTrackAnimalActivity()
     {
         InitializeComponent();
     }
-    
+
+    private void PetActivityBtn(object sender, EventArgs e)
+    {
+            string petNameBox = PetNameTxt.Text;
+   
+            using SqlConnection sqlCon = new SqlConnection(ConnectionString);
+            sqlCon.Open();
+           // SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
+
+            string query =  ("Select * From QRbertDB.QRbertTables.Pet_Activity Where PetName = '" + PetNameTxt.Text + "'");
+            //select * from QRbertTables.Pet_Activity where PetName = 'Lily';
+            SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+            sqlCmd.ExecuteNonQuery();
+
+            SqlDataAdapter adpt = new SqlDataAdapter(sqlCmd);
+            DataTable dtable = new DataTable("QRbertDB.QRbertTables.Pet_Activity");
+
+            adpt.Fill(dtable);
+            DataGV.ItemsSource = dtable.DefaultView;
+            adpt.Update(dtable);
+    }
     /// <summary>
     /// If the Icon is not visible, method does nothing
     /// Else redirects user to Staff Neglected Animals page and closes portal 
