@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Data;
 using System.Windows;
-using System.Windows.Media;
 using System.Data.SqlClient;
-using System.Windows.Forms;
-
-
 
 namespace QRbert;
 
-public partial class StaffTrackAnimalActivity : Window
+public partial class StaffTrackAnimalActivity : Window 
 {
     public StaffTrackAnimalActivity()
     {
@@ -18,13 +14,14 @@ public partial class StaffTrackAnimalActivity : Window
 
     private void PetActivityBtn(object sender, EventArgs e)
     {
-        using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
-        sqlCon.Open();
-        SqlDataAdapter sql = new SqlDataAdapter("Select * from QRbertTables.Pet_Activity", sqlCon);
-        DataTable dataTbl = new DataTable();
-        sql.Fill(dataTbl);
 
-        DataGV.ItemsSource = dataTbl.Rows;
+            using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
+            sqlCon.Open();
+            string query = "Select * from QRbertTables.Pet_Activity";
+            SqlDataAdapter adpt = new SqlDataAdapter(query,sqlCon);
+            DataSet pet = new DataSet();
+            adpt.Fill(pet, "Pet Activity");
+
 
     }
     /// <summary>
