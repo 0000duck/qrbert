@@ -155,7 +155,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <TextBox Width = "125" Height="20" 
+                    <TextBox Width = "125" Height="25" 
                              Background="Transparent" 
                              Foreground="Black" 
                              FontWeight="Bold" BorderBrush="Transparent" 
@@ -164,12 +164,15 @@
                              Name="PetNameTxt">
                         Enter Pet Name
                     </TextBox>
-                    <DataGrid
-                        Height="180" HorizontalAlignment="Center" 
-                        Margin="6,0,0,0"   
-                        Name="DataGV" 
-                        VerticalAlignment="Center" Width="415">
-                    </DataGrid> 
+                    <Grid>
+                        <DataGrid
+                            AutoGenerateColumns="True"
+                            Height="180" HorizontalAlignment="Center" 
+                            Margin="6,0,0,0"   
+                            Name="DataGV" 
+                            VerticalAlignment="Center" Width="415">
+                        </DataGrid> 
+                    </Grid>
                 </StackPanel>
             </Border>
         </StackPanel>
