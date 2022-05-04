@@ -247,7 +247,8 @@
         <!-- This the "View Pet Treatment" button control-->
         <Button 
             Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
-            Height="35" Width="175" FontSize="16" ClickMode="Press" Margin="0,-75,0,0">
+            Height="35" Width="175" FontSize="16" ClickMode="Press" Margin="-180,-75,0,0"
+            Click="ViewPetTreatmentBtn_Click">
             <Button.Resources>
                 <Style 
                     TargetType="{x:Type Border}">
@@ -257,6 +258,21 @@
                 </Style>
             </Button.Resources>
             View Pet Treatment  
+        </Button>
+        <!-- This the "Add Pet Activity" button control-->
+        <Button
+            Content="View Matched Pets"
+            Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
+            Height="35" Width="175" FontSize="16" ClickMode="Press" Margin="180,-75,0,0"
+            Click="ViewMatchedPetsToVolunteersBtn_Click">
+            <Button.Resources>
+                <Style 
+                    TargetType="{x:Type Border}">
+                    <Setter 
+                        Property="CornerRadius" 
+                        Value="15"/>
+                </Style>
+            </Button.Resources>
         </Button>
         <!-- This the "Terms and Privacy Notice" button control at the bottom of the page -->
         <Button Height = "25" Width = "300" Content="Terms and Privacy Notice" Background="Transparent" Foreground="#FF9100" FontSize="16" 

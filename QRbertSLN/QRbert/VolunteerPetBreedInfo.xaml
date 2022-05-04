@@ -1,14 +1,14 @@
-﻿<Window x:Class="QRbert.VolunteerMyPets"
+﻿<Window x:Class="QRbert.VolunteerPetBreedInfo"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:QRbert"
         mc:Ignorable="d"
-        Title="VolunteerMyPets" Height="600" Width="800">
-   <!-- This the template for the Menus; It creates the menu with a white background and black bold letters;
-        allows the user to hover over the menu and display the menus as well as change the letters to orange-->
+        Title="VolunteerPetBreedInfo" Height="450" Width="800">
     <Window.Resources>
+    <!-- This the template for the Menus; It creates the menu with a white background and black bold letters;
+    allows the user to hover over the menu and display the menus as well as change the letters to orange-->
         <LinearGradientBrush x:Key="DarkBrush" StartPoint="0.5,0" EndPoint="0.5,1">
             <GradientBrush.GradientStops>
                 <GradientStopCollection>
@@ -95,9 +95,10 @@
                     <Setter Property="Header" Value="Test" />
                     <Setter Property="BorderBrush" Value="White"></Setter>
                     <Setter Property="BorderThickness" Value="1"></Setter>
-                </Trigger>
-                <!-- This is the trigger that tells the program to display the menu when the mouse hovers over it
+
+                    <!-- This is the trigger that tells the program to display the menu when the mouse hovers over it
                         as well change the black letters to orange-->
+                </Trigger>
                 <Trigger Property="IsMouseOver" Value="True" >
                     <Setter Property="IsOpen" TargetName="PART_Popup" Value="True"/>
                     <Setter Property="Cursor" Value="Hand"/>
@@ -106,18 +107,25 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
     </Window.Resources>
-    <!-- This the end of the menu template -->
+    <!-- This the end of the binding menu template -->
     <!--  -->
-    <!-- This the main stackpanel containing all the controls on the entire page-->
-    <StackPanel Background="Transparent" Height="550" Width="800">
-        <!-- This stackpanel contains the orange QRbert logo on the left corner as well as the perts background image-->
+    <!-- This the main stackpanel containing all the controls on the entire page
+        (the 3 menus, the pets background, the logo, the links at the bottom and the orange semitransparent stackpanel-->
+    <StackPanel Background="Transparent">
         <StackPanel>
             <Image Width="800" Height="450" Source="Images/petsBackground.png" 
                    Margin="0,0,0,0"/>
-
             <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
                    Margin="-650,-900,0,-100"
                    MouseDown="HomeVolunteerPortalBtn_Click"/>
+            <Border BorderBrush="#FF9100" Opacity = "0.85" CornerRadius="2,2,2,2" BorderThickness="2,2,2,2"
+                    Margin="0,-400,0,0"
+                    Height="300"
+                    Width="500">
+                <StackPanel Background="#FF9100" Opacity="0.85">
+                    <!-- your elements here -->
+                </StackPanel>
+            </Border>
         </StackPanel>
         <!-- This is the Timesheet menu-->
         <Menu Width="100" Height="22" Margin="300, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
@@ -127,7 +135,7 @@
                     Click="ViewTimesheetBtn_Click"/>
             </MenuItem>
         </Menu>
-        <!-- This is the Animal menu for volunteers-->
+        <!-- This is the Animal menu for a volunteer-->
         <Menu Width="100" Height="22" Margin="450, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem 
@@ -138,7 +146,7 @@
                     Click="PetReportsBtn_Click"/>
             </MenuItem>
         </Menu>
-        <!-- This is the My Account menu-->
+        <!-- This is the My Account menu for a volunteer-->
         <Menu Width="100" Height="22" Margin="600, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
             <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem 
@@ -149,86 +157,21 @@
                     Click="LogOutBtn_Click"/>
             </MenuItem>
         </Menu>
-        <!-- This the orange semitransparent stack panel in the center with the button/text box controls-->
-        <StackPanel Background="#FF9100" Width="400" Height="375" Opacity="0.7" 
-                    Margin = "0, -350, 0, 0"/>
-        <Border Height = "90" Width = "140" CornerRadius="8,8,8,8" Margin="0, -600, 0, 0">
-            <Border.Background>
-                <ImageBrush Stretch="Fill" ImageSource="Images/puppy.jpg" />
-            </Border.Background>
-        </Border>
-        <!-- This is where the pet name will go-->
-        <TextBlock Name = "PetName" Width = "150" Height = "35" Text="Pet Name" Foreground="White" FontWeight = " DemiBold" FontSize="28"
-                   Margin = "0, -475, 00, 0" >
-            
-        </TextBlock>
-        <!-- This is the "Pet ID:" label, this shouldn't change-->
-        <TextBlock Width = "100" Height = "35" Text="Pet ID:" Foreground="White" FontWeight = " DemiBold" FontSize="20"
-                   Margin = "-105, -375, 00, 0" >
-            
-        </TextBlock>
-        <!-- This is the textblock where the pet Id will be displayed-->
-        <TextBlock Name = "PetId" Width = "100" Height = "35" Text="Pet ID" Foreground="White" FontWeight = "   DemiBold" FontSize="20"
-                   Margin = "100, -375, 00, 0" >
-            
-        </TextBlock>
-        <!-- This is the "Breed Type:" label, this shouldn't change-->
-        <TextBlock Width = "125" Height = "35" Text="Breed Type:" Foreground="White" FontWeight = " DemiBold" FontSize="20"
-                   Margin = "-175, -275, 00, 0" >
-            
-        </TextBlock>
-        <!-- This is the textblock where the breed type will be displayed-->
-        <TextBlock Name = "BreedType" Width = "200" Height = "35" Text="Breed Type" Foreground="White" FontWeight = "DemiBold" FontSize="20"
-                   Margin = "200, -275, 00, 0" >
-            
-        </TextBlock>
-        <!-- This is the "DOB:" label, this shouldn't change-->
-        <TextBlock Width = "50" Height = "35" Text="DOB:" Foreground="White" FontWeight = " DemiBold" FontSize="20"
-                   Margin = "-130, -175, 00, 0" >
-            
-        </TextBlock>
-        <!-- This is the textblock where the DOB will be displayed-->
-        <TextBlock Name = "Dob" Width = "100" Height = "35" Text="DOB" Foreground="White" FontWeight = "DemiBold" FontSize="20"
-                   Margin = "100, -175, 00, 0" >
-        </TextBlock>
-        <Button
-            Content="View Pet Breed Info"
-            Background="White" 
-            Foreground="Orange" 
-            FontWeight="Bold" 
-            BorderBrush="Orange" 
-            BorderThickness="2" 
-            Height="35" 
-            Width="175" 
-            FontSize="16" 
-            ClickMode="Press"
-            Click="ViewPetBreedInfoBtn_Click"
-            Margin="-25,-100,0,0">
-            <Button.Resources>
-                <Style 
-                    TargetType="{x:Type Border}">
-                    <Setter 
-                        Property="CornerRadius" 
-                        Value="15"/>
-                </Style>
-            </Button.Resources>
-        </Button>    
         <!-- This the "Terms and Privacy Notice" button control at the bottom of the page -->
         <Button Height = "25" Width = "300" Content="Terms and Privacy Notice" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
-                Margin="-500,25,0,0">
+                Margin="-500,-50,0,0">
         </Button>
         <!-- This the "FAQs" button control at the bottom of the page -->
         <Button Height = "25" Width = "150" Content="FAQs" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
                 Click="FAQRedirectBtn_Click"
-                Margin="0,-25,0,0">
+                Margin="0,-50,0,0">
         </Button>
         <!-- This the "©2022 QRbert Inc." button control at the bottom of the page -->
         <Button Height = "25" Width = "150" Content="©2022 QRbert Inc." Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
-                Margin="500,-25,0,0">
+                Margin="500,-50,0,0">
         </Button>
     </StackPanel>
 </Window>
-
