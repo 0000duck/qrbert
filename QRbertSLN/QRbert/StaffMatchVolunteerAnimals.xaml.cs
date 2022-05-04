@@ -7,13 +7,15 @@ public partial class StaffMatchVolunteerAnimals : Window
     public StaffMatchVolunteerAnimals()
     {
         InitializeComponent();
-        //Vol1.Text = Switcher.VerifyRole("SELECT VolName FROM QRbertDB.QRberttables.Volunteers where VolID = 
-        VolFirst1.Text = Switcher.VerifyRole(
-            ("SELECT FirstName FROM QRbertDB.QRbertTables.Registration where Email ='" + "Bee@gmail.com" +
-             "'"));
-        VolLast1.Text = Switcher.VerifyRole(("SELECT LastName FROM QRbertDB.QRbertTables.Registration where Email ='" +
-                                             "Bee@gmail.com" +
-                                             "'"));
+        // Sets content of all volunteers to their respective textboxes
+        // I set all textboxes to be read only
+        // The volunteers that don't have another pet assigned have those second pet textboxes hidden
+        VolFirst1.Text = Switcher.VerifyRole
+        ("SELECT FirstName FROM QRbertDB.QRbertTables.Registration where Email ='" + "Bee@gmail.com" + "'");
+        VolLast1.Text = Switcher.VerifyRole
+        ("SELECT LastName FROM QRbertDB.QRbertTables.Registration where Email ='" +
+                                            "Bee@gmail.com" +
+                                            "'");
         Id1.Text = "600";
 
         VolFirst2.Text = Switcher.VerifyRole(
@@ -46,6 +48,62 @@ public partial class StaffMatchVolunteerAnimals : Window
                                              "Gibbons@gmail.com" +
                                              "'"));
         Id5.Text = "604";
+
+        // Sets the Pet textboxes to necessary content, mixing and matching with matched volunteers
+        V1Pet1Name.Text = Switcher.VerifyRole(
+            "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 800 + "'");
+        V1Pet1Id.Text = "800";
+        V1Pet2Name.Visibility = Visibility.Hidden;
+        V1Pet2Id.Visibility = Visibility.Hidden;
+        
+        V2Pet1Name.Text = Switcher.VerifyRole(
+                "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 801 + "'");
+        V2Pet1Id.Text = "801";
+        V2Pet2Name.Text = Switcher.VerifyRole(
+            "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 802 + "'");
+        V2Pet2Id.Text = "802";
+        
+        V3Pet1Name.Text = Switcher.VerifyRole(
+            "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 803 + "'");
+        V3Pet1Id.Text = "803";
+        V3Pet2Name.Text = Switcher.VerifyRole(
+            "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 800 + "'");
+        V3Pet2Id.Text = "800";
+        
+        V4Pet1Name.Text = Switcher.VerifyRole(
+            "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 801 + "'");
+        V4Pet1Id.Text = "801";
+        V4Pet2Name.Visibility = Visibility.Hidden;
+        V4Pet2Id.Visibility = Visibility.Hidden;
+        
+        V5Pet1Name.Text = Switcher.VerifyRole(
+            "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 802 + "'");
+        V5Pet1Id.Text = "802";
+        V5Pet2Name.Text = Switcher.VerifyRole(
+            "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 803 + "'");
+        V5Pet2Id.Text = "803";
+        
+        if (Switcher.IsPetNeglected)
+        {
+            AlertStaffBellIcon.Visibility = Visibility.Visible;
+        }
+    }
+    
+    /// <summary>
+    /// If the Icon is not visible, method does nothing
+    /// Else redirects user to Staff Neglected Animals page and closes portal 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void NotificationBtn_Click(object sender, RoutedEventArgs e)
+    {
+        if (AlertStaffBellIcon.IsVisible) 
+        {
+            // At least one Pet is Neglected
+            // Means that Switcher.IsPetNeglected = true
+            Switcher.StaffPageSwitch(new StaffNeglectedAnimals());
+            this.Close();
+        }
     }
 
     /// <summary>
@@ -102,23 +160,6 @@ public partial class StaffMatchVolunteerAnimals : Window
     {
         Switcher.StaffPageSwitch(new StaffPetReport());
         this.Close();
-    }
-
-    /// <summary>
-    /// If the Icon is not visible, method does nothing
-    /// Else redirects user to Staff Neglected Animals page and closes portal 
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void NotificationBtn_Click(object sender, RoutedEventArgs e)
-    {
-        if (AlertStaffBellIcon.IsVisible)
-        {
-            // At least one Pet is Neglected
-            // Means that Switcher.IsPetNeglected = true
-            Switcher.StaffPageSwitch(new StaffNeglectedAnimals());
-            this.Close();
-        }
     }
 
     /// <summary>
