@@ -1,4 +1,11 @@
-﻿using System.Windows;
+﻿using System;
+using System.Data;
+using System.Windows;
+using System.Windows.Media;
+using System.Data.SqlClient;
+using System.Windows.Forms;
+
+
 
 namespace QRbert;
 
@@ -8,7 +15,18 @@ public partial class StaffTrackAnimalActivity : Window
     {
         InitializeComponent();
     }
-    
+
+    private void PetActivityBtn(object sender, EventArgs e)
+    {
+        using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
+        sqlCon.Open();
+        SqlDataAdapter sql = new SqlDataAdapter("Select * from QRbertTables.Pet_Activity", sqlCon);
+        DataTable dataTbl = new DataTable();
+        sql.Fill(dataTbl);
+
+        DataGV.ItemsSource = dataTbl.Rows;
+
+    }
     /// <summary>
     /// If the Icon is not visible, method does nothing
     /// Else redirects user to Staff Neglected Animals page and closes portal 

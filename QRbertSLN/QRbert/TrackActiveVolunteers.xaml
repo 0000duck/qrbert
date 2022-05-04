@@ -132,6 +132,7 @@
                     Header="Rounding Rule"
                     Click="RoundingRulesBtn_Click"/>
             </MenuItem>
+
         </Menu>
         <!-- This is the Volunteer menu available to staff users only-->
         <Menu Width="100" Height="22" Margin="400, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
