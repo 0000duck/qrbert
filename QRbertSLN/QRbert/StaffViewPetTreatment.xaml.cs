@@ -1,3 +1,5 @@
+using System.Data;
+using System.Data.SqlClient;
 using System.Windows;
 
 namespace QRbert;
@@ -14,13 +16,28 @@ public partial class StaffViewPetTreatment : Window
         {
             AlertStaffBellIcon.Visibility = Visibility.Visible;
         }
+        
+        PetName.Text = Switcher.VerifyRole(
+            "Select PetName from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" + Switcher.PetId + "'");
+        using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
+        sqlCon.Open();
+        string query = 
+            ("Select PetId, InjuryType, Incident_Date, Rx from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" 
+             + Switcher.PetId +"'");
+        SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+        sqlCmd.ExecuteNonQuery();
+        SqlDataAdapter adpt = new SqlDataAdapter(sqlCmd);
+        DataTable dtable = new DataTable("QRbertDB.QRbertTables.Pet_Treatment");
+        adpt.Fill(dtable);
+        DataGV.ItemsSource = dtable.DefaultView;
+        adpt.Update(dtable);
 
-        InjuryType.Text = Switcher.VerifyRole(
-            "Select InjuryType from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" + Switcher.PetId + '"');
-        IncidentDate.Text = Switcher.VerifyRole(
-            "Select Incident_Date from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" + Switcher.PetId + '"');
-        Rx.Text = Switcher.VerifyRole(
-            "Select Rx from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" + Switcher.PetId + '"');
+        // InjuryType.Text = Switcher.VerifyRole(
+        //     "Select InjuryType from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" + Switcher.PetId + '"');
+        // IncidentDate.Text = Switcher.VerifyRole(
+        //     "Select Incident_Date from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" + Switcher.PetId + '"');
+        // Rx.Text = Switcher.VerifyRole(
+        //     "Select Rx from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" + Switcher.PetId + '"');
     }
 
     /// <summary>

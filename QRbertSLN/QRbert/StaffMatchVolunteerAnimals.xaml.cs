@@ -1,3 +1,5 @@
+using System.Data;
+using System.Data.SqlClient;
 using System.Windows;
 
 namespace QRbert;
@@ -10,7 +12,7 @@ public partial class StaffMatchVolunteerAnimals : Window
         // Sets content of all volunteers to their respective textboxes
         // I set all textboxes to be read only
         // The volunteers that don't have another pet assigned have those second pet textboxes hidden
-        VolFirst1.Text = Switcher.VerifyRole
+        /*VolFirst1.Text = Switcher.VerifyRole
         ("SELECT FirstName FROM QRbertDB.QRbertTables.Registration where Email ='" + "Bee@gmail.com" + "'");
         VolLast1.Text = Switcher.VerifyRole
         ("SELECT LastName FROM QRbertDB.QRbertTables.Registration where Email ='" +
@@ -81,12 +83,37 @@ public partial class StaffMatchVolunteerAnimals : Window
         V5Pet1Id.Text = "802";
         V5Pet2Name.Text = Switcher.VerifyRole(
             "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 803 + "'");
-        V5Pet2Id.Text = "803";
-        
+        V5Pet2Id.Text = "803";*/
+
         if (Switcher.IsPetNeglected)
         {
             AlertStaffBellIcon.Visibility = Visibility.Visible;
         }
+        
+        // Populate the volunteer table
+        using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
+        sqlCon.Open();
+        string query = 
+            ("Select FirstName, LastName from QRbertDB.QRbertTables.Registration where [Faculty-Role] = 'Volunteer'");
+        SqlCommand sqlCmdVolunteers = new SqlCommand(query, sqlCon);
+        sqlCmdVolunteers.ExecuteNonQuery();
+        SqlDataAdapter adpt = new SqlDataAdapter(sqlCmdVolunteers);
+        DataTable dtable = new DataTable("VolunteerNames");
+        adpt.Fill(dtable);
+        VolunteerNames.ItemsSource = dtable.DefaultView;
+        adpt.Update(dtable);
+
+        // Populate the pets table
+        string query2 = 
+            ("Select PetID, PetName from QRbertDB.QRbertTables.Pet where PetID >= '800'");
+        SqlCommand sqlCmdPets = new SqlCommand(query, sqlCon);
+        sqlCmdVolunteers.ExecuteNonQuery();
+        SqlDataAdapter adpt2 = new SqlDataAdapter(sqlCmdPets);
+        DataTable dtable2 = new DataTable("VolunteerNames");
+        adpt2.Fill(dtable2);
+        PetDataGrid.ItemsSource = dtable2.DefaultView;
+        adpt.Update(dtable2);
+        sqlCon.Close();
     }
     
     /// <summary>
@@ -204,7 +231,5 @@ public partial class StaffMatchVolunteerAnimals : Window
     {
         Switcher.StaffPageSwitch(new StaffFAQs());
         Close();
-
-        
     }
 }

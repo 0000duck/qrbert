@@ -1,3 +1,5 @@
+using System.Data;
+using System.Data.SqlClient;
 using System.Windows;
 
 namespace QRbert;
@@ -10,18 +12,31 @@ public partial class StaffMyPets : Window
     public StaffMyPets()
     {
         InitializeComponent();
-        // Loads information when windows loads
-        PetId.Text = Switcher.PetId.ToString();
-        PetName.Text =
-                Switcher.VerifyRole("SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
-        BreedType.Text =
-                Switcher.VerifyRole("SELECT Breed From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
-        Dob.Text =
-                Switcher.VerifyRole("SELECT DOB From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
+        // // Loads information when windows loads
+        // PetId.Text = Switcher.PetId.ToString();
+        // PetName.Text =
+        //         Switcher.VerifyRole("SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
+        // BreedType.Text =
+        //         Switcher.VerifyRole("SELECT Breed From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
+        // Dob.Text =
+        //         Switcher.VerifyRole("SELECT DOB From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
         if (Switcher.IsPetNeglected)
         {
             AlertStaffBellIcon.Visibility = Visibility.Visible;
         }
+        PetName.Text = Switcher.VerifyRole(
+            "Select PetName from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" + Switcher.PetId + "'");
+        using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
+        sqlCon.Open();
+        string query = 
+            ("Select PetId, Breed, DOB from QRbertDB.QRbertTables.Pet where PetID = '" + Switcher.PetId + "'");
+        SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+        sqlCmd.ExecuteNonQuery();
+        SqlDataAdapter adpt = new SqlDataAdapter(sqlCmd);
+        DataTable dtable = new DataTable("QRbertDB.QRbertTables.Pet");
+        adpt.Fill(dtable);
+        DataGV.ItemsSource = dtable.DefaultView;
+        adpt.Update(dtable);
     }
     
     /// <summary>
@@ -178,7 +193,7 @@ public partial class StaffMyPets : Window
     }
 
     /// <summary>
-    /// Redirects staff user to view the matched pets that are matched with the volunters
+    /// Redirects staff user to view the matched pets that are matched with the volunteers
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
