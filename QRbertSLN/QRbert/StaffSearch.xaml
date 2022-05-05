@@ -138,7 +138,21 @@
                 <MenuItem 
                     Header="Staff Search"
                     Click="StaffSearchBtn_Click"/>
-                <MenuItem Header="Assign Pet"/>
+            </MenuItem>
+        </Menu>
+        <!-- This is the Animal menu for staff users-->
+        <Menu Width="100" Height="22" Margin="500, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
+            <MenuItem Header="Animals" Template="{DynamicResource MenuItemControlTemplate1}">
+                <MenuItem 
+                    Header="Select a Pet"
+                    Click="ScanPetQRCodeRedirectBtn_Click"/>
+                <MenuItem 
+                    Header="Remove Animal"
+                    Click="ScanPetQRCodeRedirectBtn_Click"
+                    Name="RemoveAnimal"/>
+                <MenuItem 
+                    Header="Pet Reports"
+                    Click="PetReportsBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This is the My Account menu-->
