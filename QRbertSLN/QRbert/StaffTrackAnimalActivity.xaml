@@ -164,17 +164,15 @@
                              Name="PetNameTxt">
                         Enter Pet Name
                     </TextBox>
-                    <Grid>
-                        <DataGrid
-                            AutoGenerateColumns="True"
-                            Height="180" HorizontalAlignment="Center" 
-                            Margin="6,0,0,0"   
-                            Name="DataGV" 
-                            VerticalAlignment="Center" Width="415">
-                        </DataGrid> 
-                    </Grid>
                 </StackPanel>
             </Border>
+            <DataGrid
+                AutoGenerateColumns="True"
+                Height="180" HorizontalAlignment="Center" 
+                Margin="6,-325,0,0"   
+                Name="DataGV" 
+                VerticalAlignment="Center" Width="415">
+            </DataGrid>
         </StackPanel>
         <!-- This is the Timesheet menu-->
         <Menu Width="100" Height="22" Margin="300, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">

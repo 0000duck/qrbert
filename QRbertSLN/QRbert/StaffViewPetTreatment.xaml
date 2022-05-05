@@ -182,50 +182,63 @@
             </Border.Background>
         </Border>
         <!-- This is where the pet name will go-->
-        <TextBlock Name = "PetName" Width = "150" Height = "35" Text="Pet Name" Foreground="White" FontWeight = " DemiBold" FontSize="28"
+        <TextBlock Name = "PetName" 
+                   Width = "150" 
+                   Height = "35" 
+                   Text="Pet Name" 
+                   Foreground="White" 
+                   FontWeight = "DemiBold" 
+                   FontSize="28"
                    Margin = "0, -375, 00, 0" >
-            
         </TextBlock>
-        <!-- This is the "Pet ID:" label, this shouldn't change-->
+        <DataGrid
+            AutoGenerateColumns="True"
+            Height="150" HorizontalAlignment="Center" 
+            Margin="0,-175,0,0"   
+            Name="DataGV" 
+            VerticalAlignment="Center" 
+            Width="350">
+        </DataGrid>
+        <!--~1~ This is the "Pet ID:" label, this shouldn't change@1@
         <TextBlock Width = "100" Height = "35" Text="Pet ID:" Foreground="White" FontWeight = " DemiBold" FontSize="20"
                    Margin = "-105, -275, 00, 0" >
             
         </TextBlock>
-        <!-- This is the textblock where the pet Id will be displayed-->
+        ~1~ This is the textblock where the pet Id will be displayed@1@
         <TextBlock Name = "PetId" Width = "100" Height = "35" Text="Pet ID" Foreground="White" FontWeight = "   DemiBold" FontSize="20"
                    Margin = "100, -275, 00, 0" >
             
         </TextBlock>
-        <!-- This is the "Injury Type:" label, this shouldn't change-->
+        ~1~ This is the "Injury Type:" label, this shouldn't change@1@
         <TextBlock Width = "125" Height = "35" Text="Injury Type:" Foreground="White" FontWeight = " DemiBold" FontSize="20"
                    Margin = "-175, -200, 00, 0" >
             
         </TextBlock>
-        <!-- This is the textblock where the injury type will be displayed-->
+        ~1~ This is the textblock where the injury type will be displayed@1@
         <TextBlock Name = "InjuryType" Width = "200" Height = "35" Text="Injury Type" Foreground="White" FontWeight = "DemiBold" FontSize="20"
                    Margin = "200, -200, 00, 0" >
             
         </TextBlock>
-        <!-- This is the "Incident Date:" label, this shouldn't change-->
+        ~1~ This is the "Incident Date:" label, this shouldn't change@1@
         <TextBlock Width = "150" Height = "35" Text="Incident Date:" Foreground="White" FontWeight = " DemiBold" FontSize="20"
                    Margin = "-200, -125, 00, 0" >
             
         </TextBlock>
-        <!-- This is the textblock where the incident date will be displayed-->
+        ~1~ This is the textblock where the incident date will be displayed@1@
         <TextBlock Name = "IncidentDate" Width = "200" Height = "35" Text="Incident Date" Foreground="White" FontWeight = "DemiBold" FontSize="20"
                    Margin = "200, -125, 00, 0" >
             
         </TextBlock>
-        <!-- This is the "Incident Date:" label, this shouldn't change-->
+        ~1~ This is the "Incident Date:" label, this shouldn't change@1@
         <TextBlock Width = "30" Height = "35" Text="Rx:" Foreground="White" FontWeight = " DemiBold" FontSize="20"
                    Margin = "-125, -50, 00, 0" >
             
         </TextBlock>
-        <!-- This is the textblock where the incident date will be displayed-->
+        ~1~ This is the textblock where the incident date will be displayed@1@
         <TextBlock Name = "Rx" Width = "200" Height = "35" Text="Rx" Foreground="White" FontWeight = "DemiBold" FontSize="20"
                    Margin = "200, -50, 00, 0" >
             
-        </TextBlock>
+        </TextBlock>-->
         <!-- This the "Terms and Privacy Notice" button control at the bottom of the page -->
         <Button Height = "25" Width = "300" Content="Terms and Privacy Notice" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"

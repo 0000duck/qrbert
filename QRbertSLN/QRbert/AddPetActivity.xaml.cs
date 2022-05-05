@@ -177,4 +177,15 @@ public partial class AddPetActivity
         Switcher.StaffPageSwitch(new StaffTrackAnimalActivity());
         this.Close();
     }
+
+    /// <summary>
+    /// Redirects user to Staff Terms of Privacy via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void TermsOfPrivacyBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffTermsofPrivacy());
+        Close();
+    }
 }

@@ -184,36 +184,44 @@
                    Margin = "0, -475, 00, 0" >
             
         </TextBlock>
-        <!-- This is the "Pet ID:" label, this shouldn't change-->
+        <DataGrid
+            AutoGenerateColumns="True"
+            Height="100" HorizontalAlignment="Center" 
+            Margin="0,-325,0,0"   
+            Name="DataGV" 
+            VerticalAlignment="Center" 
+            Width="350">
+        </DataGrid>
+        <!--~1~ This is the "Pet ID:" label, this shouldn't change@1@
         <TextBlock Width = "100" Height = "35" Text="Pet ID:" Foreground="White" FontWeight = " DemiBold" FontSize="20"
                    Margin = "-105, -400, 00, 0" >
             
         </TextBlock>
-        <!-- This is the textblock where the pet Id will be displayed-->
+        ~1~ This is the textblock where the pet Id will be displayed@1@
         <TextBlock Name = "PetId" Width = "100" Height = "35" Text="Pet ID" Foreground="White" FontWeight = "   DemiBold" FontSize="20"
                    Margin = "100, -400, 00, 0" >
             
         </TextBlock>
-        <!-- This is the "Breed Type:" label, this shouldn't change-->
+        ~1~ This is the "Breed Type:" label, this shouldn't change@1@
         <TextBlock Width = "125" Height = "35" Text="Breed Type:" Foreground="White" FontWeight = " DemiBold" FontSize="20"
                    Margin = "-175, -325, 00, 0" >
             
         </TextBlock>
-        <!-- This is the textblock where the breed type will be displayed-->
+        ~1~ This is the textblock where the breed type will be displayed@1@
         <TextBlock Name = "BreedType" Width = "200" Height = "35" Text="Breed Type" Foreground="White" FontWeight = "DemiBold" FontSize="20"
                    Margin = "200, -325, 00, 0" >
             
         </TextBlock>
-        <!-- This is the "DOB:" label, this shouldn't change-->
+        ~1~ This is the "DOB:" label, this shouldn't change@1@
         <TextBlock Width = "50" Height = "35" Text="DOB:" Foreground="White" FontWeight = " DemiBold" FontSize="20"
                    Margin = "-130, -250, 00, 0" >
             
         </TextBlock>
-        <!-- This is the textblock where the DOB will be displayed-->
+        ~1~ This is the textblock where the DOB will be displayed@1@
         <TextBlock Name = "Dob" Width = "100" Height = "35" Text="DOB" Foreground="White" FontWeight = "DemiBold" FontSize="20"
                    Margin = "100, -250, 00, 0" >
             
-        </TextBlock>
+        </TextBlock>-->
         <!-- "Add Pet Activity" "Add Pet Treatment" "View Pet Treatment"-->
         <!-- This the "Add Pet Treatment" button control-->
         <Button 

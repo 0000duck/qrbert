@@ -1,29 +1,40 @@
-using System;
+using System.Data;
+using System.Data.SqlClient;
 using System.Windows;
-using Aspose.Pdf;
-using Aspose.Pdf.Text;
-using BitMiracle.Docotic.Pdf;
+using System.Windows.Controls;
 
 namespace QRbert;
 
-public partial class StaffNeglectedAnimals : Window
+public partial class StaffNeglectedAnimals
 {
     public StaffNeglectedAnimals()
     {
-        
         InitializeComponent();
-        Switcher.PetId =
-            Int32.Parse(Switcher.VerifyRole(
-                "Select PetID From QRbertDB.QRbertTables.Pet_Activity where Activity_Date >= (SYSDATETIME() + 24)"));
-        PetIdTxtBl.Text = Switcher.PetId.ToString();
-        PetNameTxtBl.Text =
-            Switcher.VerifyRole("Select PetName from QRbertDB.QRbertTables.Pet where PetID = '" + Switcher.PetId + "'");
-        PetTypeTxtBl.Text =
-            Switcher.VerifyRole("Select Type from QRbertDB.QRbertTables.Pet where PetID = '" + Switcher.PetId + "'");
-        PetIdTxtBl.Visibility = Visibility.Visible;
-        PetNameTxtBl.Visibility = Visibility.Visible;
-        PetTypeTxtBl.Visibility = Visibility.Visible;
-        PetNeglectedChoiceRadBtn.Visibility = Visibility.Visible;
+        
+        using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
+        sqlCon.Open();
+        string query = 
+            ("Select PetName, PetID, Activity_Date from QRbertDB.QRbertTables.Pet_Activity where Activity_Date >= (SYSDATETIME() - 24) ");
+        SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+        sqlCmd.ExecuteNonQuery();
+        SqlDataAdapter adpt = new SqlDataAdapter(sqlCmd);
+        DataTable dtable = new DataTable("QRbertDB.QRbertTables.Pet_Activity");
+        adpt.Fill(dtable);
+        DataGV.ItemsSource = dtable.DefaultView;
+        adpt.Update(dtable);
+        
+        
+        // Switcher.PetId = Int32.Parse(Switcher.VerifyRole("Select PetID From QRbertDB.QRbertTables.Pet_Activity where Activity_Date >= (SYSDATETIME() + 24)"));
+        // PetIdTxtBl.Text = Switcher.PetId.ToString();
+        // PetNameTxtBl.Text =
+        //     Switcher.VerifyRole("Select PetName from QRbertDB.QRbertTables.Pet where PetID = '" + Switcher.PetId + "'");
+        // PetTypeTxtBl.Text =
+        //     Switcher.VerifyRole("Select Type from QRbertDB.QRbertTables.Pet where PetID = '" + Switcher.PetId + "'");
+        // PetIdTxtBl.Visibility = Visibility.Visible;
+        // PetNameTxtBl.Visibility = Visibility.Visible;
+        // PetTypeTxtBl.Visibility = Visibility.Visible;
+        
+        // PetNeglectedChoiceRadBtn.Visibility = Visibility.Visible;
     }
     
     /// <summary>
@@ -136,7 +147,7 @@ public partial class StaffNeglectedAnimals : Window
     /// <param name="e"></param>
     private void AssignPetToVolunteer(object sender, RoutedEventArgs e)
     {
-        if (AssignPetToVolunteerBtn.IsVisible)
+        /*if (AssignPetToVolunteerBtn.IsVisible)
         {
             // Reset all text blocks to empty and hide them
             MessageBox.Show("Assigned to volunteer!");
@@ -152,7 +163,9 @@ public partial class StaffNeglectedAnimals : Window
             Switcher.IsPetNeglected = false;
             Switcher.StaffPageSwitch(new TrackActiveVolunteers());
             this.Close();
-        }
+        }*/
+        MessageBox.Show("Assigned to Volunteer!");
+        DataGV.SelectedCells.Clear();
     }
 
     /// <summary>
@@ -160,11 +173,40 @@ public partial class StaffNeglectedAnimals : Window
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void IsPetRadBtnChecked(object sender, RoutedEventArgs e)
+    // private void IsPetRadBtnChecked(object sender, RoutedEventArgs e)
+    // {
+    //     if (PetNeglectedChoiceRadBtn.IsChecked == true)
+    //     {
+    //         AssignPetToVolunteerBtn.Visibility = Visibility.Visible;
+    //     }
+    // }
+
+    /// <summary>
+    /// Handles selected items in DataGrid
+    /// If more than one item is selected, will show a message box that can only assign one pet at a time
+    /// Deselects pets for them
+    /// Makes Assign to Volunteer btn Visible to assign the pet
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void DataGV_OnSelected(object sender, RoutedEventArgs e)
     {
-        if (PetNeglectedChoiceRadBtn.IsChecked == true)
+        
+    }
+
+    private void DataGV_OnSelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+    {
+        AssignPetToVolunteerBtn.Visibility = Visibility.Visible;
+        // If more than one item is selected, present message and deselect items
+        if (DataGV.SelectedItems.Count > 1)
         {
-            AssignPetToVolunteerBtn.Visibility = Visibility.Visible;
+            MessageBox.Show("Please select one Pet at a time.");
+            DataGV.UnselectAll();
+        }
+        // If no items are selected, hide button
+        if (DataGV.SelectedItems.Count == 0)
+        {
+            AssignPetToVolunteerBtn.Visibility = Visibility.Hidden;
         }
     }
 }

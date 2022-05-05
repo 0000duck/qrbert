@@ -176,26 +176,36 @@
                     Margin = "0, -350, 0, 0">
         </StackPanel>
         <TextBlock 
-            Width = "400" 
+            Width = "365" 
             Height = "60" 
-            Text="Neglected Animals: " 
+            Text="Neglected Animals" 
             Foreground="White" 
             FontWeight = "Bold" 
             FontSize="40"
-            Margin = "-50, -550, -100, 10" >
-        </TextBlock>
+            Margin = "-0, -550, -0, 10" >
+        </TextBlock><!--
         <RadioButton
             Name="PetNeglectedChoiceRadBtn"
             Height="25"
             Width="25"
             Background="Transparent"
             Foreground="White"
-            Visibility="Hidden"
+            Visibility="Visible"
             IsChecked="False"
             Checked="IsPetRadBtnChecked"
             Margin="-450,-375,0,0">
-        </RadioButton>
-        <TextBlock
+        </RadioButton>-->
+        <DataGrid
+            AutoGenerateColumns="True"
+            Height="150" HorizontalAlignment="Center" 
+            Margin="0,-350,0,0"   
+            Name="DataGV" 
+            VerticalAlignment="Center" 
+            Width="450"
+            Background="White"
+            SelectedCellsChanged="DataGV_OnSelectedCellsChanged">
+        </DataGrid>
+        <!--<TextBlock
             Name="PetIdLabel"
             Text="Pet ID:"
             Width="100"
@@ -257,7 +267,7 @@
             FontSize="25"
             Visibility="Hidden"
             Margin="325, -375,0,0">
-        </TextBlock>
+        </TextBlock>-->
         <Button
             Name="AssignPetToVolunteerBtn"
             Content="Assign Pet"

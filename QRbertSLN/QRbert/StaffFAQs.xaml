@@ -456,6 +456,7 @@
                 FontSize="16"
                 FontWeight="Normal"
                 ClickMode="Press"
+                Click="TermsOfPrivacyBtn_Click"
                 Margin="-400,-50,0,0"
             >
             </Button>
