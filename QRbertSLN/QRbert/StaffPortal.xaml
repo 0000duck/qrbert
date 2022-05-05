@@ -141,7 +141,6 @@
                 <MenuItem 
                     Header="Rounding Rule"
                     Click="RoundingRulesBtn_Click"/>
-                <MenuItem Header="Exit"/>
             </MenuItem>
         </Menu>
         <!-- This is the Volunteer menu available only to staff users -->
