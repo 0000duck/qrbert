@@ -1,11 +1,11 @@
-<Window x:Class="QRbert.StaffTermsofPrivacy"
+<Window x:Class="QRbert.VolunteerTermsOfPrivacy"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:QRbert"
         mc:Ignorable="d"
-        Title="StaffTermsofPrivacy" Height="600" Width="800">
+        Title="VolunteerTermsOfPrivacy" Height="600" Width="800">
     <Window.Resources>
     <!-- This the template for the Menus; It creates the menu with a white background and black bold letters;
     allows the user to hover over the menu and display the menus as well as change the letters to orange-->
@@ -119,14 +119,9 @@
             bell icon at the top right-->
         <StackPanel Background="Transparent">
             <StackPanel>
-                <Image Width="40" Height="40" Source="Images/Notification.png" 
-                       Name="AlertStaffBellIcon"
-                       Visibility="Hidden"
-                       Margin="650,50,0,0"
-                       MouseDown="NotificationBtn_Click"/>
                 <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
-                       Margin="-600,-150,0,-100"
-                       MouseDown="HomeStaffPortalBtn_Click"/>
+                       Margin="-600,0,0,-100"
+                       MouseDown="HomeVolunteerPortalBtn_Click"/>
                 <Image 
                     Width="800" 
                     Height="450" 
@@ -159,10 +154,10 @@
                 />
             </StackPanel>
             
-            <!-- This label displays the text Terms of Privacy Notice-->
+            <!-- This label displays the text Terms and Privacy Notice-->
             <Label 
                 Content="Terms and Privacy Notice" 
-                Margin="0,-3650,0,-400"
+                Margin="0,-3500,0,-400"
                 Foreground = "#FF9100" 
                 FontSize="45" 
                 FontWeight="Bold" 
@@ -170,64 +165,42 @@
                 Width="550"
             />
             <!-- This is the Timesheet menu-->
-        <Menu Width="100" Height="22" Margin="300, -1675, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem Header="Timesheet" Name="mm" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem 
-                    Header="Lock Timesheet"
-                    Click="LockTimesheetBtn_Click"/>
-                <MenuItem 
-                    Header="Rounding Rule"
-                    Click="RoundingRulesBtn_Click"/>
-                <MenuItem Header="Exit"/>
-            </MenuItem>
-        </Menu>
-        <!-- This is the Volunteer menu available only to staff users -->
-        <Menu Width="100" Height="22" Margin="400, -1675, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem Header="Volunteer" Name="mm1" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem 
-                    Header="Track Active"
-                    Click="TrackActiveVolunteersBtn_Click"/>
-                <MenuItem 
-                    Header="Staff Search"
-                    Click="StaffSearchBtn_Click"/>
-            </MenuItem>
-        </Menu>
-        <!-- This is the Animal menu for staff users ; add Match volunteers with pets-->
-        <Menu Width="100" Height="22" Margin="500, -1675, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem 
-                    Header="Select a Pet"
-                    Click="ScanPetQRCodeRedirectBtn_Click"/>
-                <MenuItem 
-                    Header="Remove Animal"
-                    Click="ScanPetQRCodeRedirectBtn_Click"
-                    Name="RemoveAnimal"/>
-                <MenuItem 
-                    Header="Pet Reports"
-                    Click="PetReportsBtn_Click"
-                    />
-                
-            </MenuItem>
-        </Menu>
-        <!-- This is the My Account menu for staff-->
-        <Menu Width="100" Height="22" Margin="600, -1675, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
-                <MenuItem 
-                    Header="Staff Account"
-                    Click="StaffMyAccountBtn_Click"/>
-                <MenuItem 
-                    Header="Log out"
-                    Click="LogOutBtn_Click"
-                />
-            </MenuItem>
-        </Menu>
+            <Menu Width="100" Height="22" Margin="300, -1600, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
+                <MenuItem Header="Timesheet" Name="mm" Template="{DynamicResource MenuItemControlTemplate1}">
+                    <MenuItem 
+                        Header="View Timesheet"
+                        Click="ViewTimesheetBtn_Click"/>
+                </MenuItem>
+            </Menu>
+            <!-- This is the Animal menu for a volunteer-->
+            <Menu Width="100" Height="22" Margin="450, -1600, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
+                <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
+                    <MenuItem 
+                        Header="Select a Pet"
+                        Click="ScanPetQRCodeBtn_Click"/>
+                    <MenuItem 
+                        Header="Pet Report"
+                        Click="PetReportsBtn_Click"/>
+                </MenuItem>
+            </Menu>
+            <!-- This is the My Account menu for a volunteer-->
+            <Menu Width="100" Height="22" Margin="600, -1600, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
+                <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
+                    <MenuItem 
+                        Header="Volunteer Account"
+                        Click="VolunteerMyAcctBtn_Click"/>
+                    <MenuItem 
+                        Header="Log out"
+                        Click="LogOutBtn_Click"/>
+                </MenuItem>
+            </Menu>
             <!-- This StackPanel holds all the text blocks that contain the terms-->
         <StackPanel 
             Background="#FF9100" 
             Width="600" 
             Height="1500" 
             Opacity="0.85" 
-            Margin = "0, -1675, 0, 0">
+            Margin = "0, -1550, 0, 0">
             <TextBlock Height = "200" Width = "600" Margin="25,25,0,0" 
                        Foreground="White" FontSize="14" FontWeight="Normal">
                 QRbert provides a service intended for animal shelters and its volunteers. It allows them  
@@ -392,8 +365,8 @@
                 Width="200" 
                 Height="150" 
                 Source= "Images/Qbert_logo_orange.png" 
-                Margin = "0, -100, 0, 0"
-                MouseDown="HomeStaffPortalBtn_Click"
+                Margin = "0, -50, 0, 0"
+                MouseDown="HomeVolunteerPortalBtn_Click"
                 
             />
             
@@ -408,7 +381,7 @@
                 FontSize="16"
                 FontWeight="Normal"
                 ClickMode="Press"
-                Margin="0,-50,0,0"
+                Margin="00,-50,0,0"
             >
             </Button>
         </StackPanel>
