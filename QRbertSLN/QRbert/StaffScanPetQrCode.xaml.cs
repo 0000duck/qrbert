@@ -1,4 +1,3 @@
-using System.Data.SqlClient;
 using System.Windows;
 
 namespace QRbert;
@@ -9,7 +8,10 @@ public partial class StaffScanPetQrCode : Window
     {
         InitializeComponent();
     }
-    
+    private void NotificationBtn_Click(object sender, RoutedEventArgs e)
+    {
+        
+    }
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
     /// Since the portal and the MyAccount are both pages, they should be easily navigable
@@ -71,7 +73,7 @@ public partial class StaffScanPetQrCode : Window
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void LockTimesheetsBtn_Click(object sender, RoutedEventArgs e)
+    private void LockTimesheetBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffLockTimesheet());
         this.Close();
@@ -89,16 +91,30 @@ public partial class StaffScanPetQrCode : Window
     }
     
     /// <summary>
+    /// Redirects user to the FAQ window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffFAQs());
+        Close();
+    }
+    
+    /// <summary>
     /// Redirects user to scan pet's QR Code in PetQrcodeScanner window via button click
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
     private void ScanPetQRCodeBtn_Click(object sender, RoutedEventArgs e)
     {
+        // Opens camera
         QRCodeScanner.DecodeQRCode();
-        string petId = QRCodeScanner.result;
+        // Parses decoded result to integer
+        int petId = int.Parse(QRCodeScanner.result);
+        // Queries DB to find PetID and verify it
         string msg = 
-            verifyRole("SELECT count(*) From QRbertDB.QRbertTables.Pet where PetID = '" + petId + "'");
+            Switcher.VerifyRole("SELECT count(*) From QRbertDB.QRbertTables.Pet where PetID = '" + petId + "'");
         // Scans the QR Code and tries to get the amount of records in the database for that string
         // If there were no results
         if (int.Parse(msg) == 0)
@@ -108,22 +124,32 @@ public partial class StaffScanPetQrCode : Window
         // At least 1 result
         else
         {
-            Switcher.StaffPageSwitch(new StaffMyPetPage());
-            this.Close();
+            if (Switcher.RemoveAnimal)
+            {
+                Switcher.VerifyRole("Delete From QRbertDB.QRbertTables.Pet where PetID = '" + petId + "'");
+                MessageBox.Show("Pet successfully removed.");
+                Switcher.RedirectStaffPortal();
+                this.Close();
+            }
+            else
+            {
+                // Saves PetID to active session
+                Switcher.PetId = petId;
+                Switcher.StaffPageSwitch(new StaffMyPets());
+                this.Close();
+            }
         }
     }
     
     /// <summary>
-    /// Verifies a string via an SQL connection to our database
+    /// Redirects user to Staff Terms of Privacy via btn click
     /// </summary>
-    /// <param name="s"></param>
-    /// <returns></returns>
-    private string verifyRole(string s)
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void TermsOfPrivacyBtn_Click(object sender, RoutedEventArgs e)
     {
-        using SqlConnection sqlCon = new SqlConnection(Switcher.connectionString);
-        sqlCon.Open();
-        SqlCommand command = new SqlCommand(s, sqlCon);
-        string query = command.ExecuteScalar().ToString();
-        return query;
+        Switcher.StaffPageSwitch(new StaffTermsofPrivacy());
+        Close();
     }
+
 }

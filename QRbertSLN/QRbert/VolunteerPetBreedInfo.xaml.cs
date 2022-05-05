@@ -2,9 +2,9 @@
 
 namespace QRbert;
 
-public partial class VolunteerPetReport : Window
+public partial class VolunteerPetBreedInfo : Window
 {
-    public VolunteerPetReport()
+    public VolunteerPetBreedInfo()
     {
         InitializeComponent();
     }
@@ -58,20 +58,31 @@ public partial class VolunteerPetReport : Window
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void ViewPetReportBtn_Click(object sender, RoutedEventArgs e)
+    private void ScanPetQRCodeBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
+        this.Close();
+    }
+
+    /// <summary>
+    /// Redirects user to pet reports window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void PetReportsBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
         this.Close();
     }
     
     /// <summary>
-    /// Redirects user to scan pet qr code window via button click
+    /// Redirects user to the FAQ window via button click
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void ScanPetQRCodeBtn_Click(object sender, RoutedEventArgs e)
+    private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
-        this.Close();
+        Switcher.VolunteerPortalSwitch(new VolunteerFAQs());
+        Close();
     }
 }

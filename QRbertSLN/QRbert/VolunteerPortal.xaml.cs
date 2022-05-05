@@ -74,7 +74,18 @@ public partial class VolunteerPortal : Window
     /// <param name="e"></param>
     private void PetReportsBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.VolunteerPortalSwitch(new VolunteerPetReport());
+        Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
         this.Close();
+    }
+    
+    /// <summary>
+    /// Redirects user to the FAQ window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.VolunteerPortalSwitch(new VolunteerFAQs());
+        Close();
     }
 }

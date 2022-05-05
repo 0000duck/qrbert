@@ -1,14 +1,52 @@
+﻿using System;
+using System.Data;
 using System.Windows;
+using System.Data.SqlClient;
 
 namespace QRbert;
 
-public partial class StaffPetReportViewer : Window
+public partial class StaffTrackAnimalActivity : Window 
 {
-    public StaffPetReportViewer()
+    public StaffTrackAnimalActivity()
     {
         InitializeComponent();
     }
-    
+
+    private void PetActivityBtn(object sender, EventArgs e)
+    {
+        using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
+        sqlCon.Open(); 
+        // SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
+
+        string query =  ("Select * From QRbertDB.QRbertTables.Pet_Activity Where PetName = '" + PetNameTxt.Text + "'");
+        //select * from QRbertTables.Pet_Activity where PetName = 'Lily';
+        SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+        sqlCmd.ExecuteNonQuery();
+
+        SqlDataAdapter adpt = new SqlDataAdapter(sqlCmd);
+        DataTable dtable = new DataTable("QRbertDB.QRbertTables.Pet_Activity");
+
+        adpt.Fill(dtable);
+        DataGV.ItemsSource = dtable.DefaultView;
+        adpt.Update(dtable);
+    }
+    /// <summary>
+    /// If the Icon is not visible, method does nothing
+    /// Else redirects user to Staff Neglected Animals page and closes portal 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void NotificationBtn_Click(object sender, RoutedEventArgs e)
+    {
+        if (AlertStaffBellIcon.IsVisible) 
+        {
+            // At least one Pet is Neglected
+            // Means that Switcher.IsPetNeglected = true
+            Switcher.StaffPageSwitch(new StaffNeglectedAnimals());
+            this.Close();
+        }
+    }
+
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
     /// Since the portal and the MyAccount are both pages, they should be easily navigable
@@ -18,6 +56,7 @@ public partial class StaffPetReportViewer : Window
     private void StaffMyAccountBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffMyAccount());
+        this.Close();
     }
 
     /// <summary>
@@ -30,7 +69,7 @@ public partial class StaffPetReportViewer : Window
         Switcher.LogOutSwitch();
         this.Close();
     }
-
+    
     /// <summary>
     /// Redirects user to home page - staff portal via QRbert image click
     /// </summary>
@@ -41,7 +80,7 @@ public partial class StaffPetReportViewer : Window
         Switcher.RedirectStaffPortal();
         this.Close();
     }
-    
+
     /// <summary>
     /// Redirects user to scan pet's QR Code in PetQrcodeScanner window via button click
     /// </summary>
@@ -49,6 +88,10 @@ public partial class StaffPetReportViewer : Window
     /// <param name="e"></param>
     private void ScanPetQRCodeRedirectBtn_Click(object sender, RoutedEventArgs e)
     {
+        if (Equals(RemoveAnimal.Header, "RemoveAnimal"))
+        {
+            Switcher.RemoveAnimal = true;
+        }
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         this.Close();
     }
@@ -91,7 +134,7 @@ public partial class StaffPetReportViewer : Window
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void LockTimesheetsBtn_Click(object sender, RoutedEventArgs e)
+    private void LockTimesheetBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffLockTimesheet());
         this.Close();
@@ -106,5 +149,16 @@ public partial class StaffPetReportViewer : Window
     {
         Switcher.StaffPageSwitch(new StaffRoundingRules());
         this.Close();
+    }
+    
+    /// <summary>
+    /// Redirects user to the FAQ window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffFAQs());
+        Close();
     }
 }

@@ -1,0 +1,389 @@
+<Window x:Class="QRbert.VolunteerTermsOfPrivacy"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:QRbert"
+        mc:Ignorable="d"
+        Title="VolunteerTermsOfPrivacy" Height="600" Width="800">
+    <Window.Resources>
+    <!-- This the template for the Menus; It creates the menu with a white background and black bold letters;
+    allows the user to hover over the menu and display the menus as well as change the letters to orange-->
+        <LinearGradientBrush x:Key="DarkBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="White" Offset="0.01"/>
+                    <GradientStop Color="White" Offset="0.05"/>
+                    <GradientStop Color="White" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="Clicked" StartPoint="0.5,0" EndPoint="0.5,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="White" Offset="0.0"/>
+                    <GradientStop Color="White" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+
+        <Style x:Key="{x:Type Menu}" TargetType="Menu">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value = "Bold"/>
+            <Setter Property= "FontSize" Value="15"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Menu">
+                        <Border x:Name="MainMenu" Background="White">
+                            <StackPanel ClipToBounds="True" Orientation="Horizontal" IsItemsHost="True"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="MenuItemControlTemplate1" TargetType="{x:Type MenuItem}">
+            <Border x:Name="templateRoot" 
+                    BorderBrush="White" 
+                    CornerRadius="3" 
+                    BorderThickness="1" 
+                    Background="{TemplateBinding Background}" 
+                    SnapsToDevicePixels="True">
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <ContentPresenter ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Grid.Column="1" ContentStringFormat="{TemplateBinding HeaderStringFormat}" ContentSource="Header" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                    <Popup x:Name="PART_Popup"  AllowsTransparency="True" Focusable="False" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" Placement="Bottom">
+                        <Border x:Name="SubMenuBorder" BorderBrush="White" BorderThickness="1" Background="White" Padding="2">
+                            <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
+                                <Grid RenderOptions.ClearTypeHint="Enabled">
+                                    <Canvas HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
+                                        <Rectangle x:Name="OpaqueRect" Fill="{Binding Background, ElementName=SubMenuBorder}" Height="{Binding ActualHeight, ElementName=SubMenuBorder}" Width="{Binding ActualWidth, ElementName=SubMenuBorder}"/>
+                                    </Canvas>
+                                    <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Cycle" Grid.IsSharedSizeScope="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" KeyboardNavigation.TabNavigation="Cycle"/>
+                                </Grid>
+                            </ScrollViewer>
+                        </Border>
+                    </Popup>
+                </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsSuspendingPopupAnimation" Value="True">
+                    <Setter Property="PopupAnimation" TargetName="PART_Popup" Value="None"/>
+                </Trigger>
+
+                <Trigger Property="IsHighlighted" Value="True">
+                    <Setter Property="Background" TargetName="templateRoot" Value="{StaticResource DarkBrush}"/>
+                    <Setter Property="BorderBrush" TargetName="templateRoot" Value="White"/>
+                    <Setter Property="BorderThickness" TargetName="templateRoot" Value="1"></Setter>
+                </Trigger>
+
+                <Trigger Property="CanContentScroll" SourceName="SubMenuScrollViewer" Value="False">
+                    <Setter Property="Canvas.Top" TargetName="OpaqueRect" Value="{Binding VerticalOffset, ElementName=SubMenuScrollViewer}"/>
+                    <Setter Property="Canvas.Left" TargetName="OpaqueRect" Value="{Binding HorizontalOffset, ElementName=SubMenuScrollViewer}"/>
+                </Trigger>
+                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                    <Setter TargetName="templateRoot" Property="Background" Value="{StaticResource Clicked}" />
+                    <Setter Property="Header" Value="Test" />
+                    <Setter Property="BorderBrush" Value="White"></Setter>
+                    <Setter Property="BorderThickness" Value="1"></Setter>
+
+                    <!-- This is the trigger that tells the program to display the menu when the mouse hovers over it
+                        as well change the black letters to orange-->
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True" >
+                    <Setter Property="IsOpen" TargetName="PART_Popup" Value="True"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="Foreground" Value="#FF9100"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+    <!-- This the end of the binding menu template -->
+    <!--  -->
+    <!-- This the main stack panel containing all the controls on the entire page -->
+<!-- ScrollViewer is used here to make the window scrollable-->
+    <ScrollViewer 
+        HorizontalScrollBarVisibility = "Auto"
+        VerticalScrollBarVisibility="Auto"
+        >
+        <!-- This StackPanel holds all the 5 pets background, Qrbert logo button at the top left, and the notification
+            bell icon at the top right-->
+        <StackPanel Background="Transparent">
+            <StackPanel>
+                <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
+                       Margin="-600,0,0,-100"
+                       MouseDown="HomeVolunteerPortalBtn_Click"/>
+                <Image 
+                    Width="800" 
+                    Height="450" 
+                    Source="Images/petsBackground.png" 
+                    Margin="0,0,0,0"
+                />
+                <Image 
+                    Width="800" 
+                    Height="450" 
+                    Source="Images/petsBackground.png" 
+                    Margin="0,-150,0,0"
+                />
+                <Image 
+                    Width="800" 
+                    Height="450" 
+                    Source="Images/petsBackground.png" 
+                    Margin="0,-150,0,0"
+                />
+                <Image 
+                    Width="800" 
+                    Height="450" 
+                    Source="Images/petsBackground.png" 
+                    Margin="0,-150,0,0"
+                />
+                <Image 
+                    Width="800" 
+                    Height="450" 
+                    Source="Images/petsBackground.png" 
+                    Margin="0,-150,0,0"
+                />
+            </StackPanel>
+            
+            <!-- This label displays the text Terms and Privacy Notice-->
+            <Label 
+                Content="Terms and Privacy Notice" 
+                Margin="0,-3500,0,-400"
+                Foreground = "#FF9100" 
+                FontSize="45" 
+                FontWeight="Bold" 
+                Height= "70" 
+                Width="550"
+            />
+            <!-- This is the Timesheet menu-->
+            <Menu Width="100" Height="22" Margin="300, -1600, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
+                <MenuItem Header="Timesheet" Name="mm" Template="{DynamicResource MenuItemControlTemplate1}">
+                    <MenuItem 
+                        Header="View Timesheet"
+                        Click="ViewTimesheetBtn_Click"/>
+                </MenuItem>
+            </Menu>
+            <!-- This is the Animal menu for a volunteer-->
+            <Menu Width="100" Height="22" Margin="450, -1600, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
+                <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
+                    <MenuItem 
+                        Header="Select a Pet"
+                        Click="ScanPetQRCodeBtn_Click"/>
+                    <MenuItem 
+                        Header="Pet Report"
+                        Click="PetReportsBtn_Click"/>
+                </MenuItem>
+            </Menu>
+            <!-- This is the My Account menu for a volunteer-->
+            <Menu Width="100" Height="22" Margin="600, -1600, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
+                <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
+                    <MenuItem 
+                        Header="Volunteer Account"
+                        Click="VolunteerMyAcctBtn_Click"/>
+                    <MenuItem 
+                        Header="Log out"
+                        Click="LogOutBtn_Click"/>
+                </MenuItem>
+            </Menu>
+            <!-- This StackPanel holds all the text blocks that contain the terms-->
+        <StackPanel 
+            Background="#FF9100" 
+            Width="600" 
+            Height="1500" 
+            Opacity="0.85" 
+            Margin = "0, -1550, 0, 0">
+            <TextBlock Height = "200" Width = "600" Margin="25,25,0,0" 
+                       Foreground="White" FontSize="14" FontWeight="Normal">
+                QRbert provides a service intended for animal shelters and its volunteers. It allows them  
+                <LineBreak/>
+                to keep an organized database of their information on animals, volunteers, and staff  
+                <LineBreak/>
+                members. Volunteer users have restricted access to certain content. Users may access this 
+                <LineBreak/>
+                over the Internet on Internet-connected Windows laptops or desktops (Windows 10 must 
+                <LineBreak/>
+                be supported).You have accepted this Terms and Privacy Notice, which govern your use 
+                <LineBreak/>
+                of our service.As used in this Terms and Privacy Notice, "QRbert service", "our service" or 
+                <LineBreak/>
+                "the service" means the personalized service provided by QRbert for discovering and 
+                <LineBreak/>
+                accessing QRbert content, including all features and functionalities, our desktop 
+                <LineBreak/>
+                application, and user interfaces, as well as all content and software associated with our 
+                <LineBreak/>
+                service.
+            </TextBlock>
+            <TextBlock Height = "30" Width = "550" Margin="0,0,0,0" 
+                       Foreground="White" FontSize="18" FontWeight="Bold">
+                1. QR bert Service  
+            </TextBlock>
+            <TextBlock Height = "725" Width = "600" Margin="25,0,0,0" 
+                       Foreground="White" FontSize="14" FontWeight="Normal">
+                1.1. The QRbert service and any content accessed through our service are for your personal   
+                <LineBreak/>
+                and non-commercial use only and may not be shared with individuals beyond your  
+                <LineBreak/>
+                household. With your QRbert account we grant you a limited, non-exclusive, non-  
+                <LineBreak/>
+                transferable right to access the QRbert service and QRbert content through the service. 
+                <LineBreak/>
+                Except for the foregoing, no right, title or interest shall be transferred to you. You agree not  
+                <LineBreak/>
+                to use the service for public performances.
+                <LineBreak/>
+                1.2. You may access QRbert content primarily within the country in which you have  
+                <LineBreak/>
+                established your account and only in geographic locations where we offer our service and 
+                <LineBreak/>
+                have licensed such content. The content that may be available will vary by geographic 
+                <LineBreak/>
+                location and will change from time to time.
+                <LineBreak/>
+                1.3. The QRbert service is regularly updated. In addition, we continually test various aspects of our service, user interfaces, and availability of QRbert content. 
+                <LineBreak/>
+                of our service, user interfaces, and availability of QRbert content.
+                <LineBreak/>
+                1.4. Some QRbert content is available for download and offline viewing on certain supported  
+                <LineBreak/>
+                devices (Windows 10).
+                <LineBreak/>
+                1.5. You agree to use the QRbert service, including all features and functionalities associated  
+                <LineBreak/>
+                therewith, in accordance with all applicable laws, rules and regulations, or other restrictions 
+                <LineBreak/>
+                on use of the service or content therein. Except as explicitly authorized in this Terms and
+                <LineBreak/>
+                Privacy Notice, you agree not to archive, download, reproduce, distribute, modify, display,  
+                <LineBreak/>
+                perform, publish, license, create derivative works from, offer for sale, or use content and  
+                <LineBreak/>
+                information contained on or obtained from or through the QRbert
+                <LineBreak/>
+                service. You also agree not to circumvent, remove, alter, deactivate, degrade or thwart any  
+                <LineBreak/>
+                of the content protections in the QRbert service; decompile, reverse engineer or disassemble 
+                <LineBreak/>
+                any software or other products or processes accessible through the QRbert service; insert 
+                <LineBreak/>
+                any code or product or manipulate the content of the QRbert service in any way; or use any data
+                <LineBreak/>
+                mining, data gathering or extraction method. In addition, you agree not to upload, post,  
+                <LineBreak/>
+                e-mail or otherwise send or transmit any material designed to interrupt, destroy or limit the 
+                <LineBreak/>
+                functionality of any computer software or hardware or telecommunications equipment 
+                <LineBreak/>
+                associated with the QRbert service, including any software viruses or any other computer 
+                <LineBreak/>
+                code, files or programs. We may terminate or restrict your use of our service if you violate 
+                <LineBreak/>
+                these Terms of Privacy or are engaged in illegal or fraudulent use of the service.
+                <LineBreak/>
+                1.6. The quality of the display of the QRbert content  
+                <LineBreak/>
+                may vary from device to device, and may be affected by a variety of factors, such as your 
+                <LineBreak/>
+                location, the bandwidth available through and/or speed of your Internet connection.
+                <LineBreak/>
+                1.7. The QRbert software is developed by, or for, QRbert and may solely be used to access 
+                <LineBreak/>
+                content from QRbert through QRbert ready devices. This software may vary by device and 
+                <LineBreak/>
+                medium, and functionalities may also differ between devices. By using our service, you agree 
+                <LineBreak/>
+                to receive, without further notice or prompting, updated versions of the QRbert and related 
+                <LineBreak/>
+                third-party software. If you do not accept the foregoing terms, do not use our service.
+            </TextBlock>
+            <TextBlock Height = "30" Width = "550" Margin="0,0,0,0" 
+                       Foreground="White" FontSize="18" FontWeight="Bold">
+                2. Passwords and Account Access  
+            </TextBlock>
+            <TextBlock Height = "145" Width = "600" Margin="25,0,0,0" 
+                       Foreground="White" FontSize="14" FontWeight="Normal">
+                2.1. The member who created the QRbert account is responsible for any activity that occurs   
+                <LineBreak/>
+                through the QRbert account. To maintain control over the account and prevent anyone from   
+                <LineBreak/>
+                accessing the account (which could include information on viewing history for the account),
+                <LineBreak/>
+                the Account Owner should maintain control over the QRbert ready devices that are used to 
+                <LineBreak/>
+                access the service and not reveal the password associated to the account to anyone. You are   
+                <LineBreak/>
+                responsible for updating and maintaining the accuracy of the information you provide to us 
+                <LineBreak/>
+                relating to your account.
+                <LineBreak/>
+            </TextBlock>
+            <TextBlock Height = "30" Width = "550" Margin="0,0,0,0" 
+                       Foreground="White" FontSize="18" FontWeight="Bold">
+                3. Disclaimers of Warranties and Limitations on Liability  
+            </TextBlock>
+            <TextBlock Height = "250" Width = "600" Margin="25,0,0,0" 
+                       Foreground="White" FontSize="14" FontWeight="Normal">
+                3.1. THE QRbert SERVICE AND ALL CONTENT AND SOFTWARE ASSOCIATED THEREWITH, OR 
+                <LineBreak/>
+                ANY OTHER FEATURES OR FUNCTIONALITIES ASSOCIATED WITH THE QRbert SERVICE, ARE 
+                <LineBreak/>
+                PROVIDED "AS IS" AND "AS AVAILABLE" WITH ALL FAULTS AND WITHOUT WARRANTY OF 
+                <LineBreak/>
+                ANY KIND. QRbert DOES NOT GUARANTEE, REPRESENT. QRbert SPECIFICALLY DISCLAIMS 
+                <LineBreak/>
+                LIABILITY FOR THE USE OF APPLICATIONS, QRbert READY DEVICES, AND QRbert SOFTWARE 
+                <LineBreak/>
+                (INCLUDING THEIR CONTINUING COMPATIBILITY WITH OUR SERVICE).
+                <LineBreak/>
+                3.2. SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF CERTAIN WARRANTIES 
+                <LineBreak/>
+                OR THE LIMITATION OR EXCLUSION OF LIABILITY FOR CERTAIN TYPES OF DAMAGES. 
+                <LineBreak/>
+                THEREFORE, SOME OF THE ABOVE LIMITATIONS IN THIS SECTION MAY NOT APPLY TO YOU.
+                <LineBreak/>
+                3.3. NOTHING IN THESE TERMS OF PRIVACY SHALL AFFECT ANY NON-WAIVABLE 
+                <LineBreak/>
+                STATUTORY RIGHTS THAT APPLY TO YOU.
+            </TextBlock>
+            <TextBlock Height = "30" Width = "250" Margin="0,0,0,0" 
+                       Foreground="White" FontSize="18" FontWeight="Bold">
+                Last Updated: May 5, 2022  
+            </TextBlock>
+        </StackPanel>
+            <!-- This displays the QRbert logo to remind the user of how great the software is. It can also be used to redirect user to
+            their user portal -->
+            <Image 
+                Width="200" 
+                Height="150" 
+                Source= "Images/Qbert_logo_orange.png" 
+                Margin = "0, -50, 0, 0"
+                MouseDown="HomeVolunteerPortalBtn_Click"
+                
+            />
+            
+            <!-- Clicking this button takes you to the page where we get to promote ourselves. -->
+            <Button
+                Height="40"
+                Width = "200"
+                Content="©2022 QRbert Inc."
+                Background="Transparent"
+                Foreground="#FF9100"
+                BorderBrush="Transparent"
+                FontSize="16"
+                FontWeight="Normal"
+                ClickMode="Press"
+                Margin="00,-50,0,0"
+            >
+            </Button>
+        </StackPanel>
+    </ScrollViewer>    
+</Window>

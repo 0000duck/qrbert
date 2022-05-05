@@ -2,12 +2,12 @@ using System.Windows;
 
 namespace QRbert;
 
-public partial class StaffPetReport : Window
+public partial class StaffFAQs : Window
 {
     /// <summary>
     /// Upon loading the page, Window checks if boolean is true to turn on Bell Icon
     /// </summary>
-    public StaffPetReport()
+    public StaffFAQs()
     {
         InitializeComponent();
         if (Switcher.IsPetNeglected)
@@ -32,28 +32,7 @@ public partial class StaffPetReport : Window
             this.Close();
         }
     }
-    /// <summary>
-    /// Redirects staff to their MyAccount page via button click
-    /// Since the portal and the MyAccount are both pages, they should be easily navigable
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void StaffMyAccountBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.StaffPageSwitch(new StaffMyAccount());
-    }
-
-    /// <summary>
-    /// Logs out Staff and redirects user to the Log In page via button click
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void LogOutBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.LogOutSwitch();
-        this.Close();
-    }
-
+    
     /// <summary>
     /// Redirects user to home page - staff portal via QRbert image click
     /// </summary>
@@ -64,32 +43,44 @@ public partial class StaffPetReport : Window
         Switcher.RedirectStaffPortal();
         this.Close();
     }
-
     /// <summary>
-    /// Redirects staff user to View Pet Report window via button click and closes the current window
+    /// Redirects user to Lock Timesheet window via button click
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void StaffViewPetReportBtn_Click(object sender, RoutedEventArgs e)
+    private void LockTimesheetBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.StaffPageSwitch(new StaffMyPets());
+        Switcher.StaffPageSwitch(new StaffLockTimesheet());
         this.Close();
     }
-
     /// <summary>
-    /// Redirects staff user to Create Pet Report window via button click and closes the current window
+    /// Redirects user to Rounding rules window via button click 
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void StaffCreatePetReportBtn_Click(object sender, RoutedEventArgs e)
+    private void RoundingRulesBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.StaffPageSwitch(new StaffCreatePetReport());
+        Switcher.StaffPageSwitch(new StaffRoundingRules());
         this.Close();
     }
-
-    private void StaffEditPetReportBtn_Click(object sennder, RoutedEventArgs e)
+    /// <summary>
+    /// Redirects user to Track Active Volunteers window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void TrackActiveVolunteersBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.StaffPageSwitch(new StaffEditPetReport());
+        Switcher.StaffPageSwitch(new TrackActiveVolunteers());
+        this.Close();
+    }
+    /// <summary>
+    /// Redirects user to Staff Search window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void StaffSearchBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffSearch());
         this.Close();
     }
     
@@ -107,62 +98,39 @@ public partial class StaffPetReport : Window
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         this.Close();
     }
-
     /// <summary>
-    /// Redirects user to Track Active Volunteers window via button click
+    /// Redirects user to Pet Reports window via button click
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void TrackActiveVolunteersBtn_Click(object sender, RoutedEventArgs e)
+    private void PetReportsBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.StaffPageSwitch(new TrackActiveVolunteers());
+        Switcher.StaffPageSwitch(new StaffPetReport());
+        this.Close();
+    }
+    /// <summary>
+    /// Redirects staff to their MyAccount page via button click
+    /// Since the portal and the MyAccount are both pages, they should be easily navigable
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void StaffMyAccountBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffMyAccount());
         this.Close();
     }
 
     /// <summary>
-    /// Redirects user to Staff Search window via button click
+    /// Logs out Staff and redirects user to the Log In page via button click
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void StaffSearchBtn_Click(object sender, RoutedEventArgs e)
+    private void LogOutBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.StaffPageSwitch(new StaffSearch());
+        Switcher.LogOutSwitch();
         this.Close();
     }
 
-    /// <summary>
-    /// Redirects user to Lock Timesheet window via button click
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void LockTimesheetBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.StaffPageSwitch(new StaffLockTimesheet());
-        this.Close();
-    }
-
-    /// <summary>
-    /// Redirects user to Rounding rules window via button click 
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void RoundingRulesBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.StaffPageSwitch(new StaffRoundingRules());
-        this.Close();
-    }
-    
-    /// <summary>
-    /// Redirects user to the FAQ window via button click
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.StaffPageSwitch(new StaffFAQs());
-        Close();
-    }
-    
     /// <summary>
     /// Redirects user to Staff Terms of Privacy via btn click
     /// </summary>

@@ -1,28 +1,23 @@
-﻿using System.Windows;
-using Aspose.Pdf;
-using Aspose.Pdf.Text;
-using BitMiracle.Docotic.Pdf;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows;
 
 namespace QRbert;
 
-/*
- * Window for Staff - To Track Active Volunteers
- */
-
-public partial class TrackActiveVolunteers : Window
+public partial class StaffMatchVolunteerAnimals : Window
 {
-    public TrackActiveVolunteers()
+    public StaffMatchVolunteerAnimals()
     {
         InitializeComponent();
-
-        Document document = new Document();
-        //Vol1.Text = Switcher.VerifyRole("SELECT VolName FROM QRbertDB.QRberttables.Volunteers where VolID = 
-        VolFirst1.Text = Switcher.VerifyRole(
-            ("SELECT FirstName FROM QRbertDB.QRbertTables.Registration where Email ='" + "Bee@gmail.com" +
-             "'"));
-        VolLast1.Text = Switcher.VerifyRole(("SELECT LastName FROM QRbertDB.QRbertTables.Registration where Email ='" +
-                                             "Bee@gmail.com" +
-                                             "'"));
+        // Sets content of all volunteers to their respective textboxes
+        // I set all textboxes to be read only
+        // The volunteers that don't have another pet assigned have those second pet textboxes hidden
+        /*VolFirst1.Text = Switcher.VerifyRole
+        ("SELECT FirstName FROM QRbertDB.QRbertTables.Registration where Email ='" + "Bee@gmail.com" + "'");
+        VolLast1.Text = Switcher.VerifyRole
+        ("SELECT LastName FROM QRbertDB.QRbertTables.Registration where Email ='" +
+                                            "Bee@gmail.com" +
+                                            "'");
         Id1.Text = "600";
 
         VolFirst2.Text = Switcher.VerifyRole(
@@ -56,65 +51,86 @@ public partial class TrackActiveVolunteers : Window
                                              "'"));
         Id5.Text = "604";
 
+        // Sets the Pet textboxes to necessary content, mixing and matching with matched volunteers
+        V1Pet1Name.Text = Switcher.VerifyRole(
+            "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 800 + "'");
+        V1Pet1Id.Text = "800";
+        V1Pet2Name.Visibility = Visibility.Hidden;
+        V1Pet2Id.Visibility = Visibility.Hidden;
+        
+        V2Pet1Name.Text = Switcher.VerifyRole(
+                "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 801 + "'");
+        V2Pet1Id.Text = "801";
+        V2Pet2Name.Text = Switcher.VerifyRole(
+            "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 802 + "'");
+        V2Pet2Id.Text = "802";
+        
+        V3Pet1Name.Text = Switcher.VerifyRole(
+            "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 803 + "'");
+        V3Pet1Id.Text = "803";
+        V3Pet2Name.Text = Switcher.VerifyRole(
+            "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 800 + "'");
+        V3Pet2Id.Text = "800";
+        
+        V4Pet1Name.Text = Switcher.VerifyRole(
+            "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 801 + "'");
+        V4Pet1Id.Text = "801";
+        V4Pet2Name.Visibility = Visibility.Hidden;
+        V4Pet2Id.Visibility = Visibility.Hidden;
+        
+        V5Pet1Name.Text = Switcher.VerifyRole(
+            "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 802 + "'");
+        V5Pet1Id.Text = "802";
+        V5Pet2Name.Text = Switcher.VerifyRole(
+            "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 803 + "'");
+        V5Pet2Id.Text = "803";*/
 
-// Add page
-        Aspose.Pdf.Page page = document.Pages.Add();
-
-// Add text to new page
-
-        TextFragment textFragment = new TextFragment("Hello World!");
-        textFragment.TextState.FontSize = 120;
-
-        Table table = new Table();
-
-        table.ColumnAdjustment = ColumnAdjustment.AutoFitToWindow;
-        // Add row to table
-        Aspose.Pdf.Row header = table.Rows.Add();
-        // Add table cells
-        header.Cells.Add("User ID");
-        header.Cells.Add("First Name");
-        header.Cells.Add("Last Name");
-        Row header2 = table.Rows.Add();
-        header2.Cells.Add("      ");
-        Row header3 = table.Rows.Add();
-        header3.Cells.Add("      ");
-
-
-        Table timeTable = new Table();
-        timeTable.ColumnWidths = "70 2cm";
-        //timeTable.ColumnAdjustment = ColumnAdjustment.AutoFitToWindow;
-        //Aspose.Pdf.Row timeRows = timeTable.Rows.Add();
-
-
-
-        for (int row_count = 1; row_count < 3; row_count++)
+        if (Switcher.IsPetNeglected)
         {
-            // Add row to table
-            Aspose.Pdf.Row row = timeTable.Rows.Add();
-            // Add table cells
-            row.Cells.Add("100");
-            row.Cells.Add("Some");
-            row.Cells.Add("Body");
+            AlertStaffBellIcon.Visibility = Visibility.Visible;
         }
+        
+        // Populate the volunteer table
+        using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
+        sqlCon.Open();
+        string query = 
+            ("Select FirstName, LastName from QRbertDB.QRbertTables.Registration where [Faculty-Role] = 'Volunteer'");
+        SqlCommand sqlCmdVolunteers = new SqlCommand(query, sqlCon);
+        sqlCmdVolunteers.ExecuteNonQuery();
+        SqlDataAdapter adpt = new SqlDataAdapter(sqlCmdVolunteers);
+        DataTable dtable = new DataTable("VolunteerNames");
+        adpt.Fill(dtable);
+        VolunteerNames.ItemsSource = dtable.DefaultView;
+        adpt.Update(dtable);
 
-        page.Paragraphs.Add(table);
-        page.Paragraphs.Add(timeTable);
-        page.PageInfo.IsLandscape = true;
-
-
-// Save PDF 
-        document.Save("activeVolunteerDocument.pdf");
-        PdfDocument pdf = new PdfDocument("activeVolunteerDocument.pdf");
-        PdfDrawOptions options = PdfDrawOptions.CreateZoom(150);
-        options.BackgroundColor = new PdfRgbColor(255, 255, 255); // white background, transparent by default
-        //options.Format = PdfDrawFormat.Jpeg;
-        PdfPage page2 = pdf.Pages[0];
-        PdfBox cropBoxBefore = page2.CropBox;
-
-        //page2.CropBox = new PdfBox(0, cropBoxBefore.Height - 256, 256, cropBoxBefore.Height);
-        pdf.Pages[0].Save("activeVolunteers.jpg", options);
-
-        // Should populate a window with the table listing once window loads
+        // Populate the pets table
+        string query2 = 
+            ("Select PetID, PetName from QRbertDB.QRbertTables.Pet where PetID >= '800'");
+        SqlCommand sqlCmdPets = new SqlCommand(query, sqlCon);
+        sqlCmdVolunteers.ExecuteNonQuery();
+        SqlDataAdapter adpt2 = new SqlDataAdapter(sqlCmdPets);
+        DataTable dtable2 = new DataTable("VolunteerNames");
+        adpt2.Fill(dtable2);
+        PetDataGrid.ItemsSource = dtable2.DefaultView;
+        adpt.Update(dtable2);
+        sqlCon.Close();
+    }
+    
+    /// <summary>
+    /// If the Icon is not visible, method does nothing
+    /// Else redirects user to Staff Neglected Animals page and closes portal 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void NotificationBtn_Click(object sender, RoutedEventArgs e)
+    {
+        if (AlertStaffBellIcon.IsVisible) 
+        {
+            // At least one Pet is Neglected
+            // Means that Switcher.IsPetNeglected = true
+            Switcher.StaffPageSwitch(new StaffNeglectedAnimals());
+            this.Close();
+        }
     }
 
     /// <summary>
@@ -174,23 +190,6 @@ public partial class TrackActiveVolunteers : Window
     }
 
     /// <summary>
-    /// If the Icon is not visible, method does nothing
-    /// Else redirects user to Staff Neglected Animals page and closes portal 
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void NotificationBtn_Click(object sender, RoutedEventArgs e)
-    {
-        if (AlertStaffBellIcon.IsVisible)
-        {
-            // At least one Pet is Neglected
-            // Means that Switcher.IsPetNeglected = true
-            Switcher.StaffPageSwitch(new StaffNeglectedAnimals());
-            this.Close();
-        }
-    }
-
-    /// <summary>
     /// Redirects user to Staff Search window via button click
     /// </summary>
     /// <param name="sender"></param>
@@ -232,23 +231,5 @@ public partial class TrackActiveVolunteers : Window
     {
         Switcher.StaffPageSwitch(new StaffFAQs());
         Close();
-
-        
     }
-    private void SaveBtn_Click(object sender, RoutedEventArgs e)
-    {
-
-    }
-    
-    /// <summary>
-    /// Redirects user to Staff Terms of Privacy via btn click
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void TermsOfPrivacyBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.StaffPageSwitch(new StaffTermsofPrivacy());
-        Close();
-    }
-
 }

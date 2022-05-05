@@ -1,11 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
-using System.Windows.Threading;
-using System.Data.SqlClient;
-using OpenCVDemo;
-using OpenCvSharp;
-using Window = System.Windows.Window;
 using static QRbert.QRCodeScanner;
 
 namespace QRbert
@@ -13,7 +7,7 @@ namespace QRbert
     /// <summary>
     /// Interaction logic for LogIn_Register.xaml
     /// </summary>
-    public partial class LogIn_Register : Window
+    public partial class LogIn_Register
     {
         public LogIn_Register()
         {
@@ -32,17 +26,16 @@ namespace QRbert
         /// <param name="e"></param>
         private void SignInUserBtn_Click(object sender, RoutedEventArgs e)
         {
-
             // Takes them to the correct portal depending on the type of user
             // Given the username, Denise will query the database to retrieve the account type
             string staff = "Staff";
 
             // email and password input from the user
-            string emailInput = txtEmail.Text;
-            string pwInput = txtPassword.Text;
+            string emailInput = TxtEmail.Text;
+            string pwInput = TxtPassword.Password;
 
             // Given the username, Denise will query the database to retrieve the account type
-            string msg = verifyRole("SELECT count(*) From QRbertTables.Registration where email = '" + emailInput +
+            string msg = Switcher.VerifyRole("SELECT count(*) From QRbertDB.QRbertTables.Registration where email = '" + emailInput +
                                     "' and password ='" + pwInput + "'");
             // David will get the password salt/hash thing to validate their credentials and make sure they match
             // If statement will control whether this is correct or not
@@ -56,17 +49,22 @@ namespace QRbert
             else
             {
                 // finds a matching email and password and retrieves the faculty role to store in "msg" 
-                msg = verifyRole("Select [Faculty-Role] From QRbertTables.Registration Where email = '" + emailInput +
+                msg = Switcher.VerifyRole("Select [Faculty-Role] From QRbertDB.QRbertTables.Registration Where email = '" + emailInput +
                                  "' and password ='" + pwInput + "'");
-
+                // Staff user
                 if (string.Equals(msg, staff))
                 {
+                    // Save current user connection email for current session
+                    Switcher.CurrentSessionEmail = emailInput;
                    // if email and password match a Staff faculty role
                     Switcher.LogIn_RegisterSwitch(new StaffPortal());
                     this.Close();
                 }
+                // Volunteer user
                 else
                 {
+                    // Save current user connection email for current session
+                    Switcher.CurrentSessionEmail = emailInput;
                     // if email and password match a Volunteer faculty role
                     Switcher.LogIn_RegisterSwitch(new VolunteerPortal());
                     this.Close();
@@ -81,18 +79,10 @@ namespace QRbert
         /// <param name="e"></param>
         private void ForgotPasswordBtn_Click(object sender, RoutedEventArgs e)
         {
-            // Make a Window for this
+            Switcher.LogIn_RegisterSwitch(new UserForgotPassword());
+            Close();
         }
 
-        private string verifyRole(string s)
-        {
-            using SqlConnection sqlCon = new SqlConnection(Switcher.connectionString);
-            sqlCon.Open();
-            SqlCommand command = new SqlCommand(s, sqlCon);
-            string query = command.ExecuteScalar().ToString();
-            return query;
-        }
-    
         /// <summary>
         /// Takes user to a new window to scan their QR code via the device webcam
         /// Calls DecodeQRCode function from ScanQRCode class and verifies via a query to the database
@@ -103,34 +93,75 @@ namespace QRbert
         {
             DecodeQRCode();
 
-            // saves the result QR code string into an array QRresult
-            string[] QRresult = result.Split(' ');
-            
+            // saves the result QR code string into an array qrResult
+            string[] qrResult = result.Split(' ');
+
             // first element of the QR string is the email
-            string QRemail = QRresult[0];
+            string qrEmail = qrResult[0];
             // second element of the QR string is the password
-            string QRpwd = QRresult[1];
+            string qrPwd = qrResult[1];
 
             string staff = "Staff";
-        
-             // finds a matching email and password and retrieves the faculty role to store in "msg" 
-             string msg = verifyRole("Select [Faculty-Role] From QRbertTables.Registration Where email = '" + QRemail +
-                                     "' and password ='" + QRpwd + "'");
+            string volunteer = "Volunteer";
 
-             // string msg matches the Staff faculty role then user is redirected to staff portal
-             if (string.Equals(msg, staff))
-             {
+            // finds a matching email and password and retrieves the faculty role to store in "msg" 
+            string msg = Switcher.VerifyRole(
+                "Select [Faculty-Role] From QRbertDB.QRbertTables.Registration Where email = '" + qrEmail +
+                "' and password ='" + qrPwd + "'");
+
+            // string msg matches the Staff faculty role then user is redirected to staff portal
+            if (string.Equals(msg, staff))
+            {
+                 // Save current user connection email for current session
+                 Switcher.CurrentSessionEmail = qrEmail;
                  // if email and password match a Staff faculty role
                  Switcher.LogIn_RegisterSwitch(new StaffPortal());
                  this.Close();
-             }
+            }
+            // The connection string is closed due to time-sheets
+            else if (string.Equals(msg, "closed"))
+            {
+                MessageBox.Show("Time-sheets have been submitted. Please speak to your supervisor.");
+            }
             // if Not staff then user must be a volunteer, then redirects to volunteer portal
-             else
-             {
-                 // if email and password match a Volunteer faculty role
-                 Switcher.LogIn_RegisterSwitch(new VolunteerPortal());
-                 this.Close();
-             }
+            else if (string.Equals(msg, volunteer))
+            {
+                // Save current user connection email for current session
+                Switcher.CurrentSessionEmail = qrEmail;
+                // if email and password match a Volunteer faculty role
+                Switcher.LogIn_RegisterSwitch(new VolunteerPortal());
+                this.Close(); 
+            }
+            // User does not exist
+            else
+            {
+                 MessageBox.Show("Could not validate QR Code. " +
+                                 "Please ensure you have the correct QR Code " +
+                                 "try scanning again.");
+            }
+        }
+
+
+        //If there is text in the TextBox, the Email text goes away
+        //Returns if there is no text in the TextBox
+        private void TxtEmail_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            TxtSignInEmail.Visibility = Visibility.Visible;
+            if (TxtEmail.Text.Length > 0)
+            {
+                TxtSignInEmail.Visibility = Visibility.Hidden;
+            }
+        }
+
+        //If there is text in the PasswordBox, the Password text goes away
+        //Returns if there is no text in the PasswordBox
+        private void TxtPassword_OnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            TxtSignInPassword.Visibility = Visibility.Visible;
+            if (TxtPassword.Password.Length > 0)
+            {
+                TxtSignInPassword.Visibility = Visibility.Hidden;
+            }
         }
     }
 

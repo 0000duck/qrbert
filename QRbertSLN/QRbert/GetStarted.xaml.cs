@@ -2,7 +2,7 @@ using System.Windows;
 
 namespace QRbert;
 
-public partial class GetStarted : Window
+public partial class GetStarted
 {
     public GetStarted()
     {

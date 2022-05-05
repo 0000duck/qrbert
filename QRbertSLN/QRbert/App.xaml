@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:QRbert"
              StartupUri="GetStarted.xaml">
+
     <Application.Resources>
          <Style x:Key="RoundedButtonTemplate" TargetType="Button">
              <Setter Property="Background" Value="White" />

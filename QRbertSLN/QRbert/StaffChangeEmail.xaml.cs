@@ -1,14 +1,40 @@
+using System.Data;
+using System.Data.SqlClient;
 using System.Windows;
 
 namespace QRbert;
 
 public partial class StaffChangeEmail : Window
 {
+    /// <summary>
+    /// Upon loading the page, Window checks if boolean is true to turn on Bell Icon
+    /// </summary>
     public StaffChangeEmail()
     {
         InitializeComponent();
+        if (Switcher.IsPetNeglected)
+        {
+            AlertStaffBellIcon.Visibility = Visibility.Visible;
+        }
     }
-
+    
+    /// <summary>
+    /// If the Icon is not visible, method does nothing
+    /// Else redirects user to Staff Neglected Animals page and closes portal 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void NotificationBtn_Click(object sender, RoutedEventArgs e)
+    {
+        if (AlertStaffBellIcon.IsVisible) 
+        {
+            // At least one Pet is Neglected
+            // Means that Switcher.IsPetNeglected = true
+            Switcher.StaffPageSwitch(new StaffNeglectedAnimals());
+            this.Close();
+        }
+    }
+    
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
     /// Since the portal and the MyAccount are both pages, they should be easily navigable
@@ -50,6 +76,10 @@ public partial class StaffChangeEmail : Window
     /// <param name="e"></param>
     private void ScanPetQRCodeRedirectBtn_Click(object sender, RoutedEventArgs e)
     {
+        if (Equals(RemoveAnimal.Header, "RemoveAnimal"))
+        {
+            Switcher.RemoveAnimal = true;
+        }
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         this.Close();
     }
@@ -108,4 +138,71 @@ public partial class StaffChangeEmail : Window
         Switcher.StaffPageSwitch(new StaffRoundingRules());
         this.Close();
     }
+    
+    /// <summary>
+    /// Redirects user to the FAQ window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffFAQs());
+        Close();
+    }
+    
+    /// <summary>
+    /// Updates the user email to a new email they register and redirects them to MyAccount Page
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void SaveBtn_Click(object sender, RoutedEventArgs e)
+    {
+        // If textboxes aren't empty
+        if (NewEmailInput.Text != "" && ConfirmNewEmailInput.Text != "")
+        {
+            // If the textboxes do not contain the same email
+            if (NewEmailInput.Text != ConfirmNewEmailInput.Text)
+            {
+                NewEmailInput.Text = "";
+                ConfirmNewEmailInput.Text = "";
+                MessageBox.Show("Emails don't match, please try again.");
+            }
+            // If they do contain the same email
+            else
+            {
+                // Query the database and update email
+                using (SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString))
+                {
+                    string msg = 
+                        Switcher.VerifyRole("Select [Faculty-Role] From QRbertDB.QRbertTables.Registration Where email = '" + Switcher.CurrentSessionEmail + "'");
+                    string userType = msg;
+                    sqlCon.Open();
+                    SqlCommand sqlCmd = new SqlCommand("Update QRbertDB.QRbertTables.Registration Set Email = '" + NewEmailInput.Text + "' Where Faculty-role = '" + userType + "'", sqlCon);
+                    sqlCmd.ExecuteScalar();
+                    MessageBox.Show("Email has been updated.");
+                    Switcher.StaffPageSwitch(new StaffMyAccount());
+                    this.Close();
+                }
+            }
+        }
+        // The textboxes are empty
+        else 
+        {
+            NewEmailInput.Text = "";
+            ConfirmNewEmailInput.Text = "";
+            MessageBox.Show("One of the email fields is empty, please try again.");
+        }
+    }
+    
+    /// <summary>
+    /// Redirects user to Staff Terms of Privacy via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void TermsOfPrivacyBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffTermsofPrivacy());
+        Close();
+    }
+
 }

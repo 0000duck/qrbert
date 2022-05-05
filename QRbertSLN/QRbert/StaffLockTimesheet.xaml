@@ -5,8 +5,330 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:QRbert"
         mc:Ignorable="d"
-        Title="StaffLockTimesheet" Height="450" Width="800">
-    <Grid>
-        <!--Window to view timesheet and a button to lock timesheet-->
-    </Grid>
+        Title="StaffLockTimesheet" Height="550" Width="800">
+    <!-- This the template for the Menus; It creates the menu with a white background and black bold letters;
+        allows the user to hover over the menu and display the menus as well as change the letters to orange-->
+    <Window.Resources>
+        <LinearGradientBrush x:Key="DarkBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="White" Offset="0.01"/>
+                    <GradientStop Color="White" Offset="0.05"/>
+                    <GradientStop Color="White" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="Clicked" StartPoint="0.5,0" EndPoint="0.5,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="White" Offset="0.0"/>
+                    <GradientStop Color="White" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+
+        <Style x:Key="{x:Type Menu}" TargetType="Menu">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value = "Bold"/>
+            <Setter Property= "FontSize" Value="15"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Menu">
+                        <Border x:Name="MainMenu" Background="White">
+                            <StackPanel ClipToBounds="True" Orientation="Horizontal" IsItemsHost="True"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="MenuItemControlTemplate1" TargetType="{x:Type MenuItem}">
+            <Border x:Name="templateRoot" 
+                    BorderBrush="White" 
+                    CornerRadius="3" 
+                    BorderThickness="1" 
+                    Background="{TemplateBinding Background}" 
+                    SnapsToDevicePixels="True">
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <ContentPresenter ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Grid.Column="1" ContentStringFormat="{TemplateBinding HeaderStringFormat}" ContentSource="Header" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                    <Popup x:Name="PART_Popup"  AllowsTransparency="True" Focusable="False" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" Placement="Bottom">
+                        <Border x:Name="SubMenuBorder" BorderBrush="White" BorderThickness="1" Background="White" Padding="2">
+                            <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
+                                <Grid RenderOptions.ClearTypeHint="Enabled">
+                                    <Canvas HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
+                                        <Rectangle x:Name="OpaqueRect" Fill="{Binding Background, ElementName=SubMenuBorder}" Height="{Binding ActualHeight, ElementName=SubMenuBorder}" Width="{Binding ActualWidth, ElementName=SubMenuBorder}"/>
+                                    </Canvas>
+                                    <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Cycle" Grid.IsSharedSizeScope="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" KeyboardNavigation.TabNavigation="Cycle"/>
+                                </Grid>
+                            </ScrollViewer>
+                        </Border>
+                    </Popup>
+                </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsSuspendingPopupAnimation" Value="True">
+                    <Setter Property="PopupAnimation" TargetName="PART_Popup" Value="None"/>
+                </Trigger>
+
+                <Trigger Property="IsHighlighted" Value="True">
+                    <Setter Property="Background" TargetName="templateRoot" Value="{StaticResource DarkBrush}"/>
+                    <Setter Property="BorderBrush" TargetName="templateRoot" Value="White"/>
+                    <Setter Property="BorderThickness" TargetName="templateRoot" Value="1"></Setter>
+                </Trigger>
+
+                <Trigger Property="CanContentScroll" SourceName="SubMenuScrollViewer" Value="False">
+                    <Setter Property="Canvas.Top" TargetName="OpaqueRect" Value="{Binding VerticalOffset, ElementName=SubMenuScrollViewer}"/>
+                    <Setter Property="Canvas.Left" TargetName="OpaqueRect" Value="{Binding HorizontalOffset, ElementName=SubMenuScrollViewer}"/>
+                </Trigger>
+                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                    <Setter TargetName="templateRoot" Property="Background" Value="{StaticResource Clicked}" />
+                    <Setter Property="Header" Value="Test" />
+                    <Setter Property="BorderBrush" Value="White"></Setter>
+                    <Setter Property="BorderThickness" Value="1"></Setter>
+                </Trigger>
+                <!-- This is the trigger that tells the program to display the menu when the mouse hovers over it
+                        as well change the black letters to orange-->
+                <Trigger Property="IsMouseOver" Value="True" >
+                    <Setter Property="IsOpen" TargetName="PART_Popup" Value="True"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="Foreground" Value="#FF9100"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+    <!-- This the end of the menu template -->
+    <!--  -->
+    <!-- This the main stackpanel containing all the controls on the entire page-->
+    <StackPanel Background="Transparent" Height="450" Width="800">
+        <!-- This stackpanel contains the orange QRbert logo on the left corner as well as the perts background image-->
+        <StackPanel>
+            <Image Width="800" Height="450" Source="Images/petsBackground.png" 
+                   Margin="0,0,0,0"/>
+            <Image Width="40" Height="40" Source="Images/Notification.png" 
+                   Margin="700,-800,0,0"
+                   Name="AlertStaffBellIcon"
+                   Visibility="Hidden"
+                   MouseDown="NotificationBtn_Click"/>
+            <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
+                   Margin="-650,-900,0,-100"
+                   MouseDown="HomeStaffPortalBtn_Click"/>
+        </StackPanel>
+        <!-- This is the Timesheet menu-->
+        <Menu Width="100" Height="22" Margin="300, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
+            <MenuItem Header="Timesheet" Name="mm" Template="{DynamicResource MenuItemControlTemplate1}">
+                <MenuItem 
+                    Header="Rounding Rule"
+                    Click="RoundingRulesBtn_Click"/>
+                <MenuItem Header="Exit"/>
+            </MenuItem>
+        </Menu>
+        <!-- This is the Volunteer menu available only to staff users -->
+        <Menu Width="100" Height="22" Margin="400, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
+            <MenuItem Header="Volunteer" Name="mm1" Template="{DynamicResource MenuItemControlTemplate1}">
+                <MenuItem 
+                    Header="Track Active"
+                    Click="TrackActiveVolunteersBtn_Click"/>
+                <MenuItem 
+                    Header="Staff Search"
+                    Click="StaffSearchBtn_Click"/>
+            </MenuItem>
+        </Menu>
+        <!-- This is the Animal menu for staff users -->
+        <Menu Width="100" Height="22" Margin="500, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
+            <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
+                <MenuItem 
+                    Header="Select a Pet"
+                    Click="ScanPetQRCodeRedirectBtn_Click"/>
+                <MenuItem 
+                    Header="Remove Animal"
+                    Click="ScanPetQRCodeRedirectBtn_Click"
+                    Name="RemoveAnimal"/>
+                <MenuItem 
+                    Header="Pet Reports"
+                    Click="PetReportsBtn_Click"/>
+            </MenuItem>
+        </Menu>
+        <!-- This is the My Account menu for staff-->
+        <Menu Width="100" Height="22" Margin="600, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
+            <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
+                <MenuItem 
+                    Header="Staff Account"
+                    Click="StaffMyAccountBtn_Click"/>
+                <MenuItem 
+                    Header="Log out"
+                    Click="LogOutBtn_Click"
+                    />
+            </MenuItem>
+        </Menu>
+        <!-- This the orange semitransparent stack panel in the center with the button controls-->
+        <StackPanel Background="#FF9100" Width="800" Height="375" Opacity="0.7" 
+                    Margin = "0, -350, 0, 0"/>
+        <Label 
+            Width = "150"
+            Height="50"
+            FontWeight="Bold" 
+            Content="Timesheet" 
+            Foreground="White" 
+            FontSize="28"
+            Margin="0,-675,0,0"
+        />
+        <DockPanel LastChildFill="False">
+            <TextBlock
+                Width = "30" Height="20" Background="Transparent" Foreground="White" 
+                FontWeight="Bold" Text="ID"
+                Margin="0,-600,-90,0" FontSize="14">
+                
+            </TextBlock>
+            <TextBlock
+                Width = "40" Height="20" Background="Transparent" Foreground="White" 
+                FontWeight="Bold" Text="Name"
+                Margin="0,-600,-220,0" FontSize="14">
+                
+            </TextBlock>
+            <TextBlock
+                Width = "30" Height="20" Background="Transparent" Foreground="White" 
+                FontWeight="Bold" Text="Mon"
+                Margin="0,-600,-450,0" FontSize="14">
+                
+            </TextBlock>
+            <TextBlock
+                Width = "30" Height="20" Background="Transparent" Foreground="White" 
+                FontWeight="Bold" Text="Tues"
+                Margin="0,-600,-700,0" FontSize="14">
+                
+            </TextBlock>
+            <TextBlock
+                Width = "30" Height="20" Background="Transparent" Foreground="White" 
+                FontWeight="Bold" Text="Wed"
+                Margin="0,-600,-950,0" FontSize="14">
+                
+            </TextBlock>
+            <TextBlock
+                Width = "45" Height="20" Background="Transparent" Foreground="White" 
+                FontWeight="Bold" Text="Thurs"
+                Margin="0,-600,-1225,0" FontSize="14">
+                
+            </TextBlock>
+            <TextBlock
+                Width = "30" Height="20" Background="Transparent" Foreground="White" 
+                FontWeight="Bold" Text="Fri"
+                Margin="0,-600,-1500,0" FontSize="14">
+                
+            </TextBlock>
+            <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="5000" 
+                       Margin="0,-560,250,0"/>
+        </DockPanel>
+        <DockPanel LastChildFill="False">
+            
+            <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="5000" 
+                       Margin="0,-560,-175,0"/>
+        </DockPanel>
+        <TextBlock Name = "VolFirst1" Width = "30" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" 
+                 Margin="0,-500,715,0" FontSize="12" Text="600">
+        </TextBlock>
+        <!-- This the "Volunteer1" textbox control where the last name will go-->
+        <TextBox Name = "VolLast1" Width = "100" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                 Margin="0,-500,550,0" FontSize="12" Text="Melanie Bee">
+        </TextBox>
+        <!-- This the "Volunteer ID 1" textbox control-->
+        <TextBox Name = "MonLogIn" Width = "60" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                 Margin="0,-500,390,0" FontSize="12" Text="9:00AM-">
+        </TextBox>
+        <!-- This the "Volunteer2" textbox control where the first name will go-->
+        <TextBox Name = "VolFirst2" Width = "60" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                 Margin="0,-500,290,0" FontSize="12" Text="4:00pm">
+        </TextBox>
+        <!-- This the "Volunteer2" textbox control where the last name will go-->
+        <TextBox Name = "VolLast2" Width = "60" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                 Margin="0,-500,150,0" FontSize="12" Text="9:00AM -">
+        </TextBox>
+        <!-- This the "Volunteer ID 2" textbox control -->
+        <TextBox Name = "Id2" Width = "60" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                 Margin="0,-500,40,0" FontSize="12" Text="10:00PM">
+        </TextBox>
+        <!-- This the "Volunteer3" textbox control where the first name will go-->
+        <TextBox Name = "VolFirst3" Width = "60" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                 Margin="0,-500,-100,0" FontSize="12" Text="9:00AM -">
+        </TextBox>
+        <!-- This the "Volunteer3" textbox control where the last name will go-->
+        <TextBox Name = "VolLast3" Width = "60" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                 Margin="0,-500,-210,0" FontSize="12" Text="10:00PM">
+        </TextBox>
+        <!-- This the "Volunteer ID 3" textbox control-->
+        <TextBox Name = "Id3" Width = "70" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                 Margin="0,-500,-365,0" FontSize="12" Text="09:00AM -">
+        </TextBox>
+        <!-- This the "Volunteer4" textbox control where the first name will go-->
+        <TextBox Name = "VolFirst4" Width = "60" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                 Margin="0,-500,-480,0" FontSize="12" Text="10:00PM">
+        </TextBox>
+        <!-- This the "Volunteer4" textbox control where the last name will go-->
+        <TextBox Name = "VolLast4" Width = "70" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                 Margin="0,-500,-630,0" FontSize="12" Text="10:00AM -">
+        </TextBox>
+        <!-- This the "Volunteer ID 3" textbox control-->
+        <TextBox Name = "Id4" Width = "60" Height="20" Background="Transparent" Foreground="White" 
+                 FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                 Margin="0,-500,-750,0" FontSize="12" Text="10:00PM">
+        </TextBox>
+        <!-- This the "Volunteer5" textbox control where the first name will go-->
+        
+        <Button
+            Content="Lock Timesheet"
+            Background="White" 
+            Foreground="#FF9100" 
+            FontWeight="Bold" 
+            BorderBrush="#FF9100" 
+            BorderThickness="2" 
+            Height="35" 
+            Width="150" 
+            FontSize="16" 
+            ClickMode="Press"
+            Margin="0,-200,0,0"
+            Click="LockTimesheetsBtn_Click">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <!-- This the "Terms and Privacy Notice" button control at the bottom of the page -->
+        <Button Height = "25" Width = "300" Content="Terms and Privacy Notice" Background="Transparent" Foreground="#FF9100" FontSize="16" 
+                BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
+                Click="TermsOfPrivacyBtn_Click"
+                Margin="-500,-50,0,0">
+        </Button>
+        <!-- This the "FAQs" button control at the bottom of the page -->
+        <Button Height = "25" Width = "150" Content="FAQs" Background="Transparent" Foreground="#FF9100" FontSize="16" 
+                BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
+                Click="FAQRedirectBtn_Click"
+                Margin="0,-50,0,0">
+        </Button>
+        <!-- This the "©2022 QRbert Inc." button control at the bottom of the page -->
+        <Button Height = "25" Width = "150" Content="©2022 QRbert Inc." Background="Transparent" Foreground="#FF9100" FontSize="16" 
+                BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
+                Margin="500,-50,0,0">
+        </Button>
+    </StackPanel>
 </Window>

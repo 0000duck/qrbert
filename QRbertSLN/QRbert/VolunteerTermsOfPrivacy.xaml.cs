@@ -1,25 +1,13 @@
-﻿using System.Windows;
+using System.Windows;
 
 namespace QRbert;
 
-public partial class VolunteerPetReportViewer : Window
+public partial class VolunteerTermsOfPrivacy : Window
 {
-    public VolunteerPetReportViewer()
+    public VolunteerTermsOfPrivacy()
     {
         InitializeComponent();
     }
-    
-    /// <summary>
-    /// Redirects volunteer user to their MyAccount window via a button click on the menu item
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void VolunteerMyAcctBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
-        this.Close();
-    }
-
     /// <summary>
     /// Logs out Volunteer and redirects user to the Log In page via button click
     /// </summary>
@@ -65,13 +53,33 @@ public partial class VolunteerPetReportViewer : Window
     }
 
     /// <summary>
-    /// Redirects user to pet report window via button click
+    /// Redirects user to pet reports window via button click
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void PetReportBtn_Click(object sender, RoutedEventArgs e)
+    private void PetReportsBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.VolunteerPortalSwitch(new VolunteerPetReport());
+        Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
         this.Close();
+    }
+    /// <summary>
+    /// Redirects volunteer user to their MyAccount window via a button click on the menu item
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void VolunteerMyAcctBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
+        this.Close();
+    }
+    /// <summary>
+    /// Redirects user to the FAQ window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.VolunteerPortalSwitch(new VolunteerFAQs());
+        Close();
     }
 }

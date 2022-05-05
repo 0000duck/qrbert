@@ -2,31 +2,43 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
 
-
 namespace QRbert;
 
-public partial class AddPetActivity
+public partial class StaffMyPets : Window
 {
     /// <summary>
     /// Upon loading the page, Window checks if boolean is true to turn on Bell Icon
     /// </summary>
-    public AddPetActivity()
+    public StaffMyPets()
     {
         InitializeComponent();
-        // Load Pet ID, Pet Name, and current Date when Window loads
-        PetId.Content = Switcher.PetId.ToString();
-        string petName =
-            Switcher.VerifyRole("Select PetName From QRbertDB.QRbertTables.Pet Where PetID = '" + Switcher.PetId + "'");
-        string date =
-            Switcher.VerifyRole("Select Activity_Date From QRbertDB.QRbertTables.Pet_Activity Where PetID = '" + Switcher.PetId + "'");
-        PetName.Content = petName;
-        ActivityDate.Content = date;
+        // // Loads information when windows loads
+        // PetId.Text = Switcher.PetId.ToString();
+        // PetName.Text =
+        //         Switcher.VerifyRole("SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
+        // BreedType.Text =
+        //         Switcher.VerifyRole("SELECT Breed From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
+        // Dob.Text =
+        //         Switcher.VerifyRole("SELECT DOB From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
         if (Switcher.IsPetNeglected)
         {
             AlertStaffBellIcon.Visibility = Visibility.Visible;
         }
+        PetName.Text = Switcher.VerifyRole(
+            "Select PetName from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" + Switcher.PetId + "'");
+        using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
+        sqlCon.Open();
+        string query = 
+            ("Select PetId, Breed, DOB from QRbertDB.QRbertTables.Pet where PetID = '" + Switcher.PetId + "'");
+        SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+        sqlCmd.ExecuteNonQuery();
+        SqlDataAdapter adpt = new SqlDataAdapter(sqlCmd);
+        DataTable dtable = new DataTable("QRbertDB.QRbertTables.Pet");
+        adpt.Fill(dtable);
+        DataGV.ItemsSource = dtable.DefaultView;
+        adpt.Update(dtable);
     }
-
+    
     /// <summary>
     /// If the Icon is not visible, method does nothing
     /// Else redirects user to Staff Neglected Animals page and closes portal 
@@ -53,7 +65,6 @@ public partial class AddPetActivity
     private void StaffMyAccountBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffMyAccount());
-        this.Close();
     }
 
     /// <summary>
@@ -77,7 +88,6 @@ public partial class AddPetActivity
         Switcher.RedirectStaffPortal();
         this.Close();
     }
-    
 
     /// <summary>
     /// Redirects user to scan pet's QR Code in PetQrcodeScanner window via button click
@@ -86,6 +96,10 @@ public partial class AddPetActivity
     /// <param name="e"></param>
     private void ScanPetQRCodeRedirectBtn_Click(object sender, RoutedEventArgs e)
     {
+        if (Equals(RemoveAnimal.Header, "RemoveAnimal"))
+        {
+            Switcher.RemoveAnimal = true;
+        }
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         this.Close();
     }
@@ -144,7 +158,7 @@ public partial class AddPetActivity
         Switcher.StaffPageSwitch(new StaffRoundingRules());
         this.Close();
     }
-
+    
     /// <summary>
     /// Redirects user to the FAQ window via button click
     /// </summary>
@@ -157,35 +171,46 @@ public partial class AddPetActivity
     }
 
     /// <summary>
-    /// Adds Pet Activity to the Pet Activity Table via button click
-    /// Redirects user to My Pets page
+    /// Redirects user to Add Pet Treatment window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void AddPetTreatmentBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new AddPetTreatment());
+        this.Close();
+    }
+
+    /// <summary>
+    /// Redirects user to Add Pet Activity window via button click
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
     private void AddPetActivityBtn_Click(object sender, RoutedEventArgs e)
     {
-        SqlCommand sqlCmd = new SqlCommand("AddPetActivity", new SqlConnection(Switcher.ConnectionString));
-        sqlCmd.CommandType = CommandType.StoredProcedure;
-        sqlCmd.Parameters.AddWithValue("@PetName", PetName.Content.ToString());
-        sqlCmd.Parameters.AddWithValue("@PetID", PetId.Content.ToString());
-        sqlCmd.Parameters.AddWithValue("@Activity_Date", ActivityDate.Content.ToString());
-        sqlCmd.Parameters.AddWithValue("@WaterGiven", WaterGivenTxt.Text);
-        sqlCmd.Parameters.AddWithValue("@Clean_Kennel", CleanKennelTxt.Text);
-
-        sqlCmd.ExecuteNonQuery();
-        MessageBox.Show("Successfully saved New Pet Activity.");
-        Switcher.StaffPageSwitch(new StaffTrackAnimalActivity());
+        Switcher.StaffPageSwitch(new AddPetActivity());
         this.Close();
     }
 
     /// <summary>
-    /// Redirects user to Staff Terms of Privacy via btn click
+    /// Redirects staff user to view the matched pets that are matched with the volunteers
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void TermsOfPrivacyBtn_Click(object sender, RoutedEventArgs e)
+    private void ViewMatchedPetsToVolunteersBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.StaffPageSwitch(new StaffTermsofPrivacy());
+        Switcher.StaffPageSwitch(new StaffMatchVolunteerAnimals());
+        Close();
+    }
+
+    /// <summary>
+    /// Redirects user to view Pet Treatment via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ViewPetTreatmentBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffViewPetTreatment());
         Close();
     }
 }

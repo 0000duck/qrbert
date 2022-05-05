@@ -1,14 +1,62 @@
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
 
 namespace QRbert;
 
-public partial class StaffMyPetPage : Window
+public partial class StaffViewPetTreatment : Window
 {
-    public StaffMyPetPage()
+    /// <summary>
+    /// Upon loading the page, Window checks if boolean is true to turn on Bell Icon
+    /// </summary>
+    public StaffViewPetTreatment()
     {
         InitializeComponent();
+        if (Switcher.IsPetNeglected)
+        {
+            AlertStaffBellIcon.Visibility = Visibility.Visible;
+        }
+        
+        PetName.Text = Switcher.VerifyRole(
+            "Select PetName from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" + Switcher.PetId + "'");
+        using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
+        sqlCon.Open();
+        string query = 
+            ("Select PetId, InjuryType, Incident_Date, Rx from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" 
+             + Switcher.PetId +"'");
+        SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+        sqlCmd.ExecuteNonQuery();
+        SqlDataAdapter adpt = new SqlDataAdapter(sqlCmd);
+        DataTable dtable = new DataTable("QRbertDB.QRbertTables.Pet_Treatment");
+        adpt.Fill(dtable);
+        DataGV.ItemsSource = dtable.DefaultView;
+        adpt.Update(dtable);
+
+        // InjuryType.Text = Switcher.VerifyRole(
+        //     "Select InjuryType from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" + Switcher.PetId + '"');
+        // IncidentDate.Text = Switcher.VerifyRole(
+        //     "Select Incident_Date from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" + Switcher.PetId + '"');
+        // Rx.Text = Switcher.VerifyRole(
+        //     "Select Rx from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" + Switcher.PetId + '"');
     }
+
+    /// <summary>
+    /// If the Icon is not visible, method does nothing
+    /// Else redirects user to Staff Neglected Animals page and closes portal 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void NotificationBtn_Click(object sender, RoutedEventArgs e)
+    {
+        if (AlertStaffBellIcon.IsVisible) 
+        {
+            // At least one Pet is Neglected
+            // Means that Switcher.IsPetNeglected = true
+            Switcher.StaffPageSwitch(new StaffNeglectedAnimals());
+            this.Close();
+        }
+    }
+
     /// <summary>
     /// Redirects staff to their MyAccount page via button click
     /// Since the portal and the MyAccount are both pages, they should be easily navigable
@@ -31,7 +79,7 @@ public partial class StaffMyPetPage : Window
         Switcher.LogOutSwitch();
         this.Close();
     }
-
+    
     /// <summary>
     /// Redirects user to home page - staff portal via QRbert image click
     /// </summary>
@@ -50,6 +98,10 @@ public partial class StaffMyPetPage : Window
     /// <param name="e"></param>
     private void ScanPetQRCodeRedirectBtn_Click(object sender, RoutedEventArgs e)
     {
+        if (Equals(RemoveAnimal.Header, "RemoveAnimal"))
+        {
+            Switcher.RemoveAnimal = true;
+        }
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         this.Close();
     }
@@ -92,7 +144,7 @@ public partial class StaffMyPetPage : Window
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void LockTimesheetsBtn_Click(object sender, RoutedEventArgs e)
+    private void LockTimesheetBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffLockTimesheet());
         this.Close();
@@ -109,18 +161,14 @@ public partial class StaffMyPetPage : Window
         this.Close();
     }
     
-    private void SearchPetBtn_Click(object sender, RoutedEventArgs e)
+    /// <summary>
+    /// Redirects user to the FAQ window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
     {
-        string petNameInput = TxtFindPet.Text;
-        using SqlConnection sqlCon = new SqlConnection(Switcher.connectionString);
-        sqlCon.Open();
-        string petDml = ("Select PetName From QRbertTables.Pet Where petName = '" + petNameInput  + "'");
-        SqlCommand command = new SqlCommand(petDml, sqlCon);
-
-        int results = command.ExecuteNonQuery();
-        //  string msg = verifyPet("Select PetName From QRbertTables.Pet Where petName = '" + petNameInput  +
-        //   "'");
-        MessageBox.Show(results.ToString());
-        PetName.Content = " Pet Name: " + petDml;
+        Switcher.StaffPageSwitch(new StaffFAQs());
+        Close();
     }
 }
