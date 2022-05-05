@@ -125,6 +125,7 @@
                 <StackPanel Background="#FF9100" Opacity="0.85">
                     <!-- your elements here -->
                     <Label 
+                        Name = "PetBreedLabel"
                         Width = "230"
                         Height="50"
                         FontWeight="Bold" 
@@ -140,9 +141,9 @@
                     </DockPanel>
                     <TextBlock
                         Margin="0,8,0,0"
-                        Name = "VolFirst1" Width = "500" Height="190" Background="Transparent" Foreground="White" 
+                        Name = "PetBreedText" Width = "300" Height="190" Background="Transparent" Foreground="White" 
                         FontWeight="Bold" TextWrapping="Wrap"
-                        FontSize="12" Text="This is how I would imagine the breed information would display so we could have a lot of text explaining the breed without the fear of ">
+                        FontSize="18" Text="This is how I would imagine the breed information would display so we could have a lot of text explaining the breed without the fear of ">
 
                     
                         
