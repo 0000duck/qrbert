@@ -178,7 +178,7 @@ public partial class StaffCreatePetReport : Window
                 "SELECT PetID From QRbertDB.QRbertTables.Pet where PetName = '" + txtPetName.Text + "' and DOB = '" + txtDOB.Text + "'"));
         // Creating the user's QR code and displaying it
         // Saves the email, password, and facultyrole as a string for the QR code, this can be changed later
-        string petInfo = txtPetName.Text + Switcher.PetId + txtType.Text;
+        string petInfo = txtPetName.Text + " " + Switcher.PetId + " " + txtType.Text;
         DrawingImage qrCodeImage = QRCodeScanner.Generate_QR_Click(petInfo);
         // Creates a new window to display the QR code and shows it
         ShowQRCode showQRCode = new ShowQRCode();
