@@ -185,4 +185,37 @@ public partial class StaffMyAccount
         Switcher.StaffPageSwitch(new StaffFAQs());
         Close();
     }
+    
+    /// <summary>
+    /// Redirects user to Staff Terms of Privacy via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void TermsOfPrivacyBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffTermsofPrivacy());
+        Close();
+    }
+
+    /// <summary>
+    /// Redirects user to Staff Track Animal Activity via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ViewPetActivityBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffTrackAnimalActivity());
+        Close();
+    }
+
+    /// <summary>
+    /// Redirects user to Staff View Pet Treatment via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ViewPetTreatmentBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffViewPetTreatment());
+        Close();
+    }
 }

@@ -8,7 +8,7 @@ namespace QRbert;
 
 public partial class StaffForgotPassword : Window
 {
-    string randomCode;
+    string _randomCode = "";
     public static string to;
     
     /// <summary>
@@ -166,14 +166,14 @@ public partial class StaffForgotPassword : Window
         string from, pass, messageBody;
 
         Random rand = new Random();
-        randomCode = (rand.Next(999999)).ToString();
+        _randomCode = (rand.Next(999999)).ToString();
         MailMessage message = new MailMessage();
         to = Switcher.CurrentSessionEmail;
         from = "matt.zaldana@gmail.com";
         pass = "QRbert Temporary Code";
         messageBody = "Hello, this is QRbert. " +
                       "If you have received this message, please input the following " +
-                      "6 digit code in the textbox in the QRbert window: " + randomCode;
+                      "6 digit code in the textbox in the QRbert window: " + _randomCode;
         message.To.Add(to);
         message.From = new MailAddress(from);
         message.Body = messageBody;
@@ -202,7 +202,7 @@ public partial class StaffForgotPassword : Window
     /// <param name="e"></param>
     private void EnterCodeBtn_Click(object sender, RoutedEventArgs e)
     {
-        if (randomCode == EnterCodeInput.Text)
+        if (_randomCode == EnterCodeInput.Text)
         {
             Switcher.StaffPageSwitch(new StaffChangePassword());
             this.Close();
@@ -212,5 +212,38 @@ public partial class StaffForgotPassword : Window
             MessageBox.Show("Wrong code. Try again.");
             EnterCodeInput.Text = "";
         }
+    }
+    
+    /// <summary>
+    /// Redirects user to Staff Terms of Privacy via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void TermsOfPrivacyBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffTermsofPrivacy());
+        Close();
+    }
+
+    /// <summary>
+    /// Redirects user to Staff Track Animal Activity via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ViewPetActivityBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffTrackAnimalActivity());
+        Close();
+    }
+
+    /// <summary>
+    /// Redirects user to Staff View Pet Treatment via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ViewPetTreatmentBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffViewPetTreatment());
+        Close();
     }
 }

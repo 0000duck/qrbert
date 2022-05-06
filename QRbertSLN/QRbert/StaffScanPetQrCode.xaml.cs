@@ -135,9 +135,21 @@ public partial class StaffScanPetQrCode : Window
             {
                 // Saves PetID to active session
                 Switcher.PetId = petId;
-                Switcher.StaffPageSwitch(new StaffMyPets());
-                this.Close();
+                Switcher.StaffPageSwitch(new StaffTrackAnimalActivity());
+                Close();
             }
         }
     }
+    
+    /// <summary>
+    /// Redirects user to Staff Terms of Privacy via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void TermsOfPrivacyBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffTermsofPrivacy());
+        Close();
+    }
+
 }

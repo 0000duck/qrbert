@@ -206,6 +206,12 @@
                     Header="Pet Reports"
                     Click="PetReportsBtn_Click"
                     />
+                <MenuItem 
+                    Header = "View Pet Activity"
+                    Click="ViewPetActivityBtn_Click"/>
+                <MenuItem 
+                    Header = "View Pet Treatment"
+                    Click="ViewPetTreatmentBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This is the My Account menu for staff-->
@@ -456,6 +462,7 @@
                 FontSize="16"
                 FontWeight="Normal"
                 ClickMode="Press"
+                Click="TermsOfPrivacyBtn_Click"
                 Margin="-400,-50,0,0"
             >
             </Button>

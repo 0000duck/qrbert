@@ -2,7 +2,7 @@
 
 namespace QRbert;
 
-public partial class VolunteerScanPetQrCode : Window
+public partial class VolunteerScanPetQrCode
 {
     public VolunteerScanPetQrCode()
     {
@@ -17,7 +17,7 @@ public partial class VolunteerScanPetQrCode : Window
     private void VolunteerMyAcctBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -28,7 +28,7 @@ public partial class VolunteerScanPetQrCode : Window
     private void LogOutBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.LogOutSwitch();
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -39,7 +39,7 @@ public partial class VolunteerScanPetQrCode : Window
     private void HomeVolunteerPortalBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.RedirectVolunteerPortal();
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -50,7 +50,7 @@ public partial class VolunteerScanPetQrCode : Window
     private void ViewTimesheetBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerViewTimesheets());
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -90,7 +90,7 @@ public partial class VolunteerScanPetQrCode : Window
             // Saves PetID to active session
             Switcher.PetId = petId;
             Switcher.VolunteerPortalSwitch(new VolunteerMyPets());
-            this.Close();
+            Close();
         }
     }
 }

@@ -2,31 +2,12 @@ using System.Windows;
 
 namespace QRbert;
 
-public partial class VolunteerMyPets : Window
+public partial class VolunteerTermsOfPrivacy : Window
 {
-    public VolunteerMyPets()
+    public VolunteerTermsOfPrivacy()
     {
         InitializeComponent();
-        // Loads information when windows loads
-        PetId.Text = Switcher.PetId.ToString();
-        PetName.Text =
-            Switcher.VerifyRole("SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
-        BreedType.Text =
-            Switcher.VerifyRole("SELECT Breed From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
-        Dob.Text =
-            Switcher.VerifyRole("SELECT DOB From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
     }
-    /// <summary>
-    /// Redirects volunteer user to their MyAccount window via a button click on the menu item
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void VolunteerMyAcctBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
-        this.Close();
-    }
-
     /// <summary>
     /// Logs out Volunteer and redirects user to the Log In page via button click
     /// </summary>
@@ -81,7 +62,16 @@ public partial class VolunteerMyPets : Window
         Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
         this.Close();
     }
-    
+    /// <summary>
+    /// Redirects volunteer user to their MyAccount window via a button click on the menu item
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void VolunteerMyAcctBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
+        this.Close();
+    }
     /// <summary>
     /// Redirects user to the FAQ window via button click
     /// </summary>
@@ -90,17 +80,6 @@ public partial class VolunteerMyPets : Window
     private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerFAQs());
-        Close();
-    }
-
-    /// <summary>
-    /// Redirects user to the View Pet Breed info for Volunteers via button click
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void ViewPetBreedInfoBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.VolunteerPortalSwitch(new VolunteerPetBreedInfo());
         Close();
     }
 }

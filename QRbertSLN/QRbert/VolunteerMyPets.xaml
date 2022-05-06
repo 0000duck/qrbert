@@ -190,8 +190,29 @@
         <!-- This is the textblock where the DOB will be displayed-->
         <TextBlock Name = "Dob" Width = "100" Height = "35" Text="DOB" Foreground="White" FontWeight = "DemiBold" FontSize="20"
                    Margin = "100, -175, 00, 0" >
-            
         </TextBlock>
+        <Button
+            Content="View Pet Breed Info"
+            Background="White" 
+            Foreground="Orange" 
+            FontWeight="Bold" 
+            BorderBrush="Orange" 
+            BorderThickness="2" 
+            Height="35" 
+            Width="175" 
+            FontSize="16" 
+            ClickMode="Press"
+            Click="ViewPetBreedInfoBtn_Click"
+            Margin="-25,-100,0,0">
+            <Button.Resources>
+                <Style 
+                    TargetType="{x:Type Border}">
+                    <Setter 
+                        Property="CornerRadius" 
+                        Value="15"/>
+                </Style>
+            </Button.Resources>
+        </Button>    
         <!-- This the "Terms and Privacy Notice" button control at the bottom of the page -->
         <Button Height = "25" Width = "300" Content="Terms and Privacy Notice" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"

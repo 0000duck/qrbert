@@ -138,7 +138,27 @@
                 <MenuItem 
                     Header="Staff Search"
                     Click="StaffSearchBtn_Click"/>
-                <MenuItem Header="Assign Pet"/>
+            </MenuItem>
+        </Menu>
+        <!-- This is the Animal menu for staff users-->
+        <Menu Width="100" Height="22" Margin="500, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
+            <MenuItem Header="Animals" Template="{DynamicResource MenuItemControlTemplate1}">
+                <MenuItem 
+                    Header="Select a Pet"
+                    Click="ScanPetQRCodeRedirectBtn_Click"/>
+                <MenuItem 
+                    Header="Remove Animal"
+                    Click="ScanPetQRCodeRedirectBtn_Click"
+                    Name="RemoveAnimal"/>
+                <MenuItem 
+                    Header="Pet Reports"
+                    Click="PetReportsBtn_Click"/>
+                <MenuItem 
+                    Header = "View Pet Activity"
+                    Click="ViewPetActivityBtn_Click"/>
+                <MenuItem 
+                    Header = "View Pet Treatment"
+                    Click="ViewPetTreatmentBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This is the My Account menu-->
@@ -153,7 +173,7 @@
             </MenuItem>
         </Menu>
         <!-- This the orange semitransparent stack panel in the center with the button controls-->
-        <StackPanel Background="#FF9100" Width="400" Height="300" Opacity="0.7" 
+        <StackPanel Background="#FF9100" Width="500" Height="300" Opacity="0.7" 
                     Margin = "0, -400, 0, 0"/>
         <!-- This the "Scan Pet qrcode" label at the top center of the orange semitransaprent stackpanel-->
         <Label 
@@ -164,17 +184,17 @@
             Content="Staff Search" 
             Foreground="White" 
             FontSize="25"
-            Margin="25,-600,0,0"
+            Margin="25,-650,0,0"
         />
         <!-- This the "Enter Name" textbox control-->
         <DockPanel LastChildFill="False">
             <TextBox Name="SearchInput" Width = "250" Height="20" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-500,-800,0" FontSize="14">
+                     Margin="-100,-600,-800,0" FontSize="14">
                 Enter Name
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
-                       Margin="0,-460,0,0"/>
+                       Margin="-100,-560,0,0"/>
         </DockPanel>
         <!--This is the "scan" button that will activate the camera; 
             Once the user successfully scans the pet qr code the user will be able to view/edit/create pet report or remove animal
@@ -186,10 +206,10 @@
             BorderBrush="Orange" 
             BorderThickness="2" 
             Height="35" 
-            Width="200" 
+            Width="125" 
             FontSize="16" 
             ClickMode="Press"
-            Margin="0,-350,0,0"
+            Margin="0,-600,-270,0"
             Click="Search">
             <Button.Resources>
                 <Style 
@@ -203,10 +223,19 @@
             </Button.Resources>
             Search 
         </Button>
-        
+        <DataGrid
+            AutoGenerateColumns="True"
+            Height="200" HorizontalAlignment="Center" 
+            Margin="0,-325,0,0"   
+            Name="SearchResults" 
+            VerticalAlignment="Center" 
+            Width="450"
+            Background="White">
+        </DataGrid>
         <!-- This the "Terms and Privacy Notice" button control at the bottom of the page -->
         <Button Height = "25" Width = "300" Content="Terms and Privacy Notice" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
+                Click="TermsOfPrivacyBtn_Click"
                 Margin="-500,-50,0,0">
         </Button>
         <!-- This the "Help" button control at the bottom of the page -->

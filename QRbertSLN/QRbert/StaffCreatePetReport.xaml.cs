@@ -1,7 +1,5 @@
 using System.Windows;
 using System.Data;
-using System.Windows;
-using System.Windows.Controls;
 using System.Data.SqlClient;
 using System.Windows.Media;
 
@@ -180,7 +178,7 @@ public partial class StaffCreatePetReport : Window
                 "SELECT PetID From QRbertDB.QRbertTables.Pet where PetName = '" + txtPetName.Text + "' and DOB = '" + txtDOB.Text + "'"));
         // Creating the user's QR code and displaying it
         // Saves the email, password, and facultyrole as a string for the QR code, this can be changed later
-        string petInfo = txtPetName.Text + Switcher.PetId + txtType.Text;
+        string petInfo = txtPetName.Text + " " + Switcher.PetId + " " + txtType.Text;
         DrawingImage qrCodeImage = QRCodeScanner.Generate_QR_Click(petInfo);
         // Creates a new window to display the QR code and shows it
         ShowQRCode showQRCode = new ShowQRCode();
@@ -188,9 +186,41 @@ public partial class StaffCreatePetReport : Window
         showQRCode.QRCodeViewer.Visibility = Visibility.Visible;
         MessageBox.Show("Please save your Pet's QR Code.");
         showQRCode.Show();  // Show QR Code
-        Switcher.StaffPageSwitch(new StaffMyPets());    // show my pets page
+        Switcher.RedirectStaffPortal();     // redirects you to the staff portal
+        showQRCode.Topmost = true;
         this.Close();   // close create pet page
     }
     
+    /// <summary>
+    /// Redirects user to Staff Terms of Privacy via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void TermsOfPrivacyBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffTermsofPrivacy());
+        Close();
+    }
+    
+    /// <summary>
+    /// Redirects user to Staff Track Animal Activity via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ViewPetActivityBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffTrackAnimalActivity());
+        Close();
+    }
 
+    /// <summary>
+    /// Redirects user to Staff View Pet Treatment via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ViewPetTreatmentBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffViewPetTreatment());
+        Close();
+    }
 }

@@ -123,7 +123,6 @@
             <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
                    Margin="-650,-900,0,-100"
                    MouseDown="HomeStaffPortalBtn_Click"/>
-            
         </StackPanel>
         <!-- This is the Timesheet menu-->
         <Menu Width="100" Height="22" Margin="300, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
@@ -159,6 +158,12 @@
                     Name="RemoveAnimal"/>
                 <MenuItem 
                     Header="Pet Reports" />
+                <MenuItem 
+                    Header = "View Pet Activity"
+                    Click="ViewPetActivityBtn_Click"/>
+                <MenuItem 
+                    Header = "View Pet Treatment"
+                    Click="ViewPetTreatmentBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This is the My Account menu-->
@@ -211,31 +216,6 @@
             </Button.Resources>
             View  
         </Button>
-        <!-- This the "Edit Pet Report" button control-->
-        <Button 
-            Background="White" 
-            Foreground="Orange" 
-            FontWeight="Bold" 
-            BorderBrush="Orange" 
-            BorderThickness="2" 
-            Height="35" 
-            Width="200" 
-            FontSize="16" 
-            ClickMode="Press"
-            Margin="0,-350,0,0"
-            Click="StaffEditPetReportBtn_Click">
-            <Button.Resources>
-                <Style 
-                    TargetType="{x:Type Border}"
-                >
-                    <Setter 
-                        Property="CornerRadius" 
-                        Value="15"
-                    />
-                </Style>
-            </Button.Resources>
-            Edit  
-        </Button>
         <!-- This the "Create Pet Report" button control-->
         <Button 
             Background="White" 
@@ -264,6 +244,7 @@
         <!-- This the "Terms and Privacy Notice" button control at the bottom of the page -->
         <Button Height = "25" Width = "300" Content="Terms and Privacy Notice" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
+                Click="TermsOfPrivacyBtn_Click"
                 Margin="-500,-50,0,0">
         </Button>
         <!-- This the "FAQs" button control at the bottom of the page -->

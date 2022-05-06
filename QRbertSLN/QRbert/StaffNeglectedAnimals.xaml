@@ -158,6 +158,12 @@
                 <MenuItem 
                     Header="Pet Reports"
                     Click="PetReportsBtn_Click"/>
+                <MenuItem 
+                    Header = "View Pet Activity"
+                    Click="ViewPetActivityBtn_Click"/>
+                <MenuItem 
+                    Header = "View Pet Treatment"
+                    Click="ViewPetTreatmentBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This is the My Account menu-->
@@ -173,91 +179,29 @@
         </Menu>
         <!-- This the orange semitransparent stack panel in the center with the button/text box controls-->
         <StackPanel Background="#FF9100" Width="600" Height="300" Opacity="0.7" 
-                    Margin = "0, -350, 0, 0">
+                    Margin = "0, -400, 0, 0">
         </StackPanel>
         <TextBlock 
-            Width = "400" 
+            Width = "365" 
             Height = "60" 
-            Text="Neglected Animals: " 
+            Text="Neglected Animals" 
             Foreground="White" 
             FontWeight = "Bold" 
             FontSize="40"
-            Margin = "-50, -550, -100, 10" >
+            Margin = "-0, -550, -0, 10" >
         </TextBlock>
-        <RadioButton
-            Name="PetNeglectedChoiceRadBtn"
-            Height="25"
-            Width="25"
-            Background="Transparent"
-            Foreground="White"
-            Visibility="Hidden"
-            IsChecked="False"
-            Checked="IsPetRadBtnChecked"
-            Margin="-450,-375,0,0">
-        </RadioButton>
-        <TextBlock
-            Name="PetIdLabel"
-            Text="Pet ID:"
-            Width="100"
-            Height="30"
-            Foreground="White"
-            FontWeight="DemiBold"
-            FontSize="25"
-            Margin="-250, -475,0,0">
-        </TextBlock>
-        <TextBlock
-            Name="PetIdTxtBl"
-            Text="Pet ID"
-            Width="100"
-            Height="35"
-            Foreground="White"
-            FontWeight="DemiBold"
-            FontSize="25"
-            Visibility="Hidden"
-            Margin="-250, -375,0,0">
-        </TextBlock>
-        <TextBlock
-            Name="PetNameTxtLabel"
-            Text="Pet Name:"
-            Width="125"
-            Height="30"
-            Foreground="White"
-            FontWeight="DemiBold"
-            FontSize="25"
-            Margin="10, -475,0,0">
-        </TextBlock>
-        <TextBlock
-            Name="PetNameTxtBl"
-            Text="Pet Name"
-            Width="125"
-            Height="35"
-            Foreground="White"
-            FontWeight="DemiBold"
-            FontSize="25"
-            Visibility="Hidden"
-            Margin="10, -375,0,0">
-        </TextBlock>
-        <TextBlock
-            Name="PetTypeLabel"
-            Text="Pet Type:"
-            Width="125"
-            Height="30"
-            Foreground="White"
-            FontWeight="DemiBold"
-            FontSize="25"
-            Margin="325, -475,0,0">
-        </TextBlock>
-        <TextBlock
-            Name="PetTypeTxtBl"
-            Text="Pet Type"
-            Width="125"
-            Height="35"
-            Foreground="White"
-            FontWeight="DemiBold"
-            FontSize="25"
-            Visibility="Hidden"
-            Margin="325, -375,0,0">
-        </TextBlock>
+        <DataGrid
+            CanUserDeleteRows="True"
+            IsReadOnly="True"
+            AutoGenerateColumns="True"
+            Height="150" HorizontalAlignment="Center" 
+            Margin="0,-350,0,0"   
+            Name="NeglectedAnimals" 
+            VerticalAlignment="Center" 
+            Width="450"
+            Background="White"
+            SelectedCellsChanged="DataGV_OnSelectedCellsChanged">
+        </DataGrid>
         <Button
             Name="AssignPetToVolunteerBtn"
             Content="Assign Pet"
@@ -281,6 +225,23 @@
                         Value="20"/>
                 </Style>
             </Button.Resources>
+        </Button>
+        <!-- This the "Terms and Privacy Notice" button control at the bottom of the page -->
+        <Button Height = "25" Width = "300" Content="Terms and Privacy Notice" Background="Transparent" Foreground="#FF9100" FontSize="16" 
+                BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
+                Click="TermsOfPrivacyBtn_Click"
+                Margin="-500,-50,0,0">
+        </Button>
+        <!-- This the "FAQs" button control at the bottom of the page -->
+        <Button Height = "25" Width = "150" Content="FAQs" Background="Transparent" Foreground="#FF9100" FontSize="16" 
+                BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
+                Click="FAQRedirectBtn_Click"
+                Margin="0,-50,0,0">
+        </Button>
+        <!-- This the "©2022 QRbert Inc." button control at the bottom of the page -->
+        <Button Height = "25" Width = "150" Content="©2022 QRbert Inc." Background="Transparent" Foreground="#FF9100" FontSize="16" 
+                BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
+                Margin="500,-50,0,0">
         </Button>
     </StackPanel>
     

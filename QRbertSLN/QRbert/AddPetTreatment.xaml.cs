@@ -12,14 +12,6 @@ public partial class AddPetTreatment
     public AddPetTreatment()
     {
         InitializeComponent();
-        // Load Pet ID, Pet Name, and current Date when Window loads
-        PetIdLabel.Content = Switcher.PetId.ToString();
-        string petName =
-            Switcher.VerifyRole("Select PetName From QRbertDB.QRbertTables.Pet Where PetID = '" + Switcher.PetId + "'");
-        string date =
-            Switcher.VerifyRole("Select Activity_Date From QRbertDB.QRbertTables.Pet_Activity Where PetID = '" + Switcher.PetId + "'");
-        PetNameLabel.Content = petName;
-        IncidentDateLabel.Content = date;
         if (Switcher.IsPetNeglected)
         {
             AlertStaffBellIcon.Visibility = Visibility.Visible;
@@ -39,7 +31,7 @@ public partial class AddPetTreatment
             // At least one Pet is Neglected
             // Means that Switcher.IsPetNeglected = true
             Switcher.StaffPageSwitch(new StaffNeglectedAnimals());
-            this.Close();
+            Close();
         }
     }
     /// <summary>
@@ -51,7 +43,7 @@ public partial class AddPetTreatment
     private void StaffMyAccountBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffMyAccount());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -62,7 +54,7 @@ public partial class AddPetTreatment
     private void LogOutBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.LogOutSwitch();
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -73,7 +65,7 @@ public partial class AddPetTreatment
     private void HomeStaffPortalBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.RedirectStaffPortal();
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -84,7 +76,7 @@ public partial class AddPetTreatment
     private void ScanPetQRCodeRedirectBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -95,7 +87,7 @@ public partial class AddPetTreatment
     private void PetReportsBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffPetReport());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -106,7 +98,7 @@ public partial class AddPetTreatment
     private void TrackActiveVolunteersBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new TrackActiveVolunteers());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -117,7 +109,7 @@ public partial class AddPetTreatment
     private void StaffSearchBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffSearch());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -128,7 +120,7 @@ public partial class AddPetTreatment
     private void LockTimesheetBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffLockTimesheet());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -139,7 +131,7 @@ public partial class AddPetTreatment
     private void RoundingRulesBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffRoundingRules());
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -161,10 +153,14 @@ public partial class AddPetTreatment
     /// <param name="e"></param>
     private void AddPetTreatmentBtn_Click(object sender, RoutedEventArgs e)
     {
+        string petName =
+            Switcher.VerifyRole(
+                "Select QRbertDB.QRbertTables.Pet.PetName from QRbertDB.QRbertTables.Pet where PetID = '" +
+                Switcher.PetId + "'");
         SqlCommand sqlCmd = new SqlCommand("AddPetTreatment", new SqlConnection(Switcher.ConnectionString));
         sqlCmd.CommandType = CommandType.StoredProcedure;
-        sqlCmd.Parameters.AddWithValue("@PetName", PetNameLabel.Content.ToString());
-        sqlCmd.Parameters.AddWithValue("@PetID", PetIdLabel.Content.ToString());
+        sqlCmd.Parameters.AddWithValue("@PetName", petName);
+        sqlCmd.Parameters.AddWithValue("@PetID", Switcher.PetId.ToString());
         sqlCmd.Parameters.AddWithValue("@Incident_Date", IncidentDateLabel.Content.ToString());
         sqlCmd.Parameters.AddWithValue("@InjuryType", InjuryTypeTxt.Text);
         sqlCmd.Parameters.AddWithValue("@Recovered_Date", RecoveredDateTxt.Text);
@@ -174,7 +170,40 @@ public partial class AddPetTreatment
 
         sqlCmd.ExecuteNonQuery();
         MessageBox.Show("Successfully saved Pet Treatment.");
-        Switcher.StaffPageSwitch(new StaffMyPets());
-        this.Close();
+        Switcher.StaffPageSwitch(new StaffViewPetTreatment());
+        Close();
+    }
+    
+    /// <summary>
+    /// Redirects user to Staff Terms of Privacy via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void TermsOfPrivacyBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffTermsofPrivacy());
+        Close();
+    }
+
+    /// <summary>
+    /// Redirects user to Staff Track Animal Activity via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ViewPetActivityBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffTrackAnimalActivity());
+        Close();
+    }
+
+    /// <summary>
+    /// Redirects user to Staff View Pet Treatment via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ViewPetTreatmentBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffViewPetTreatment());
+        Close();
     }
 }

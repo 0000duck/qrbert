@@ -113,12 +113,14 @@
         <!-- This stackpanel contains the orange QRbert logo on the left corner as well as the perts background image-->
         <StackPanel>
             <Image Width="800" Height="450" Source="Images/petsBackground.png" 
-                   Name="AlertStaffBellIcon"
-                    Margin="650,-950,0,-100"
-                   MouseDown="NotificationBtn_Click"/>
-            
+                   Margin="0,0,0,0"/>
+            <Image
+                Name="AlertStaffBellIcon"
+                Width="40" Height="40" Source="Images/Notification.png" 
+                Margin="700,-800,0,0"
+                MouseDown="NotificationBtn_Click"/>            
             <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
-                   Margin="-650,-900,0,-100"
+                   Margin="-650,-850,0,-100"
                    MouseDown="HomeStaffPortalBtn_Click"/>
         </StackPanel>
         <!-- This is the Timesheet menu-->
@@ -151,10 +153,17 @@
                     Click="ScanPetQRCodeRedirectBtn_Click"/>
                 <MenuItem 
                     Header="Remove Animal"
-                    Click="ScanPetQRCodeRedirectBtn_Click"/>
+                    Click="ScanPetQRCodeRedirectBtn_Click"
+                    Name="RemoveAnimal"/>
                 <MenuItem 
                     Header="Pet Reports"
                     Click="PetReportsBtn_Click"/>
+                <MenuItem 
+                    Header = "View Pet Activity"
+                    Click="ViewPetActivityBtn_Click"/>
+                <MenuItem 
+                    Header = "View Pet Treatment"
+                    Click="ViewPetTreatmentBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This is the My Account menu-->
@@ -179,50 +188,78 @@
             </Border.Background>
         </Border>
         <!-- This is where the pet name will go-->
-        <TextBlock Name = "PetName" Width = "150" Height = "35" Text="Pet Name" Foreground="White" FontWeight = " DemiBold" FontSize="28"
+        <TextBlock Name = "PetName" 
+                   Width = "150" 
+                   Height = "35" 
+                   Text="Pet Name" 
+                   Foreground="White" 
+                   FontWeight = "DemiBold" 
+                   FontSize="28"
                    Margin = "0, -375, 00, 0" >
-            
         </TextBlock>
-        <!-- This is the "Pet ID:" label, this shouldn't change-->
+        <DataGrid
+            AutoGenerateColumns="True"
+            Height="150" HorizontalAlignment="Center" 
+            Margin="0,-175,0,0"   
+            Name="DataGV" 
+            VerticalAlignment="Center" 
+            Width="350">
+        </DataGrid>
+        <!-- This the "Add Pet Treatment" button control-->
+        <Button 
+            Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
+            Height="35" Width="175" FontSize="16" ClickMode="Press" Margin="0,-50,0,0"
+            Click="AddPetTreatmentBtn_Click">
+            <Button.Resources>
+                <Style 
+                    TargetType="{x:Type Border}">
+                    <Setter 
+                        Property="CornerRadius" 
+                        Value="15"/>
+                </Style>
+            </Button.Resources>
+            Add Pet Treatment  
+        </Button>
+        <!--~1~ This is the "Pet ID:" label, this shouldn't change@1@
         <TextBlock Width = "100" Height = "35" Text="Pet ID:" Foreground="White" FontWeight = " DemiBold" FontSize="20"
                    Margin = "-105, -275, 00, 0" >
             
         </TextBlock>
-        <!-- This is the textblock where the pet Id will be displayed-->
+        ~1~ This is the textblock where the pet Id will be displayed@1@
         <TextBlock Name = "PetId" Width = "100" Height = "35" Text="Pet ID" Foreground="White" FontWeight = "   DemiBold" FontSize="20"
                    Margin = "100, -275, 00, 0" >
             
         </TextBlock>
-        <!-- This is the "Injury Type:" label, this shouldn't change-->
+        ~1~ This is the "Injury Type:" label, this shouldn't change@1@
         <TextBlock Width = "125" Height = "35" Text="Injury Type:" Foreground="White" FontWeight = " DemiBold" FontSize="20"
                    Margin = "-175, -200, 00, 0" >
             
         </TextBlock>
-        <!-- This is the textblock where the injury type will be displayed-->
+        ~1~ This is the textblock where the injury type will be displayed@1@
         <TextBlock Name = "InjuryType" Width = "200" Height = "35" Text="Injury Type" Foreground="White" FontWeight = "DemiBold" FontSize="20"
                    Margin = "200, -200, 00, 0" >
             
         </TextBlock>
-        <!-- This is the "Incident Date:" label, this shouldn't change-->
+        ~1~ This is the "Incident Date:" label, this shouldn't change@1@
         <TextBlock Width = "150" Height = "35" Text="Incident Date:" Foreground="White" FontWeight = " DemiBold" FontSize="20"
                    Margin = "-200, -125, 00, 0" >
             
         </TextBlock>
-        <!-- This is the textblock where the incident date will be displayed-->
+        ~1~ This is the textblock where the incident date will be displayed@1@
         <TextBlock Name = "IncidentDate" Width = "200" Height = "35" Text="Incident Date" Foreground="White" FontWeight = "DemiBold" FontSize="20"
                    Margin = "200, -125, 00, 0" >
             
         </TextBlock>
-        <!-- This is the "Incident Date:" label, this shouldn't change-->
+        ~1~ This is the "Incident Date:" label, this shouldn't change@1@
         <TextBlock Width = "30" Height = "35" Text="Rx:" Foreground="White" FontWeight = " DemiBold" FontSize="20"
                    Margin = "-125, -50, 00, 0" >
             
         </TextBlock>
-        <!-- This is the textblock where the incident date will be displayed-->
+        ~1~ This is the textblock where the incident date will be displayed@1@
         <TextBlock Name = "Rx" Width = "200" Height = "35" Text="Rx" Foreground="White" FontWeight = "DemiBold" FontSize="20"
                    Margin = "200, -50, 00, 0" >
             
-        </TextBlock>
+        </TextBlock>-->
         <!-- This the "Terms and Privacy Notice" button control at the bottom of the page -->
         <Button Height = "25" Width = "300" Content="Terms and Privacy Notice" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
