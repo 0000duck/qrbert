@@ -3,11 +3,15 @@ using System.Windows;
 
 namespace QRbert;
 
-public partial class StaffLockTimesheet : Window
+public partial class StaffLockTimesheet
 {
     public StaffLockTimesheet()
     {
         InitializeComponent();
+        if (Switcher.IsPetNeglected)
+        {
+            AlertStaffBellIcon.Visibility = Visibility.Visible;
+        }
     }
     
     /// <summary>
@@ -41,7 +45,7 @@ public partial class StaffLockTimesheet : Window
     private void HomeStaffPortalBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.RedirectStaffPortal();
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -95,15 +99,9 @@ public partial class StaffLockTimesheet : Window
     /// <param name="e"></param>
     private void LockTimesheetsBtn_Click(object sender, RoutedEventArgs e)
     {
-        using (SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString))
-        {
-            sqlCon.Close();
-            Switcher.ConnectionString = "closed";
-        }
-
         MessageBox.Show("Time-sheets have been successfully locked.\nNo further changes are allowed.");
         Switcher.RedirectStaffPortal();
-        this.Close();
+        Close(); 
     }
 
     /// <summary>
@@ -141,7 +139,7 @@ public partial class StaffLockTimesheet : Window
             // At least one Pet is Neglected
             // Means that Switcher.IsPetNeglected = true
             Switcher.StaffPageSwitch(new StaffNeglectedAnimals());
-            this.Close();
+            Close();
         }
     }
     

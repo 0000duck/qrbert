@@ -141,7 +141,6 @@
                 <MenuItem 
                     Header="Rounding Rule"
                     Click="RoundingRulesBtn_Click"/>
-                <MenuItem Header="Exit"/>
             </MenuItem>
         </Menu>
         <!-- This is the Volunteer menu available only to staff users -->
@@ -169,6 +168,8 @@
                     Header="Pet Reports"
                     Click="PetReportsBtn_Click"
                     />
+                <MenuItem Header = "View Pet Activity"/>
+                <MenuItem Header = "View Pet Treatment"/>
             </MenuItem>
         </Menu>
         <!-- This is the My Account menu for staff-->

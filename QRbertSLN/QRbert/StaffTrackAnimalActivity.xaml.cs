@@ -161,4 +161,15 @@ public partial class StaffTrackAnimalActivity : Window
         Switcher.StaffPageSwitch(new StaffFAQs());
         Close();
     }
+    
+    /// <summary>
+    /// Redirects user to Add Pet Activity window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void AddPetActivityBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new AddPetActivity());
+        this.Close();
+    }
 }

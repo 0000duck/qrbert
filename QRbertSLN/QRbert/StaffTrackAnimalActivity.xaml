@@ -173,6 +173,21 @@
                 Name="DataGV" 
                 VerticalAlignment="Center" Width="415">
             </DataGrid>
+            <!-- This the "Add Pet Activity" button control-->
+            <Button 
+                Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
+                Height="35" Width="175" FontSize="16" ClickMode="Press" Margin="0,-150,0,0"
+                Click="AddPetActivityBtn_Click">
+                <Button.Resources>
+                    <Style 
+                        TargetType="{x:Type Border}">
+                        <Setter 
+                            Property="CornerRadius" 
+                            Value="15"/>
+                    </Style>
+                </Button.Resources>
+                Add Pet Activity  
+            </Button>
         </StackPanel>
         <!-- This is the Timesheet menu-->
         <Menu Width="100" Height="22" Margin="300, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
@@ -212,6 +227,8 @@
                     Click="PetReportsBtn_Click"
                     />
             </MenuItem>
+            <MenuItem Header = "View Pet Activity"/>
+            <MenuItem Header = "View Pet Treatment"/>
         </Menu>
         <!-- This is the My Account menu for staff-->
         <Menu Width="100" Height="22" Margin="600, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">

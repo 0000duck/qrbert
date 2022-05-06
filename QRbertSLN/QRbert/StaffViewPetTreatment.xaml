@@ -158,6 +158,8 @@
                 <MenuItem 
                     Header="Pet Reports"
                     Click="PetReportsBtn_Click"/>
+                <MenuItem Header = "View Pet Activity"/>
+                <MenuItem Header = "View Pet Treatment"/>
             </MenuItem>
         </Menu>
         <!-- This is the My Account menu-->
@@ -199,6 +201,20 @@
             VerticalAlignment="Center" 
             Width="350">
         </DataGrid>
+        <!-- This the "Add Pet Treatment" button control-->
+        <Button 
+            Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
+            Height="35" Width="175" FontSize="16" ClickMode="Press" Margin="0,-50,0,0">
+            <Button.Resources>
+                <Style 
+                    TargetType="{x:Type Border}">
+                    <Setter 
+                        Property="CornerRadius" 
+                        Value="15"/>
+                </Style>
+            </Button.Resources>
+            Add Pet Treatment  
+        </Button>
         <!--~1~ This is the "Pet ID:" label, this shouldn't change@1@
         <TextBlock Width = "100" Height = "35" Text="Pet ID:" Foreground="White" FontWeight = " DemiBold" FontSize="20"
                    Margin = "-105, -275, 00, 0" >
