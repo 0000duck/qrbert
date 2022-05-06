@@ -88,12 +88,6 @@ public partial class StaffPetReport
         Close();
     }
 
-    private void StaffEditPetReportBtn_Click(object sender, RoutedEventArgs e)
-    {
-        Switcher.StaffPageSwitch(new StaffEditPetReport());
-        Close();
-    }
-    
     /// <summary>
     /// Redirects user to scan pet's QR Code in PetQrcodeScanner window via button click
     /// </summary>

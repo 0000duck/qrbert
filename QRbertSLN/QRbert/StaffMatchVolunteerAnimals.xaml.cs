@@ -9,82 +9,6 @@ public partial class StaffMatchVolunteerAnimals : Window
     public StaffMatchVolunteerAnimals()
     {
         InitializeComponent();
-        // Sets content of all volunteers to their respective textboxes
-        // I set all textboxes to be read only
-        // The volunteers that don't have another pet assigned have those second pet textboxes hidden
-        /*VolFirst1.Text = Switcher.VerifyRole
-        ("SELECT FirstName FROM QRbertDB.QRbertTables.Registration where Email ='" + "Bee@gmail.com" + "'");
-        VolLast1.Text = Switcher.VerifyRole
-        ("SELECT LastName FROM QRbertDB.QRbertTables.Registration where Email ='" +
-                                            "Bee@gmail.com" +
-                                            "'");
-        Id1.Text = "600";
-
-        VolFirst2.Text = Switcher.VerifyRole(
-            ("SELECT FirstName FROM QRbertDB.QRbertTables.Registration where Email ='" + "Cartman@gmail.com" +
-             "'"));
-        VolLast2.Text = Switcher.VerifyRole(("SELECT LastName FROM QRbertDB.QRbertTables.Registration where Email ='" +
-                                             "Cartman@gmail.com" +
-                                             "'"));
-        Id2.Text = "601";
-
-        VolFirst3.Text = Switcher.VerifyRole(
-            ("SELECT FirstName FROM QRbertDB.QRbertTables.Registration where Email ='" + "fleck@gmail.com" +
-             "'"));
-        VolLast3.Text = Switcher.VerifyRole(("SELECT LastName FROM QRbertDB.QRbertTables.Registration where Email ='" +
-                                             "fleck@gmail.com" +
-                                             "'"));
-        Id3.Text = "602";
-
-        VolFirst4.Text = Switcher.VerifyRole(
-            ("SELECT FirstName FROM QRbertDB.QRbertTables.Registration where Email ='" + "stark@gmail.com" +
-             "'"));
-        VolLast4.Text = Switcher.VerifyRole(("SELECT LastName FROM QRbertDB.QRbertTables.Registration where Email ='" +
-                                             "stark@gmail.com" +
-                                             "'"));
-        Id4.Text = "603";
-        VolFirst5.Text = Switcher.VerifyRole(
-            ("SELECT FirstName FROM QRbertDB.QRbertTables.Registration where Email ='" + "Gibbons@gmail.com" +
-             "'"));
-        VolLast5.Text = Switcher.VerifyRole(("SELECT LastName FROM QRbertDB.QRbertTables.Registration where Email ='" +
-                                             "Gibbons@gmail.com" +
-                                             "'"));
-        Id5.Text = "604";
-
-        // Sets the Pet textboxes to necessary content, mixing and matching with matched volunteers
-        V1Pet1Name.Text = Switcher.VerifyRole(
-            "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 800 + "'");
-        V1Pet1Id.Text = "800";
-        V1Pet2Name.Visibility = Visibility.Hidden;
-        V1Pet2Id.Visibility = Visibility.Hidden;
-        
-        V2Pet1Name.Text = Switcher.VerifyRole(
-                "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 801 + "'");
-        V2Pet1Id.Text = "801";
-        V2Pet2Name.Text = Switcher.VerifyRole(
-            "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 802 + "'");
-        V2Pet2Id.Text = "802";
-        
-        V3Pet1Name.Text = Switcher.VerifyRole(
-            "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 803 + "'");
-        V3Pet1Id.Text = "803";
-        V3Pet2Name.Text = Switcher.VerifyRole(
-            "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 800 + "'");
-        V3Pet2Id.Text = "800";
-        
-        V4Pet1Name.Text = Switcher.VerifyRole(
-            "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 801 + "'");
-        V4Pet1Id.Text = "801";
-        V4Pet2Name.Visibility = Visibility.Hidden;
-        V4Pet2Id.Visibility = Visibility.Hidden;
-        
-        V5Pet1Name.Text = Switcher.VerifyRole(
-            "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 802 + "'");
-        V5Pet1Id.Text = "802";
-        V5Pet2Name.Text = Switcher.VerifyRole(
-            "SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + 803 + "'");
-        V5Pet2Id.Text = "803";*/
-
         if (Switcher.IsPetNeglected)
         {
             AlertStaffBellIcon.Visibility = Visibility.Visible;
@@ -94,22 +18,22 @@ public partial class StaffMatchVolunteerAnimals : Window
         using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
         sqlCon.Open();
         string query = 
-            ("Select FirstName, LastName from QRbertDB.QRbertTables.Registration where [Faculty-Role] = 'Volunteer'");
+            ("Select QRbertDB.QRbertTables.Registration.FirstName, QRbertDB.QRbertTables.Registration. LastName from QRbertDB.QRbertTables.Registration where [Faculty-Role] = 'Volunteer'");
         SqlCommand sqlCmdVolunteers = new SqlCommand(query, sqlCon);
         sqlCmdVolunteers.ExecuteNonQuery();
         SqlDataAdapter adpt = new SqlDataAdapter(sqlCmdVolunteers);
-        DataTable dtable = new DataTable("VolunteerNames");
+        DataTable dtable = new DataTable("QRbert.QRbertTables.Volunteer");
         adpt.Fill(dtable);
         VolunteerNames.ItemsSource = dtable.DefaultView;
         adpt.Update(dtable);
 
         // Populate the pets table
         string query2 = 
-            ("Select PetID, PetName from QRbertDB.QRbertTables.Pet where PetID >= '800'");
-        SqlCommand sqlCmdPets = new SqlCommand(query, sqlCon);
+            ("Select QRbertDB.QRbertTables.Pet.PetID, QRbertDB.QRbertTables.Pet.PetName from QRbertDB.QRbertTables.Pet where PetID >= '800'");
+        SqlCommand sqlCmdPets = new SqlCommand(query2, sqlCon);
         sqlCmdVolunteers.ExecuteNonQuery();
         SqlDataAdapter adpt2 = new SqlDataAdapter(sqlCmdPets);
-        DataTable dtable2 = new DataTable("VolunteerNames");
+        DataTable dtable2 = new DataTable("QRbert.QRbertTables.Pet");
         adpt2.Fill(dtable2);
         PetDataGrid.ItemsSource = dtable2.DefaultView;
         adpt.Update(dtable2);
@@ -129,7 +53,7 @@ public partial class StaffMatchVolunteerAnimals : Window
             // At least one Pet is Neglected
             // Means that Switcher.IsPetNeglected = true
             Switcher.StaffPageSwitch(new StaffNeglectedAnimals());
-            this.Close();
+            Close();
         }
     }
 
@@ -142,7 +66,7 @@ public partial class StaffMatchVolunteerAnimals : Window
     private void StaffMyAccountBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffMyAccount());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -153,7 +77,7 @@ public partial class StaffMatchVolunteerAnimals : Window
     private void LogOutBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.LogOutSwitch();
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -164,7 +88,7 @@ public partial class StaffMatchVolunteerAnimals : Window
     private void HomeStaffPortalBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.RedirectStaffPortal();
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -175,7 +99,7 @@ public partial class StaffMatchVolunteerAnimals : Window
     private void ScanPetQRCodeRedirectBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -186,7 +110,7 @@ public partial class StaffMatchVolunteerAnimals : Window
     private void PetReportsBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffPetReport());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -197,7 +121,7 @@ public partial class StaffMatchVolunteerAnimals : Window
     private void StaffSearchBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffSearch());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -208,7 +132,7 @@ public partial class StaffMatchVolunteerAnimals : Window
     private void LockTimesheetsBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffLockTimesheet());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -219,7 +143,7 @@ public partial class StaffMatchVolunteerAnimals : Window
     private void RoundingRulesBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffRoundingRules());
-        this.Close();
+        Close();
     }
 
     /// <summary>
