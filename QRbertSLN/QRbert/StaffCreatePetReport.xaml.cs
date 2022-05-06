@@ -186,7 +186,8 @@ public partial class StaffCreatePetReport : Window
         showQRCode.QRCodeViewer.Visibility = Visibility.Visible;
         MessageBox.Show("Please save your Pet's QR Code.");
         showQRCode.Show();  // Show QR Code
-        Switcher.StaffPageSwitch(new StaffMyPets());    // show my pets page
+        Switcher.RedirectStaffPortal();     // redirects you to the staff portal
+        showQRCode.Topmost = true;
         this.Close();   // close create pet page
     }
     

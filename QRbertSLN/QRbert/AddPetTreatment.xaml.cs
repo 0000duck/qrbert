@@ -174,7 +174,7 @@ public partial class AddPetTreatment
 
         sqlCmd.ExecuteNonQuery();
         MessageBox.Show("Successfully saved Pet Treatment.");
-        Switcher.StaffPageSwitch(new StaffMyPets());
+        Switcher.StaffPageSwitch(new StaffViewPetTreatment());
         this.Close();
     }
     
