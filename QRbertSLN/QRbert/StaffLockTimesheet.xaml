@@ -129,7 +129,6 @@
                 <MenuItem 
                     Header="Rounding Rule"
                     Click="RoundingRulesBtn_Click"/>
-                <MenuItem Header="Exit"/>
             </MenuItem>
         </Menu>
         <!-- This is the Volunteer menu available only to staff users -->
@@ -173,8 +172,8 @@
             </MenuItem>
         </Menu>
         <!-- This the orange semitransparent stack panel in the center with the button controls-->
-        <StackPanel Background="#FF9100" Width="800" Height="375" Opacity="0.7" 
-                    Margin = "0, -350, 0, 0"/>
+        <StackPanel Background="#FF9100" Width="800" Height="325" Opacity="0.7" 
+                    Margin = "0, -425, 0, 0"/>
         <Label 
             Width = "150"
             Height="50"

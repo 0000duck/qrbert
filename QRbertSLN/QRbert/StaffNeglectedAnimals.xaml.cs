@@ -13,28 +13,15 @@ public partial class StaffNeglectedAnimals
         
         using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
         sqlCon.Open();
-        string query = 
-            ("Select PetName, PetID, Activity_Date from QRbertDB.QRbertTables.Pet_Activity where Activity_Date >= (SYSDATETIME() - 24) ");
+        string query =
+            ("Select QRbertDB.QRbertTables.Pet.PetName, QRbertDB.QRbertTables.Pet.PetID from QRbertDB.QRbertTables.Pet left join QRbertDB.QRbertTables.Pet_Activity on QRbertDB.QRbertTables.Pet.PetName = QRbertDB.QRbertTables.Pet_Activity.PetName where QRbertDB.QRbertTables.Pet_Activity.Activity_Date is null;");
         SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
         sqlCmd.ExecuteNonQuery();
         SqlDataAdapter adpt = new SqlDataAdapter(sqlCmd);
         DataTable dtable = new DataTable("QRbertDB.QRbertTables.Pet_Activity");
         adpt.Fill(dtable);
-        DataGV.ItemsSource = dtable.DefaultView;
+        NeglectedAnimals.ItemsSource = dtable.DefaultView;
         adpt.Update(dtable);
-        
-        
-        // Switcher.PetId = Int32.Parse(Switcher.VerifyRole("Select PetID From QRbertDB.QRbertTables.Pet_Activity where Activity_Date >= (SYSDATETIME() + 24)"));
-        // PetIdTxtBl.Text = Switcher.PetId.ToString();
-        // PetNameTxtBl.Text =
-        //     Switcher.VerifyRole("Select PetName from QRbertDB.QRbertTables.Pet where PetID = '" + Switcher.PetId + "'");
-        // PetTypeTxtBl.Text =
-        //     Switcher.VerifyRole("Select Type from QRbertDB.QRbertTables.Pet where PetID = '" + Switcher.PetId + "'");
-        // PetIdTxtBl.Visibility = Visibility.Visible;
-        // PetNameTxtBl.Visibility = Visibility.Visible;
-        // PetTypeTxtBl.Visibility = Visibility.Visible;
-        
-        // PetNeglectedChoiceRadBtn.Visibility = Visibility.Visible;
     }
     
     /// <summary>
@@ -139,6 +126,28 @@ public partial class StaffNeglectedAnimals
         Switcher.StaffPageSwitch(new StaffRoundingRules());
         this.Close();
     }
+    
+    /// <summary>
+    /// Redirects user to the FAQ window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FAQRedirectBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffFAQs());
+        Close();
+    }
+    
+    /// <summary>
+    /// Redirects user to Staff Terms of Privacy via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void TermsOfPrivacyBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffTermsofPrivacy());
+        Close();
+    }
 
     /// <summary>
     /// Assigns Neglected Pet to volunteer
@@ -147,64 +156,42 @@ public partial class StaffNeglectedAnimals
     /// <param name="e"></param>
     private void AssignPetToVolunteer(object sender, RoutedEventArgs e)
     {
-        /*if (AssignPetToVolunteerBtn.IsVisible)
+        if (AssignPetToVolunteerBtn.IsVisible)
         {
-            // Reset all text blocks to empty and hide them
-            MessageBox.Show("Assigned to volunteer!");
-            PetIdTxtBl.Text = "";
-            PetIdTxtBl.Visibility = Visibility.Hidden;
-            PetNameTxtBl.Text = "";
-            PetIdTxtBl.Visibility = Visibility.Hidden;
-            PetTypeTxtBl.Text = "";
-            PetTypeTxtBl.Visibility = Visibility.Hidden;
-            PetNeglectedChoiceRadBtn.IsChecked = false;
-            PetNeglectedChoiceRadBtn.Visibility = Visibility.Hidden;
-            AssignPetToVolunteerBtn.Visibility = Visibility.Hidden;
-            Switcher.IsPetNeglected = false;
-            Switcher.StaffPageSwitch(new TrackActiveVolunteers());
-            this.Close();
-        }*/
-        MessageBox.Show("Assigned to Volunteer!");
-        DataGV.SelectedCells.Clear();
+            // If more than one item is selected, present message and deselect items
+            if (NeglectedAnimals.SelectedItems.Count > 1)
+            {
+                MessageBox.Show("Please select one Pet at a time.");
+                NeglectedAnimals.UnselectAll();
+            }
+            else
+            {
+                // Reset all text blocks to empty and hide them
+                MessageBox.Show("Assigned to volunteer!");
+                AssignPetToVolunteerBtn.Visibility = Visibility.Hidden;
+                NeglectedAnimals.SelectedItems.Remove(NeglectedAnimals.SelectedCells);
+                Switcher.IsPetNeglected = false;
+                if (NeglectedAnimals.Items.IsEmpty)
+                {
+                    Switcher.RedirectStaffPortal();
+                    Close();
+                }
+            }
+            
+        }
     }
 
     /// <summary>
-    /// Checks if Radio button has been checked to make assign button visible
+    /// Handles selection of Pet 
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    // private void IsPetRadBtnChecked(object sender, RoutedEventArgs e)
-    // {
-    //     if (PetNeglectedChoiceRadBtn.IsChecked == true)
-    //     {
-    //         AssignPetToVolunteerBtn.Visibility = Visibility.Visible;
-    //     }
-    // }
-
-    /// <summary>
-    /// Handles selected items in DataGrid
-    /// If more than one item is selected, will show a message box that can only assign one pet at a time
-    /// Deselects pets for them
-    /// Makes Assign to Volunteer btn Visible to assign the pet
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void DataGV_OnSelected(object sender, RoutedEventArgs e)
-    {
-        
-    }
-
     private void DataGV_OnSelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
     {
         AssignPetToVolunteerBtn.Visibility = Visibility.Visible;
-        // If more than one item is selected, present message and deselect items
-        if (DataGV.SelectedItems.Count > 1)
-        {
-            MessageBox.Show("Please select one Pet at a time.");
-            DataGV.UnselectAll();
-        }
+        
         // If no items are selected, hide button
-        if (DataGV.SelectedItems.Count == 0)
+        if (NeglectedAnimals.SelectedItems.Count == 0)
         {
             AssignPetToVolunteerBtn.Visibility = Visibility.Hidden;
         }
