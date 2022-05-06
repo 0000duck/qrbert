@@ -122,7 +122,6 @@
             <Image Width="150" Height="150" Source="Images/Qbert_logo_orange.png" 
                    Margin="-650,-900,0,-100"
                    MouseDown="HomeStaffPortalBtn_Click"/>
-            
         </StackPanel>
         <!-- This is the Timesheet menu-->
         <Menu Width="100" Height="22" Margin="300, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
@@ -211,7 +210,6 @@
             So on their timesheet it will appear as 
         </TextBlock>
         <TextBlock Width = "300" Height = "35" Foreground="White" FontWeight = "Normal" FontSize="18"
-
                    Margin = "0, -125, 00, 0" >
             3.2 hours.
         </TextBlock>
