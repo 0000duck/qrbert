@@ -158,8 +158,12 @@
                 <MenuItem 
                     Header="Pet Reports"
                     Click="PetReportsBtn_Click"/>
-                <MenuItem Header = "View Pet Activity"/>
-                <MenuItem Header = "View Pet Treatment"/>
+                <MenuItem 
+                    Header = "View Pet Activity"
+                    Click="ViewPetActivityBtn_Click"/>
+                <MenuItem 
+                    Header = "View Pet Treatment"
+                    Click="ViewPetTreatmentBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This is the My Account menu-->
@@ -204,7 +208,8 @@
         <!-- This the "Add Pet Treatment" button control-->
         <Button 
             Background="White" Foreground="Orange" FontWeight="Bold" BorderBrush="Orange" BorderThickness="2" 
-            Height="35" Width="175" FontSize="16" ClickMode="Press" Margin="0,-50,0,0">
+            Height="35" Width="175" FontSize="16" ClickMode="Press" Margin="0,-50,0,0"
+            Click="AddPetTreatmentBtn_Click">
             <Button.Resources>
                 <Style 
                     TargetType="{x:Type Border}">

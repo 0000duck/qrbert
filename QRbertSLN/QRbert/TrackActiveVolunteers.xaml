@@ -156,8 +156,12 @@
                 <MenuItem 
                     Header="Pet Reports"
                     Click="PetReportsBtn_Click"/>
-                <MenuItem Header = "View Pet Activity"/>
-                <MenuItem Header = "View Pet Treatment"/>
+                <MenuItem 
+                    Header = "View Pet Activity"
+                    Click="ViewPetActivityBtn_Click"/>
+                <MenuItem 
+                    Header = "View Pet Treatment"
+                    Click="ViewPetTreatmentBtn_Click"/>
             </MenuItem>
         </Menu>
         <!-- This is the My Account menu-->
@@ -300,6 +304,7 @@
         <!-- This the "FAQs" button control at the bottom of the page -->
         <Button Height = "25" Width = "150" Content="FAQs" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"
+                Click="FAQRedirectBtn_Click"
                 Margin="0,-25,0,0">
         </Button>
         <!-- This the "©2022 QRbert Inc." button control at the bottom of the page -->

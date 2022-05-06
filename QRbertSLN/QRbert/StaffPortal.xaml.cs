@@ -36,7 +36,7 @@ public partial class StaffPortal
             // At least one Pet is Neglected
             // Means that Switcher.IsPetNeglected = true
             Switcher.StaffPageSwitch(new StaffNeglectedAnimals());
-            this.Close();
+            Close();
         }
     }
 
@@ -49,7 +49,7 @@ public partial class StaffPortal
     private void StaffMyAccountBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffMyAccount());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -60,7 +60,7 @@ public partial class StaffPortal
     private void LogOutBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.LogOutSwitch();
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -71,7 +71,7 @@ public partial class StaffPortal
     private void HomeStaffPortalBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.RedirectStaffPortal();
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -86,7 +86,7 @@ public partial class StaffPortal
             Switcher.RemoveAnimal = true;
         }
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -97,7 +97,7 @@ public partial class StaffPortal
     private void PetReportsBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffPetReport());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -108,7 +108,7 @@ public partial class StaffPortal
     private void TrackActiveVolunteersBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new TrackActiveVolunteers());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -119,7 +119,7 @@ public partial class StaffPortal
     private void StaffSearchBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffSearch());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -130,7 +130,7 @@ public partial class StaffPortal
     private void LockTimesheetBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffLockTimesheet());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -141,7 +141,7 @@ public partial class StaffPortal
     private void RoundingRulesBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffRoundingRules());
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -166,4 +166,25 @@ public partial class StaffPortal
         Close();
     }
 
+    /// <summary>
+    /// Redirects user to Staff Track Animal Activity via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ViewPetActivityBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffTrackAnimalActivity());
+        Close();
+    }
+
+    /// <summary>
+    /// Redirects user to Staff View Pet Treatment via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ViewPetTreatmentBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffViewPetTreatment());
+        Close();
+    }
 }
