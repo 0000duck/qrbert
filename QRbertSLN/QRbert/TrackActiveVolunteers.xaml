@@ -156,6 +156,8 @@
                 <MenuItem 
                     Header="Pet Reports"
                     Click="PetReportsBtn_Click"/>
+                <MenuItem Header = "View Pet Activity"/>
+                <MenuItem Header = "View Pet Treatment"/>
             </MenuItem>
         </Menu>
         <!-- This is the My Account menu-->
