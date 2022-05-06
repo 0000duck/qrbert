@@ -159,6 +159,8 @@
                     Name="RemoveAnimal"/>
                 <MenuItem 
                     Header="Pet Reports" />
+                <MenuItem Header = "View Pet Activity"/>
+                <MenuItem Header = "View Pet Treatment"/>
             </MenuItem>
         </Menu>
         <!-- This is the My Account menu-->

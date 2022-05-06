@@ -227,6 +227,8 @@
                     Click="PetReportsBtn_Click"
                     />
             </MenuItem>
+            <MenuItem Header = "View Pet Activity"/>
+            <MenuItem Header = "View Pet Treatment"/>
         </Menu>
         <!-- This is the My Account menu for staff-->
         <Menu Width="100" Height="22" Margin="600, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
