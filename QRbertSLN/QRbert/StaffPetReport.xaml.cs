@@ -72,7 +72,7 @@ public partial class StaffPetReport : Window
     /// <param name="e"></param>
     private void StaffViewPetReportBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.StaffPageSwitch(new StaffMyPets());
+        Switcher.StaffPageSwitch(new StaffTrackAnimalActivity());
         this.Close();
     }
 

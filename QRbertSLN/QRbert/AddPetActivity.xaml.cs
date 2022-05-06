@@ -175,7 +175,7 @@ public partial class AddPetActivity
         sqlCmd.ExecuteNonQuery();
         MessageBox.Show("Successfully saved New Pet Activity.");
         Switcher.StaffPageSwitch(new StaffTrackAnimalActivity());
-        this.Close();
+        Close();
     }
 
     /// <summary>
