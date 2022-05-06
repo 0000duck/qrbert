@@ -11,7 +11,7 @@ public partial class VolunteerPetBreedInfo : Window
         InitializeComponent();
         breedType[0] = "For this cat, DO NOT GIVE IT CATNIP...not worth.";
         breedType[1] = "For this dog, make sure you take it on for walks otherwise it will get fat...like obese.";
-        string petBreed; //THis is where the query goes
+        string petBreed = ""; //THis is where the query goes
         PetBreedLabel.Content = petBreed;
         if (petBreed == "CAT")
         {
