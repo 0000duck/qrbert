@@ -171,4 +171,15 @@ public partial class StaffViewPetTreatment : Window
         Switcher.StaffPageSwitch(new StaffFAQs());
         Close();
     }
+
+    /// <summary>
+    /// Redirects user to the Add Pet Treatment window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void AddPetTreatmentBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new AddPetTreatment());
+        Close();
+    }
 }
