@@ -192,28 +192,6 @@
             FontSize="30"
             Margin="25,-1200,0,0"
         />
-        <!-- This the "Pet ID" text-box control-->
-        <DockPanel LastChildFill="False">
-            <Label Width = "250" Height="35" Background="Transparent" Foreground="White" 
-                     FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-1100,-800,0" FontSize="14"
-                     Name="PetIdLabel">
-                Pet ID
-            </Label>
-            <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
-                       Margin="0,-1060,0,0"/>
-        </DockPanel>
-        <!-- This the "Pet Name" text-box control-->
-        <DockPanel LastChildFill="False">
-            <Label Width = "250" Height="35" Background="Transparent" Foreground="White" 
-                     FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-1000,-800,0" FontSize="14"
-                     Name="PetNameLabel">
-                Pet Name
-            </Label>
-            <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
-                       Margin="0,-960,0,0"/>
-        </DockPanel>
         <!-- This the "Injury Type" text-box control-->
         <DockPanel LastChildFill="False">
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 

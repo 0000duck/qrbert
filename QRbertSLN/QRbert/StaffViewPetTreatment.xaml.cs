@@ -4,7 +4,7 @@ using System.Windows;
 
 namespace QRbert;
 
-public partial class StaffViewPetTreatment : Window
+public partial class StaffViewPetTreatment 
 {
     /// <summary>
     /// Upon loading the page, Window checks if boolean is true to turn on Bell Icon
@@ -17,13 +17,11 @@ public partial class StaffViewPetTreatment : Window
             AlertStaffBellIcon.Visibility = Visibility.Visible;
         }
         
-        PetName.Text = Switcher.VerifyRole(
-            "Select PetName from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" + Switcher.PetId + "'");
+        // PetName.Text = Switcher.VerifyRole("Select PetName from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" + Switcher.PetId + "'");
         using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
         sqlCon.Open();
         string query = 
-            ("Select PetId, InjuryType, Incident_Date, Rx from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" 
-             + Switcher.PetId +"'");
+            ("Select QRbertDB.QRbertTables.Pet_Treatment.PetID, QRbertDB.QRbertTables.Pet_Treatment.InjuryType, QRbertDB.QRbertTables.Pet_Treatment.Incident_Date, QRbertDB.QRbertTables.Pet_Treatment.Rx from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" + Switcher.PetId + "'");
         SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
         sqlCmd.ExecuteNonQuery();
         SqlDataAdapter adpt = new SqlDataAdapter(sqlCmd);
@@ -31,13 +29,6 @@ public partial class StaffViewPetTreatment : Window
         adpt.Fill(dtable);
         DataGV.ItemsSource = dtable.DefaultView;
         adpt.Update(dtable);
-
-        // InjuryType.Text = Switcher.VerifyRole(
-        //     "Select InjuryType from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" + Switcher.PetId + '"');
-        // IncidentDate.Text = Switcher.VerifyRole(
-        //     "Select Incident_Date from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" + Switcher.PetId + '"');
-        // Rx.Text = Switcher.VerifyRole(
-        //     "Select Rx from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" + Switcher.PetId + '"');
     }
 
     /// <summary>

@@ -50,6 +50,10 @@
       <Content Include="Images\QRbertQRCode-White.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
+      <None Remove="Images\puppy.jpg" />
+      <Content Include="Images\puppy.jpg">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
     <ItemGroup>
