@@ -169,7 +169,7 @@
             </MenuItem>
         </Menu>
         <!-- This the orange semitransparent stack panel in the center with the button controls-->
-        <StackPanel Background="#FF9100" Width="400" Height="300" Opacity="0.7" 
+        <StackPanel Background="#FF9100" Width="500" Height="300" Opacity="0.7" 
                     Margin = "0, -400, 0, 0"/>
         <!-- This the "Scan Pet qrcode" label at the top center of the orange semitransaprent stackpanel-->
         <Label 
@@ -219,162 +219,15 @@
             </Button.Resources>
             Search 
         </Button>
-        
-        <Label 
-            Width = "100"
-            Height="50"
-            FontWeight="Bold" 
-            HorizontalAlignment="Center"
-            Content="Name" 
-            Foreground="White" 
-            FontSize="20"
-            Margin="-200,-500,0,0"
-        />
-        <Label 
-            Width = "100"
-            Height="50"
-            FontWeight="Bold" 
-            HorizontalAlignment="Center"
-            Content="ID" 
-            Foreground="White" 
-            FontSize="20"
-            Margin="0,-500,-200,0"
-        />
-        <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="375" 
-                   Margin="0,-480,0,0"/>
-        <Label 
-            Name="StaffName0"
-            Width = "175"
-            Height="30"
-            FontWeight="Bold" 
-            HorizontalAlignment="Center"
-            Content="" 
-            Foreground="White" 
-            FontSize="16"
-            Margin="-200,-450,0,0"
-        />
-        <Label 
-            Name="StaffID0"
-            Width = "175"
-            Height="30"
-            FontWeight="Bold" 
-            HorizontalAlignment="Center"
-            Content="" 
-            Foreground="White" 
-            FontSize="16"
-            Margin="0,-450,-200,0"
-        />
-        <Label 
-            Name="StaffName1"
-            Width = "175"
-            Height="30"
-            FontWeight="Bold" 
-            HorizontalAlignment="Center"
-            Content="" 
-            Foreground="White" 
-            FontSize="16"
-            Margin="-200,-400,0,0"
-        />
-        <Label 
-            Name="StaffID1"
-            Width = "175"
-            Height="30"
-            FontWeight="Bold" 
-            HorizontalAlignment="Center"
-            Content="" 
-            Foreground="White" 
-            FontSize="16"
-            Margin="0,-400,-200,0"
-        />
-        <Label 
-            Name="StaffName2"
-            Width = "175"
-            Height="30"
-            FontWeight="Bold" 
-            HorizontalAlignment="Center"
-            Content="" 
-            Foreground="White" 
-            FontSize="16"
-            Margin="-200,-350,0,0"
-        />
-        <Label 
-            Name="StaffID2"
-            Width = "175"
-            Height="30"
-            FontWeight="Bold" 
-            HorizontalAlignment="Center"
-            Content="" 
-            Foreground="White" 
-            FontSize="16"
-            Margin="0,-350,-200,0"
-        />
-        <Label 
-            Name="StaffName3"
-            Width = "175"
-            Height="30"
-            FontWeight="Bold" 
-            HorizontalAlignment="Center"
-            Content="" 
-            Foreground="White" 
-            FontSize="16"
-            Margin="-200,-300,0,0"
-        />
-        <Label 
-            Name="StaffID3"
-            Width = "175"
-            Height="30"
-            FontWeight="Bold" 
-            HorizontalAlignment="Center"
-            Content="" 
-            Foreground="White" 
-            FontSize="16"
-            Margin="0,-300,-200,0"
-        />
-        <Label 
-            Name="StaffName4"
-            Width = "175"
-            Height="30"
-            FontWeight="Bold" 
-            HorizontalAlignment="Center"
-            Content="" 
-            Foreground="White" 
-            FontSize="16"
-            Margin="-200,-250,0,0"
-        />
-        <Label 
-            Name="StaffID4"
-            Width = "175"
-            Height="30"
-            FontWeight="Bold" 
-            HorizontalAlignment="Center"
-            Content="" 
-            Foreground="White" 
-            FontSize="16"
-            Margin="0,-250,-200,0"
-        />
-        <Label 
-            Name="StaffName5"
-            Width = "175"
-            Height="30"
-            FontWeight="Bold" 
-            HorizontalAlignment="Center"
-            Content="" 
-            Foreground="White" 
-            FontSize="16"
-            Margin="-200,-200,0,0"
-        />
-        <Label 
-            Name="StaffID5"
-            Width = "175"
-            Height="30"
-            FontWeight="Bold" 
-            HorizontalAlignment="Center"
-            Content="" 
-            Foreground="White" 
-            FontSize="16"
-            Margin="0,-200,-200,0"
-        />
-        
+        <DataGrid
+            AutoGenerateColumns="True"
+            Height="200" HorizontalAlignment="Center" 
+            Margin="0,-325,0,0"   
+            Name="SearchResults" 
+            VerticalAlignment="Center" 
+            Width="450"
+            Background="White">
+        </DataGrid>
         <!-- This the "Terms and Privacy Notice" button control at the bottom of the page -->
         <Button Height = "25" Width = "300" Content="Terms and Privacy Notice" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"

@@ -184,7 +184,7 @@
             FontSize="28"
             Margin="0,-675,0,0"
         />
-        <!-- This the "Volunteer name" textbox control, this shouldn't change-->
+        <!--~1~ This the "Volunteer name" textbox control, this shouldn't change@1@
         <DockPanel LastChildFill="False">
             <TextBox Width = "125" Height="20" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
@@ -195,7 +195,7 @@
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="150" 
                        Margin="0,-560,250,0"/>
         </DockPanel>
-        <!-- This the "Volunteer ID" text box control, this shouldn't change-->
+        ~1~ This the "Volunteer ID" text box control, this shouldn't change@1@
         <DockPanel LastChildFill="False">
             <TextBox Width = "125" Height="20" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
@@ -206,81 +206,91 @@
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="150" 
                        Margin="0,-560,-175,0"/>
         </DockPanel>
-        <!-- This the "Volunteer1" textbox control where the first name will go-->
+        ~1~ This the "Volunteer1" textbox control where the first name will go@1@
         <TextBox Name = "VolFirst1" Width = "100" Height="20" Background="Transparent" Foreground="White" 
                  FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                  Margin="0,-500,300,0" FontSize="14" Text="First">
         </TextBox>
-        <!-- This the "Volunteer1" textbox control where the last name will go-->
+        ~1~ This the "Volunteer1" textbox control where the last name will go@1@
         <TextBox Name = "VolLast1" Width = "100" Height="20" Background="Transparent" Foreground="White" 
                  FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                  Margin="0,-500,100,0" FontSize="14" Text="Last">
         </TextBox>
-        <!-- This the "Volunteer ID 1" textbox control-->
+        ~1~ This the "Volunteer ID 1" textbox control@1@
         <TextBox Name = "Id1" Width = "200" Height="20" Background="Transparent" Foreground="White" 
                  FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                  Margin="0,-500,-300,0" FontSize="14" Text="ID1">
         </TextBox>
-        <!-- This the "Volunteer2" textbox control where the first name will go-->
+        ~1~ This the "Volunteer2" textbox control where the first name will go@1@
         <TextBox Name = "VolFirst2" Width = "100" Height="20" Background="Transparent" Foreground="White" 
                  FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                  Margin="0,-400,300,0" FontSize="14" Text="First">
         </TextBox>
-        <!-- This the "Volunteer2" textbox control where the last name will go-->
+        ~1~ This the "Volunteer2" textbox control where the last name will go@1@
         <TextBox Name = "VolLast2" Width = "100" Height="20" Background="Transparent" Foreground="White" 
                  FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                  Margin="0,-400,100,0" FontSize="14" Text="Last">
         </TextBox>
-        <!-- This the "Volunteer ID 2" textbox control -->
+        ~1~ This the "Volunteer ID 2" textbox control @1@
         <TextBox Name = "Id2" Width = "200" Height="20" Background="Transparent" Foreground="White" 
                  FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                  Margin="0,-400,-300,0" FontSize="14" Text="ID2">
         </TextBox>
-        <!-- This the "Volunteer3" textbox control where the first name will go-->
+        ~1~ This the "Volunteer3" textbox control where the first name will go@1@
         <TextBox Name = "VolFirst3" Width = "100" Height="20" Background="Transparent" Foreground="White" 
                  FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                  Margin="0,-300,300,0" FontSize="14" Text="First">
         </TextBox>
-        <!-- This the "Volunteer3" textbox control where the last name will go-->
+        ~1~ This the "Volunteer3" textbox control where the last name will go@1@
         <TextBox Name = "VolLast3" Width = "100" Height="20" Background="Transparent" Foreground="White" 
                  FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                  Margin="0,-300,100,0" FontSize="14" Text="Last">
         </TextBox>
-        <!-- This the "Volunteer ID 3" textbox control-->
+        ~1~ This the "Volunteer ID 3" textbox control@1@
         <TextBox Name = "Id3" Width = "200" Height="20" Background="Transparent" Foreground="White" 
                  FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                  Margin="0,-300,-300,0" FontSize="14" Text="ID3">
         </TextBox>
-        <!-- This the "Volunteer4" textbox control where the first name will go-->
+        ~1~ This the "Volunteer4" textbox control where the first name will go@1@
         <TextBox Name = "VolFirst4" Width = "100" Height="20" Background="Transparent" Foreground="White" 
                  FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                  Margin="0,-200,300,0" FontSize="14" Text="First">
         </TextBox>
-        <!-- This the "Volunteer4" textbox control where the last name will go-->
+        ~1~ This the "Volunteer4" textbox control where the last name will go@1@
         <TextBox Name = "VolLast4" Width = "100" Height="20" Background="Transparent" Foreground="White" 
                  FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                  Margin="0,-200,100,0" FontSize="14" Text="Last">
         </TextBox>
-        <!-- This the "Volunteer ID 3" textbox control-->
+        ~1~ This the "Volunteer ID 3" textbox control@1@
         <TextBox Name = "Id4" Width = "200" Height="20" Background="Transparent" Foreground="White" 
                  FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                  Margin="0,-200,-300,0" FontSize="14" Text="ID4">
         </TextBox>
-        <!-- This the "Volunteer5" textbox control where the first name will go-->
+        ~1~ This the "Volunteer5" textbox control where the first name will go@1@
         <TextBox Name = "VolFirst5" Width = "100" Height="20" Background="Transparent" Foreground="White" 
                  FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                  Margin="0,-100,300,0" FontSize="14" Text="First">
         </TextBox>
-        <!-- This the "Volunteer5" textbox control where the last name will go-->
+        ~1~ This the "Volunteer5" textbox control where the last name will go@1@
         <TextBox Name = "VolLast5" Width = "100" Height="20" Background="Transparent" Foreground="White" 
                  FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                  Margin="0,-100,100,0" FontSize="14" Text="Last">
         </TextBox>
-        <!-- This the "Volunteer ID 5" textbox control-->
+        ~1~ This the "Volunteer ID 5" textbox control@1@
         <TextBox Name = "Id5" Width = "200" Height="20" Background="Transparent" Foreground="White" 
                  FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                  Margin="0,-100,-300,0" FontSize="14" Text="ID5">
-        </TextBox>
+        </TextBox>-->
+        <DataGrid
+            AutoGenerateColumns="True"
+            Height="250" HorizontalAlignment="Center" 
+            Margin="0,-350,0,0"   
+            Name="ActiveVolunteers" 
+            VerticalAlignment="Center" 
+            Width="450"
+            Background="White">
+        </DataGrid>
+        
         <!-- This the "Terms and Privacy Notice" button control at the bottom of the page -->
         <Button Height = "25" Width = "300" Content="Terms and Privacy Notice" Background="Transparent" Foreground="#FF9100" FontSize="16" 
                 BorderBrush="Transparent" FontWeight="Normal" ClickMode="Press"

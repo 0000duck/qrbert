@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows;
 
 namespace QRbert;
 
-public partial class StaffSearch : Window
+public partial class StaffSearch
 {
     /*
     * connects DB to Register Page
@@ -13,72 +14,68 @@ public partial class StaffSearch : Window
     * Initial Catalog the QRbert database we want to connect to
     * User name and Password -> temp log in solution until we find a more secure way to log into the DB
     * so that the log in credentials aren't in the code for all to see
-    */ 
-    String connectionString = @"Data Source = qrbert-rds1.cfe8s1xr87h2.us-west-1.rds.amazonaws.com; 
-                                Initial Catalog = QRbertDB; User ID = rds1_admin; Password = rds1_admin;";
-    
+    */
     public StaffSearch()
     {
         InitializeComponent();
     }
     
-    public static bool isSearchValid(string text)
+    /// <summary>
+    /// Checks if search is valid input, calls checkString function
+    /// </summary>
+    /// <param name="text"></param>
+    /// <returns>
+    /// True if valid, false otherwise
+    /// </returns>
+    private static bool IsSearchValid(string text)
     {
-        return checkString(text);
+        return CheckString(text);
     }
     
-    public static bool checkString(string words)
+    /// <summary>
+    /// Function that checks for empty string
+    /// </summary>
+    /// <param name="words"></param>
+    /// <returns>
+    /// False if no words inputted in search, true otherwise
+    /// </returns>
+    private static bool CheckString(string words)
     {
-        if (words == null || words == "")
+        if (words == "")
         {
             return false;
         }
-        else
-        {
-            return true;
-        }
-        
+
+        return true;
+
     }
+    
     
     private void Search(object sender, EventArgs e)
     {
-        if (!isSearchValid(SearchInput.Text))
+        if (!IsSearchValid(SearchInput.Text))
         {
-            MessageBox.Show("Please enter search text");
+            MessageBox.Show("Search invalid. Please try again.");
         }
         else
         {
-            // Reset display on new search, clear old values
-            StaffName0.Content = "";
-            StaffName1.Content = "";
-            StaffName2.Content = "";
-            StaffName3.Content = "";
-            StaffName4.Content = "";
-            StaffName5.Content = "";
-            StaffID0.Content = "";
-            StaffID1.Content = "";
-            StaffID2.Content = "";
-            StaffID3.Content = "";
-            StaffID4.Content = "";
-            StaffID5.Content = "";
-            
             // Separate input into first and last names for searching
             String[] nameList = SearchInput.Text.Split(' ');
             String firstName = nameList[0];
             String lastName = String.Join(' ', nameList.Skip(1));
             
             // Execute query in database and display results
-            using SqlConnection sqlCon = new SqlConnection(connectionString);
-            string query = "SELECT * FROM Registration WHERE FirstName LIKE "+firstName+" AND LastName LIKE "+lastName+";";
-            SqlCommand command = new SqlCommand(query, sqlCon);
+            using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
             sqlCon.Open();
-            using (SqlDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    MessageBox.Show(String.Format("{0}",reader[0]));
-                }
-            }
+            string query = ("SELECT [Faculty-Role], FirstName, LastName, Email FROM QRbertDB.QRbertTables.Registration WHERE FirstName LIKE '" + firstName + "' OR LastName LIKE '" + lastName + "'");
+            SqlCommand command = new SqlCommand(query, sqlCon);
+            command.ExecuteNonQuery();
+            
+            SqlDataAdapter adpt = new SqlDataAdapter(command);
+            DataTable dtable = new DataTable("QRbert.QRbertTables.Registration");
+            adpt.Fill(dtable);
+            SearchResults.ItemsSource = dtable.DefaultView;
+            adpt.Update(dtable);
         }
     }
     
@@ -91,7 +88,7 @@ public partial class StaffSearch : Window
     private void StaffMyAccountBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffMyAccount());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -102,7 +99,7 @@ public partial class StaffSearch : Window
     private void LogOutBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.LogOutSwitch();
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -113,7 +110,7 @@ public partial class StaffSearch : Window
     private void HomeStaffPortalBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.RedirectStaffPortal();
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -124,7 +121,7 @@ public partial class StaffSearch : Window
     private void ScanPetQRCodeRedirectBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -135,7 +132,7 @@ public partial class StaffSearch : Window
     private void PetReportsBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffPetReport());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -146,7 +143,7 @@ public partial class StaffSearch : Window
     private void TrackActiveVolunteersBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new TrackActiveVolunteers());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -157,7 +154,7 @@ public partial class StaffSearch : Window
     private void StaffSearchBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffSearch());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -168,7 +165,7 @@ public partial class StaffSearch : Window
     private void LockTimesheetsBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffLockTimesheet());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -179,7 +176,7 @@ public partial class StaffSearch : Window
     private void RoundingRulesBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffRoundingRules());
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -192,6 +189,5 @@ public partial class StaffSearch : Window
         Switcher.StaffPageSwitch(new StaffTermsofPrivacy());
         Close();
     }
-
 }
 

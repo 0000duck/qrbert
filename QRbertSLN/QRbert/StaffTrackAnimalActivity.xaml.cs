@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace QRbert;
 
-public partial class StaffTrackAnimalActivity : Window 
+public partial class StaffTrackAnimalActivity 
 {
     public StaffTrackAnimalActivity()
     {
@@ -15,11 +15,8 @@ public partial class StaffTrackAnimalActivity : Window
     private void PetActivityBtn(object sender, EventArgs e)
     {
         using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
-        sqlCon.Open(); 
-        // SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
-
+        sqlCon.Open();
         string query =  ("Select * From QRbertDB.QRbertTables.Pet_Activity Where PetName = '" + PetNameTxt.Text + "'");
-        //select * from QRbertTables.Pet_Activity where PetName = 'Lily';
         SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
         sqlCmd.ExecuteNonQuery();
 
