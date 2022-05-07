@@ -15,11 +15,11 @@ public partial class AddPetActivity
     {
         InitializeComponent();
         // Load Pet ID, Pet Name, and current Date when Window loads
-        PetId.Content = "806";//Switcher.PetId.ToString();
-        string petName = "Rufus";
-            //Switcher.VerifyRole("Select PetName From QRbertDB.QRbertTables.Pet Where PetID = '" + Switcher.PetId + "'");
-            string date = "fsjopdigsd";
-            //Switcher.VerifyRole("Select Activity_Date From QRbertDB.QRbertTables.Pet_Activity Where PetID = '" + Switcher.PetId + "'");
+        PetId.Content = Switcher.PetId.ToString();
+        string petName = 
+            Switcher.VerifyRole("Select PetName From QRbertDB.QRbertTables.Pet Where PetID = '" + Switcher.PetId + "'");
+            string date = 
+            Switcher.VerifyRole("Select Activity_Date From QRbertDB.QRbertTables.Pet_Activity Where PetID = '" + Switcher.PetId + "'");
         PetName.Content = petName;
         ActivityDate.Content = date;
         if (Switcher.IsPetNeglected)
