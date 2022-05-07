@@ -226,30 +226,63 @@
         </DockPanel>
         <!-- This the "Water given" text-box control-->
         <DockPanel LastChildFill="False">
+            <TextBlock
+                Text="Water Given"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtWaterGivenBlock"
+                Margin="0,-800,-810,0"
+            > </TextBlock>
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                     TextChanged="WaterGivenTxt_OnTextChanged"
                      Margin="0,-800,-800,0" FontSize="14"
                      Name="WaterGivenTxt">
-                Water Given
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-760,0,0"/>
         </DockPanel>
         <!-- This the "Clean Kennel" text-box control-->
         <DockPanel LastChildFill="False">
+            <TextBlock
+                Text="Clean Kennel"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtCleanKennelBlock"
+                Margin="0,-700,-810,0"
+            > </TextBlock>
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                     TextChanged="CleanKennelTxt_OnTextChanged"
                      Margin="0,-700,-800,0" FontSize="14"
                      Name="CleanKennelTxt">
-                Clean Kennel
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-660,0,0"/>
         </DockPanel>
         <!-- This the "Staff ID" text-box control-->
         <DockPanel LastChildFill="False">
+            <TextBlock
+                Text="Staff ID"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtStaffIDBlock"
+                Margin="0,-600,-810,0"
+            > </TextBlock>
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                     TextChanged="StaffIdTxt_OnTextChanged"
                      Margin="0,-600,-800,0" FontSize="14"
                      Name="FoodGivenTxt">
                 Food Given
@@ -259,8 +292,19 @@
         </DockPanel>
         <!-- This the "Volunteer ID" text-box control-->
         <DockPanel LastChildFill="False">
+            <TextBlock
+                Text="Volunteer ID"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtVolunteerIDBlock"
+                Margin="0,-500,-810,0"
+            > </TextBlock>
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                     TextChanged="VolunteerIdTxt_OnTextChanged"
                      Margin="0,-500,-800,0" FontSize="14"
                      Name="StaffIdTxt">
                 Staff ID

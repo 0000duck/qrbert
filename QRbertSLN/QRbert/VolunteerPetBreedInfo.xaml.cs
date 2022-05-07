@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Data.SqlClient;
+using System.Windows;
 
 namespace QRbert;
 
@@ -9,11 +10,18 @@ public partial class VolunteerPetBreedInfo : Window
     public VolunteerPetBreedInfo()
     {
         InitializeComponent();
+        int petID = Switcher.PetId;
+        petID = 806;
         breedType[0] = "For this cat, DO NOT GIVE IT CATNIP...not worth.";
         breedType[1] = "For this dog, make sure you take it on for walks otherwise it will get fat...like obese.";
-        string petBreed = ""; //THis is where the query goes
-        PetBreedLabel.Content = petBreed;
-        if (petBreed == "CAT")
+        using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
+        sqlCon.Open();
+        string petBreed = "SELECT QRbertDB.QRbertTables.Pet.Type from QRbertDB.QRbertTables.Pet where PetID == petID"; //THis is where the query goes
+        SqlCommand sqlCmd = new SqlCommand(petBreed, sqlCon);
+        //sqlCmd.ExecuteNonQuery();
+        //PetBreedLabel.Content = (string)sqlCmd.ExecuteScalar();
+        //MessageBox.Show((string)PetBreedLabel.Content);
+        if (petBreed == "Cat")
         {
             PetBreedText.Text = breedType[0];
         }

@@ -1,6 +1,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
+using System.Windows.Controls;
 
 
 namespace QRbert;
@@ -15,9 +16,9 @@ public partial class AddPetActivity
         InitializeComponent();
         // Load Pet ID, Pet Name, and current Date when Window loads
         PetId.Content = Switcher.PetId.ToString();
-        string petName =
+        string petName = 
             Switcher.VerifyRole("Select PetName From QRbertDB.QRbertTables.Pet Where PetID = '" + Switcher.PetId + "'");
-        string date =
+            string date = 
             Switcher.VerifyRole("Select Activity_Date From QRbertDB.QRbertTables.Pet_Activity Where PetID = '" + Switcher.PetId + "'");
         PetName.Content = petName;
         ActivityDate.Content = date;
@@ -211,5 +212,50 @@ public partial class AddPetActivity
     {
         Switcher.StaffPageSwitch(new StaffViewPetTreatment());
         Close();
+    }
+
+    private void WaterGivenTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtWaterGivenBlock.Visibility = Visibility.Visible;
+        if (WaterGivenTxt.Text.Length > 0)
+        {
+            txtWaterGivenBlock.Visibility = Visibility.Hidden;
+        }    
+    }
+
+    private void CleanKennelTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtCleanKennelBlock.Visibility = Visibility.Visible;
+        if (CleanKennelTxt.Text.Length > 0)
+        {
+            txtCleanKennelBlock.Visibility = Visibility.Hidden;
+        }   
+    }
+
+    private void StaffIdTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtStaffIDBlock.Visibility = Visibility.Visible;
+        if (StaffIdTxt.Text.Length > 0)
+        {
+            txtStaffIDBlock.Visibility = Visibility.Hidden;
+        }   
+    }
+
+    private void VolunteerIdTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtVolunteerIDBlock.Visibility = Visibility.Visible;
+        if (VolunteerIdTxt.Text.Length > 0)
+        {
+            txtVolunteerIDBlock.Visibility = Visibility.Hidden;
+        }  
+    }
+
+    private void NotesTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtNotesBlock.Visibility = Visibility.Visible;
+        if (NotesTxt.Text.Length > 0)
+        {
+            txtNotesBlock.Visibility = Visibility.Hidden;
+        }  
     }
 }
