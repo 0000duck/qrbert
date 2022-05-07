@@ -2,19 +2,19 @@ using System.Windows;
 
 namespace QRbert;
 
-public partial class VolunteerMyPets : Window
+public partial class VolunteerMyPets
 {
     public VolunteerMyPets()
     {
         InitializeComponent();
         // Loads information when windows loads
-        PetId.Text = Switcher.PetId.ToString();
-        PetName.Text =
-            Switcher.VerifyRole("SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
-        BreedType.Text =
-            Switcher.VerifyRole("SELECT Breed From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
-        Dob.Text =
-            Switcher.VerifyRole("SELECT DOB From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
+        // PetId.Text = Switcher.PetId.ToString();
+        // PetName.Text =
+        //     Switcher.VerifyRole("SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
+        // BreedType.Text =
+        //     Switcher.VerifyRole("SELECT Breed From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
+        // Dob.Text =
+        //     Switcher.VerifyRole("SELECT DOB From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
     }
     /// <summary>
     /// Redirects volunteer user to their MyAccount window via a button click on the menu item
