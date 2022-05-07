@@ -41,7 +41,7 @@ public partial class AddPetActivity
             // At least one Pet is Neglected
             // Means that Switcher.IsPetNeglected = true
             Switcher.StaffPageSwitch(new StaffNeglectedAnimals());
-            this.Close();
+            Close();
         }
     }
     
@@ -172,6 +172,8 @@ public partial class AddPetActivity
         sqlCmd.Parameters.AddWithValue("@Activity_Date", ActivityDate.Content.ToString());
         sqlCmd.Parameters.AddWithValue("@WaterGiven", WaterGivenTxt.Text);
         sqlCmd.Parameters.AddWithValue("@Clean_Kennel", CleanKennelTxt.Text);
+        sqlCmd.Parameters.AddWithValue("@Food_Given", FoodGivenTxt.Text);
+        sqlCmd.Parameters.AddWithValue("@ID", StaffIdTxt.Text);
 
         sqlCmd.ExecuteNonQuery();
         MessageBox.Show("Successfully saved New Pet Activity.");

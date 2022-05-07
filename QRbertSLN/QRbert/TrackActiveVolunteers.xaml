@@ -140,7 +140,6 @@
                 <MenuItem 
                     Header="Staff Search"
                     Click="StaffSearchBtn_Click"/>
-                <MenuItem Header="Assign Pet"/>
             </MenuItem>
         </Menu>
         <!-- This is the Animal menu-->

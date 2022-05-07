@@ -284,8 +284,8 @@
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      TextChanged="StaffIdTxt_OnTextChanged"
                      Margin="0,-600,-800,0" FontSize="14"
-                     Name="StaffIdTxt">
-                
+                     Name="FoodGivenTxt">
+                Food Given
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-560,0,0"/>
@@ -306,33 +306,11 @@
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      TextChanged="VolunteerIdTxt_OnTextChanged"
                      Margin="0,-500,-800,0" FontSize="14"
-                     Name="VolunteerIdTxt">
-                
+                     Name="StaffIdTxt">
+                Staff ID
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-460,0,0"/>
-        </DockPanel>
-        <!-- This the "Notes" text-box control-->
-        <DockPanel LastChildFill="False">
-            <TextBlock
-                Text="Notes"
-                Foreground="White"
-                FontWeight="Bold"
-                FontSize="14"
-                Height="20"
-                Width="250"
-                Name="txtNotesBlock"
-                Margin="0,-400,-810,0"
-            > </TextBlock>
-            <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
-                     FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     TextChanged="NotesTxt_OnTextChanged"
-                     Margin="0,-400,-800,0" FontSize="14"
-                     Name="NotesTxt">
-                
-            </TextBox>
-            <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
-                       Margin="0,-360,0,0"/>
         </DockPanel>
         <!-- This the "Add Pet Activity" button control-->
         <Button 
