@@ -178,7 +178,7 @@ public partial class StaffCreatePetReport : Window
                 "SELECT PetID From QRbertDB.QRbertTables.Pet where PetName = '" + txtPetName.Text + "' and DOB = '" + txtDOB.Text + "'"));
         // Creating the user's QR code and displaying it
         // Saves the email, password, and facultyrole as a string for the QR code, this can be changed later
-        string petInfo = txtPetName.Text + " " + Switcher.PetId + " " + txtType.Text;
+        string petInfo = Switcher.PetId + " " + txtPetName.Text + " " + txtType.Text;
         DrawingImage qrCodeImage = QRCodeScanner.Generate_QR_Click(petInfo);
         // Creates a new window to display the QR code and shows it
         ShowQRCode showQRCode = new ShowQRCode();
@@ -221,6 +221,18 @@ public partial class StaffCreatePetReport : Window
     private void ViewPetTreatmentBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffViewPetTreatment());
+        Close();
+    }
+    
+    /// <summary>
+    /// Redirects user to Scan Pet QR Code, new function allows Staff to Remove pet via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void RemoveAnimalBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.RemoveAnimal = true;
+        Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         Close();
     }
 }

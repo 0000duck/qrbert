@@ -81,10 +81,6 @@ public partial class StaffPortal
     /// <param name="e"></param>
     private void ScanPetQRCodeRedirectBtn_Click(object sender, RoutedEventArgs e)
     {
-        if (Equals(RemoveAnimal.Header, "RemoveAnimal"))
-        {
-            Switcher.RemoveAnimal = true;
-        }
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         Close();
     }
@@ -185,6 +181,18 @@ public partial class StaffPortal
     private void ViewPetTreatmentBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffViewPetTreatment());
+        Close();
+    }
+
+    /// <summary>
+    /// Redirects user to Scan Pet QR Code, new function allows Staff to Remove pet via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void RemoveAnimalBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.RemoveAnimal = true;
+        Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         Close();
     }
 }

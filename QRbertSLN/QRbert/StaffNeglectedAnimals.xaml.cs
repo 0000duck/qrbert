@@ -218,4 +218,16 @@ public partial class StaffNeglectedAnimals
         Switcher.StaffPageSwitch(new StaffViewPetTreatment());
         Close();
     }
+    
+    /// <summary>
+    /// Redirects user to Scan Pet QR Code, new function allows Staff to Remove pet via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void RemoveAnimalBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.RemoveAnimal = true;
+        Switcher.StaffPageSwitch(new StaffScanPetQrCode());
+        Close();
+    }
 }

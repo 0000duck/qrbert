@@ -213,6 +213,17 @@ public partial class AddPetActivity
         Switcher.StaffPageSwitch(new StaffViewPetTreatment());
         Close();
     }
+    
+    /// <summary>
+    /// Redirects user to Scan Pet QR Code, new function allows Staff to Remove pet via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void RemoveAnimalBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.RemoveAnimal = true;
+        Switcher.StaffPageSwitch(new StaffScanPetQrCode());
+        Close();
 
     private void WaterGivenTxt_OnTextChanged(object sender, TextChangedEventArgs e)
     {
@@ -238,6 +249,6 @@ public partial class AddPetActivity
         if (StaffIdTxt.Text.Length > 0)
         {
             txtStaffIDBlock.Visibility = Visibility.Hidden;
-        }   
+        }
     }
 }
