@@ -73,8 +73,9 @@ public partial class VolunteerScanPetQrCode
     {
         // Opens camera
         QRCodeScanner.DecodeQRCode();
+        string[] qrResult = QRCodeScanner.result.Split(' ');
         // Parses decoded result to integer
-        int petId = int.Parse(QRCodeScanner.result);
+        int petId = int.Parse(qrResult[1]);
         // Queries DB to find PetID and verify it
         string msg = 
             Switcher.VerifyRole("SELECT count(*) From QRbertDB.QRbertTables.Pet where PetID = '" + petId + "'");

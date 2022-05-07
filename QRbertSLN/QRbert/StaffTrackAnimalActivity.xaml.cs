@@ -10,8 +10,16 @@ public partial class StaffTrackAnimalActivity
     public StaffTrackAnimalActivity()
     {
         InitializeComponent();
+        PetNameTxt.Text =
+            Switcher.VerifyRole("Select PetName from QRbertDB.QRbertTables.Pet where PetID = '" +
+                                Switcher.PetId + "'");
     }
 
+    /// <summary>
+    /// Adds a 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void PetActivityBtn(object sender, EventArgs e)
     {
         using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
