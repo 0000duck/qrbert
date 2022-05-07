@@ -8,51 +8,12 @@ namespace QRbert;
  * Window for Staff - To Track Active Volunteers
  */
 
-public partial class TrackActiveVolunteers : Window
+public partial class TrackActiveVolunteers
 {
     public TrackActiveVolunteers()
     {
         InitializeComponent();
-        //Vol1.Text = Switcher.VerifyRole("SELECT VolName FROM QRbertDB.QRberttables.Volunteers where VolID = 
-        /*VolFirst1.Text = Switcher.VerifyRole(
-            ("SELECT FirstName FROM QRbertDB.QRbertTables.Registration where Email ='" + "Bee@gmail.com" +
-             "'"));
-        VolLast1.Text = Switcher.VerifyRole(("SELECT LastName FROM QRbertDB.QRbertTables.Registration where Email ='" +
-                                             "Bee@gmail.com" +
-                                             "'"));
-        Id1.Text = "600";
 
-        VolFirst2.Text = Switcher.VerifyRole(
-            ("SELECT FirstName FROM QRbertDB.QRbertTables.Registration where Email ='" + "Cartman@gmail.com" +
-             "'"));
-        VolLast2.Text = Switcher.VerifyRole(("SELECT LastName FROM QRbertDB.QRbertTables.Registration where Email ='" +
-                                             "Cartman@gmail.com" +
-                                             "'"));
-        Id2.Text = "601";
-
-        VolFirst3.Text = Switcher.VerifyRole(
-            ("SELECT FirstName FROM QRbertDB.QRbertTables.Registration where Email ='" + "fleck@gmail.com" +
-             "'"));
-        VolLast3.Text = Switcher.VerifyRole(("SELECT LastName FROM QRbertDB.QRbertTables.Registration where Email ='" +
-                                             "fleck@gmail.com" +
-                                             "'"));
-        Id3.Text = "602";
-
-        VolFirst4.Text = Switcher.VerifyRole(
-            ("SELECT FirstName FROM QRbertDB.QRbertTables.Registration where Email ='" + "stark@gmail.com" +
-             "'"));
-        VolLast4.Text = Switcher.VerifyRole(("SELECT LastName FROM QRbertDB.QRbertTables.Registration where Email ='" +
-                                             "stark@gmail.com" +
-                                             "'"));
-        Id4.Text = "603";
-        VolFirst5.Text = Switcher.VerifyRole(
-            ("SELECT FirstName FROM QRbertDB.QRbertTables.Registration where Email ='" + "Gibbons@gmail.com" +
-             "'"));
-        VolLast5.Text = Switcher.VerifyRole(("SELECT LastName FROM QRbertDB.QRbertTables.Registration where Email ='" +
-                                             "Gibbons@gmail.com" +
-                                             "'"));
-        Id5.Text = "604";*/
-        
         using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
         sqlCon.Open();
         string query = 
@@ -217,6 +178,18 @@ public partial class TrackActiveVolunteers : Window
     private void ViewPetTreatmentBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffViewPetTreatment());
+        Close();
+    }
+    
+    /// <summary>
+    /// Redirects user to Scan Pet QR Code, new function allows Staff to Remove pet via btn click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void RemoveAnimalBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.RemoveAnimal = true;
+        Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         Close();
     }
 }
