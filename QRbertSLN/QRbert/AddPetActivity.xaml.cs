@@ -240,22 +240,4 @@ public partial class AddPetActivity
             txtStaffIDBlock.Visibility = Visibility.Hidden;
         }   
     }
-
-    private void VolunteerIdTxt_OnTextChanged(object sender, TextChangedEventArgs e)
-    {
-        txtVolunteerIDBlock.Visibility = Visibility.Visible;
-        if (VolunteerIdTxt.Text.Length > 0)
-        {
-            txtVolunteerIDBlock.Visibility = Visibility.Hidden;
-        }  
-    }
-
-    private void NotesTxt_OnTextChanged(object sender, TextChangedEventArgs e)
-    {
-        txtNotesBlock.Visibility = Visibility.Visible;
-        if (NotesTxt.Text.Length > 0)
-        {
-            txtNotesBlock.Visibility = Visibility.Hidden;
-        }  
-    }
 }

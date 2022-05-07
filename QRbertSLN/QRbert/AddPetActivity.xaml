@@ -304,7 +304,7 @@
             > </TextBlock>
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     TextChanged="VolunteerIdTxt_OnTextChanged"
+                     TextChanged="StaffIdTxt_OnTextChanged"
                      Margin="0,-500,-800,0" FontSize="14"
                      Name="StaffIdTxt">
                 Staff ID
