@@ -251,8 +251,8 @@
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      Margin="0,-600,-800,0" FontSize="14"
-                     Name="StaffIdTxt">
-                Staff ID
+                     Name="FoodGivenTxt">
+                Food Given
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-560,0,0"/>
@@ -262,22 +262,11 @@
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      Margin="0,-500,-800,0" FontSize="14"
-                     Name="VolunteerIdTxt">
-                Volunteer ID
+                     Name="StaffIdTxt">
+                Staff ID
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-460,0,0"/>
-        </DockPanel>
-        <!-- This the "Notes" text-box control-->
-        <DockPanel LastChildFill="False">
-            <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
-                     FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-400,-800,0" FontSize="14"
-                     Name="NotesTxt">
-                Notes
-            </TextBox>
-            <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
-                       Margin="0,-360,0,0"/>
         </DockPanel>
         <!-- This the "Add Pet Activity" button control-->
         <Button 
