@@ -237,20 +237,10 @@
         </DockPanel>
         <!-- This the "Incident Date" text-box control-->
         <DockPanel LastChildFill="False">
-            <TextBlock
-                Text="Incident Date (MM/DD/YYYY)"
-                Foreground="White"
-                FontWeight="Bold"
-                FontSize="14"
-                Height="20"
-                Width="250"
-                Name="txtIncidentDateBlock"
-                Margin="0,-800,-810,0"
-            > </TextBlock>
             <Label Width = "250" Height="35" Background="Transparent" Foreground="White" 
-                     FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-800,-800,0" FontSize="14"
-                     Name="IncidentDateLabel">
+                   FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                   Margin="0,-800,-800,0" FontSize="14"
+                   Name="IncidentDateLabel">
                 Incident Date 
             </Label>
             <DatePicker
