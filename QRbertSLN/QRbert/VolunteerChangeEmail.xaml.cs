@@ -1,5 +1,6 @@
 using System.Data.SqlClient;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace QRbert;
 
@@ -127,6 +128,24 @@ public partial class VolunteerChangeEmail : Window
             NewEmailInput.Text = "";
             ConfirmNewEmailInput.Text = "";
             MessageBox.Show("One of the email fields is empty, please try again.");
+        }
+    }
+
+    private void NewEmailInput_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtNewEmailCode.Visibility = Visibility.Visible;
+        if (NewEmailInput.Text.Length > 0)
+        {
+            txtNewEmailCode.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void ConfirmNewEmailInput_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtConfirmNewEmailCode.Visibility = Visibility.Visible;
+        if (ConfirmNewEmailInput.Text.Length > 0)
+        {
+            txtConfirmNewEmailCode.Visibility = Visibility.Hidden;
         }
     }
 }
