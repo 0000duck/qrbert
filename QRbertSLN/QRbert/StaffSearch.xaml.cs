@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace QRbert;
 
@@ -222,6 +223,15 @@ public partial class StaffSearch
         Switcher.RemoveAnimal = true;
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         Close();
+    }
+
+    private void SearchInput_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtEnterName.Visibility = Visibility.Visible;
+        if (SearchInput.Text.Length > 0)
+        {
+            txtEnterName.Visibility = Visibility.Hidden;
+        }  
     }
 }
 
