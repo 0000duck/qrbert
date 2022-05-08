@@ -1,6 +1,7 @@
 using System.Windows;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace QRbert;
@@ -234,5 +235,71 @@ public partial class StaffCreatePetReport : Window
         Switcher.RemoveAnimal = true;
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         Close();
+    }
+
+    private void TxtPetName_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtPetNameBlock.Visibility = Visibility.Visible;
+        if (txtPetName.Text.Length > 0)
+        {
+            txtPetNameBlock.Visibility = Visibility.Hidden;
+        }    
+    }
+
+    private void TxtDOB_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtDOBBlock.Visibility = Visibility.Visible;
+        if (txtDOB.Text.Length > 0)
+        {
+            txtDOBBlock.Visibility = Visibility.Hidden;
+        }    
+    }
+
+    private void TxtType_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtTypeBlock.Visibility = Visibility.Visible;
+        if (txtType.Text.Length > 0)
+        {
+            txtTypeBlock.Visibility = Visibility.Hidden;
+        }    
+    }
+
+    private void TxtBreed_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtBreedBlock.Visibility = Visibility.Visible;
+        if (txtBreed.Text.Length > 0)
+        {
+            txtBreed.Visibility = Visibility.Hidden;
+        }        }
+
+    private void TxtGender_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtGenderBlock.Visibility = Visibility.Visible;
+        if (txtGender.Text.Length > 0)
+        {
+            txtGenderBlock.Visibility = Visibility.Hidden;
+        }    }
+
+    
+        
+
+
+    private void TxtWeight_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtWeightBlock.Visibility = Visibility.Visible;
+        if (txtWeight.Text.Length > 0)
+        {
+            txtWeightBlock.Visibility = Visibility.Hidden;
+        }
+        
+    }
+
+    private void TxtColor_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtColorBlock.Visibility = Visibility.Visible;
+        if (txtColor.Text.Length > 0)
+        {
+            txtColorBlock.Visibility = Visibility.Hidden;
+        }    
     }
 }
