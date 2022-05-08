@@ -194,10 +194,10 @@
         />
         <!-- This the "Pet ID" text-box control-->
         <DockPanel LastChildFill="False">
-            <Label Width = "250" Height="35" Background="Transparent" Foreground="White" 
-                     FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     Margin="0,-1100,-800,0" FontSize="14"
-                     Name="PetId">
+            <Label x:Name="PetID" Width = "250" Height="35" Background="Transparent" Foreground="White" 
+                   FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                   Margin="0,-1100,-800,0" FontSize="14"
+                   >
                 Pet ID
             </Label>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
@@ -213,7 +213,7 @@
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-960,0,0"/>
         </DockPanel>
-        <!-- This the "Activity Date" text-box control-->
+        <!-- This the "Activity Date" text-box control -->
         <DockPanel LastChildFill="False">
             <Label Width = "250" Height="35" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
@@ -224,14 +224,15 @@
             <DatePicker
                 Name="ActivityDatePicker"
                 SelectedDateFormat="Short"
-                SelectedDate="5/7/2022"
+                SelectedDate="2022-05-07"
                 Height="25"
                 Width="160"
                 Margin="0, -900,-915,0"
             ></DatePicker>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-860,0,0"/>
-        </DockPanel>
+              </DockPanel>
+      
         <!-- This the "Water given" text-box control-->
         <DockPanel LastChildFill="False">
             <TextBlock
@@ -301,7 +302,7 @@
         <!-- This the "Volunteer ID" text-box control-->
         <DockPanel LastChildFill="False">
             <TextBlock
-                Text="Staff ID"
+                Text="Faculty ID"
                 Foreground="White"
                 FontWeight="Bold"
                 FontSize="14"
