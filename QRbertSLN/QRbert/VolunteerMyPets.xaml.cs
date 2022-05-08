@@ -8,7 +8,7 @@ public partial class VolunteerMyPets
     public VolunteerMyPets()
     {
         InitializeComponent();
-        PetId.Text = "Pet ID: " + Switcher.PetId;
+        PetId.Content = "Pet ID: " + Switcher.PetId;
         SqlConnection sqlConnection = new SqlConnection(Switcher.ConnectionString);
         try
         {
@@ -16,17 +16,17 @@ public partial class VolunteerMyPets
             string petName = "Select PetName From QRbertDB.QRbertTables.Pet Where PetID = '" + 
                              Switcher.PetId + "';";
             SqlCommand sqlCommandForPetName = new SqlCommand(petName, sqlConnection);
-            PetName.Text = sqlCommandForPetName.ExecuteScalar().ToString();
+            PetName.Content = sqlCommandForPetName.ExecuteScalar().ToString();
             sqlCommandForPetName.Dispose();
             
             string petBreed = "Select Breed  From QRbertDB.QRbertTables.Pet Where PetID = '" + Switcher.PetId + "';";
             SqlCommand sqlCommandForBreedType = new SqlCommand(petBreed, sqlConnection);
-            BreedType.Text = sqlCommandForBreedType.ExecuteScalar().ToString();
+            BreedType.Content = sqlCommandForBreedType.ExecuteScalar().ToString();
             sqlCommandForBreedType.Dispose();
             
             string petDOB = "Select DOB From QRbertDB.QRbertTables.Pet Where PetID = '" + Switcher.PetId + "';";
             SqlCommand sqlCommandForDob = new SqlCommand(petDOB, sqlConnection);
-            Dob.Text = sqlCommandForDob.ExecuteScalar().ToString();
+            Dob.Content = sqlCommandForDob.ExecuteScalar().ToString();
             sqlCommandForDob.Dispose();
         }
         catch (SqlException sqlException)

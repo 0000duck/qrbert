@@ -127,8 +127,48 @@
                     Margin="-500,-400,0,0"
                     Height="300"
                     Width="200">
-                <StackPanel Background="#FF9100" Opacity="0.85">
-                    <!-- your elements here -->
+                <StackPanel Background="#FF9100" Opacity="0.95">
+                    <Border Height = "90" Width = "140" CornerRadius="8,8,8,8" Margin="0, -0, 0, 0">
+                        <Border.Background>
+                            <ImageBrush Stretch="Fill" ImageSource="Images/puppy.jpg" />
+                        </Border.Background>
+                    </Border>
+                    <!-- This is where the staff name will go-->
+                    <Label 
+                        Name = "StaffName" 
+                        Width = "175" 
+                        Height = "50" 
+                        Content="Staff Name" 
+                        Foreground="White" 
+                        FontSize="28"
+                        FontWeight="DemiBold"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Margin = "0, -0, 00, 0" >
+                    </Label>
+                    <Label 
+                        Name = "LastSignOn" 
+                        Width = "175" 
+                        Height = "50" 
+                        Content="Last Sign On:" 
+                        Foreground="White" 
+                        FontSize="28"
+                        FontWeight="DemiBold"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin = "0, 50, 00, 0" >
+                    </Label>
+                    <!--This is where the last sign on will go-->
+                    <Label 
+                        Name = "LastSignOnTxtBlock" 
+                        Width = "150" 
+                        Height = "35" 
+                        Content=" " 
+                        Foreground="White"
+                        FontWeight="DemiBold"
+                        FontSize="28"
+                        Margin = "0, 0, 0, 0" >
+                    </Label>
                 </StackPanel>
             </Border>
         </StackPanel>

@@ -1,3 +1,4 @@
+using System.Data.SqlClient;
 using System.Windows;
 
 namespace QRbert;
@@ -20,6 +21,22 @@ public partial class StaffPortal
         {
             AlertStaffBellIcon.Visibility = Visibility.Visible;
             Switcher.IsPetNeglected = true;
+        }
+        
+        // Load Pet ID, Pet Name, and current Date when Window loads
+        SqlConnection sqlConnection = new SqlConnection(Switcher.ConnectionString);
+        sqlConnection.Open();
+        try
+        {
+            string staffName = "Select FirstName, LastName From QRbertDB.QRbertTables.Registration Where Email = '" + 
+                             Switcher.CurrentSessionEmail + "';";
+            SqlCommand sqlCommand = new SqlCommand(staffName, sqlConnection);
+            StaffName.Content = sqlCommand.ExecuteScalar().ToString();
+            sqlCommand.Dispose();
+        }
+        catch (SqlException sqlException)
+        {
+            MessageBox.Show(sqlException.Message);
         }
     }
     
