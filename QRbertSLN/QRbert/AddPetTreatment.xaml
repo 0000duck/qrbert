@@ -194,66 +194,127 @@
         />
         <!-- This the "Injury Type" text-box control-->
         <DockPanel LastChildFill="False">
+            <TextBlock
+                Text="Injury Type"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtInjuryTypeBlock"
+                Margin="0,-900,-810,0"
+            > </TextBlock>
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                     TextChanged="InjuryTypeTxt_OnTextChanged"
                      Margin="0,-900,-800,0" FontSize="14"
                      Name="InjuryTypeTxt">
-                Injury Type
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-860,0,0"/>
         </DockPanel>
         <!-- This the "Incident Date" text-box control-->
         <DockPanel LastChildFill="False">
-            <Label Width = "250" Height="35" Background="Transparent" Foreground="White" 
+            <TextBlock
+                Text="Incident Date (MM/DD/YYYY)"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtIncidentDateBlock"
+                Margin="0,-800,-810,0"
+            > </TextBlock>
+            <TextBox Width = "250" Height="35" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      Margin="0,-800,-800,0" FontSize="14"
                      Name="IncidentDateLabel">
-                Incident Date (MM/DD/YYYY)
-            </Label>
+                
+            </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-760,0,0"/>
         </DockPanel>
         <!-- This the "Recovered Date" text-box control-->
         <DockPanel LastChildFill="False">
+            <TextBlock
+                Text="Recovered Date (MM/DD/YYYY)"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtRecoveredDateBlock"
+                Margin="0,-700,-810,0"
+            > </TextBlock>
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      Margin="0,-700,-800,0" FontSize="14"
                      Name="RecoveredDateTxt">
-                Recovered Date (MM/DD/YYYY)
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-660,0,0"/>
         </DockPanel>
         <!-- This the "Veterinarian Assigned" text-box control-->
         <DockPanel LastChildFill="False">
+            <TextBlock
+                Text="Veterinarian Assigned"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtVetAssignedBlock"
+                Margin="0,-600,-810,0"
+            > </TextBlock>
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      Margin="0,-600,-800,0" FontSize="14"
                      Name="VetAssignedTxt">
-                Veterinarian Assigned
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-560,0,0"/>
         </DockPanel>
         <!-- This the "Rx" text-box control-->
         <DockPanel LastChildFill="False">
+            <TextBlock
+                Text="Rx"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtRxBlock"
+                Margin="0,-500,-810,0"
+            > </TextBlock>
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      Margin="0,-500,-800,0" FontSize="14"
                      Name="RxTxt">
-                Rx
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-460,0,0"/>
         </DockPanel>
         <!-- This the "Notes" text-box control-->
         <DockPanel LastChildFill="False">
+            <TextBlock
+                Text="Notes"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtNotesBlock"
+                Margin="0,-400,-810,0"
+            > </TextBlock>
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      Margin="0,-400,-800,0" FontSize="14"
                      Name="NotesTxt">
-                Notes
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-360,0,0"/>

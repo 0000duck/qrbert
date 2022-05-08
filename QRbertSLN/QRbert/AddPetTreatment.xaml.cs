@@ -1,6 +1,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace QRbert;
 
@@ -205,5 +206,14 @@ public partial class AddPetTreatment
     {
         Switcher.StaffPageSwitch(new StaffViewPetTreatment());
         Close();
+    }
+
+    private void InjuryTypeTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtInjuryTypeBlock.Visibility = Visibility.Visible;
+        if (InjuryTypeTxt.Text.Length > 0)
+        {
+            txtInjuryTypeBlock.Visibility = Visibility.Hidden;
+        }
     }
 }
