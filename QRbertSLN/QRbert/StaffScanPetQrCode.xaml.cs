@@ -113,59 +113,75 @@ public partial class StaffScanPetQrCode : Window
         // Opens camera
         QRCodeScanner.DecodeQRCode();
         string[] qrResult = QRCodeScanner.result.Split(' ');
-        // Parses decoded result to integer
-        int petId = int.Parse(qrResult[0]);
-        // Queries DB to find PetID and verify it
-        string msg = 
-            Switcher.VerifyRole("SELECT count(*) From QRbertDB.QRbertTables.Pet where PetID = '" + petId + "'");
-        // Scans the QR Code and tries to get the amount of records in the database for that string
-        // If there were no results
-        if (int.Parse(msg) == 0)
+        if (int.TryParse(qrResult[0], out int result))
         {
-            MessageBox.Show("Invalid Pet QR Code. Please try scanning again or try a different Pet QR Code.");
-        }
-        // At least 1 result
-        else
-        {
-            
-            /*
-             * here's the thing, when i click the remove animal button it takes me to scan the pet qr code which
-             * is working
-             * then i call this method
-             * it goes into the if statement correctly, the one below
-             * i then call the verify role method below given the following query
-             * the query looks fine, but it may be the fact that the verify role method does this
-             */
-            if (Switcher.RemoveAnimal)
+            // Parses decoded result to integer
+            int petId = int.Parse(qrResult[0]);
+            // Queries DB to find PetID and verify it
+            string msg = 
+                Switcher.VerifyRole("SELECT count(*) From QRbertDB.QRbertTables.Pet where PetID = '" + petId + "'");
+            // Scans the QR Code and tries to get the amount of records in the database for that string
+            // If there were no results
+            if (int.Parse(msg) == 0)
             {
-                SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
-                string sqlStatement = "Delete From QRbertDB.QRbertTables.Pet where PetID = '" + petId + "';";
-                try
-                {
-                    sqlCon.Open();
-                    SqlCommand cmd = new SqlCommand(sqlStatement, sqlCon);
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Pet successfully removed.");
-                    Switcher.PetId = 0;
-                    Switcher.RedirectStaffPortal();
-                    Close();
-                }
-                catch (SqlException sqlException)
-                {
-                    MessageBox.Show(sqlException.Message);
-                }
-                finally
-                {
-                    sqlCon.Close();
-                }
+                MessageBox.Show("Invalid Pet QR Code. Please try scanning again or try a different Pet QR Code.");
             }
+            // At least 1 result
             else
             {
-                // Saves PetID to active session
-                Switcher.PetId = petId;
-                Switcher.StaffPageSwitch(new StaffTrackAnimalActivity());
-                Close();
+                
+                /*
+                 * here's the thing, when i click the remove animal button it takes me to scan the pet qr code which
+                 * is working
+                 * then i call this method
+                 * it goes into the if statement correctly, the one below
+                 * i then call the verify role method below given the following query
+                 * the query looks fine, but it may be the fact that the verify role method does this
+                 */
+                if (Switcher.RemoveAnimal)
+                {
+                    SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
+                    string sqlStatement = "Delete From QRbertDB.QRbertTables.Pet where PetID = '" + petId + "';";
+                    try
+                    {
+                        sqlCon.Open();
+                        SqlCommand cmd = new SqlCommand(sqlStatement, sqlCon);
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Pet successfully removed.");
+                        Switcher.PetId = 0;
+                        Switcher.RedirectStaffPortal();
+                        Close();
+                    }
+                    catch (SqlException sqlException)
+                    {
+                        MessageBox.Show(sqlException.Message);
+                    }
+                    finally
+                    {
+                        sqlCon.Close();
+                    }
+                }
+                else
+                {
+                    // Saves PetID to active session
+                    Switcher.PetId = petId;
+                    Switcher.IsPetScanned = true;
+                    if (Switcher.IsPetTreatment)
+                    {
+                        Switcher.StaffPageSwitch(new StaffViewPetTreatment());
+                    }
+                    else
+                    {
+                        Switcher.StaffPageSwitch(new StaffTrackAnimalActivity());
+                            
+                    }
+                    Close();
+                }
             }
+        }
+        else
+        {
+            MessageBox.Show("Invalid QR code. Please try scanning again.");
         }
     }
     

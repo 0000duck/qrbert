@@ -104,44 +104,50 @@ namespace QRbert
             string staff = "Staff";
             string volunteer = "Volunteer";
 
-            // finds a matching email and password and retrieves the faculty role to store in "msg" 
-            string msg = Switcher.VerifyRole(
-                "Select [Faculty-Role] From QRbertDB.QRbertTables.Registration Where email = '" + qrEmail +
-                "' and password ='" + qrPwd + "'");
-
-            // string msg matches the Staff faculty role then user is redirected to staff portal
-            if (string.Equals(msg, staff))
+            if (!qrEmail.Contains('.'))
             {
-                 // Save current user connection email for current session
-                 Switcher.CurrentSessionEmail = qrEmail;
-                 // if email and password match a Staff faculty role
-                 Switcher.LogIn_RegisterSwitch(new StaffPortal());
-                 this.Close();
+                MessageBox.Show("Invalid QR Code. Please try again.");
             }
-            // The connection string is closed due to time-sheets
-            else if (string.Equals(msg, "closed"))
-            {
-                MessageBox.Show("Time-sheets have been submitted. Please speak to your supervisor.");
-            }
-            // if Not staff then user must be a volunteer, then redirects to volunteer portal
-            else if (string.Equals(msg, volunteer))
-            {
-                // Save current user connection email for current session
-                Switcher.CurrentSessionEmail = qrEmail;
-                // if email and password match a Volunteer faculty role
-                Switcher.LogIn_RegisterSwitch(new VolunteerPortal());
-                this.Close(); 
-            }
-            // User does not exist
             else
             {
-                 MessageBox.Show("Could not validate QR Code. " +
-                                 "Please ensure you have the correct QR Code " +
-                                 "try scanning again.");
+                // finds a matching email and password and retrieves the faculty role to store in "msg" 
+                string msg = Switcher.VerifyRole(
+                    "Select [Faculty-Role] From QRbertDB.QRbertTables.Registration Where email = '" + qrEmail +
+                    "' and password ='" + qrPwd + "'");
+
+                // string msg matches the Staff faculty role then user is redirected to staff portal
+                if (string.Equals(msg, staff))
+                {
+                    // Save current user connection email for current session
+                    Switcher.CurrentSessionEmail = qrEmail;
+                    // if email and password match a Staff faculty role
+                    Switcher.LogIn_RegisterSwitch(new StaffPortal());
+                    this.Close();
+                }
+                // The connection string is closed due to time-sheets
+                else if (string.Equals(msg, "closed"))
+                {
+                    MessageBox.Show("Time-sheets have been submitted. Please speak to your supervisor.");
+                }
+                // if Not staff then user must be a volunteer, then redirects to volunteer portal
+                else if (string.Equals(msg, volunteer))
+                {
+                    // Save current user connection email for current session
+                    Switcher.CurrentSessionEmail = qrEmail;
+                    // if email and password match a Volunteer faculty role
+                    Switcher.LogIn_RegisterSwitch(new VolunteerPortal());
+                    this.Close(); 
+                }
+                // User does not exist
+                else
+                {
+                    MessageBox.Show("Could not validate QR Code. " +
+                                    "Please ensure you have the correct QR Code " +
+                                    "try scanning again.");
+                }
             }
         }
-
-
+        
         //If there is text in the TextBox, the Email text goes away
         //Returns if there is no text in the TextBox
         private void TxtEmail_OnTextChanged(object sender, TextChangedEventArgs e)

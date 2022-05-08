@@ -192,4 +192,15 @@ public partial class TrackActiveVolunteers
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         Close();
     }
+
+    /// <summary>
+    /// Redirects user to Match Volunteers to Pets window via button click
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void MatchActiveVolunteersToPetsBtn_Click(object sender, RoutedEventArgs e)
+    {
+        Switcher.StaffPageSwitch(new StaffMatchVolunteerAnimals());
+        Close();
+    }
 }

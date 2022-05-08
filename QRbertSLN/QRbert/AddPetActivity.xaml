@@ -219,8 +219,16 @@
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      Margin="0,-900,-800,0" FontSize="14"
                      Name="ActivityDate">
-                Activity Date (MM/DD/YYYY)
+                Activity Date
             </Label>
+            <DatePicker
+                Name="ActivityDatePicker"
+                SelectedDateFormat="Short"
+                SelectedDate="5/7/2022"
+                Height="25"
+                Width="160"
+                Margin="0, -900,-915,0"
+            ></DatePicker>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-860,0,0"/>
         </DockPanel>

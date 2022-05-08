@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Data.SqlClient;
+using System.Windows;
 
 namespace QRbert;
 
@@ -74,24 +75,39 @@ public partial class VolunteerScanPetQrCode
         // Opens camera
         QRCodeScanner.DecodeQRCode();
         string[] qrResult = QRCodeScanner.result.Split(' ');
-        // Parses decoded result to integer
-        int petId = int.Parse(qrResult[1]);
-        // Queries DB to find PetID and verify it
-        string msg = 
-            Switcher.VerifyRole("SELECT count(*) From QRbertDB.QRbertTables.Pet where PetID = '" + petId + "'");
-        // Scans the QR Code and tries to get the amount of records in the database for that string
-        // If there were no results
-        if (int.Parse(msg) == 0)
+        if (int.TryParse(qrResult[0], out int result))
         {
-            MessageBox.Show("Invalid Pet QR Code. Please try scanning again or try a different Pet QR Code.");
+            // Queries DB to find PetID and verify it
+            string msg = 
+                Switcher.VerifyRole("SELECT count(*) From QRbertDB.QRbertTables.Pet where PetID = '" + result + "'");
+            // Scans the QR Code and tries to get the amount of records in the database for that string
+            // If there were no results
+            if (int.Parse(msg) == 0)
+            {
+                MessageBox.Show("That QR code does not exist in the Database.\nPlease try a different one.");
+            }
+            // At least 1 result
+            else
+            {
+                
+                /*
+                 * here's the thing, when i click the remove animal button it takes me to scan the pet qr code which
+                 * is working
+                 * then i call this method
+                 * it goes into the if statement correctly, the one below
+                 * i then call the verify role method below given the following query
+                 * the query looks fine, but it may be the fact that the verify role method does this
+                 */
+                // Saves PetID to active session
+                Switcher.PetId = result;
+                Switcher.IsPetScanned = true;
+                Switcher.VolunteerPortalSwitch(new VolunteerMyPets());
+                Close();
+            }
         }
-        // At least 1 result
         else
         {
-            // Saves PetID to active session
-            Switcher.PetId = petId;
-            Switcher.VolunteerPortalSwitch(new VolunteerMyPets());
-            Close();
+            MessageBox.Show("Invalid QR code. Please try scanning again.");
         }
     }
 }

@@ -11,16 +11,14 @@ public partial class VolunteerPetBreedInfo : Window
     {
         InitializeComponent();
         int petID = Switcher.PetId;
-        petID = 806;
         breedType[0] = "For this cat, DO NOT GIVE IT CATNIP...not worth.";
         breedType[1] = "For this dog, make sure you take it on for walks otherwise it will get fat...like obese.";
         using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
         sqlCon.Open();
-        string petBreed = "SELECT QRbertDB.QRbertTables.Pet.Type from QRbertDB.QRbertTables.Pet where PetID == petID"; //THis is where the query goes
+        string petBreed = "SELECT QRbertDB.QRbertTables.Pet.Type from QRbertDB.QRbertTables.Pet where PetID = '" +
+                          Switcher.PetId + "'";
         SqlCommand sqlCmd = new SqlCommand(petBreed, sqlCon);
-        //sqlCmd.ExecuteNonQuery();
-        //PetBreedLabel.Content = (string)sqlCmd.ExecuteScalar();
-        //MessageBox.Show((string)PetBreedLabel.Content);
+        PetBreedLabel.Content = sqlCmd.ExecuteScalar().ToString();
         if (petBreed == "Cat")
         {
             PetBreedText.Text = breedType[0];
@@ -29,7 +27,6 @@ public partial class VolunteerPetBreedInfo : Window
         {
             PetBreedText.Text = breedType[1];
         }
-        //save bredd info using 
     }
     
     /// <summary>

@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       mc:Ignorable="d"
       Title="Homepage" 
-      Height="600" 
+      Height="750" 
       Width="800"
       >
     <!--Added ScrollViewer control so we can scroll within the page

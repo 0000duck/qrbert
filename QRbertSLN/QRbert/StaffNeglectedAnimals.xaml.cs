@@ -33,6 +33,7 @@ public partial class StaffNeglectedAnimals
     private void StaffMyAccountBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffMyAccount());
+        Close();
     }
 
     /// <summary>
@@ -43,7 +44,7 @@ public partial class StaffNeglectedAnimals
     private void LogOutBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.LogOutSwitch();
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -54,7 +55,7 @@ public partial class StaffNeglectedAnimals
     private void HomeStaffPortalBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.RedirectStaffPortal();
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -69,7 +70,7 @@ public partial class StaffNeglectedAnimals
             Switcher.RemoveAnimal = true;
         }
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -80,7 +81,7 @@ public partial class StaffNeglectedAnimals
     private void PetReportsBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffPetReport());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -91,7 +92,7 @@ public partial class StaffNeglectedAnimals
     private void TrackActiveVolunteersBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new TrackActiveVolunteers());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -102,7 +103,7 @@ public partial class StaffNeglectedAnimals
     private void StaffSearchBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffSearch());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -113,7 +114,7 @@ public partial class StaffNeglectedAnimals
     private void LockTimesheetsBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffLockTimesheet());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -124,7 +125,7 @@ public partial class StaffNeglectedAnimals
     private void RoundingRulesBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffRoundingRules());
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -177,7 +178,6 @@ public partial class StaffNeglectedAnimals
                     Close();
                 }
             }
-            
         }
     }
 
@@ -215,7 +215,16 @@ public partial class StaffNeglectedAnimals
     /// <param name="e"></param>
     private void ViewPetTreatmentBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.StaffPageSwitch(new StaffViewPetTreatment());
+        Switcher.IsPetTreatment = true;
+        if (!Switcher.IsPetScanned)
+        {
+            MessageBox.Show("You must first scan a Pet QR code. You are now being redirected.");
+            Switcher.StaffPageSwitch(new StaffScanPetQrCode());
+        }
+        else
+        {
+            Switcher.StaffPageSwitch(new StaffViewPetTreatment());
+        }
         Close();
     }
     
