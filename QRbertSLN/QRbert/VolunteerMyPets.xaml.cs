@@ -1,3 +1,4 @@
+using System.Data.SqlClient;
 using System.Windows;
 
 namespace QRbert;
@@ -7,14 +8,31 @@ public partial class VolunteerMyPets
     public VolunteerMyPets()
     {
         InitializeComponent();
-        // Loads information when windows loads
-        // PetId.Text = Switcher.PetId.ToString();
-        // PetName.Text =
-        //     Switcher.VerifyRole("SELECT PetName From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
-        // BreedType.Text =
-        //     Switcher.VerifyRole("SELECT Breed From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
-        // Dob.Text =
-        //     Switcher.VerifyRole("SELECT DOB From QRbertDB.QRbertTables.Pet where PetID = '" + PetId + "'");
+        PetId.Text = "Pet ID: " + Switcher.PetId;
+        SqlConnection sqlConnection = new SqlConnection(Switcher.ConnectionString);
+        try
+        {
+            sqlConnection.Open();
+            string petName = "Select PetName From QRbertDB.QRbertTables.Pet Where PetID = '" + 
+                             Switcher.PetId + "';";
+            SqlCommand sqlCommandForPetName = new SqlCommand(petName, sqlConnection);
+            PetName.Text = sqlCommandForPetName.ExecuteScalar().ToString();
+            sqlCommandForPetName.Dispose();
+            
+            string petBreed = "Select Breed  From QRbertDB.QRbertTables.Pet Where PetID = '" + Switcher.PetId + "';";
+            SqlCommand sqlCommandForBreedType = new SqlCommand(petBreed, sqlConnection);
+            BreedType.Text = sqlCommandForBreedType.ExecuteScalar().ToString();
+            sqlCommandForBreedType.Dispose();
+            
+            string petDOB = "Select DOB From QRbertDB.QRbertTables.Pet Where PetID = '" + Switcher.PetId + "';";
+            SqlCommand sqlCommandForDob = new SqlCommand(petDOB, sqlConnection);
+            Dob.Text = sqlCommandForDob.ExecuteScalar().ToString();
+            sqlCommandForDob.Dispose();
+        }
+        catch (SqlException sqlException)
+        {
+            MessageBox.Show(sqlException.Message);
+        }
     }
     /// <summary>
     /// Redirects volunteer user to their MyAccount window via a button click on the menu item

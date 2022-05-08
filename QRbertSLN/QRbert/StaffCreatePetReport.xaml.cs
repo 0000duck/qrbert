@@ -177,7 +177,7 @@ public partial class StaffCreatePetReport : Window
            int.Parse(Switcher.VerifyRole(
                 "SELECT PetID From QRbertDB.QRbertTables.Pet where PetName = '" + txtPetName.Text + "' and DOB = '" + txtDOB.Text + "'"));
         // Creating the user's QR code and displaying it
-        // Saves the email, password, and facultyrole as a string for the QR code, this can be changed later
+        // Saves the email, password, and faculty-role as a string for the QR code, this can be changed later
         string petInfo = Switcher.PetId + " " + txtPetName.Text + " " + txtType.Text;
         DrawingImage qrCodeImage = QRCodeScanner.Generate_QR_Click(petInfo);
         // Creates a new window to display the QR code and shows it
@@ -188,7 +188,7 @@ public partial class StaffCreatePetReport : Window
         showQRCode.Show();  // Show QR Code
         Switcher.RedirectStaffPortal();     // redirects you to the staff portal
         showQRCode.Topmost = true;
-        this.Close();   // close create pet page
+        Close();   // close create pet page
     }
     
     /// <summary>

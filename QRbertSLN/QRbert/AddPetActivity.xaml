@@ -219,8 +219,16 @@
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      Margin="0,-900,-800,0" FontSize="14"
                      Name="ActivityDate">
-                Activity Date (MM/DD/YYYY)
+                Activity Date
             </Label>
+            <DatePicker
+                Name="ActivityDatePicker"
+                SelectedDateFormat="Short"
+                SelectedDate="5/7/2022"
+                Height="25"
+                Width="160"
+                Margin="0, -900,-915,0"
+            ></DatePicker>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-860,0,0"/>
         </DockPanel>
@@ -271,18 +279,18 @@
         <!-- This the "Staff ID" text-box control-->
         <DockPanel LastChildFill="False">
             <TextBlock
-                Text="Staff ID"
+                Text="Food Given"
                 Foreground="White"
                 FontWeight="Bold"
                 FontSize="14"
                 Height="20"
                 Width="250"
-                Name="txtStaffIDBlock"
-                Margin="0,-600,-810,0"
+                Name="FoodGivenTxtBlock"
+                Margin="0,-600,-808,0"
             > </TextBlock>
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
-                     TextChanged="StaffIdTxt_OnTextChanged"
+                     TextChanged="FoodGivenTxt_OnTextChanged"
                      Margin="0,-600,-800,0" FontSize="14"
                      Name="FoodGivenTxt">
                 Food Given
@@ -293,13 +301,13 @@
         <!-- This the "Volunteer ID" text-box control-->
         <DockPanel LastChildFill="False">
             <TextBlock
-                Text="Volunteer ID"
+                Text="Staff ID"
                 Foreground="White"
                 FontWeight="Bold"
                 FontSize="14"
                 Height="20"
                 Width="250"
-                Name="txtVolunteerIDBlock"
+                Name="txtStaffIDBlock"
                 Margin="0,-500,-810,0"
             > </TextBlock>
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
@@ -307,7 +315,7 @@
                      TextChanged="StaffIdTxt_OnTextChanged"
                      Margin="0,-500,-800,0" FontSize="14"
                      Name="StaffIdTxt">
-                Staff ID
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-460,0,0"/>

@@ -12,6 +12,22 @@ public partial class AddPetTreatment
     public AddPetTreatment()
     {
         InitializeComponent();
+        // Load Pet ID, Pet Name, and current Date when Window loads
+        PetId.Content = "Pet ID: " + Switcher.PetId;
+        SqlConnection sqlConnection = new SqlConnection(Switcher.ConnectionString);
+        sqlConnection.Open();
+        try
+        {
+            string petName = "Select PetName From QRbertDB.QRbertTables.Pet Where PetID = '" + 
+                             Switcher.PetId + "';";
+            SqlCommand sqlCommandForPetName = new SqlCommand(petName, sqlConnection);
+            PetName.Content = sqlCommandForPetName.ExecuteScalar().ToString();
+            sqlCommandForPetName.Dispose();
+        }
+        catch (SqlException sqlException)
+        {
+            MessageBox.Show(sqlException.Message);
+        }
         if (Switcher.IsPetNeglected)
         {
             AlertStaffBellIcon.Visibility = Visibility.Visible;
@@ -161,9 +177,9 @@ public partial class AddPetTreatment
         sqlCmd.CommandType = CommandType.StoredProcedure;
         sqlCmd.Parameters.AddWithValue("@PetName", petName);
         sqlCmd.Parameters.AddWithValue("@PetID", Switcher.PetId.ToString());
-        sqlCmd.Parameters.AddWithValue("@Incident_Date", IncidentDateLabel.Content.ToString());
+        sqlCmd.Parameters.AddWithValue("@Incident_Date", IncidentDatePicker.SelectedDate.GetValueOrDefault().Date.ToString());
         sqlCmd.Parameters.AddWithValue("@InjuryType", InjuryTypeTxt.Text);
-        sqlCmd.Parameters.AddWithValue("@Recovered_Date", RecoveredDateTxt.Text);
+        sqlCmd.Parameters.AddWithValue("@Recovered_Date", RecoveredDatePicker.SelectedDate.GetValueOrDefault().Date.ToString());
         sqlCmd.Parameters.AddWithValue("@Vet_Assign", VetAssignedTxt.Text);
         sqlCmd.Parameters.AddWithValue("@Rx", RxTxt.Text);
         sqlCmd.Parameters.AddWithValue("@Notes", NotesTxt.Text);

@@ -147,7 +147,7 @@
         </Menu>
         <!-- This is the Animal menu-->
         <Menu Width="100" Height="22" Margin="500, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem Header="Animals" Name="mm2" Template="{DynamicResource MenuItemControlTemplate1}">
+            <MenuItem Header="Animals" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem 
                     Header="Select a Pet"
                     Click="ScanPetQRCodeRedirectBtn_Click"/>
@@ -168,7 +168,7 @@
         </Menu>
         <!-- This is the My Account menu-->
         <Menu Width="100" Height="22" Margin="600, -400, 0, 0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top">
-            <MenuItem Header="My Account" Name="mm3" Template="{DynamicResource MenuItemControlTemplate1}">
+            <MenuItem Header="My Account" Template="{DynamicResource MenuItemControlTemplate1}">
                 <MenuItem 
                     Header="Staff Account"
                     Click="StaffMyAccountBtn_Click"/>
@@ -177,11 +177,12 @@
                     Click="LogOutBtn_Click"/>
             </MenuItem>
         </Menu>
-        <!-- This the orange semitransparent stack panel in the center with the button/textbox controls-->
+        <!-- This the orange semitransparent stack panel in the center with the button/text-box controls-->
         <StackPanel Background="#FF9100" Width="400" Height="375" Opacity="0.7" 
                     Margin = "0, -350, 0, 0"/>
         <TextBlock Margin="0, -650, 0, 0" Text = "Pet Treatment" 
-                   Foreground="White" Width="200" Height="35" FontSize="28" FontWeight="Bold"></TextBlock>
+                   Foreground="White" Width="200" Height="35" FontSize="28" FontWeight="Bold">
+        </TextBlock>
         <Border Height = "90" Width = "140" CornerRadius="8,8,8,8" Margin="0, -500, 0, 0">
             <Border.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Images/puppy.jpg" />
@@ -189,7 +190,7 @@
         </Border>
         <!-- This is where the pet name will go-->
         <TextBlock Name = "PetName" 
-                   Width = "150" 
+                   Width = "250" 
                    Height = "35" 
                    Text="Pet Name" 
                    Foreground="White" 

@@ -45,6 +45,17 @@ public class Switcher
     /// That way the query runs once and can be saved and accessed anywhere
     /// </summary>
     public static string PetsNeglected = "";
+
+    /// <summary>
+    /// Saves the state of a scanned pet, for use for View Pet Activity and View Pet Treatment
+    /// </summary>
+    public static bool IsPetScanned = false;
+
+    /// <summary>
+    /// Saves the state of whether a PetTreatment menu item was clicked
+    /// Not making Pet Activity as it is not necessary
+    /// </summary>
+    public static bool IsPetTreatment = false;
     
     /// <summary>
     /// Verifies the role of the user type

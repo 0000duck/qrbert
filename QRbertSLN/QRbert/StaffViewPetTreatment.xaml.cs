@@ -17,18 +17,35 @@ public partial class StaffViewPetTreatment
             AlertStaffBellIcon.Visibility = Visibility.Visible;
         }
         
-        // PetName.Text = Switcher.VerifyRole("Select PetName from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" + Switcher.PetId + "'");
-        using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
-        sqlCon.Open();
-        string query = 
-            ("Select QRbertDB.QRbertTables.Pet_Treatment.PetID, QRbertDB.QRbertTables.Pet_Treatment.InjuryType, QRbertDB.QRbertTables.Pet_Treatment.Incident_Date, QRbertDB.QRbertTables.Pet_Treatment.Rx from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" + Switcher.PetId + "'");
-        SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-        sqlCmd.ExecuteNonQuery();
-        SqlDataAdapter adpt = new SqlDataAdapter(sqlCmd);
-        DataTable dtable = new DataTable("QRbertDB.QRbertTables.Pet_Treatment");
-        adpt.Fill(dtable);
-        DataGV.ItemsSource = dtable.DefaultView;
-        adpt.Update(dtable);
+        // Load Pet ID, Pet Name, and current Date when Window loads
+        SqlConnection sqlConnection = new SqlConnection(Switcher.ConnectionString);
+        try
+        {
+            sqlConnection.Open();
+            string petName = "Select PetName From QRbertDB.QRbertTables.Pet Where PetID = '" + 
+                             Switcher.PetId + "';";
+            SqlCommand sqlCommandForPetName = new SqlCommand(petName, sqlConnection);
+            PetName.Text = sqlCommandForPetName.ExecuteScalar().ToString();
+            sqlCommandForPetName.Dispose();
+            
+            string sqlStatement = "Select PetID, InjuryType, Incident_Date, Rx from QRbertDB.QRbertTables.Pet_Treatment where PetID = '" 
+                                  + Switcher.PetId + "';";
+            SqlCommand sqlCmd = new SqlCommand(sqlStatement, sqlConnection);
+            sqlCmd.ExecuteNonQuery();
+            SqlDataAdapter adpt = new SqlDataAdapter(sqlCmd);
+            DataTable dtable = new DataTable("Pet Treatment");
+            adpt.Fill(dtable);
+            DataGV.ItemsSource = dtable.DefaultView;
+            adpt.Update(dtable);
+        }
+        catch (SqlException sqlException)
+        {
+            MessageBox.Show(sqlException.Message);
+        }
+        finally
+        {
+            sqlConnection.Close();
+        }
     }
 
     /// <summary>

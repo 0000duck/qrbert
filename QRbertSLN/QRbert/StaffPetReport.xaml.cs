@@ -187,7 +187,16 @@ public partial class StaffPetReport
     /// <param name="e"></param>
     private void ViewPetTreatmentBtn_Click(object sender, RoutedEventArgs e)
     {
-        Switcher.StaffPageSwitch(new StaffViewPetTreatment());
+        Switcher.IsPetTreatment = true;
+        if (!Switcher.IsPetScanned)
+        {
+            MessageBox.Show("You must first scan a Pet QR code. You are now being redirected.");
+            Switcher.StaffPageSwitch(new StaffScanPetQrCode());
+        }
+        else
+        {
+            Switcher.StaffPageSwitch(new StaffViewPetTreatment());
+        }
         Close();
     }
     

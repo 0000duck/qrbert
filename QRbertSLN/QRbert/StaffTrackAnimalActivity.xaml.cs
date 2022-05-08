@@ -13,6 +13,33 @@ public partial class StaffTrackAnimalActivity
         PetNameTxt.Text =
             Switcher.VerifyRole("Select PetName from QRbertDB.QRbertTables.Pet where PetID = '" +
                                 Switcher.PetId + "'");
+        SqlConnection sqlConnection = new SqlConnection(Switcher.ConnectionString);
+        try
+        {
+            sqlConnection.Open();
+            string query = "Select * From QRbertDB.QRbertTables.Pet_Activity Where PetName = '" + PetNameTxt.Text +
+                           "';";
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.ExecuteNonQuery();
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            DataTable dataTable = new DataTable("Pet Activity");
+            sqlDataAdapter.Fill(dataTable);
+            DataGV.ItemsSource = dataTable.DefaultView;
+            sqlDataAdapter.Update(dataTable);
+        }
+        catch (SqlException sqlException)
+        {
+            MessageBox.Show(sqlException.Message);
+        }
+        finally
+        {
+            sqlConnection.Close();
+        }
+        
+        if (Switcher.IsPetNeglected)
+        {
+            AlertStaffBellIcon.Visibility = Visibility.Visible;
+        }
     }
 
     /// <summary>
