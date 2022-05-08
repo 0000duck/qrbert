@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using System.Net.Mail;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace QRbert;
 
@@ -81,6 +82,24 @@ public partial class UserForgotPassword : Window
         {
             MessageBox.Show("Wrong code. Try again.");
             EnterCodeInput.Text = "";
+        }
+    }
+
+    private void EmailInput_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtEmail.Visibility = Visibility.Visible;
+        if (EmailInput.Text.Length > 0)
+        {
+            EmailInput.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void EnterCodeInput_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtEnterCode.Visibility = Visibility.Visible;
+        if (EnterCodeInput.Text.Length > 0)
+        {
+            EnterCodeInput.Visibility = Visibility.Hidden;
         }
     }
 }

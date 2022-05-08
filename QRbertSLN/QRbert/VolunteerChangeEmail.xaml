@@ -163,22 +163,48 @@
         />
         <!-- This the "New Email" textbox control-->
         <DockPanel LastChildFill="False">
+            <TextBlock
+                Text="New Email"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtNewEmailCode"
+                Margin="0,-500,-800,0"
+            >
+                    
+            </TextBlock>
             <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                     TextChanged="NewEmailInput_OnTextChanged"
                      Margin="0,-500,-800,0" FontSize="14"
                      Name="NewEmailInput">
-                New Email
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-460,0,0"/>
         </DockPanel>
         <!-- This the "Confirm New Email" textbox control-->
         <DockPanel LastChildFill="False">
+            <TextBlock
+                Text="Confirm New Email"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtConfirmNewEmailCode"
+                Margin="0,-400,-800,0"
+            >
+                    
+            </TextBlock>
             <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                     TextChanged="ConfirmNewEmailInput_OnTextChanged"
                      Margin="0,-400,-800,0" FontSize="14"
                      Name="ConfirmNewEmailInput">
-                Confirm New Email
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-360,0,0"/>

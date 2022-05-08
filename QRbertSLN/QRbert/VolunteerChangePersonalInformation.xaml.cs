@@ -133,4 +133,49 @@ public partial class VolunteerChangePersonalInformation : Window
         Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
         this.Close();
     }
+
+    private void AddressInputTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtAddress.Visibility = Visibility.Visible;
+        if (AddressInputTxt.Text.Length > 0)
+        {
+            txtAddress.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void CityInputTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtCity.Visibility = Visibility.Visible;
+        if (CityInputTxt.Text.Length > 0)
+        {
+            txtCity.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void StateInputTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtState.Visibility = Visibility.Visible;
+        if (StateInputTxt.Text.Length > 0)
+        {
+            txtState.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void ZipcodeInputTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtZipcode.Visibility = Visibility.Visible;
+        if (ZipcodeInputTxt.Text.Length > 0)
+        {
+            txtZipcode.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void PhoneNumberInputTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtPhoneNumber.Visibility = Visibility.Visible;
+        if (PhoneNumberInputTxt.Text.Length > 0)
+        {
+            txtPhoneNumber.Visibility = Visibility.Hidden;
+        }
+    }
 }

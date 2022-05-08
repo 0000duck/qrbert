@@ -151,4 +151,13 @@ public partial class VolunteerForgotPassword : Window
             EnterCodeInput.Text = "";
         }
     }
+
+    private void EnterCodeInput_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtEnterCode.Visibility = Visibility.Visible;
+        if (EnterCodeInput.Text.Length > 0)
+        {
+            txtEnterCode.Visibility = Visibility.Hidden;
+        }
+    }
 }

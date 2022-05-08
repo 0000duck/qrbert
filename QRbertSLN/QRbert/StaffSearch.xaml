@@ -188,10 +188,23 @@
         />
         <!-- This the "Enter Name" textbox control-->
         <DockPanel LastChildFill="False">
+            <TextBlock
+                Text="Enter Name"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="210"
+                Name="txtEnterName"
+                Margin="-100,-600,-800,0"
+            >
+                    
+            </TextBlock>
             <TextBox Name="SearchInput" Width = "250" Height="20" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                     TextChanged="SearchInput_OnTextChanged"
                      Margin="-100,-600,-800,0" FontSize="14">
-                Enter Name
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="-100,-560,0,0"/>

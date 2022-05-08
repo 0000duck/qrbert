@@ -164,55 +164,120 @@
         />
         <!-- This the "Address" textbox control-->
         <DockPanel LastChildFill="False">
+            <TextBlock
+                Text="Address"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtAddress"
+                Margin="0,-600,-810,0"
+            >
+                    
+            </TextBlock>
             <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                     TextChanged="AddressInputTxt_OnTextChanged"
                      Margin="0,-600,-800,0" FontSize="14"
                      Name="AddressInputTxt">
-                Address
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-560,0,0"/>
         </DockPanel>
         <!-- This the "City" textbox control-->
         <DockPanel LastChildFill="False">
+            <TextBlock
+                Text="City"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtCity"
+                Margin="0,-500,-810,0"
+            >
+                    
+            </TextBlock>
             <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                     TextChanged="CityInputTxt_OnTextChanged"
                      Margin="0,-500,-800,0" FontSize="14"
                      Name="CityInputTxt">
-                City
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-460,0,0"/>
         </DockPanel>
         <!-- This the "state" textbox control-->
         <DockPanel LastChildFill="False">
+            <TextBlock
+                Text="State"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtState"
+                Margin="0,-400,-810,0"
+            >
+                    
+            </TextBlock>
             <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                     TextChanged="StateInputTxt_OnTextChanged"
                      Margin="0,-400,-800,0" FontSize="14"
                      Name="StateInputTxt">
-                State
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-360,0,0"/>
         </DockPanel>
         <!-- This the "zipcode" textbox control-->
         <DockPanel LastChildFill="False">
+            <TextBlock
+                Text="Zipcode"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtZipcode"
+                Margin="0,-300,-810,0"
+            >
+                    
+            </TextBlock>
             <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                     TextChanged="ZipcodeInputTxt_OnTextChanged"
                      Margin="0,-300,-800,0" FontSize="14"
                      Name="ZipcodeInputTxt">
-                Zipcode
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-260,0,0"/>
         </DockPanel>
         <!-- This the "phone number" textbox control-->
         <DockPanel LastChildFill="False">
+            <TextBlock
+                Text="Phone Number"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtPhoneNumber"
+                Margin="0,-200,-810,0"
+            >
+                    
+            </TextBlock>
             <TextBox Width = "250" Height="20" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                     TextChanged="PhoneNumberInputTxt_OnTextChanged"
                      Margin="0,-200,-800,0" FontSize="14"
                      Name="PhoneNumberInputTxt">
-                Phone Number
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-160,0,0"/>
