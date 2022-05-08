@@ -1,3 +1,4 @@
+using System.Data.SqlClient;
 using System.Windows;
 using ZXing;
 
@@ -113,7 +114,7 @@ public partial class StaffScanPetQrCode : Window
         QRCodeScanner.DecodeQRCode();
         string[] qrResult = QRCodeScanner.result.Split(' ');
         // Parses decoded result to integer
-        int petId = int.Parse(qrResult[1]);
+        int petId = int.Parse(qrResult[0]);
         // Queries DB to find PetID and verify it
         string msg = 
             Switcher.VerifyRole("SELECT count(*) From QRbertDB.QRbertTables.Pet where PetID = '" + petId + "'");
@@ -126,12 +127,37 @@ public partial class StaffScanPetQrCode : Window
         // At least 1 result
         else
         {
+            
+            /*
+             * here's the thing, when i click the remove animal button it takes me to scan the pet qr code which
+             * is working
+             * then i call this method
+             * it goes into the if statement correctly, the one below
+             * i then call the verify role method below given the following query
+             * the query looks fine, but it may be the fact that the verify role method does this
+             */
             if (Switcher.RemoveAnimal)
             {
-                Switcher.VerifyRole("Delete From QRbertDB.QRbertTables.Pet where PetID = '" + petId + "'");
-                MessageBox.Show("Pet successfully removed.");
-                Switcher.RedirectStaffPortal();
-                this.Close();
+                SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
+                string sqlStatement = "Delete From QRbertDB.QRbertTables.Pet where PetID = '" + petId + "';";
+                try
+                {
+                    sqlCon.Open();
+                    SqlCommand cmd = new SqlCommand(sqlStatement, sqlCon);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Pet successfully removed.");
+                    Switcher.PetId = 0;
+                    Switcher.RedirectStaffPortal();
+                    Close();
+                }
+                catch (SqlException sqlException)
+                {
+                    MessageBox.Show(sqlException.Message);
+                }
+                finally
+                {
+                    sqlCon.Close();
+                }
             }
             else
             {
