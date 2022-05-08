@@ -284,5 +284,6 @@ public partial class StaffChangePersonalInfo : Window
         if (PhoneNumberInputTxt.Text.Length > 0)
         {
             txtPhoneNumberBlock.Visibility = Visibility.Hidden;
-        }    }
+        }    
+    }
 }
