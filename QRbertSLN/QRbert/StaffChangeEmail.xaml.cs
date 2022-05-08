@@ -1,5 +1,6 @@
 using System.Data.SqlClient;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace QRbert;
 
@@ -236,5 +237,23 @@ public partial class StaffChangeEmail
         Switcher.RemoveAnimal = true;
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         Close();
+    }
+
+    private void NewEmailInput_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtNewEmailBlock.Visibility = Visibility.Visible;
+        if (NewEmailInput.Text.Length > 0)
+        {
+            txtNewEmailBlock.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void ConfirmNewEmailInput_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtConfirmNewEmailBlock.Visibility = Visibility.Visible;
+        if (ConfirmNewEmailInput.Text.Length > 0)
+        {
+            txtConfirmNewEmailBlock.Visibility = Visibility.Hidden;
+        }
     }
 }
