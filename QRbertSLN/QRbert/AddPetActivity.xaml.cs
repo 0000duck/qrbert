@@ -1,3 +1,4 @@
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
@@ -9,15 +10,16 @@ namespace QRbert;
 public partial class AddPetActivity
 {
     public string StaffId = "";
+   
     /// <summary>
     /// Upon loading the page, Window checks if boolean is true to turn on Bell Icon
     /// </summary>
     public AddPetActivity()
     {
         InitializeComponent();
-        // Load Pet ID, Pet Name, and current Date when Window loads
-        PetId.Content = "Pet ID: " + Switcher.PetId;
+        // Load Pet ID, Pet Name, and current Date when Window loadsPetId.Content = "Pet ID: " + Switcher.PetId;
         SqlConnection sqlConnection = new SqlConnection(Switcher.ConnectionString);
+
         sqlConnection.Open();
         try
         {
@@ -25,9 +27,17 @@ public partial class AddPetActivity
                              Switcher.PetId + "';";
             string date = "Select Reg_Date From QRbertDB.QRbertTables.Pet Where PetID = '" + 
                           Switcher.PetId + "';";
+            string PetNum = "Select PetID From QRbertDB.QRbertTables.Pet Where PetID = '" + 
+                             Switcher.PetId + "';";
+            
             SqlCommand sqlCommandForPetName = new SqlCommand(petName, sqlConnection);
             PetName.Content = sqlCommandForPetName.ExecuteScalar().ToString();
             sqlCommandForPetName.Dispose();
+            
+            SqlCommand sqlCommandForPetID = new SqlCommand(PetNum, sqlConnection);
+            PetID.Content = sqlCommandForPetID.ExecuteScalar().ToString();
+            sqlCommandForPetID.Dispose();
+            
             SqlCommand sqlCommandForDate = new SqlCommand(date, sqlConnection);
             ActivityDate.Content = sqlCommandForDate.ExecuteScalar().ToString();
             sqlCommandForDate.Dispose();
@@ -180,21 +190,31 @@ public partial class AddPetActivity
     /// <param name="e"></param>
     private void AddPetActivityBtn_Click(object sender, RoutedEventArgs e)
     {
-        SqlCommand sqlCmd = new SqlCommand("AddPetActivity", new SqlConnection(Switcher.ConnectionString));
-        sqlCmd.Connection.Open();
+
+       using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
+       sqlCon.Open();
+       SqlCommand sqlCmd = new SqlCommand("PetAct", sqlCon);
+       string pID =  Switcher.VerifyRole("Select PetId From QRbertDB.QRbertTables.Pet Where PetID = '" + 
+                     Switcher.PetId + "';");
+       string pName =  Switcher.VerifyRole("Select PetName From QRbertDB.QRbertTables.Pet Where PetID = '" + 
+                                          Switcher.PetId + "';");
+
+        MessageBox.Show(pID);
         sqlCmd.CommandType = CommandType.StoredProcedure;
-        sqlCmd.Parameters.AddWithValue("@PetName", PetName.Content.ToString());
-        sqlCmd.Parameters.AddWithValue("@PetID", PetId.Content.ToString());
-        sqlCmd.Parameters.AddWithValue("@Activity_Date", ActivityDatePicker.SelectedDate.GetValueOrDefault().Date.ToString());
+        sqlCmd.Parameters.AddWithValue("@PetName", pName);
         sqlCmd.Parameters.AddWithValue("@WaterGiven", WaterGivenTxt.Text);
-        sqlCmd.Parameters.AddWithValue("@Clean_Kennel", CleanKennelTxt.Text);
         sqlCmd.Parameters.AddWithValue("@Food_Given", FoodGivenTxt.Text);
+        sqlCmd.Parameters.AddWithValue("@Clean_Kennel", CleanKennelTxt.Text);
+        sqlCmd.Parameters.AddWithValue("@PetID", pID);
+        sqlCmd.Parameters.AddWithValue("@Activity_Date", ActivityDatePicker.SelectedDate.GetValueOrDefault().Date.ToString());
         sqlCmd.Parameters.AddWithValue("@ID", StaffIdTxt.Text);
 
+        MessageBox.Show("Connection Successfully ");
         sqlCmd.ExecuteNonQuery();
         MessageBox.Show("Successfully saved New Pet Activity.");
         Switcher.StaffPageSwitch(new StaffTrackAnimalActivity());
         Close();
+
     }
 
     /// <summary>
@@ -259,9 +279,23 @@ public partial class AddPetActivity
             txtCleanKennelBlock.Visibility = Visibility.Hidden;
         }   
     }
-
+    /*
+    private void ActivityDateTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        ActivityDateBlock.Visibility = Visibility.Visible;
+        if (ActivityDateTxt.Text.Length > 0)
+        {
+            ActivityDateBlock.Visibility = Visibility.Hidden;
+        }   
+    }
+*/
     private void StaffIdTxt_OnTextChanged(object sender, TextChangedEventArgs e)
     {
+        txtStaffIDBlock.Visibility = Visibility.Visible;
+        if (StaffIdTxt.Text.Length > 0)
+        {
+            txtStaffIDBlock.Visibility = Visibility.Hidden;
+        }  
     }
         
     private void FoodGivenTxt_OnTextChanged(object sender, TextChangedEventArgs e)
