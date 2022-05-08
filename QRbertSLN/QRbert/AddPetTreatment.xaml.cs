@@ -1,6 +1,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace QRbert;
 
@@ -233,5 +234,50 @@ public partial class AddPetTreatment
         Switcher.RemoveAnimal = true;
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         Close();
+    }
+
+    private void InjuryTypeTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtInjuryTypeBlock.Visibility = Visibility.Visible;
+        if (InjuryTypeTxt.Text.Length > 0)
+        {
+            txtInjuryTypeBlock.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void RecoveredDateTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtRecoveredDateBlock.Visibility = Visibility.Visible;
+        if (RecoveredDateTxt.Text.Length > 0)
+        {
+            txtRecoveredDateBlock.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void VetAssignedTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtVetAssignedBlock.Visibility = Visibility.Visible;
+        if (VetAssignedTxt.Text.Length > 0)
+        {
+            txtVetAssignedBlock.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void RxTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtRxBlock.Visibility = Visibility.Visible;
+        if (RxTxt.Text.Length > 0)
+        {
+            txtRxBlock.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void NotesTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtNotesBlock.Visibility = Visibility.Visible;
+        if (NotesTxt.Text.Length > 0)
+        {
+            txtNotesBlock.Visibility = Visibility.Hidden;
+        }
     }
 }

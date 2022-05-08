@@ -1,6 +1,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace QRbert;
 
@@ -239,5 +240,50 @@ public partial class StaffChangePersonalInfo : Window
         Switcher.RemoveAnimal = true;
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         Close();
+    }
+
+    private void AddressInputTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtAddressBlock.Visibility = Visibility.Visible;
+        if (AddressInputTxt.Text.Length > 0)
+        {
+            txtAddressBlock.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void CityInputTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtCityBlock.Visibility = Visibility.Visible;
+        if (CityInputTxt.Text.Length > 0)
+        {
+            txtCityBlock.Visibility = Visibility.Hidden;
+        }    
+    }
+
+    private void StateInputTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtStateBlock.Visibility = Visibility.Visible;
+        if (StateInputTxt.Text.Length > 0)
+        {
+            txtStateBlock.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void ZipcodeInputTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtZipcodeBlock.Visibility = Visibility.Visible;
+        if (ZipcodeInputTxt.Text.Length > 0)
+        {
+            txtZipcodeBlock.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void PhoneNumberInputTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtPhoneNumberBlock.Visibility = Visibility.Visible;
+        if (PhoneNumberInputTxt.Text.Length > 0)
+        {
+            txtPhoneNumberBlock.Visibility = Visibility.Hidden;
+        }    
     }
 }

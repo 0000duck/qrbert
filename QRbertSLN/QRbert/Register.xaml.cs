@@ -311,58 +311,75 @@ public partial class Register : Window
         TextBox city, TextBox state, TextBox zipcode, TextBox phoneNumber, PasswordBox password, PasswordBox confirmPassword)
     {
         bool isGood = false;
+
+        if (_facultyRole == "")
+        {
+            MessageBox.Show("Please select a faculty role");
+            isGood = false;
+        }
         if (firstName.Text == "")
         {
+            MessageBox.Show("Please enter in a first name");
             return isGood;
         }
 
         if (lastName.Text == "")
         {
+            MessageBox.Show("Please enter in a last name");
             return isGood;
         }
 
         if (!IsValidEmail(email.Text))
         {
+            MessageBox.Show("Invalid email");
             return isGood;
         }
 
         if (!isValidDriver(driver.Text))
         {
+            MessageBox.Show("Invalid Driver's License");
             return isGood;
         }
         
         if (address.Text == null || address.Text == "")
         {
+            MessageBox.Show("Please enter an address");
             return isGood;
         }
 
         if (city.Text == null || address.Text == "")
         {
+            MessageBox.Show("Please enter in a city");
             return isGood;
         }
 
         if (!isValidState(state) || state.Text == "")
         {
+            MessageBox.Show("Invalid entry for state (ex CA for California)");
             return isGood;
         }
 
         if (!IsWithinRange(zipcode.Text) || zipcode.Text == "")
         {
+            MessageBox.Show("Invalid entry for zipcode. Must be 5 digits (ex 90291)");
             return isGood;
         }
 
         if (!isValidPhone(phoneNumber)|| phoneNumber.Text == "")
         {
+            MessageBox.Show("Invalid entry for phone number (ex: 1234567890");
             return isGood;
         }
 
         if (password.Password.Length < 8 || password.Password == "")
         {
+            MessageBox.Show("Password needs to be at least 8 characters long");
             return isGood;
         }
 
         if (confirmPassword.Password != password.Password || confirmPassword.Password == "")
         {
+            MessageBox.Show("Passwords do not match");
             return isGood;
         }
 
@@ -387,7 +404,7 @@ public partial class Register : Window
 
         if (!Authenticate(txtFirstName,txtLastName,txtEmail,txtDriver,txtAddress,txtCity,txtState,txtZipcode,txtPhone,Password,ConfirmPassword))
         {
-            MessageBox.Show("Please fill out all mandatory fields on the page.");
+            //MessageBox.Show("Please fill out all mandatory fields on the page.");
         }
         else
         {

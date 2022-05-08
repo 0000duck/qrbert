@@ -285,15 +285,15 @@
                 FontSize="14"
                 Height="20"
                 Width="250"
-                Name="FoodGivenTxtBlock"
-                Margin="0,-600,-808,0"
+                Name="txtFoodGivenBlock"
+                Margin="0,-600,-810,0"
             > </TextBlock>
             <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      TextChanged="FoodGivenTxt_OnTextChanged"
                      Margin="0,-600,-800,0" FontSize="14"
                      Name="FoodGivenTxt">
-                Food Given
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-560,0,0"/>

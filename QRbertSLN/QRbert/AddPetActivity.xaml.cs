@@ -269,8 +269,17 @@ public partial class AddPetActivity
         }
     }
 
+
     private void StaffIdTxt_OnTextChanged(object sender, TextChangedEventArgs e)
     {
+    }
         
+    private void FoodGivenTxt_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtFoodGivenBlock.Visibility = Visibility.Visible;
+        if (FoodGivenTxt.Text.Length > 0)
+        {
+            txtFoodGivenBlock.Visibility = Visibility.Hidden;
+        }
     }
 }

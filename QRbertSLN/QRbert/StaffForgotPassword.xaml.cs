@@ -258,4 +258,13 @@ public partial class StaffForgotPassword : Window
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
         Close();
     }
+
+    private void EnterCodeInput_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        txtCodeBlock.Visibility = Visibility.Visible;
+        if (EnterCodeInput.Text.Length > 0)
+        {
+            txtCodeBlock.Visibility = Visibility.Hidden;
+        }    
+    }
 }

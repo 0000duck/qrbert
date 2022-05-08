@@ -199,80 +199,157 @@
         />
         <!-- This the "Pet Name" textbox control-->
         <DockPanel LastChildFill="False">
+            <TextBlock
+                Text="Pet Name"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtPetNameBlock"
+                Margin="0,-1100,-810,0"
+            > </TextBlock>
             <TextBox 
                 Name = "txtPetName"
                 Width = "250" Height="25" Background="Transparent" Foreground="White" 
-                     FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                TextChanged="TxtPetName_OnTextChanged"     
+                FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      Margin="0,-1100,-800,0" FontSize="14">
-                Pet Name
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-1060,0,0"/>
         </DockPanel>
         <!-- This the "DOB" textbox control-->
         <DockPanel LastChildFill="False">
+            <TextBlock
+                Text="DOB (YYYY-MM-DD)"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtDOBBlock"
+                Margin="0,-1000,-810,0"
+            > </TextBlock>
             <TextBox 
                 Name = "txtDOB"
                 Width = "250" Height="25" Background="Transparent" Foreground="White" 
-                     FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                TextChanged="TxtDOB_OnTextChanged"     
+                FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      Margin="0,-1000,-800,0" FontSize="14">
-                DOB (YYYY-MM-DD)
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-960,0,0"/>
         </DockPanel>
         <!-- This the "Animal Type" textbox control-->
         <DockPanel LastChildFill="False">
+            <TextBlock
+                Text="Animal Type"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtTypeBlock"
+                Margin="0,-900,-810,0"
+            > </TextBlock>
             <TextBox 
                 Name = "txtType"
                 Width = "250" Height="25" Background="Transparent" Foreground="White" 
-                     FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                TextChanged="TxtType_OnTextChanged"     
+                FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      Margin="0,-900,-800,0" FontSize="14">
-                Animal Type
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-860,0,0"/>
         </DockPanel>
         <!-- This the "Breed" textbox control-->
         <DockPanel LastChildFill="False">
+            <TextBlock
+                Text="Breed"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtBreedBlock"
+                Margin="0,-800,-810,0"
+            > </TextBlock>
             <TextBox 
                 Name = "txtBreed"
                 Width = "250" Height="25" Background="Transparent" Foreground="White" 
-                     FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                TextChanged="TxtBreed_OnTextChanged"     
+                FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      Margin="0,-800,-800,0" FontSize="14">
-                Breed
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-760,0,0"/>
         </DockPanel>
         <!-- This the "Gender" textbox control-->
         <DockPanel LastChildFill="False">
+            <TextBlock
+                Text="Gender"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtGenderBlock"
+                Margin="0,-700,-810,0"
+            > </TextBlock>
             <TextBox 
                 Name = "txtGender"
                 Width = "250" Height="25" Background="Transparent" Foreground="White" 
-                     FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                TextChanged="TxtGender_OnTextChanged"     
+                FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      Margin="0,-700,-800,0" FontSize="14">
-                Gender
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-660,0,0"/>
         </DockPanel>
         <!-- This the "Weight" textbox control-->
         <DockPanel LastChildFill="False">
-            <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
+            <TextBlock
+                Text="Weight"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtWeightBlock"
+                Margin="0,-600,-810,0"
+            > </TextBlock>
+            <TextBox Name = "txtWeight" Width = "250" Height="25" Background="Transparent" Foreground="White" 
+                     TextChanged="TxtWeight_OnTextChanged"
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
                      Margin="0,-600,-800,0" FontSize="14">
-                Weight
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-560,0,0"/>
         </DockPanel>
         <!-- This the "Color" textbox control-->
         <DockPanel LastChildFill="False">
-            <TextBox Width = "250" Height="25" Background="Transparent" Foreground="White" 
+            <TextBlock
+                Text="Color"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Height="20"
+                Width="250"
+                Name="txtColorBlock"
+                Margin="0,-500,-810,0"
+            > </TextBlock>
+            <TextBox Name = "txtColor" Width = "250" Height="25" Background="Transparent" Foreground="White" 
                      FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2"
+                     TextChanged="TxtColor_OnTextChanged"
                      Margin="0,-500,-800,0" FontSize="14">
-                Color
+                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-460,0,0"/>
