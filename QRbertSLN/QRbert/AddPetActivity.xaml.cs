@@ -260,16 +260,6 @@ public partial class AddPetActivity
         }   
     }
 
-    private void FoodGivenTxt_OnTextChanged(object sender, TextChangedEventArgs e)
-    {
-        FoodGivenTxtBlock.Visibility = Visibility.Visible;
-        if (FoodGivenTxt.Text.Length > 0)
-        {
-            FoodGivenTxtBlock.Visibility = Visibility.Hidden;
-        }
-    }
-
-
     private void StaffIdTxt_OnTextChanged(object sender, TextChangedEventArgs e)
     {
     }

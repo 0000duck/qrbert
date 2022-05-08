@@ -287,7 +287,7 @@
                   SelectedDate="4/7/2022"
                   Height="25"
                   Width="160"
-                  Margin="0, -700,-925,0">
+                  Margin="0, -700,-925,0"/>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-660,0,0"/>
         </DockPanel>
