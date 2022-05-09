@@ -194,8 +194,10 @@ public partial class StaffChangeEmail
                             Switcher.CurrentSessionEmail + "';");
                     SqlCommand sqlCmd = new SqlCommand("updateEmailPwd", sqlConnection);
                     sqlCmd.CommandType = CommandType.StoredProcedure;
-                    sqlCmd.Parameters.AddWithValue("@Email", Switcher.CurrentSessionEmail);
-                    sqlCmd.Parameters.AddWithValue("@Password", password);
+                    sqlCmd.Parameters.AddWithValue("@CurrentEmail", Switcher.CurrentSessionEmail);
+                    sqlCmd.Parameters.AddWithValue("@NewEmail", NewEmailInput.Text);
+                    sqlCmd.Parameters.AddWithValue("@OldPassword", "");
+                    sqlCmd.Parameters.AddWithValue("@NewPassword", password);
                     sqlCmd.Parameters.AddWithValue("@Faculty_Role", facultyRole);
                     sqlCmd.Parameters.AddWithValue("@FirstName", firstName);
                     sqlCmd.Parameters.AddWithValue("@LastName", lastName);

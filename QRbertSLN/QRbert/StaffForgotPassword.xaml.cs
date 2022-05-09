@@ -6,7 +6,7 @@ using System.Windows.Controls;
 
 namespace QRbert;
 
-public partial class StaffForgotPassword : Window
+public partial class StaffForgotPassword
 {
     string _randomCode = "";
     public static string to;
@@ -36,7 +36,7 @@ public partial class StaffForgotPassword : Window
             // At least one Pet is Neglected
             // Means that Switcher.IsPetNeglected = true
             Switcher.StaffPageSwitch(new StaffNeglectedAnimals());
-            this.Close();
+            Close();
         }
     }
     
@@ -49,7 +49,7 @@ public partial class StaffForgotPassword : Window
     private void StaffMyAccountBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffMyAccount());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -60,7 +60,7 @@ public partial class StaffForgotPassword : Window
     private void LogOutBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.LogOutSwitch();
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -71,7 +71,7 @@ public partial class StaffForgotPassword : Window
     private void HomeStaffPortalBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.RedirectStaffPortal();
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -86,7 +86,7 @@ public partial class StaffForgotPassword : Window
             Switcher.RemoveAnimal = true;
         }
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -97,7 +97,7 @@ public partial class StaffForgotPassword : Window
     private void PetReportsBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffPetReport());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -108,7 +108,7 @@ public partial class StaffForgotPassword : Window
     private void TrackActiveVolunteersBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new TrackActiveVolunteers());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -119,7 +119,7 @@ public partial class StaffForgotPassword : Window
     private void StaffSearchBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffSearch());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -130,7 +130,7 @@ public partial class StaffForgotPassword : Window
     private void LockTimesheetBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffLockTimesheet());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -141,7 +141,7 @@ public partial class StaffForgotPassword : Window
     private void RoundingRulesBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffRoundingRules());
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -205,7 +205,7 @@ public partial class StaffForgotPassword : Window
         if (_randomCode == EnterCodeInput.Text)
         {
             Switcher.StaffPageSwitch(new StaffChangePassword());
-            this.Close();
+            Close();
         }
         else
         {
