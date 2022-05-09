@@ -199,7 +199,6 @@ public partial class AddPetActivity
        string pName =  Switcher.VerifyRole("Select PetName From QRbertDB.QRbertTables.Pet Where PetID = '" + 
                                           Switcher.PetId + "';");
 
-        MessageBox.Show(pID);
         sqlCmd.CommandType = CommandType.StoredProcedure;
         sqlCmd.Parameters.AddWithValue("@PetName", pName);
         sqlCmd.Parameters.AddWithValue("@WaterGiven", WaterGivenTxt.Text);
@@ -209,7 +208,6 @@ public partial class AddPetActivity
         sqlCmd.Parameters.AddWithValue("@Activity_Date", ActivityDatePicker.SelectedDate.GetValueOrDefault().Date.ToString());
         sqlCmd.Parameters.AddWithValue("@ID", StaffIdTxt.Text);
 
-        MessageBox.Show("Connection Successfully ");
         sqlCmd.ExecuteNonQuery();
         MessageBox.Show("Successfully saved New Pet Activity.");
         Switcher.StaffPageSwitch(new StaffTrackAnimalActivity());
