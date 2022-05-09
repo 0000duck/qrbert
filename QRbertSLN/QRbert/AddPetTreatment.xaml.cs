@@ -21,9 +21,15 @@ public partial class AddPetTreatment
         {
             string petName = "Select PetName From QRbertDB.QRbertTables.Pet Where PetID = '" + 
                              Switcher.PetId + "';";
+            string PetNum = "Select PetID From QRbertDB.QRbertTables.Pet Where PetID = '" + 
+                            Switcher.PetId + "';";
             SqlCommand sqlCommandForPetName = new SqlCommand(petName, sqlConnection);
             PetName.Content = sqlCommandForPetName.ExecuteScalar().ToString();
             sqlCommandForPetName.Dispose();
+            
+            SqlCommand sqlCommandForPetID = new SqlCommand(PetNum, sqlConnection);
+            PetId.Content = sqlCommandForPetID.ExecuteScalar().ToString();
+            sqlCommandForPetID.Dispose();
         }
         catch (SqlException sqlException)
         {
@@ -170,6 +176,24 @@ public partial class AddPetTreatment
     /// <param name="e"></param>
     private void AddPetTreatmentBtn_Click(object sender, RoutedEventArgs e)
     {
+        using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
+        sqlCon.Open();
+        SqlCommand sqlCmd = new SqlCommand("PetTreatment", sqlCon);
+        string pID =  Switcher.VerifyRole("Select PetId From QRbertDB.QRbertTables.Pet Where PetID = '" + 
+                                          Switcher.PetId + "';");
+        string pName =  Switcher.VerifyRole("Select PetName From QRbertDB.QRbertTables.Pet Where PetID = '" + 
+                                            Switcher.PetId + "';");
+        
+        sqlCmd.CommandType = CommandType.StoredProcedure;
+        sqlCmd.Parameters.AddWithValue("@PetID", pID);
+        sqlCmd.Parameters.AddWithValue("@PetName", pName);
+        sqlCmd.Parameters.AddWithValue("@InjuryType", InjuryTypeTxt.Text);
+        sqlCmd.Parameters.AddWithValue("@Incident_Date", IncidentDatePicker.SelectedDate.GetValueOrDefault().Date.ToString());
+        sqlCmd.Parameters.AddWithValue("@Recovered_Date", RecoveredDatePicker.SelectedDate.GetValueOrDefault().Date.ToString());
+        sqlCmd.Parameters.AddWithValue("@Vet_Assign", VetAssignedTxt.Text);
+        sqlCmd.Parameters.AddWithValue("@Rx", RxTxt.Text);
+        sqlCmd.Parameters.AddWithValue("@Notes", NotesTxt.Text);
+        /*
         string petName =
             Switcher.VerifyRole(
                 "Select QRbertDB.QRbertTables.Pet.PetName from QRbertDB.QRbertTables.Pet where PetID = '" +
@@ -184,7 +208,7 @@ public partial class AddPetTreatment
         sqlCmd.Parameters.AddWithValue("@Vet_Assign", VetAssignedTxt.Text);
         sqlCmd.Parameters.AddWithValue("@Rx", RxTxt.Text);
         sqlCmd.Parameters.AddWithValue("@Notes", NotesTxt.Text);
-
+*/
         sqlCmd.ExecuteNonQuery();
         MessageBox.Show("Successfully saved Pet Treatment.");
         Switcher.StaffPageSwitch(new StaffViewPetTreatment());

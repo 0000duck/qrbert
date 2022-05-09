@@ -246,7 +246,7 @@
             <DatePicker
                 Name="IncidentDatePicker"
                 SelectedDateFormat="Short"
-                SelectedDate="4/5/2022"
+                SelectedDate="2022-04-05"
                 Height="25"
                 Width="160"
                 Margin="0, -800,-925,0"
@@ -274,7 +274,7 @@
             <DatePicker
                   Name="RecoveredDatePicker"
                   SelectedDateFormat="Short"
-                  SelectedDate="4/7/2022"
+                  SelectedDate="2022-05-01"
                   Height="25"
                   Width="160"
                   Margin="0, -700,-925,0"/>
