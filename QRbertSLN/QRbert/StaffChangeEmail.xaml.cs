@@ -1,3 +1,4 @@
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
@@ -165,24 +166,40 @@ public partial class StaffChangeEmail
             {
                 NewEmailInput.Text = "";
                 ConfirmNewEmailInput.Text = "";
-                MessageBox.Show("Emails don't match, please try again.");
+                MessageBox.Show("New emails don't match, please try again.");
             }
             // If they do contain the same email
             else
             {
-                // Query the database and update email
-                using (SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString))
+                // Opens connection, gets needed info for command and executes and updates the email
+                SqlConnection sqlConnection = new SqlConnection(Switcher.ConnectionString);
+                sqlConnection.Open();
+                try
                 {
-                    string msg = 
-                        Switcher.VerifyRole("Select [Faculty-Role] From QRbertDB.QRbertTables.Registration Where email = '" + Switcher.CurrentSessionEmail + "'");
-                    string userType = msg;
-                    sqlCon.Open();
-                    SqlCommand sqlCmd = new SqlCommand("Update QRbertDB.QRbertTables.Registration Set Email = '" + NewEmailInput.Text + "' Where Faculty-role = '" + userType + "'", sqlCon);
-                    sqlCmd.ExecuteScalar();
+                    string facultyRole = "Select [Faculty-Role] From QRbertDB.QRbertTables.Registration Where Email = '" + 
+                                       Switcher.CurrentSessionEmail + "';";
+                    string password = "Select Password From QRbertDB.QRbertTables.Registration Where Email = '" +
+                                      Switcher.CurrentSessionEmail + "';";
+                    string firstName = "Select FirstName From QRbertDB.QRbertTables.Registration Where Email = '" +
+                                       Switcher.CurrentSessionEmail + "';";
+                    string lastName = "Select LastName From QRbertDB.QRbertTables.Registration Where Email = '" +
+                                      Switcher.CurrentSessionEmail + "';";
+                    SqlCommand sqlCmd = new SqlCommand("updateEmailPwd", sqlConnection);
+                    sqlCmd.CommandType = CommandType.StoredProcedure;
+                    sqlCmd.Parameters.AddWithValue("@Email", Switcher.CurrentSessionEmail);
+                    sqlCmd.Parameters.AddWithValue("@Password", password);
+                    sqlCmd.Parameters.AddWithValue("@Faculty_Role", facultyRole);
+                    sqlCmd.Parameters.AddWithValue("@FirstName", firstName);
+                    sqlCmd.Parameters.AddWithValue("@LastName", lastName);
+                    sqlCmd.ExecuteNonQuery();
                     MessageBox.Show("Email has been updated.");
-                    Switcher.StaffPageSwitch(new StaffMyAccount());
-                    Close();
                 }
+                catch (SqlException sqlException)
+                {
+                    MessageBox.Show(sqlException.Message);
+                }
+                Switcher.StaffPageSwitch(new StaffMyAccount());
+                Close();
             }
         }
         // The textboxes are empty

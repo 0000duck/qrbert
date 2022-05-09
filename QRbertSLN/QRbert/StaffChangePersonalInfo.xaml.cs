@@ -1,11 +1,10 @@
-using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace QRbert;
 
-public partial class StaffChangePersonalInfo : Window
+public partial class StaffChangePersonalInfo
 {
     /// <summary>
     /// Upon loading the page, Window checks if boolean is true to turn on Bell Icon

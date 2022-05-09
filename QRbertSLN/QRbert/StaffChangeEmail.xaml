@@ -208,7 +208,6 @@
                      TextChanged="NewEmailInput_OnTextChanged"
                      Margin="0,-500,-800,0" FontSize="14"
                      Name="NewEmailInput">
-                
             </TextBox>
             <Rectangle DockPanel.Dock="Top" Fill="White" Height="2" Width="250" 
                        Margin="0,-460,0,0"/>
