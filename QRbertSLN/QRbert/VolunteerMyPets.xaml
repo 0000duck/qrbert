@@ -157,31 +157,31 @@
             </Border.Background>
         </Border>
         <!-- This is where the pet name will go-->
-        <Label Name = "PetName" Width = "150" Height = "35" Content="Pet Name" Foreground="White" FontWeight = "DemiBold" FontSize="28"
-                   Margin = "0, -475, 00, 0" >
+        <Label Name = "PetName" Width = "250" Height = "55" Content="Pet Name" Foreground="White" FontWeight = "DemiBold" FontSize="28"
+                   Margin = "40, -475, 0, 0" >
         </Label>
         <!-- This is the "Pet ID:" label, this shouldn't change-->
-        <Label Width = "100" Height = "35" Content="Pet ID:" Foreground="White" FontWeight = "DemiBold" FontSize="20"
+        <Label Width = "100" Height = "45" Content="Pet ID:" Foreground="White" FontWeight = "DemiBold" FontSize="20"
                    Margin = "-105, -375, 00, 0" >
         </Label>
         <!-- This is the Content-block where the pet Id will be displayed-->
-        <Label Name = "PetId" Width = "100" Height = "35" Content="Pet ID" Foreground="White" FontWeight = "DemiBold" FontSize="20"
+        <Label Name = "PetId" Width = "100" Height = "45" Content="Pet ID" Foreground="White" FontWeight = "DemiBold" FontSize="20"
                    Margin = "100, -375, 00, 0" >
         </Label>
         <!-- This is the "Breed Type:" label, this shouldn't change-->
-        <Label Width = "125" Height = "35" Content="Breed Type:" Foreground="White" FontWeight = "DemiBold" FontSize="20"
+        <Label Width = "125" Height = "45" Content="Breed Type:" Foreground="White" FontWeight = "DemiBold" FontSize="20"
                    Margin = "-175, -275, 00, 0" >
         </Label>
         <!-- This is the Content-block where the breed type will be displayed-->
-        <Label Name = "BreedType" Width = "200" Height = "35" Content="Breed Type" Foreground="White" FontWeight = "DemiBold" FontSize="20"
+        <Label Name = "BreedType" Width = "200" Height = "45" Content="Breed Type" Foreground="White" FontWeight = "DemiBold" FontSize="20"
                    Margin = "200, -275, 00, 0" >
         </Label>
         <!-- This is the "DOB:" label, this shouldn't change-->
-        <Label Width = "50" Height = "35" Content="DOB:" Foreground="White" FontWeight = "DemiBold" FontSize="20"
-                   Margin = "-130, -175, 00, 0" >
+        <Label Width = "55" Height = "45" Content="DOB:" Foreground="White" FontWeight = "DemiBold" FontSize="20"
+                   Margin = "-125, -175, 00, 0" >
         </Label>
         <!-- This is the Contentb-lock where the DOB will be displayed-->
-        <Label Name = "Dob" Width = "100" Height = "35" Content="DOB" Foreground="White" FontWeight = "DemiBold" FontSize="20"
+        <Label Name = "Dob" Width = "90" Height = "45" Content="DOB" Foreground="White" FontWeight = "DemiBold" FontSize="20"
                    Margin = "100, -175, 00, 0" >
         </Label>
         <Button

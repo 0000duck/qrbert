@@ -269,8 +269,9 @@ public partial class StaffCreatePetReport : Window
         txtBreedBlock.Visibility = Visibility.Visible;
         if (txtBreed.Text.Length > 0)
         {
-            txtBreed.Visibility = Visibility.Hidden;
-        }        }
+            txtBreedBlock.Visibility = Visibility.Hidden;
+        }        
+    }
 
     private void TxtGender_OnTextChanged(object sender, TextChangedEventArgs e)
     {

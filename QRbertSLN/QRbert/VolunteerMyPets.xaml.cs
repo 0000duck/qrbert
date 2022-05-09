@@ -8,7 +8,8 @@ public partial class VolunteerMyPets
     public VolunteerMyPets()
     {
         InitializeComponent();
-        PetId.Content = "Pet ID: " + Switcher.PetId;
+        //Switcher.PetId = 823;
+        PetId.Content = "" + Switcher.PetId;
         SqlConnection sqlConnection = new SqlConnection(Switcher.ConnectionString);
         try
         {
