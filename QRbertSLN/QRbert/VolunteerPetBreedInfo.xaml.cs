@@ -3,14 +3,13 @@ using System.Windows;
 
 namespace QRbert;
 
-public partial class VolunteerPetBreedInfo : Window
+public partial class VolunteerPetBreedInfo
 {
     public string[] breedType = new string[2];
     
     public VolunteerPetBreedInfo()
     {
         InitializeComponent();
-        int petID = Switcher.PetId;
         breedType[0] = "For this cat, DO NOT GIVE IT CATNIP...not worth.";
         breedType[1] = "For this dog, make sure you take it on for walks otherwise it will get fat...like obese.";
         using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
@@ -18,13 +17,14 @@ public partial class VolunteerPetBreedInfo : Window
         string petBreed = "SELECT QRbertDB.QRbertTables.Pet.Type from QRbertDB.QRbertTables.Pet where PetID = '" +
                           Switcher.PetId + "'";
         SqlCommand sqlCmd = new SqlCommand(petBreed, sqlCon);
-        PetBreedLabel.Content = sqlCmd.ExecuteScalar().ToString();
-        if (petBreed == "Cat")
+        if (sqlCmd.ExecuteScalar().ToString() == "Cat")
         {
+            PetBreedLabel.Content = "Cat";
             PetBreedText.Text = breedType[0];
         }
         else
         {
+            PetBreedLabel.Content = "Dog";
             PetBreedText.Text = breedType[1];
         }
     }
@@ -37,7 +37,7 @@ public partial class VolunteerPetBreedInfo : Window
     private void VolunteerMyAcctBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -48,7 +48,7 @@ public partial class VolunteerPetBreedInfo : Window
     private void LogOutBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.LogOutSwitch();
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -59,7 +59,7 @@ public partial class VolunteerPetBreedInfo : Window
     private void HomeVolunteerPortalBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.RedirectVolunteerPortal();
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -70,7 +70,7 @@ public partial class VolunteerPetBreedInfo : Window
     private void ViewTimesheetBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerViewTimesheets());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -81,7 +81,7 @@ public partial class VolunteerPetBreedInfo : Window
     private void ScanPetQRCodeBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -92,7 +92,7 @@ public partial class VolunteerPetBreedInfo : Window
     private void PetReportsBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -113,6 +113,7 @@ public partial class VolunteerPetBreedInfo : Window
     /// <param name="e"></param>
     private void ReturnToMyPets_OnClick(object sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        Switcher.VolunteerPortalSwitch(new VolunteerMyPets());
+        Close();
     }
 }
