@@ -1,3 +1,4 @@
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
 
@@ -229,14 +230,39 @@ public partial class StaffChangePassword
             // Passes all the checks, updates password and takes to MyAccount page
             else
             {
-                string userType = Switcher.VerifyRole("Select [Faculty-Role] From QRbertDB.QRbertTables.Registration Where email = '" 
-                                                      + Switcher.CurrentSessionEmail + "'");
-                SqlCommand sqlCmd =
-                    new SqlCommand(
-                        "Update QRbertDB.QRbertTables.Registration Set Password = '" + ConfirmNewPasswordBox.Password + "' Where Faculty-role = ' " +
-                        userType + "'", new SqlConnection(Switcher.ConnectionString));
-                sqlCmd.ExecuteScalar();
-                MessageBox.Show("Password has been updated.");
+                // Opens connection, gets needed info for command and executes and updates the email
+                SqlConnection sqlConnection = new SqlConnection(Switcher.ConnectionString);
+                sqlConnection.Open();
+                try
+                {
+                    string facultyRole =
+                        Switcher.VerifyRole(
+                            "Select [Faculty-Role] From QRbertDB.QRbertTables.Registration Where Email = '" +
+                            Switcher.CurrentSessionEmail + "';");
+                    string firstName = 
+                        Switcher.VerifyRole(
+                            "Select FirstName From QRbertDB.QRbertTables.Registration Where Email = '" + 
+                            Switcher.CurrentSessionEmail + "';");
+                    string lastName = 
+                        Switcher.VerifyRole(
+                            "Select LastName From QRbertDB.QRbertTables.Registration Where Email = '" + 
+                            Switcher.CurrentSessionEmail + "';");
+                    SqlCommand sqlCmd = new SqlCommand("updateEmailPwd", sqlConnection);
+                    sqlCmd.CommandType = CommandType.StoredProcedure;
+                    sqlCmd.Parameters.AddWithValue("@CurrentEmail", Switcher.CurrentSessionEmail);
+                    sqlCmd.Parameters.AddWithValue("@NewEmail", "");
+                    sqlCmd.Parameters.AddWithValue("@OldPassword", CurrentPasswordBox.Password);
+                    sqlCmd.Parameters.AddWithValue("@NewPassword", NewPasswordBox.Password);
+                    sqlCmd.Parameters.AddWithValue("@Faculty_Role", facultyRole);
+                    sqlCmd.Parameters.AddWithValue("@FirstName", firstName);
+                    sqlCmd.Parameters.AddWithValue("@LastName", lastName);
+                    sqlCmd.ExecuteNonQuery();
+                    MessageBox.Show("Password has been updated.");
+                }
+                catch (SqlException sqlException)
+                {
+                    MessageBox.Show(sqlException.Message);
+                }
                 Switcher.StaffPageSwitch(new StaffMyAccount());
                 Close();
             }

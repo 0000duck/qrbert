@@ -6,11 +6,10 @@ using System.Windows.Controls;
 
 namespace QRbert;
 
-public partial class VolunteerForgotPassword : Window
+public partial class VolunteerForgotPassword
 {
-    private string randomCode;
-    public static string to;
-    
+    private string _randomCode = "";
+
     public VolunteerForgotPassword()
     {
         InitializeComponent();
@@ -24,7 +23,7 @@ public partial class VolunteerForgotPassword : Window
     private void VolunteerMyAcctBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -35,7 +34,7 @@ public partial class VolunteerForgotPassword : Window
     private void LogOutBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.LogOutSwitch();
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -46,7 +45,7 @@ public partial class VolunteerForgotPassword : Window
     private void HomeVolunteerPortalBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.RedirectVolunteerPortal();
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -57,7 +56,7 @@ public partial class VolunteerForgotPassword : Window
     private void ViewTimesheetBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerViewTimesheets());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -68,7 +67,7 @@ public partial class VolunteerForgotPassword : Window
     private void ScanPetQRCodeBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -79,7 +78,7 @@ public partial class VolunteerForgotPassword : Window
     private void PetReportBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -101,34 +100,31 @@ public partial class VolunteerForgotPassword : Window
     /// <param name="e"></param>
     private void SendCodeBtn_Click(object sender, RoutedEventArgs e)
     {
-        string from, pass, messageBody;
-
         Random rand = new Random();
-        randomCode = (rand.Next(999999)).ToString();
-        MailMessage message = new MailMessage();
-        to = Switcher.CurrentSessionEmail;
-        from = "matt.zaldana@gmail.com";
-        pass = "QRbert Temporary Code";
-        messageBody = "Hello, this is QRbert. " +
-                      "If you have received this message, please input the following " +
-                      "6 digit code in the textbox in the QRbert window: " + randomCode;
-        message.To.Add(to);
-        message.From = new MailAddress(from);
-        message.Body = messageBody;
-        message.Subject = "QRbert Temporary code";
-        SmtpClient smtp = new SmtpClient("smtp.gmail.com");
-        smtp.EnableSsl = true;
-        smtp.Port = 587;
-        smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-        smtp.Credentials = new NetworkCredential(from, pass);
-        try
+        _randomCode = rand.Next(999999).ToString();
+        var fromAddress = new MailAddress("qrbert.thedreamteam@gmail.com", "QRbert by The Dream Team");
+        var toAddress = new MailAddress(Switcher.CurrentSessionEmail, Switcher.CurrentSessionEmail);
+        const string fromPassword = "qrbert.thedreamteam1!";
+        const string subject = "QRbert - 6 Digit code";
+        string msgBody = "Hello, this is QRbert. " +
+                         "If you have received this message, please input the following " +
+                         "6 digit code in the textbox in the QRbert window: " + _randomCode;
+        var smtp = new SmtpClient
         {
+            Host = "smtp.gmail.com",
+            Port = 587,
+            EnableSsl = true,
+            DeliveryMethod = SmtpDeliveryMethod.Network,
+            UseDefaultCredentials = false,
+            Credentials = new NetworkCredential(fromAddress.Address, fromPassword),
+            Timeout = 20000
+        };
+        using (var message = new MailMessage(fromAddress, toAddress))
+        {
+            message.Subject = subject;
+            message.Body = msgBody;
             smtp.Send(message);
-            MessageBox.Show("Please check your email for your 6 digit code.");
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show(ex.Message);
+            MessageBox.Show("Code sent. Please check your email.");
         }
     }
 
@@ -140,10 +136,10 @@ public partial class VolunteerForgotPassword : Window
     /// <param name="e"></param>
     private void EnterCodeBtn_Click(object sender, RoutedEventArgs e)
     {
-        if (randomCode == EnterCodeInput.Text)
+        if (_randomCode == EnterCodeInput.Text)
         {
             Switcher.VolunteerPortalSwitch(new VolunteerChangePassword());
-            this.Close();
+            Close();
         }
         else
         {

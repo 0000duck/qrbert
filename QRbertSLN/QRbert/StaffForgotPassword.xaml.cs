@@ -6,11 +6,10 @@ using System.Windows.Controls;
 
 namespace QRbert;
 
-public partial class StaffForgotPassword : Window
+public partial class StaffForgotPassword
 {
     string _randomCode = "";
-    public static string to;
-    
+
     /// <summary>
     /// Upon loading the page, Window checks if boolean is true to turn on Bell Icon
     /// </summary>
@@ -36,7 +35,7 @@ public partial class StaffForgotPassword : Window
             // At least one Pet is Neglected
             // Means that Switcher.IsPetNeglected = true
             Switcher.StaffPageSwitch(new StaffNeglectedAnimals());
-            this.Close();
+            Close();
         }
     }
     
@@ -49,7 +48,7 @@ public partial class StaffForgotPassword : Window
     private void StaffMyAccountBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffMyAccount());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -60,7 +59,7 @@ public partial class StaffForgotPassword : Window
     private void LogOutBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.LogOutSwitch();
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -71,7 +70,7 @@ public partial class StaffForgotPassword : Window
     private void HomeStaffPortalBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.RedirectStaffPortal();
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -86,7 +85,7 @@ public partial class StaffForgotPassword : Window
             Switcher.RemoveAnimal = true;
         }
         Switcher.StaffPageSwitch(new StaffScanPetQrCode());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -97,7 +96,7 @@ public partial class StaffForgotPassword : Window
     private void PetReportsBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffPetReport());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -108,7 +107,7 @@ public partial class StaffForgotPassword : Window
     private void TrackActiveVolunteersBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new TrackActiveVolunteers());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -119,7 +118,7 @@ public partial class StaffForgotPassword : Window
     private void StaffSearchBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffSearch());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -130,7 +129,7 @@ public partial class StaffForgotPassword : Window
     private void LockTimesheetBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffLockTimesheet());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -141,7 +140,7 @@ public partial class StaffForgotPassword : Window
     private void RoundingRulesBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.StaffPageSwitch(new StaffRoundingRules());
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -157,40 +156,37 @@ public partial class StaffForgotPassword : Window
     
     /// <summary>
     /// Sends a code to a user to input to reset their password
-    /// Uses SMTP to send code from my personal email, but we could set one up
+    /// Uses SMTP to send code from my qrbert email
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
     private void SendCodeBtn_Click(object sender, RoutedEventArgs e)
     {
-        string from, pass, messageBody;
-
         Random rand = new Random();
-        _randomCode = (rand.Next(999999)).ToString();
-        MailMessage message = new MailMessage();
-        to = Switcher.CurrentSessionEmail;
-        from = "matt.zaldana@gmail.com";
-        pass = "QRbert Temporary Code";
-        messageBody = "Hello, this is QRbert. " +
+        _randomCode = rand.Next(999999).ToString();
+        var fromAddress = new MailAddress("qrbert.thedreamteam@gmail.com", "QRbert by The Dream Team");
+        var toAddress = new MailAddress(Switcher.CurrentSessionEmail, Switcher.CurrentSessionEmail);
+        const string fromPassword = "qrbert.thedreamteam1!";
+        const string subject = "QRbert - 6 Digit code";
+        string msgBody = "Hello, this is QRbert. " +
                       "If you have received this message, please input the following " +
                       "6 digit code in the textbox in the QRbert window: " + _randomCode;
-        message.To.Add(to);
-        message.From = new MailAddress(from);
-        message.Body = messageBody;
-        message.Subject = "QRbert Temporary code";
-        SmtpClient smtp = new SmtpClient("smtp.gmail.com");
-        smtp.EnableSsl = true;
-        smtp.Port = 587;
-        smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-        smtp.Credentials = new NetworkCredential(from, pass);
-        try
+        var smtp = new SmtpClient
         {
+            Host = "smtp.gmail.com",
+            Port = 587,
+            EnableSsl = true,
+            DeliveryMethod = SmtpDeliveryMethod.Network,
+            UseDefaultCredentials = false,
+            Credentials = new NetworkCredential(fromAddress.Address, fromPassword),
+            Timeout = 20000
+        };
+        using (var message = new MailMessage(fromAddress, toAddress))
+        {
+            message.Subject = subject;
+            message.Body = msgBody;
             smtp.Send(message);
-            MessageBox.Show("Please check your email for your 6 digit code.");
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show(ex.Message);
+            MessageBox.Show("Code sent. Please check your email.");
         }
     }
 
@@ -205,7 +201,7 @@ public partial class StaffForgotPassword : Window
         if (_randomCode == EnterCodeInput.Text)
         {
             Switcher.StaffPageSwitch(new StaffChangePassword());
-            this.Close();
+            Close();
         }
         else
         {

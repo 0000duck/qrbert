@@ -1,10 +1,11 @@
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace QRbert;
 
-public partial class VolunteerChangeEmail : Window
+public partial class VolunteerChangeEmail
 {
     public VolunteerChangeEmail()
     {
@@ -19,7 +20,7 @@ public partial class VolunteerChangeEmail : Window
     private void VolunteerMyAcctBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -30,7 +31,7 @@ public partial class VolunteerChangeEmail : Window
     private void LogOutBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.LogOutSwitch();
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -41,7 +42,7 @@ public partial class VolunteerChangeEmail : Window
     private void HomeVolunteerPortalBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.RedirectVolunteerPortal();
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -52,7 +53,7 @@ public partial class VolunteerChangeEmail : Window
     private void ViewTimesheetBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerViewTimesheets());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -63,7 +64,7 @@ public partial class VolunteerChangeEmail : Window
     private void ScanPetQRCodeBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -74,7 +75,7 @@ public partial class VolunteerChangeEmail : Window
     private void PetReportBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -108,18 +109,44 @@ public partial class VolunteerChangeEmail : Window
             // If they do contain the same email
             else
             {
-                // Query the database and update email
-                string userType = 
-                        Switcher.VerifyRole("Select [Faculty-Role] From QRbertTables.Registration Where email = '" 
-                                            + Switcher.CurrentSessionEmail + "'");
-                SqlCommand sqlCmd =
-                    new SqlCommand(
-                        "Update Registration Set Email = '" + NewEmailInput.Text + "' Where Faculty-role = '" +
-                        userType + "'", new SqlConnection(Switcher.ConnectionString));
-                sqlCmd.ExecuteScalar();
-                MessageBox.Show("Email has been updated.");
+                // Opens connection, gets needed info for command and executes and updates the email
+                SqlConnection sqlConnection = new SqlConnection(Switcher.ConnectionString);
+                sqlConnection.Open();
+                try
+                {
+                    string facultyRole =
+                        Switcher.VerifyRole(
+                            "Select [Faculty-Role] From QRbertDB.QRbertTables.Registration Where Email = '" +
+                            Switcher.CurrentSessionEmail + "';");
+                    string password = 
+                        Switcher.VerifyRole(
+                            "Select Password From QRbertDB.QRbertTables.Registration Where Email = '" + 
+                            Switcher.CurrentSessionEmail + "';");
+                    string firstName = 
+                        Switcher.VerifyRole(
+                            "Select FirstName From QRbertDB.QRbertTables.Registration Where Email = '" + 
+                            Switcher.CurrentSessionEmail + "';");
+                    string lastName = 
+                        Switcher.VerifyRole(
+                            "Select LastName From QRbertDB.QRbertTables.Registration Where Email = '" + 
+                            Switcher.CurrentSessionEmail + "';");
+                    SqlCommand sqlCmd = new SqlCommand("updateEmailPwd", sqlConnection);
+                    sqlCmd.CommandType = CommandType.StoredProcedure;
+                    sqlCmd.Parameters.AddWithValue("@CurrentEmail", Switcher.CurrentSessionEmail);
+                    sqlCmd.Parameters.AddWithValue("@NewEmail", NewEmailInput.Text);
+                    sqlCmd.Parameters.AddWithValue("@Password", password);
+                    sqlCmd.Parameters.AddWithValue("@Faculty_Role", facultyRole);
+                    sqlCmd.Parameters.AddWithValue("@FirstName", firstName);
+                    sqlCmd.Parameters.AddWithValue("@LastName", lastName);
+                    sqlCmd.ExecuteNonQuery();
+                    MessageBox.Show("Email has been updated.");
+                }
+                catch (SqlException sqlException)
+                {
+                    MessageBox.Show(sqlException.Message);
+                }
                 Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
-                this.Close();
+                Close();
             }
         }
         // The textboxes are empty

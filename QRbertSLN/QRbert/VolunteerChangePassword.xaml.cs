@@ -1,3 +1,4 @@
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
 
@@ -18,7 +19,7 @@ public partial class VolunteerChangePassword
     private void VolunteerMyAcctBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -29,7 +30,7 @@ public partial class VolunteerChangePassword
     private void LogOutBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.LogOutSwitch();
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -40,7 +41,7 @@ public partial class VolunteerChangePassword
     private void HomeVolunteerPortalBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.RedirectVolunteerPortal();
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -51,7 +52,7 @@ public partial class VolunteerChangePassword
     private void ViewTimesheetBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerViewTimesheets());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -62,7 +63,7 @@ public partial class VolunteerChangePassword
     private void ScanPetQRCodeBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -73,7 +74,7 @@ public partial class VolunteerChangePassword
     private void PetReportBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -122,7 +123,7 @@ public partial class VolunteerChangePassword
     private void ChangePasswordBtn_Click(object sender, RoutedEventArgs e)
     {
         // Verifies the current password the user has
-        string verifyCurrentPwd = Switcher.VerifyRole("Select Password From QRbertTables.Registration Where email = '" +
+        string verifyCurrentPwd = Switcher.VerifyRole("Select Password From QRbertDB.QRbertTables.Registration Where email = '" +
                                                       Switcher.CurrentSessionEmail + "'");
         // If the verified password string isn't the same as the inputted current password,
         // then catch error and reset to empty textboxes
@@ -152,16 +153,43 @@ public partial class VolunteerChangePassword
             // Passes all the checks, updates password and takes to MyAccount page
             else
             {
-                string userType = Switcher.VerifyRole("Select [Faculty-Role] From QRbertTables.Registration Where email = '" 
-                                                      + Switcher.CurrentSessionEmail + "'");
-                SqlCommand sqlCmd =
-                    new SqlCommand(
-                        "Update Registration Set Password = '" + ConfirmNewPasswordBox.Password + "' Where Faculty-role = ' " +
-                        userType + "'", new SqlConnection(Switcher.ConnectionString));
-                sqlCmd.ExecuteScalar();
-                MessageBox.Show("Password has been updated.");
+                // Opens connection, gets needed info for command and executes and updates the email
+                SqlConnection sqlConnection = new SqlConnection(Switcher.ConnectionString);
+                sqlConnection.Open();
+                try
+                {
+                    string facultyRole =
+                        Switcher.VerifyRole(
+                            "Select [Faculty-Role] From QRbertDB.QRbertTables.Registration Where Email = '" +
+                            Switcher.CurrentSessionEmail + "';");
+                    string password = 
+                        Switcher.VerifyRole(
+                            "Select Password From QRbertDB.QRbertTables.Registration Where Email = '" + 
+                            Switcher.CurrentSessionEmail + "';");
+                    string firstName = 
+                        Switcher.VerifyRole(
+                            "Select FirstName From QRbertDB.QRbertTables.Registration Where Email = '" + 
+                            Switcher.CurrentSessionEmail + "';");
+                    string lastName = 
+                        Switcher.VerifyRole(
+                            "Select LastName From QRbertDB.QRbertTables.Registration Where Email = '" + 
+                            Switcher.CurrentSessionEmail + "';");
+                    SqlCommand sqlCmd = new SqlCommand("updateEmailPwd", sqlConnection);
+                    sqlCmd.CommandType = CommandType.StoredProcedure;
+                    sqlCmd.Parameters.AddWithValue("@Email", Switcher.CurrentSessionEmail);
+                    sqlCmd.Parameters.AddWithValue("@Password", verifyCurrentPwd);
+                    sqlCmd.Parameters.AddWithValue("@Faculty_Role", facultyRole);
+                    sqlCmd.Parameters.AddWithValue("@FirstName", firstName);
+                    sqlCmd.Parameters.AddWithValue("@LastName", lastName);
+                    sqlCmd.ExecuteNonQuery();
+                    MessageBox.Show("Password has been updated.");
+                }
+                catch (SqlException sqlException)
+                {
+                    MessageBox.Show(sqlException.Message);
+                }
                 Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
-                this.Close();
+                Close();
             }
         }
     }
@@ -174,7 +202,7 @@ public partial class VolunteerChangePassword
     private void ForgotPasswordBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
-        this.Close();
+        Close();
 
     }
 }
