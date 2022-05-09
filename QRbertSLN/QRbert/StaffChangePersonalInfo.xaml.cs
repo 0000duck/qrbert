@@ -200,7 +200,7 @@ public partial class StaffChangePersonalInfo
             sqlCmd.Parameters.AddWithValue("@Password", password);
             sqlCmd.Parameters.AddWithValue("@Faculty_Role", facultyRole);
             
-            if (AddressInputTxt.Text != "")
+            /*if (AddressInputTxt.Text != "")
             {
                 sqlCmd.Parameters.AddWithValue("@Street-Add", AddressInputTxt.Text);
             }
@@ -243,7 +243,12 @@ public partial class StaffChangePersonalInfo
             else
             {
                 sqlCmd.Parameters.AddWithValue("@ZipCode", phone);
-            }
+            }*/
+            sqlCmd.Parameters.AddWithValue("@Street-Add", AddressInputTxt.Text);
+            sqlCmd.Parameters.AddWithValue("@City", CityInputTxt.Text);
+            sqlCmd.Parameters.AddWithValue("@State", StateInputTxt.Text);
+            sqlCmd.Parameters.AddWithValue("@ZipCode", ZipcodeInputTxt.Text);
+            sqlCmd.Parameters.AddWithValue("@PhoneNum", PhoneNumberInputTxt.Text);
             sqlCmd.Parameters.AddWithValue("@DL_ID", dl);
             
             sqlCmd.ExecuteNonQuery();
