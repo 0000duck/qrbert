@@ -1,10 +1,11 @@
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace QRbert;
 
-public partial class VolunteerChangePersonalInformation : Window
+public partial class VolunteerChangePersonalInformation
 {
     public VolunteerChangePersonalInformation()
     {
@@ -19,7 +20,7 @@ public partial class VolunteerChangePersonalInformation : Window
     private void VolunteerMyAcctBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -30,7 +31,7 @@ public partial class VolunteerChangePersonalInformation : Window
     private void LogOutBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.LogOutSwitch();
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -41,7 +42,7 @@ public partial class VolunteerChangePersonalInformation : Window
     private void HomeVolunteerPortalBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.RedirectVolunteerPortal();
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -52,7 +53,7 @@ public partial class VolunteerChangePersonalInformation : Window
     private void ViewTimesheetBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerViewTimesheets());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -63,7 +64,7 @@ public partial class VolunteerChangePersonalInformation : Window
     private void ScanPetQRCodeBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
-        this.Close();
+        Close();
     }
 
     /// <summary>
@@ -74,7 +75,7 @@ public partial class VolunteerChangePersonalInformation : Window
     private void PetReportBtn_Click(object sender, RoutedEventArgs e)
     {
         Switcher.VolunteerPortalSwitch(new VolunteerScanPetQrCode());
-        this.Close();
+        Close();
     }
     
     /// <summary>
@@ -97,41 +98,101 @@ public partial class VolunteerChangePersonalInformation : Window
     /// <param name="e"></param>
     private void SaveBtn_Click(object sender, RoutedEventArgs e)
     {
-        using SqlConnection sqlCon = new SqlConnection(Switcher.ConnectionString);
-        sqlCon.Open();
-        string userType = Switcher.VerifyRole("Select [Faculty-Role] From QRbertDB.QRbertTables.Registration Where email = '"
-                                              + Switcher.CurrentSessionEmail + "'");
-        
-        if (AddressInputTxt.Text != "")
+        // Opens connection, gets needed info for command and executes and updates the email
+        SqlConnection sqlConnection = new SqlConnection(Switcher.ConnectionString);
+        sqlConnection.Open();
+        try
         {
-            SqlCommand sqlCmd = new SqlCommand(
-                "Update QRbertDB.QRbertTables.Contact_Info Set Contact_Info.[Street-Add] = '" + AddressInputTxt.Text + "' Where Faculty-role = ' " +
-                userType + "'", new SqlConnection(Switcher.ConnectionString));
-        }
+            string facultyRole =
+                Switcher.VerifyRole(
+                    "Select [Faculty-Role] From QRbertDB.QRbertTables.Registration Where Email = '" +
+                    Switcher.CurrentSessionEmail + "';");
+            string password = 
+                Switcher.VerifyRole(
+                    "Select Password From QRbertDB.QRbertTables.Registration Where Email = '" + 
+                    Switcher.CurrentSessionEmail + "';");
+            string streetAddr = 
+                Switcher.VerifyRole(
+                    "Select [Street-Add] From QRbertDB.QRbertTables.Contact_Info Where Email = '" + 
+                    Switcher.CurrentSessionEmail + "';");
+            string city = Switcher.VerifyRole(
+                "Select City From QRbertDB.QRbertTables.Contact_Info Where Email = '" + Switcher.CurrentSessionEmail +
+                "';");
+            string state = Switcher.VerifyRole(
+                "Select State From QRbertDB.QRbertTables.Contact_Info Where Email = '" + Switcher.CurrentSessionEmail +
+                "';");
+            string zipCode = Switcher.VerifyRole(
+                "Select ZipCode From QRbertDB.QRbertTables.Contact_Info Where Email = '" +
+                Switcher.CurrentSessionEmail + "';");
+            string phone = Switcher.VerifyRole(
+                "Select PhoneNum From QRbertDB.QRbertTables.Contact_Info Where Email = '" +
+                Switcher.CurrentSessionEmail + "';");
+            string dl = Switcher.VerifyRole(
+                "Select [DL_ID] From QRbertDB.QRbertTables.Contact_Info Where Email = '" +
+                Switcher.CurrentSessionEmail + "';");
+            
+            SqlCommand sqlCmd = new SqlCommand("UpdateContactInfo", sqlConnection);
+            sqlCmd.CommandType = CommandType.StoredProcedure;
+            sqlCmd.Parameters.AddWithValue("@Email", Switcher.CurrentSessionEmail);
+            sqlCmd.Parameters.AddWithValue("@Password", password);
+            sqlCmd.Parameters.AddWithValue("@Faculty_Role", facultyRole);
+            
+            if (AddressInputTxt.Text != "")
+            {
+                sqlCmd.Parameters.AddWithValue("@Street-Add", AddressInputTxt.Text);
+            }
+            else
+            {
+                sqlCmd.Parameters.AddWithValue("@Street-Add", streetAddr);
+            }
 
-        if (CityInputTxt.Text != "")
-        {
-            SqlCommand sqlCmd = new SqlCommand(
-                "Update QRbertDB.QRbertTables.Contact_Info Set City ='" + CityInputTxt.Text + "' Where Faculty-role = ' " +
-                userType + "'", new SqlConnection(Switcher.ConnectionString));
-        }
+            if (CityInputTxt.Text != "")
+            {
+                sqlCmd.Parameters.AddWithValue("@City", CityInputTxt.Text);
+            }
+            else
+            {
+                sqlCmd.Parameters.AddWithValue("@City", city);
+            }
 
-        if (StateInputTxt.Text != "")
-        {
-            SqlCommand sqlCmd = new SqlCommand(
-                "Update QRbertDB.QRbertTables.Contact_Info Set State ='" + StateInputTxt.Text + "' Where Faculty-role = ' " +
-                userType + "'", new SqlConnection(Switcher.ConnectionString));
-        }
+            if (StateInputTxt.Text != "")
+            {
+                sqlCmd.Parameters.AddWithValue("@State", StateInputTxt.Text);
+            }
+            else
+            {
+                sqlCmd.Parameters.AddWithValue("@State", state);
+            }
 
-        if (ZipcodeInputTxt.Text != "")
+            if (ZipcodeInputTxt.Text != "")
+            {
+                sqlCmd.Parameters.AddWithValue("@ZipCode", ZipcodeInputTxt.Text);
+            }
+            else
+            {
+                sqlCmd.Parameters.AddWithValue("@ZipCode", zipCode);
+            }
+
+            if (PhoneNumberInputTxt.Text != "")
+            {
+                sqlCmd.Parameters.AddWithValue("@PhoneNum", PhoneNumberInputTxt.Text);
+            }
+            else
+            {
+                sqlCmd.Parameters.AddWithValue("@ZipCode", phone);
+            }
+            sqlCmd.Parameters.AddWithValue("@DL_ID", dl);
+            
+            sqlCmd.ExecuteNonQuery();
+            MessageBox.Show("Your info has been updated.");
+        }
+        catch (SqlException sqlException)
         {
-            SqlCommand sqlCmd = new SqlCommand(
-                "Update QRbertDB.QRbertTables.Contact_Info Set ZipCode ='" + ZipcodeInputTxt.Text + "' Where Faculty-role = ' " +
-                userType + "'", new SqlConnection(Switcher.ConnectionString));
+            MessageBox.Show(sqlException.Message);
         }
         MessageBox.Show("All information updated.");
         Switcher.VolunteerPortalSwitch(new VolunteerMyAccount());
-        this.Close();
+        Close();
     }
 
     private void AddressInputTxt_OnTextChanged(object sender, TextChangedEventArgs e)

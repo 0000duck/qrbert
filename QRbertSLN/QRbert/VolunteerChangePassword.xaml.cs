@@ -158,12 +158,22 @@ public partial class VolunteerChangePassword
                 sqlConnection.Open();
                 try
                 {
-                    string facultyRole = "Select [Faculty-Role] From QRbertDB.QRbertTables.Registration Where Email = '" + 
-                                         Switcher.CurrentSessionEmail + "';";
-                    string firstName = "Select FirstName From QRbertDB.QRbertTables.Registration Where Email = '" +
-                                       Switcher.CurrentSessionEmail + "';";
-                    string lastName = "Select LastName From QRbertDB.QRbertTables.Registration Where Email = '" +
-                                      Switcher.CurrentSessionEmail + "';";
+                    string facultyRole =
+                        Switcher.VerifyRole(
+                            "Select [Faculty-Role] From QRbertDB.QRbertTables.Registration Where Email = '" +
+                            Switcher.CurrentSessionEmail + "';");
+                    string password = 
+                        Switcher.VerifyRole(
+                            "Select Password From QRbertDB.QRbertTables.Registration Where Email = '" + 
+                            Switcher.CurrentSessionEmail + "';");
+                    string firstName = 
+                        Switcher.VerifyRole(
+                            "Select FirstName From QRbertDB.QRbertTables.Registration Where Email = '" + 
+                            Switcher.CurrentSessionEmail + "';");
+                    string lastName = 
+                        Switcher.VerifyRole(
+                            "Select LastName From QRbertDB.QRbertTables.Registration Where Email = '" + 
+                            Switcher.CurrentSessionEmail + "';");
                     SqlCommand sqlCmd = new SqlCommand("updateEmailPwd", sqlConnection);
                     sqlCmd.CommandType = CommandType.StoredProcedure;
                     sqlCmd.Parameters.AddWithValue("@Email", Switcher.CurrentSessionEmail);
